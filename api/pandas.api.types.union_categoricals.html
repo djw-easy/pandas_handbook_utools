@@ -1,0 +1,166 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="Docutils 0.17.1: http://docutils.sourceforge.net/" name="generator"/>
+<title>pandas.api.types.union_categoricals — pandas 1.4.1 documentation</title>
+<link href="../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet"/>
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet"/>
+<link href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css" rel="stylesheet"/>
+<link as="font" crossorigin="" href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2" rel="preload" type="font/woff2"/>
+<link as="font" crossorigin="" href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2" rel="preload" type="font/woff2"/>
+<link href="../../_static/pygments.css" rel="stylesheet" type="text/css">
+<link href="../../_static/styles/pydata-sphinx-theme.css" rel="stylesheet" type="text/css">
+<link href="../../_static/plot_directive.css" rel="stylesheet" type="text/css">
+<link href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" rel="stylesheet" type="text/css">
+<link href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" rel="stylesheet" type="text/css">
+<link href="../../_static/css/getting_started.css" rel="stylesheet" type="text/css"/>
+<link href="../../_static/css/pandas.css" rel="stylesheet" type="text/css"/>
+<link as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf" rel="preload"/>
+<script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+<script src="../../_static/jquery.js"></script>
+<script src="../../_static/underscore.js"></script>
+<script src="../../_static/doctools.js"></script>
+<script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
+<link href="../../_static/favicon.ico" rel="shortcut icon">
+<link href="../../genindex.html" rel="index" title="Index"/>
+<link href="../../search.html" rel="search" title="Search"/>
+<link href="pandas.api.types.infer_dtype.html" rel="next" title="pandas.api.types.infer_dtype"/>
+<link href="pandas.errors.UnsupportedFunctionCall.html" rel="prev" title="pandas.errors.UnsupportedFunctionCall"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<meta content="en" name="docsearch:language"/>
+<script async="" src="https://www.google-analytics.com/analytics.js"></script>
+<script>
+                        window.ga = window.ga || function () {
+                            (ga.q = ga.q || []).push(arguments) };
+                        ga.l = +new Date;
+                        ga('create', 'UA-27880019-2', 'auto');
+                        ga('set', 'anonymizeIp', true);
+                        ga('send', 'pageview');
+                    </script>
+</link></link></link></link></link></link></head>
+<body data-offset="80" data-spy="scroll" data-target="#bd-toc-nav">
+<div class="container-fluid" id="banner"></div>
+
+<div class="container-xl">
+<div class="row">
+
+
+<main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
+<div>
+<section id="pandas-api-types-union-categoricals">
+<h1>pandas.api.types.union_categoricals<a class="headerlink" href="#pandas-api-types-union-categoricals" title="Permalink to this headline">¶</a></h1>
+<dl class="py function">
+<dt class="sig sig-object py" id="pandas.api.types.union_categoricals">
+<span class="sig-prename descclassname"><span class="pre">pandas.api.types.</span></span><span class="sig-name descname"><span class="pre">union_categoricals</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">to_union</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sort_categories</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ignore_order</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/pandas-dev/pandas/blob/v1.4.1/pandas/core/dtypes/concat.py#L165-L330"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pandas.api.types.union_categoricals" title="Permalink to this definition">¶</a></dt>
+<dd><p>Combine list-like of Categorical-like, unioning categories.</p>
+<p>All categories must have the same dtype.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>to_union</strong><span class="classifier">list-like</span></dt><dd><p>Categorical, CategoricalIndex, or Series with dtype=’category’.</p>
+</dd>
+<dt><strong>sort_categories</strong><span class="classifier">bool, default False</span></dt><dd><p>If true, resulting categories will be lexsorted, otherwise
+they will be ordered as they appear in the data.</p>
+</dd>
+<dt><strong>ignore_order</strong><span class="classifier">bool, default False</span></dt><dd><p>If true, the ordered attribute of the Categoricals will be ignored.
+Results in an unordered categorical.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt>Categorical</dt><dd></dd>
+</dl>
+</dd>
+<dt class="field-odd">Raises</dt>
+<dd class="field-odd"><dl class="simple">
+<dt>TypeError</dt><dd><ul class="simple">
+<li><p>all inputs do not have the same dtype</p></li>
+<li><p>all inputs do not have the same ordered property</p></li>
+<li><p>all inputs are ordered and their categories are not identical</p></li>
+<li><p>sort_categories=True and Categoricals are ordered</p></li>
+</ul>
+</dd>
+<dt>ValueError</dt><dd><p>Empty list of categoricals passed</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<p>To learn more about categories, see <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/user_guide/categorical.html#unioning">link</a></p>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pandas.api.types</span> <span class="kn">import</span> <span class="n">union_categoricals</span>
+</pre></div>
+</div>
+<p>If you want to combine categoricals that do not necessarily have
+the same categories, <cite>union_categoricals</cite> will combine a list-like
+of categoricals. The new categories will be the union of the
+categories being combined.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Categorical</span><span class="p">([</span><span class="s2">"b"</span><span class="p">,</span> <span class="s2">"c"</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">b</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Categorical</span><span class="p">([</span><span class="s2">"a"</span><span class="p">,</span> <span class="s2">"b"</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">union_categoricals</span><span class="p">([</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">])</span>
+<span class="go">['b', 'c', 'a', 'b']</span>
+<span class="go">Categories (3, object): ['b', 'c', 'a']</span>
+</pre></div>
+</div>
+<p>By default, the resulting categories will be ordered as they appear
+in the <cite>categories</cite> of the data. If you want the categories to be
+lexsorted, use <cite>sort_categories=True</cite> argument.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">union_categoricals</span><span class="p">([</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">],</span> <span class="n">sort_categories</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="go">['b', 'c', 'a', 'b']</span>
+<span class="go">Categories (3, object): ['a', 'b', 'c']</span>
+</pre></div>
+</div>
+<p><cite>union_categoricals</cite> also works with the case of combining two
+categoricals of the same categories and order information (e.g. what
+you could also <cite>append</cite> for).</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Categorical</span><span class="p">([</span><span class="s2">"a"</span><span class="p">,</span> <span class="s2">"b"</span><span class="p">],</span> <span class="n">ordered</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">b</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Categorical</span><span class="p">([</span><span class="s2">"a"</span><span class="p">,</span> <span class="s2">"b"</span><span class="p">,</span> <span class="s2">"a"</span><span class="p">],</span> <span class="n">ordered</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">union_categoricals</span><span class="p">([</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">])</span>
+<span class="go">['a', 'b', 'a', 'b', 'a']</span>
+<span class="go">Categories (2, object): ['a' &lt; 'b']</span>
+</pre></div>
+</div>
+<p>Raises <cite>TypeError</cite> because the categories are ordered and not identical.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Categorical</span><span class="p">([</span><span class="s2">"a"</span><span class="p">,</span> <span class="s2">"b"</span><span class="p">],</span> <span class="n">ordered</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">b</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Categorical</span><span class="p">([</span><span class="s2">"a"</span><span class="p">,</span> <span class="s2">"b"</span><span class="p">,</span> <span class="s2">"c"</span><span class="p">],</span> <span class="n">ordered</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">union_categoricals</span><span class="p">([</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">])</span>
+<span class="gt">Traceback (most recent call last):</span>
+    <span class="o">...</span>
+<span class="gr">TypeError</span>: <span class="n">to union ordered Categoricals, all categories must be the same</span>
+</pre></div>
+</div>
+<p>New in version 0.20.0</p>
+<p>Ordered categoricals with different categories or orderings can be
+combined by using the <cite>ignore_ordered=True</cite> argument.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Categorical</span><span class="p">([</span><span class="s2">"a"</span><span class="p">,</span> <span class="s2">"b"</span><span class="p">,</span> <span class="s2">"c"</span><span class="p">],</span> <span class="n">ordered</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">b</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Categorical</span><span class="p">([</span><span class="s2">"c"</span><span class="p">,</span> <span class="s2">"b"</span><span class="p">,</span> <span class="s2">"a"</span><span class="p">],</span> <span class="n">ordered</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">union_categoricals</span><span class="p">([</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">],</span> <span class="n">ignore_order</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="go">['a', 'b', 'c', 'c', 'b', 'a']</span>
+<span class="go">Categories (3, object): ['a', 'b', 'c']</span>
+</pre></div>
+</div>
+<p><cite>union_categoricals</cite> also works with a <cite>CategoricalIndex</cite>, or <cite>Series</cite>
+containing categorical data, but note that the resulting array will
+always be a plain <cite>Categorical</cite></p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="s2">"b"</span><span class="p">,</span> <span class="s2">"c"</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="s1">'category'</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">b</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="s2">"a"</span><span class="p">,</span> <span class="s2">"b"</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="s1">'category'</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">union_categoricals</span><span class="p">([</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">])</span>
+<span class="go">['b', 'c', 'a', 'b']</span>
+<span class="go">Categories (3, object): ['b', 'c', 'a']</span>
+</pre></div>
+</div>
+</dd></dl>
+</section>
+</div>
+
+</main>
+</div>
+</div>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+</body>
+</html>

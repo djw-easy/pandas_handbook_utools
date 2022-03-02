@@ -1,0 +1,200 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="Docutils 0.17.1: http://docutils.sourceforge.net/" name="generator"/>
+<title>pandas.Series.convert_dtypes — pandas 1.4.1 documentation</title>
+<link href="../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet"/>
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet"/>
+<link href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css" rel="stylesheet"/>
+<link as="font" crossorigin="" href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2" rel="preload" type="font/woff2"/>
+<link as="font" crossorigin="" href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2" rel="preload" type="font/woff2"/>
+<link href="../../_static/pygments.css" rel="stylesheet" type="text/css">
+<link href="../../_static/styles/pydata-sphinx-theme.css" rel="stylesheet" type="text/css">
+<link href="../../_static/plot_directive.css" rel="stylesheet" type="text/css">
+<link href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" rel="stylesheet" type="text/css">
+<link href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" rel="stylesheet" type="text/css">
+<link href="../../_static/css/getting_started.css" rel="stylesheet" type="text/css"/>
+<link href="../../_static/css/pandas.css" rel="stylesheet" type="text/css"/>
+<link as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf" rel="preload"/>
+<script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+<script src="../../_static/jquery.js"></script>
+<script src="../../_static/underscore.js"></script>
+<script src="../../_static/doctools.js"></script>
+<script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
+<link href="../../_static/favicon.ico" rel="shortcut icon">
+<link href="../../genindex.html" rel="index" title="Index"/>
+<link href="../../search.html" rel="search" title="Search"/>
+<link href="pandas.Series.copy.html" rel="next" title="pandas.Series.copy"/>
+<link href="pandas.Series.compare.html" rel="prev" title="pandas.Series.compare"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<meta content="en" name="docsearch:language"/>
+<script async="" src="https://www.google-analytics.com/analytics.js"></script>
+<script>
+                        window.ga = window.ga || function () {
+                            (ga.q = ga.q || []).push(arguments) };
+                        ga.l = +new Date;
+                        ga('create', 'UA-27880019-2', 'auto');
+                        ga('set', 'anonymizeIp', true);
+                        ga('send', 'pageview');
+                    </script>
+</link></link></link></link></link></link></head>
+<body data-offset="80" data-spy="scroll" data-target="#bd-toc-nav">
+<div class="container-fluid" id="banner"></div>
+
+<div class="container-xl">
+<div class="row">
+
+
+<main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
+<div>
+<section id="pandas-series-convert-dtypes">
+<h1>pandas.Series.convert_dtypes<a class="headerlink" href="#pandas-series-convert-dtypes" title="Permalink to this headline">¶</a></h1>
+<dl class="py method">
+<dt class="sig sig-object py" id="pandas.Series.convert_dtypes">
+<span class="sig-prename descclassname"><span class="pre">Series.</span></span><span class="sig-name descname"><span class="pre">convert_dtypes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">infer_objects</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">convert_string</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">convert_integer</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">convert_boolean</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">convert_floating</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/pandas-dev/pandas/blob/v1.4.1/pandas/core/generic.py#L6140-L6302"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pandas.Series.convert_dtypes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert columns to best possible dtypes using dtypes supporting <code class="docutils literal notranslate"><span class="pre">pd.NA</span></code>.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">New in version 1.0.0.</span></p>
+</div>
+<dl class="field-list">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl>
+<dt><strong>infer_objects</strong><span class="classifier">bool, default True</span></dt><dd><p>Whether object dtypes should be converted to the best possible types.</p>
+</dd>
+<dt><strong>convert_string</strong><span class="classifier">bool, default True</span></dt><dd><p>Whether object dtypes should be converted to <code class="docutils literal notranslate"><span class="pre">StringDtype()</span></code>.</p>
+</dd>
+<dt><strong>convert_integer</strong><span class="classifier">bool, default True</span></dt><dd><p>Whether, if possible, conversion can be done to integer extension types.</p>
+</dd>
+<dt><strong>convert_boolean</strong><span class="classifier">bool, defaults True</span></dt><dd><p>Whether object dtypes should be converted to <code class="docutils literal notranslate"><span class="pre">BooleanDtypes()</span></code>.</p>
+</dd>
+<dt><strong>convert_floating</strong><span class="classifier">bool, defaults True</span></dt><dd><p>Whether, if possible, conversion can be done to floating extension types.
+If <cite>convert_integer</cite> is also True, preference will be give to integer
+dtypes if the floats can be faithfully casted to integers.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">New in version 1.2.0.</span></p>
+</div>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt>Series or DataFrame</dt><dd><p>Copy of input object with new dtype.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<dl class="simple">
+<dt><a class="reference internal" href="pandas.Series.infer_objects.html#pandas.Series.infer_objects" title="pandas.Series.infer_objects"><code class="xref py py-obj docutils literal notranslate"><span class="pre">infer_objects</span></code></a></dt><dd><p>Infer dtypes of objects.</p>
+</dd>
+<dt><a class="reference internal" href="pandas.to_datetime.html#pandas.to_datetime" title="pandas.to_datetime"><code class="xref py py-obj docutils literal notranslate"><span class="pre">to_datetime</span></code></a></dt><dd><p>Convert argument to datetime.</p>
+</dd>
+<dt><a class="reference internal" href="pandas.to_timedelta.html#pandas.to_timedelta" title="pandas.to_timedelta"><code class="xref py py-obj docutils literal notranslate"><span class="pre">to_timedelta</span></code></a></dt><dd><p>Convert argument to timedelta.</p>
+</dd>
+<dt><a class="reference internal" href="pandas.to_numeric.html#pandas.to_numeric" title="pandas.to_numeric"><code class="xref py py-obj docutils literal notranslate"><span class="pre">to_numeric</span></code></a></dt><dd><p>Convert argument to a numeric type.</p>
+</dd>
+</dl>
+</div>
+<p class="rubric">Notes</p>
+<p>By default, <code class="docutils literal notranslate"><span class="pre">convert_dtypes</span></code> will attempt to convert a Series (or each
+Series in a DataFrame) to dtypes that support <code class="docutils literal notranslate"><span class="pre">pd.NA</span></code>. By using the options
+<code class="docutils literal notranslate"><span class="pre">convert_string</span></code>, <code class="docutils literal notranslate"><span class="pre">convert_integer</span></code>, <code class="docutils literal notranslate"><span class="pre">convert_boolean</span></code> and
+<code class="docutils literal notranslate"><span class="pre">convert_boolean</span></code>, it is possible to turn off individual conversions
+to <code class="docutils literal notranslate"><span class="pre">StringDtype</span></code>, the integer extension types, <code class="docutils literal notranslate"><span class="pre">BooleanDtype</span></code>
+or floating extension types, respectively.</p>
+<p>For object-dtyped columns, if <code class="docutils literal notranslate"><span class="pre">infer_objects</span></code> is <code class="docutils literal notranslate"><span class="pre">True</span></code>, use the inference
+rules as during normal Series/DataFrame construction. Then, if possible,
+convert to <code class="docutils literal notranslate"><span class="pre">StringDtype</span></code>, <code class="docutils literal notranslate"><span class="pre">BooleanDtype</span></code> or an appropriate integer
+or floating extension type, otherwise leave as <code class="docutils literal notranslate"><span class="pre">object</span></code>.</p>
+<p>If the dtype is integer, convert to an appropriate integer extension type.</p>
+<p>If the dtype is numeric, and consists of all integers, convert to an
+appropriate integer extension type. Otherwise, convert to an
+appropriate floating extension type.</p>
+<div class="versionchanged">
+<p><span class="versionmodified changed">Changed in version 1.2: </span>Starting with pandas 1.2, this method also converts float columns
+to the nullable floating extension type.</p>
+</div>
+<p>In the future, as new dtypes are added that support <code class="docutils literal notranslate"><span class="pre">pd.NA</span></code>, the results
+of this method will change to support those new dtypes.</p>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
+<span class="gp">... </span>    <span class="p">{</span>
+<span class="gp">... </span>        <span class="s2">"a"</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">dtype</span><span class="p">(</span><span class="s2">"int32"</span><span class="p">)),</span>
+<span class="gp">... </span>        <span class="s2">"b"</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="s2">"x"</span><span class="p">,</span> <span class="s2">"y"</span><span class="p">,</span> <span class="s2">"z"</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">dtype</span><span class="p">(</span><span class="s2">"O"</span><span class="p">)),</span>
+<span class="gp">... </span>        <span class="s2">"c"</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="kc">True</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">dtype</span><span class="p">(</span><span class="s2">"O"</span><span class="p">)),</span>
+<span class="gp">... </span>        <span class="s2">"d"</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="s2">"h"</span><span class="p">,</span> <span class="s2">"i"</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">dtype</span><span class="p">(</span><span class="s2">"O"</span><span class="p">)),</span>
+<span class="gp">... </span>        <span class="s2">"e"</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="mi">10</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="mi">20</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">dtype</span><span class="p">(</span><span class="s2">"float"</span><span class="p">)),</span>
+<span class="gp">... </span>        <span class="s2">"f"</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="mf">100.5</span><span class="p">,</span> <span class="mi">200</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">dtype</span><span class="p">(</span><span class="s2">"float"</span><span class="p">)),</span>
+<span class="gp">... </span>    <span class="p">}</span>
+<span class="gp">... </span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Start with a DataFrame with default dtypes.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df</span>
+<span class="go">   a  b      c    d     e      f</span>
+<span class="go">0  1  x   True    h  10.0    NaN</span>
+<span class="go">1  2  y  False    i   NaN  100.5</span>
+<span class="go">2  3  z    NaN  NaN  20.0  200.0</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df</span><span class="o">.</span><span class="n">dtypes</span>
+<span class="go">a      int32</span>
+<span class="go">b     object</span>
+<span class="go">c     object</span>
+<span class="go">d     object</span>
+<span class="go">e    float64</span>
+<span class="go">f    float64</span>
+<span class="go">dtype: object</span>
+</pre></div>
+</div>
+<p>Convert the DataFrame to use best possible dtypes.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">dfn</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">convert_dtypes</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">dfn</span>
+<span class="go">   a  b      c     d     e      f</span>
+<span class="go">0  1  x   True     h    10   &lt;NA&gt;</span>
+<span class="go">1  2  y  False     i  &lt;NA&gt;  100.5</span>
+<span class="go">2  3  z   &lt;NA&gt;  &lt;NA&gt;    20  200.0</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">dfn</span><span class="o">.</span><span class="n">dtypes</span>
+<span class="go">a      Int32</span>
+<span class="go">b     string</span>
+<span class="go">c    boolean</span>
+<span class="go">d     string</span>
+<span class="go">e      Int64</span>
+<span class="go">f    Float64</span>
+<span class="go">dtype: object</span>
+</pre></div>
+</div>
+<p>Start with a Series of strings and missing data represented by <code class="docutils literal notranslate"><span class="pre">np.nan</span></code>.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">s</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="s2">"a"</span><span class="p">,</span> <span class="s2">"b"</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">s</span>
+<span class="go">0      a</span>
+<span class="go">1      b</span>
+<span class="go">2    NaN</span>
+<span class="go">dtype: object</span>
+</pre></div>
+</div>
+<p>Obtain a Series with dtype <code class="docutils literal notranslate"><span class="pre">StringDtype</span></code>.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">s</span><span class="o">.</span><span class="n">convert_dtypes</span><span class="p">()</span>
+<span class="go">0       a</span>
+<span class="go">1       b</span>
+<span class="go">2    &lt;NA&gt;</span>
+<span class="go">dtype: string</span>
+</pre></div>
+</div>
+</dd></dl>
+</section>
+</div>
+
+</main>
+</div>
+</div>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+</body>
+</html>

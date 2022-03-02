@@ -1,0 +1,157 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="Docutils 0.17.1: http://docutils.sourceforge.net/" name="generator"/>
+<title>pandas.DataFrame.memory_usage — pandas 1.4.1 documentation</title>
+<link href="../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet"/>
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet"/>
+<link href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css" rel="stylesheet"/>
+<link as="font" crossorigin="" href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2" rel="preload" type="font/woff2"/>
+<link as="font" crossorigin="" href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2" rel="preload" type="font/woff2"/>
+<link href="../../_static/pygments.css" rel="stylesheet" type="text/css">
+<link href="../../_static/styles/pydata-sphinx-theme.css" rel="stylesheet" type="text/css">
+<link href="../../_static/plot_directive.css" rel="stylesheet" type="text/css">
+<link href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" rel="stylesheet" type="text/css">
+<link href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" rel="stylesheet" type="text/css">
+<link href="../../_static/css/getting_started.css" rel="stylesheet" type="text/css"/>
+<link href="../../_static/css/pandas.css" rel="stylesheet" type="text/css"/>
+<link as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf" rel="preload"/>
+<script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+<script src="../../_static/jquery.js"></script>
+<script src="../../_static/underscore.js"></script>
+<script src="../../_static/doctools.js"></script>
+<script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
+<link href="../../_static/favicon.ico" rel="shortcut icon">
+<link href="../../genindex.html" rel="index" title="Index"/>
+<link href="../../search.html" rel="search" title="Search"/>
+<link href="pandas.DataFrame.merge.html" rel="next" title="pandas.DataFrame.merge"/>
+<link href="pandas.DataFrame.melt.html" rel="prev" title="pandas.DataFrame.melt"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<meta content="en" name="docsearch:language"/>
+<script async="" src="https://www.google-analytics.com/analytics.js"></script>
+<script>
+                        window.ga = window.ga || function () {
+                            (ga.q = ga.q || []).push(arguments) };
+                        ga.l = +new Date;
+                        ga('create', 'UA-27880019-2', 'auto');
+                        ga('set', 'anonymizeIp', true);
+                        ga('send', 'pageview');
+                    </script>
+</link></link></link></link></link></link></head>
+<body data-offset="80" data-spy="scroll" data-target="#bd-toc-nav">
+<div class="container-fluid" id="banner"></div>
+
+<div class="container-xl">
+<div class="row">
+
+
+<main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
+<div>
+<section id="pandas-dataframe-memory-usage">
+<h1>pandas.DataFrame.memory_usage<a class="headerlink" href="#pandas-dataframe-memory-usage" title="Permalink to this headline">¶</a></h1>
+<dl class="py method">
+<dt class="sig sig-object py" id="pandas.DataFrame.memory_usage">
+<span class="sig-prename descclassname"><span class="pre">DataFrame.</span></span><span class="sig-name descname"><span class="pre">memory_usage</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">index</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">deep</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/pandas-dev/pandas/blob/v1.4.1/pandas/core/frame.py#L3178-L3271"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pandas.DataFrame.memory_usage" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the memory usage of each column in bytes.</p>
+<p>The memory usage can optionally include the contribution of
+the index and elements of <cite>object</cite> dtype.</p>
+<p>This value is displayed in <cite>DataFrame.info</cite> by default. This can be
+suppressed by setting <code class="docutils literal notranslate"><span class="pre">pandas.options.display.memory_usage</span></code> to False.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>index</strong><span class="classifier">bool, default True</span></dt><dd><p>Specifies whether to include the memory usage of the DataFrame’s
+index in returned Series. If <code class="docutils literal notranslate"><span class="pre">index=True</span></code>, the memory usage of
+the index is the first item in the output.</p>
+</dd>
+<dt><strong>deep</strong><span class="classifier">bool, default False</span></dt><dd><p>If True, introspect the data deeply by interrogating
+<cite>object</cite> dtypes for system-level memory consumption, and include
+it in the returned values.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt>Series</dt><dd><p>A Series whose index is the original column names and whose values
+is the memory usage of each column in bytes.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<dl class="simple">
+<dt><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.nbytes.html#numpy.ndarray.nbytes" title="(in NumPy v1.22)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">numpy.ndarray.nbytes</span></code></a></dt><dd><p>Total bytes consumed by the elements of an ndarray.</p>
+</dd>
+<dt><a class="reference internal" href="pandas.Series.memory_usage.html#pandas.Series.memory_usage" title="pandas.Series.memory_usage"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Series.memory_usage</span></code></a></dt><dd><p>Bytes consumed by a Series.</p>
+</dd>
+<dt><a class="reference internal" href="pandas.Categorical.html#pandas.Categorical" title="pandas.Categorical"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Categorical</span></code></a></dt><dd><p>Memory-efficient array for string values with many repeated values.</p>
+</dd>
+<dt><a class="reference internal" href="pandas.DataFrame.info.html#pandas.DataFrame.info" title="pandas.DataFrame.info"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DataFrame.info</span></code></a></dt><dd><p>Concise summary of a DataFrame.</p>
+</dd>
+</dl>
+</div>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">dtypes</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'int64'</span><span class="p">,</span> <span class="s1">'float64'</span><span class="p">,</span> <span class="s1">'complex128'</span><span class="p">,</span> <span class="s1">'object'</span><span class="p">,</span> <span class="s1">'bool'</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">data</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">([(</span><span class="n">t</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="mi">5000</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">t</span><span class="p">))</span>
+<span class="gp">... </span>             <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">dtypes</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+<span class="go">   int64  float64            complex128  object  bool</span>
+<span class="go">0      1      1.0              1.0+0.0j       1  True</span>
+<span class="go">1      1      1.0              1.0+0.0j       1  True</span>
+<span class="go">2      1      1.0              1.0+0.0j       1  True</span>
+<span class="go">3      1      1.0              1.0+0.0j       1  True</span>
+<span class="go">4      1      1.0              1.0+0.0j       1  True</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df</span><span class="o">.</span><span class="n">memory_usage</span><span class="p">()</span>
+<span class="go">Index           128</span>
+<span class="go">int64         40000</span>
+<span class="go">float64       40000</span>
+<span class="go">complex128    80000</span>
+<span class="go">object        40000</span>
+<span class="go">bool           5000</span>
+<span class="go">dtype: int64</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df</span><span class="o">.</span><span class="n">memory_usage</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="go">int64         40000</span>
+<span class="go">float64       40000</span>
+<span class="go">complex128    80000</span>
+<span class="go">object        40000</span>
+<span class="go">bool           5000</span>
+<span class="go">dtype: int64</span>
+</pre></div>
+</div>
+<p>The memory footprint of <cite>object</cite> dtype columns is ignored by default:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df</span><span class="o">.</span><span class="n">memory_usage</span><span class="p">(</span><span class="n">deep</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="go">Index            128</span>
+<span class="go">int64          40000</span>
+<span class="go">float64        40000</span>
+<span class="go">complex128     80000</span>
+<span class="go">object        180000</span>
+<span class="go">bool            5000</span>
+<span class="go">dtype: int64</span>
+</pre></div>
+</div>
+<p>Use a Categorical for efficient storage of an object-dtype column with
+many repeated values.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df</span><span class="p">[</span><span class="s1">'object'</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">'category'</span><span class="p">)</span><span class="o">.</span><span class="n">memory_usage</span><span class="p">(</span><span class="n">deep</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="go">5244</span>
+</pre></div>
+</div>
+</dd></dl>
+</section>
+</div>
+
+</main>
+</div>
+</div>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+</body>
+</html>

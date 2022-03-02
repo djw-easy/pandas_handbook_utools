@@ -1,0 +1,180 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="Docutils 0.17.1: http://docutils.sourceforge.net/" name="generator"/>
+<title>pandas.Series.shift — pandas 1.4.1 documentation</title>
+<link href="../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet"/>
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet"/>
+<link href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css" rel="stylesheet"/>
+<link as="font" crossorigin="" href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2" rel="preload" type="font/woff2"/>
+<link as="font" crossorigin="" href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2" rel="preload" type="font/woff2"/>
+<link href="../../_static/pygments.css" rel="stylesheet" type="text/css">
+<link href="../../_static/styles/pydata-sphinx-theme.css" rel="stylesheet" type="text/css">
+<link href="../../_static/plot_directive.css" rel="stylesheet" type="text/css">
+<link href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" rel="stylesheet" type="text/css">
+<link href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" rel="stylesheet" type="text/css">
+<link href="../../_static/css/getting_started.css" rel="stylesheet" type="text/css"/>
+<link href="../../_static/css/pandas.css" rel="stylesheet" type="text/css"/>
+<link as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf" rel="preload"/>
+<script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+<script src="../../_static/jquery.js"></script>
+<script src="../../_static/underscore.js"></script>
+<script src="../../_static/doctools.js"></script>
+<script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
+<link href="../../_static/favicon.ico" rel="shortcut icon">
+<link href="../../genindex.html" rel="index" title="Index"/>
+<link href="../../search.html" rel="search" title="Search"/>
+<link href="pandas.Series.skew.html" rel="next" title="pandas.Series.skew"/>
+<link href="pandas.Series.set_flags.html" rel="prev" title="pandas.Series.set_flags"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<meta content="en" name="docsearch:language"/>
+<script async="" src="https://www.google-analytics.com/analytics.js"></script>
+<script>
+                        window.ga = window.ga || function () {
+                            (ga.q = ga.q || []).push(arguments) };
+                        ga.l = +new Date;
+                        ga('create', 'UA-27880019-2', 'auto');
+                        ga('set', 'anonymizeIp', true);
+                        ga('send', 'pageview');
+                    </script>
+</link></link></link></link></link></link></head>
+<body data-offset="80" data-spy="scroll" data-target="#bd-toc-nav">
+<div class="container-fluid" id="banner"></div>
+
+<div class="container-xl">
+<div class="row">
+
+
+<main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
+<div>
+<section id="pandas-series-shift">
+<h1>pandas.Series.shift<a class="headerlink" href="#pandas-series-shift" title="Permalink to this headline">¶</a></h1>
+<dl class="py method">
+<dt class="sig sig-object py" id="pandas.Series.shift">
+<span class="sig-prename descclassname"><span class="pre">Series.</span></span><span class="sig-name descname"><span class="pre">shift</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">periods</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">freq</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axis</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fill_value</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/pandas-dev/pandas/blob/v1.4.1/pandas/core/series.py#L5008-L5012"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pandas.Series.shift" title="Permalink to this definition">¶</a></dt>
+<dd><p>Shift index by desired number of periods with an optional time <cite>freq</cite>.</p>
+<p>When <cite>freq</cite> is not passed, shift the index without realigning the data.
+If <cite>freq</cite> is passed (in this case, the index must be date or datetime,
+or it will raise a <cite>NotImplementedError</cite>), the index will be
+increased using the periods and the <cite>freq</cite>. <cite>freq</cite> can be inferred
+when specified as “infer” as long as either freq or inferred_freq
+attribute is set in the index.</p>
+<dl class="field-list">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl>
+<dt><strong>periods</strong><span class="classifier">int</span></dt><dd><p>Number of periods to shift. Can be positive or negative.</p>
+</dd>
+<dt><strong>freq</strong><span class="classifier">DateOffset, tseries.offsets, timedelta, or str, optional</span></dt><dd><p>Offset to use from the tseries module or time rule (e.g. ‘EOM’).
+If <cite>freq</cite> is specified then the index values are shifted but the
+data is not realigned. That is, use <cite>freq</cite> if you would like to
+extend the index when shifting and preserve the original data.
+If <cite>freq</cite> is specified as “infer” then it will be inferred from
+the freq or inferred_freq attributes of the index. If neither of
+those attributes exist, a ValueError is thrown.</p>
+</dd>
+<dt><strong>axis</strong><span class="classifier">{0 or ‘index’, 1 or ‘columns’, None}, default None</span></dt><dd><p>Shift direction.</p>
+</dd>
+<dt><strong>fill_value</strong><span class="classifier">object, optional</span></dt><dd><p>The scalar value to use for newly introduced missing values.
+the default depends on the dtype of <cite>self</cite>.
+For numeric data, <code class="docutils literal notranslate"><span class="pre">np.nan</span></code> is used.
+For datetime, timedelta, or period data, etc. <code class="xref py py-attr docutils literal notranslate"><span class="pre">NaT</span></code> is used.
+For extension dtypes, <code class="docutils literal notranslate"><span class="pre">self.dtype.na_value</span></code> is used.</p>
+<div class="versionchanged">
+<p><span class="versionmodified changed">Changed in version 1.1.0.</span></p>
+</div>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt>Series</dt><dd><p>Copy of input object, shifted.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<dl class="simple">
+<dt><a class="reference internal" href="pandas.Index.shift.html#pandas.Index.shift" title="pandas.Index.shift"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Index.shift</span></code></a></dt><dd><p>Shift values of Index.</p>
+</dd>
+<dt><code class="xref py py-obj docutils literal notranslate"><span class="pre">DatetimeIndex.shift</span></code></dt><dd><p>Shift values of DatetimeIndex.</p>
+</dd>
+<dt><code class="xref py py-obj docutils literal notranslate"><span class="pre">PeriodIndex.shift</span></code></dt><dd><p>Shift values of PeriodIndex.</p>
+</dd>
+<dt><a class="reference internal" href="pandas.Series.tshift.html#pandas.Series.tshift" title="pandas.Series.tshift"><code class="xref py py-obj docutils literal notranslate"><span class="pre">tshift</span></code></a></dt><dd><p>Shift the time index, using the index’s frequency if available.</p>
+</dd>
+</dl>
+</div>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s2">"Col1"</span><span class="p">:</span> <span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">45</span><span class="p">],</span>
+<span class="gp">... </span>                   <span class="s2">"Col2"</span><span class="p">:</span> <span class="p">[</span><span class="mi">13</span><span class="p">,</span> <span class="mi">23</span><span class="p">,</span> <span class="mi">18</span><span class="p">,</span> <span class="mi">33</span><span class="p">,</span> <span class="mi">48</span><span class="p">],</span>
+<span class="gp">... </span>                   <span class="s2">"Col3"</span><span class="p">:</span> <span class="p">[</span><span class="mi">17</span><span class="p">,</span> <span class="mi">27</span><span class="p">,</span> <span class="mi">22</span><span class="p">,</span> <span class="mi">37</span><span class="p">,</span> <span class="mi">52</span><span class="p">]},</span>
+<span class="gp">... </span>                  <span class="n">index</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">date_range</span><span class="p">(</span><span class="s2">"2020-01-01"</span><span class="p">,</span> <span class="s2">"2020-01-05"</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">df</span>
+<span class="go">            Col1  Col2  Col3</span>
+<span class="go">2020-01-01    10    13    17</span>
+<span class="go">2020-01-02    20    23    27</span>
+<span class="go">2020-01-03    15    18    22</span>
+<span class="go">2020-01-04    30    33    37</span>
+<span class="go">2020-01-05    45    48    52</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df</span><span class="o">.</span><span class="n">shift</span><span class="p">(</span><span class="n">periods</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="go">            Col1  Col2  Col3</span>
+<span class="go">2020-01-01   NaN   NaN   NaN</span>
+<span class="go">2020-01-02   NaN   NaN   NaN</span>
+<span class="go">2020-01-03   NaN   NaN   NaN</span>
+<span class="go">2020-01-04  10.0  13.0  17.0</span>
+<span class="go">2020-01-05  20.0  23.0  27.0</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df</span><span class="o">.</span><span class="n">shift</span><span class="p">(</span><span class="n">periods</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="s2">"columns"</span><span class="p">)</span>
+<span class="go">            Col1  Col2  Col3</span>
+<span class="go">2020-01-01   NaN    10    13</span>
+<span class="go">2020-01-02   NaN    20    23</span>
+<span class="go">2020-01-03   NaN    15    18</span>
+<span class="go">2020-01-04   NaN    30    33</span>
+<span class="go">2020-01-05   NaN    45    48</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df</span><span class="o">.</span><span class="n">shift</span><span class="p">(</span><span class="n">periods</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">fill_value</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="go">            Col1  Col2  Col3</span>
+<span class="go">2020-01-01     0     0     0</span>
+<span class="go">2020-01-02     0     0     0</span>
+<span class="go">2020-01-03     0     0     0</span>
+<span class="go">2020-01-04    10    13    17</span>
+<span class="go">2020-01-05    20    23    27</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df</span><span class="o">.</span><span class="n">shift</span><span class="p">(</span><span class="n">periods</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">freq</span><span class="o">=</span><span class="s2">"D"</span><span class="p">)</span>
+<span class="go">            Col1  Col2  Col3</span>
+<span class="go">2020-01-04    10    13    17</span>
+<span class="go">2020-01-05    20    23    27</span>
+<span class="go">2020-01-06    15    18    22</span>
+<span class="go">2020-01-07    30    33    37</span>
+<span class="go">2020-01-08    45    48    52</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df</span><span class="o">.</span><span class="n">shift</span><span class="p">(</span><span class="n">periods</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">freq</span><span class="o">=</span><span class="s2">"infer"</span><span class="p">)</span>
+<span class="go">            Col1  Col2  Col3</span>
+<span class="go">2020-01-04    10    13    17</span>
+<span class="go">2020-01-05    20    23    27</span>
+<span class="go">2020-01-06    15    18    22</span>
+<span class="go">2020-01-07    30    33    37</span>
+<span class="go">2020-01-08    45    48    52</span>
+</pre></div>
+</div>
+</dd></dl>
+</section>
+</div>
+
+</main>
+</div>
+</div>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+</body>
+</html>

@@ -1,0 +1,623 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="Docutils 0.17.1: http://docutils.sourceforge.net/" name="generator"/>
+<title>pandas.io.formats.style.Styler.to_latex — pandas 1.4.1 documentation</title>
+<link href="../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet"/>
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet"/>
+<link href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css" rel="stylesheet"/>
+<link as="font" crossorigin="" href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2" rel="preload" type="font/woff2"/>
+<link as="font" crossorigin="" href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2" rel="preload" type="font/woff2"/>
+<link href="../../_static/pygments.css" rel="stylesheet" type="text/css">
+<link href="../../_static/styles/pydata-sphinx-theme.css" rel="stylesheet" type="text/css">
+<link href="../../_static/plot_directive.css" rel="stylesheet" type="text/css">
+<link href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" rel="stylesheet" type="text/css">
+<link href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" rel="stylesheet" type="text/css">
+<link href="../../_static/css/getting_started.css" rel="stylesheet" type="text/css"/>
+<link href="../../_static/css/pandas.css" rel="stylesheet" type="text/css"/>
+<link as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf" rel="preload"/>
+<script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+<script src="../../_static/jquery.js"></script>
+<script src="../../_static/underscore.js"></script>
+<script src="../../_static/doctools.js"></script>
+<script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
+<link href="../../_static/favicon.ico" rel="shortcut icon">
+<link href="../../genindex.html" rel="index" title="Index"/>
+<link href="../../search.html" rel="search" title="Search"/>
+<link href="pandas.read_hdf.html" rel="next" title="pandas.read_hdf"/>
+<link href="pandas.DataFrame.to_latex.html" rel="prev" title="pandas.DataFrame.to_latex"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<meta content="en" name="docsearch:language"/>
+<script async="" src="https://www.google-analytics.com/analytics.js"></script>
+<script>
+                        window.ga = window.ga || function () {
+                            (ga.q = ga.q || []).push(arguments) };
+                        ga.l = +new Date;
+                        ga('create', 'UA-27880019-2', 'auto');
+                        ga('set', 'anonymizeIp', true);
+                        ga('send', 'pageview');
+                    </script>
+</link></link></link></link></link></link></head>
+<body data-offset="80" data-spy="scroll" data-target="#bd-toc-nav">
+<div class="container-fluid" id="banner"></div>
+
+<div class="container-xl">
+<div class="row">
+
+
+<main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
+<div>
+<section id="pandas-io-formats-style-styler-to-latex">
+<h1>pandas.io.formats.style.Styler.to_latex<a class="headerlink" href="#pandas-io-formats-style-styler-to-latex" title="Permalink to this headline">¶</a></h1>
+<dl class="py method">
+<dt class="sig sig-object py" id="pandas.io.formats.style.Styler.to_latex">
+<span class="sig-prename descclassname"><span class="pre">Styler.</span></span><span class="sig-name descname"><span class="pre">to_latex</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">buf</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">column_format</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">position</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">position_float</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hrules</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">clines</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">label</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">caption</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sparse_index</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sparse_columns</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">multirow_align</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">multicol_align</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">siunitx</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">environment</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">encoding</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">convert_css</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/pandas-dev/pandas/blob/v1.4.1/pandas/io/formats/style.py#L489-L1055"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pandas.io.formats.style.Styler.to_latex" title="Permalink to this definition">¶</a></dt>
+<dd><p>Write Styler to a file, buffer or string in LaTeX format.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">New in version 1.3.0.</span></p>
+</div>
+<dl class="field-list">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl>
+<dt><strong>buf</strong><span class="classifier">str, path object, file-like object, or None, default None</span></dt><dd><p>String, path object (implementing <code class="docutils literal notranslate"><span class="pre">os.PathLike[str]</span></code>), or file-like
+object implementing a string <code class="docutils literal notranslate"><span class="pre">write()</span></code> function. If None, the result is
+returned as a string.</p>
+</dd>
+<dt><strong>column_format</strong><span class="classifier">str, optional</span></dt><dd><p>The LaTeX column specification placed in location:</p>
+<p>\begin{tabular}{&lt;column_format&gt;}</p>
+<p>Defaults to ‘l’ for index and
+non-numeric data columns, and, for numeric data columns,
+to ‘r’ by default, or ‘S’ if <code class="docutils literal notranslate"><span class="pre">siunitx</span></code> is <code class="docutils literal notranslate"><span class="pre">True</span></code>.</p>
+</dd>
+<dt><strong>position</strong><span class="classifier">str, optional</span></dt><dd><p>The LaTeX positional argument (e.g. ‘h!’) for tables, placed in location:</p>
+<p><code class="docutils literal notranslate"><span class="pre">\\begin{table}[&lt;position&gt;]</span></code>.</p>
+</dd>
+<dt><strong>position_float</strong><span class="classifier">{“centering”, “raggedleft”, “raggedright”}, optional</span></dt><dd><p>The LaTeX float command placed in location:</p>
+<p>\begin{table}[&lt;position&gt;]</p>
+<p>\&lt;position_float&gt;</p>
+<p>Cannot be used if <code class="docutils literal notranslate"><span class="pre">environment</span></code> is “longtable”.</p>
+</dd>
+<dt><strong>hrules</strong><span class="classifier">bool</span></dt><dd><p>Set to <cite>True</cite> to add \toprule, \midrule and \bottomrule from the
+{booktabs} LaTeX package.
+Defaults to <code class="docutils literal notranslate"><span class="pre">pandas.options.styler.latex.hrules</span></code>, which is <cite>False</cite>.</p>
+<div class="versionchanged">
+<p><span class="versionmodified changed">Changed in version 1.4.0.</span></p>
+</div>
+</dd>
+<dt><strong>clines</strong><span class="classifier">str, optional</span></dt><dd><p>Use to control adding \cline commands for the index labels separation.
+Possible values are:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><cite>None</cite>: no cline commands are added (default).</p></li>
+<li><p><cite>“all;data”</cite>: a cline is added for every index value extending the
+width of the table, including data entries.</p></li>
+<li><p><cite>“all;index”</cite>: as above with lines extending only the width of the
+index entries.</p></li>
+<li><p><cite>“skip-last;data”</cite>: a cline is added for each index value except the
+last level (which is never sparsified), extending the widtn of the
+table.</p></li>
+<li><p><cite>“skip-last;index”</cite>: as above with lines extending only the width of the
+index entries.</p></li>
+</ul>
+</div></blockquote>
+<div class="versionadded">
+<p><span class="versionmodified added">New in version 1.4.0.</span></p>
+</div>
+</dd>
+<dt><strong>label</strong><span class="classifier">str, optional</span></dt><dd><p>The LaTeX label included as: \label{&lt;label&gt;}.
+This is used with \ref{&lt;label&gt;} in the main .tex file.</p>
+</dd>
+<dt><strong>caption</strong><span class="classifier">str, tuple, optional</span></dt><dd><p>If string, the LaTeX table caption included as: \caption{&lt;caption&gt;}.
+If tuple, i.e (“full caption”, “short caption”), the caption included
+as: \caption[&lt;caption[1]&gt;]{&lt;caption[0]&gt;}.</p>
+</dd>
+<dt><strong>sparse_index</strong><span class="classifier">bool, optional</span></dt><dd><p>Whether to sparsify the display of a hierarchical index. Setting to False
+will display each explicit level element in a hierarchical key for each row.
+Defaults to <code class="docutils literal notranslate"><span class="pre">pandas.options.styler.sparse.index</span></code>, which is <cite>True</cite>.</p>
+</dd>
+<dt><strong>sparse_columns</strong><span class="classifier">bool, optional</span></dt><dd><p>Whether to sparsify the display of a hierarchical index. Setting to False
+will display each explicit level element in a hierarchical key for each
+column. Defaults to <code class="docutils literal notranslate"><span class="pre">pandas.options.styler.sparse.columns</span></code>, which
+is <cite>True</cite>.</p>
+</dd>
+<dt><strong>multirow_align</strong><span class="classifier">{“c”, “t”, “b”, “naive”}, optional</span></dt><dd><p>If sparsifying hierarchical MultiIndexes whether to align text centrally,
+at the top or bottom using the multirow package. If not given defaults to
+<code class="docutils literal notranslate"><span class="pre">pandas.options.styler.latex.multirow_align</span></code>, which is <cite>“c”</cite>.
+If “naive” is given renders without multirow.</p>
+<div class="versionchanged">
+<p><span class="versionmodified changed">Changed in version 1.4.0.</span></p>
+</div>
+</dd>
+<dt><strong>multicol_align</strong><span class="classifier">{“r”, “c”, “l”, “naive-l”, “naive-r”}, optional</span></dt><dd><p>If sparsifying hierarchical MultiIndex columns whether to align text at
+the left, centrally, or at the right. If not given defaults to
+<code class="docutils literal notranslate"><span class="pre">pandas.options.styler.latex.multicol_align</span></code>, which is “r”.
+If a naive option is given renders without multicol.
+Pipe decorators can also be added to non-naive values to draw vertical
+rules, e.g. “|r” will draw a rule on the left side of right aligned merged
+cells.</p>
+<div class="versionchanged">
+<p><span class="versionmodified changed">Changed in version 1.4.0.</span></p>
+</div>
+</dd>
+<dt><strong>siunitx</strong><span class="classifier">bool, default False</span></dt><dd><p>Set to <code class="docutils literal notranslate"><span class="pre">True</span></code> to structure LaTeX compatible with the {siunitx} package.</p>
+</dd>
+<dt><strong>environment</strong><span class="classifier">str, optional</span></dt><dd><p>If given, the environment that will replace ‘table’ in <code class="docutils literal notranslate"><span class="pre">\\begin{table}</span></code>.
+If ‘longtable’ is specified then a more suitable template is
+rendered. If not given defaults to
+<code class="docutils literal notranslate"><span class="pre">pandas.options.styler.latex.environment</span></code>, which is <cite>None</cite>.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">New in version 1.4.0.</span></p>
+</div>
+</dd>
+<dt><strong>encoding</strong><span class="classifier">str, optional</span></dt><dd><p>Character encoding setting. Defaults
+to <code class="docutils literal notranslate"><span class="pre">pandas.options.styler.render.encoding</span></code>, which is “utf-8”.</p>
+</dd>
+<dt><strong>convert_css</strong><span class="classifier">bool, default False</span></dt><dd><p>Convert simple cell-styles from CSS to LaTeX format. Any CSS not found in
+conversion table is dropped. A style can be forced by adding option
+<cite>–latex</cite>. See notes.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt>str or None</dt><dd><p>If <cite>buf</cite> is None, returns the result as a string. Otherwise returns <cite>None</cite>.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<dl class="simple">
+<dt><a class="reference internal" href="pandas.io.formats.style.Styler.format.html#pandas.io.formats.style.Styler.format" title="pandas.io.formats.style.Styler.format"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Styler.format</span></code></a></dt><dd><p>Format the text display value of cells.</p>
+</dd>
+</dl>
+</div>
+<p class="rubric">Notes</p>
+<p><strong>Latex Packages</strong></p>
+<p>For the following features we recommend the following LaTeX inclusions:</p>
+<table class="table">
+<colgroup>
+<col style="width: 27%"/>
+<col style="width: 73%"/>
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Feature</p></th>
+<th class="head"><p>Inclusion</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>sparse columns</p></td>
+<td><p>none: included within default {tabular} environment</p></td>
+</tr>
+<tr class="row-odd"><td><p>sparse rows</p></td>
+<td><p>\usepackage{multirow}</p></td>
+</tr>
+<tr class="row-even"><td><p>hrules</p></td>
+<td><p>\usepackage{booktabs}</p></td>
+</tr>
+<tr class="row-odd"><td><p>colors</p></td>
+<td><p>\usepackage[table]{xcolor}</p></td>
+</tr>
+<tr class="row-even"><td><p>siunitx</p></td>
+<td><p>\usepackage{siunitx}</p></td>
+</tr>
+<tr class="row-odd"><td><p>bold (with siunitx)</p></td>
+<td><div class="line-block">
+<div class="line">\usepackage{etoolbox}</div>
+<div class="line">\robustify\bfseries</div>
+<div class="line">\sisetup{detect-all = true} <em>(within {document})</em></div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td><p>italic (with siunitx)</p></td>
+<td><div class="line-block">
+<div class="line">\usepackage{etoolbox}</div>
+<div class="line">\robustify\itshape</div>
+<div class="line">\sisetup{detect-all = true} <em>(within {document})</em></div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td><p>environment</p></td>
+<td><p>\usepackage{longtable} if arg is “longtable”
+| or any other relevant environment package</p></td>
+</tr>
+<tr class="row-even"><td><p>hyperlinks</p></td>
+<td><p>\usepackage{hyperref}</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Cell Styles</strong></p>
+<p>LaTeX styling can only be rendered if the accompanying styling functions have
+been constructed with appropriate LaTeX commands. All styling
+functionality is built around the concept of a CSS <code class="docutils literal notranslate"><span class="pre">(&lt;attribute&gt;,</span> <span class="pre">&lt;value&gt;)</span></code>
+pair (see <a class="reference internal" href="../../user_guide/style.html"><span class="doc">Table Visualization</span></a>), and this
+should be replaced by a LaTeX
+<code class="docutils literal notranslate"><span class="pre">(&lt;command&gt;,</span> <span class="pre">&lt;options&gt;)</span></code> approach. Each cell will be styled individually
+using nested LaTeX commands with their accompanied options.</p>
+<p>For example the following code will highlight and bold a cell in HTML-CSS:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">s</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">highlight_max</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+<span class="gp">... </span>                           <span class="n">props</span><span class="o">=</span><span class="s1">'background-color:red; font-weight:bold;'</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">s</span><span class="o">.</span><span class="n">to_html</span><span class="p">()</span>  
+</pre></div>
+</div>
+<p>The equivalent using LaTeX only commands is the following:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">s</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">highlight_max</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+<span class="gp">... </span>                           <span class="n">props</span><span class="o">=</span><span class="s1">'cellcolor:</span><span class="si">{red}</span><span class="s1">; bfseries: ;'</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">s</span><span class="o">.</span><span class="n">to_latex</span><span class="p">()</span>  
+</pre></div>
+</div>
+<p>Internally these structured LaTeX <code class="docutils literal notranslate"><span class="pre">(&lt;command&gt;,</span> <span class="pre">&lt;options&gt;)</span></code> pairs
+are translated to the
+<code class="docutils literal notranslate"><span class="pre">display_value</span></code> with the default structure:
+<code class="docutils literal notranslate"><span class="pre">\&lt;command&gt;&lt;options&gt;</span> <span class="pre">&lt;display_value&gt;</span></code>.
+Where there are multiple commands the latter is nested recursively, so that
+the above example highlighed cell is rendered as
+<code class="docutils literal notranslate"><span class="pre">\cellcolor{red}</span> <span class="pre">\bfseries</span> <span class="pre">4</span></code>.</p>
+<p>Occasionally this format does not suit the applied command, or
+combination of LaTeX packages that is in use, so additional flags can be
+added to the <code class="docutils literal notranslate"><span class="pre">&lt;options&gt;</span></code>, within the tuple, to result in different
+positions of required braces (the <strong>default</strong> being the same as <code class="docutils literal notranslate"><span class="pre">--nowrap</span></code>):</p>
+<table class="table">
+<colgroup>
+<col style="width: 44%"/>
+<col style="width: 56%"/>
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Tuple Format</p></th>
+<th class="head"><p>Output Structure</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>(&lt;command&gt;,&lt;options&gt;)</p></td>
+<td><p>\&lt;command&gt;&lt;options&gt; &lt;display_value&gt;</p></td>
+</tr>
+<tr class="row-odd"><td><p>(&lt;command&gt;,&lt;options&gt; <code class="docutils literal notranslate"><span class="pre">--nowrap</span></code>)</p></td>
+<td><p>\&lt;command&gt;&lt;options&gt; &lt;display_value&gt;</p></td>
+</tr>
+<tr class="row-even"><td><p>(&lt;command&gt;,&lt;options&gt; <code class="docutils literal notranslate"><span class="pre">--rwrap</span></code>)</p></td>
+<td><p>\&lt;command&gt;&lt;options&gt;{&lt;display_value&gt;}</p></td>
+</tr>
+<tr class="row-odd"><td><p>(&lt;command&gt;,&lt;options&gt; <code class="docutils literal notranslate"><span class="pre">--wrap</span></code>)</p></td>
+<td><p>{\&lt;command&gt;&lt;options&gt; &lt;display_value&gt;}</p></td>
+</tr>
+<tr class="row-even"><td><p>(&lt;command&gt;,&lt;options&gt; <code class="docutils literal notranslate"><span class="pre">--lwrap</span></code>)</p></td>
+<td><p>{\&lt;command&gt;&lt;options&gt;} &lt;display_value&gt;</p></td>
+</tr>
+<tr class="row-odd"><td><p>(&lt;command&gt;,&lt;options&gt; <code class="docutils literal notranslate"><span class="pre">--dwrap</span></code>)</p></td>
+<td><p>{\&lt;command&gt;&lt;options&gt;}{&lt;display_value&gt;}</p></td>
+</tr>
+</tbody>
+</table>
+<p>For example the <cite>textbf</cite> command for font-weight
+should always be used with <cite>–rwrap</cite> so <code class="docutils literal notranslate"><span class="pre">('textbf',</span> <span class="pre">'--rwrap')</span></code> will render a
+working cell, wrapped with braces, as <code class="docutils literal notranslate"><span class="pre">\textbf{&lt;display_value&gt;}</span></code>.</p>
+<p>A more comprehensive example is as follows:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mf">2.2</span><span class="p">,</span> <span class="s2">"dogs"</span><span class="p">],</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mf">4.4</span><span class="p">,</span> <span class="s2">"cats"</span><span class="p">],</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mf">6.6</span><span class="p">,</span> <span class="s2">"cows"</span><span class="p">]],</span>
+<span class="gp">... </span>                  <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="s2">"ix1"</span><span class="p">,</span> <span class="s2">"ix2"</span><span class="p">,</span> <span class="s2">"ix3"</span><span class="p">],</span>
+<span class="gp">... </span>                  <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">"Integers"</span><span class="p">,</span> <span class="s2">"Floats"</span><span class="p">,</span> <span class="s2">"Strings"</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">s</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">highlight_max</span><span class="p">(</span>
+<span class="gp">... </span>    <span class="n">props</span><span class="o">=</span><span class="s1">'cellcolor:[HTML]</span><span class="si">{FFFF00}</span><span class="s1">; color:</span><span class="si">{red}</span><span class="s1">;'</span>
+<span class="gp">... </span>          <span class="s1">'textit:--rwrap; textbf:--rwrap;'</span>
+<span class="gp">... </span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">s</span><span class="o">.</span><span class="n">to_latex</span><span class="p">()</span>  
+</pre></div>
+</div>
+<figure class="align-default">
+<img alt="../../_images/latex_1.png" src="../../_images/latex_1.png">
+</img></figure>
+<p><strong>Table Styles</strong></p>
+<p>Internally Styler uses its <code class="docutils literal notranslate"><span class="pre">table_styles</span></code> object to parse the
+<code class="docutils literal notranslate"><span class="pre">column_format</span></code>, <code class="docutils literal notranslate"><span class="pre">position</span></code>, <code class="docutils literal notranslate"><span class="pre">position_float</span></code>, and <code class="docutils literal notranslate"><span class="pre">label</span></code>
+input arguments. These arguments are added to table styles in the format:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">set_table_styles</span><span class="p">([</span>
+    <span class="p">{</span><span class="s2">"selector"</span><span class="p">:</span> <span class="s2">"column_format"</span><span class="p">,</span> <span class="s2">"props"</span><span class="p">:</span> <span class="sa">f</span><span class="s2">":</span><span class="si">{</span><span class="n">column_format</span><span class="si">}</span><span class="s2">;"</span><span class="p">},</span>
+    <span class="p">{</span><span class="s2">"selector"</span><span class="p">:</span> <span class="s2">"position"</span><span class="p">,</span> <span class="s2">"props"</span><span class="p">:</span> <span class="sa">f</span><span class="s2">":</span><span class="si">{</span><span class="n">position</span><span class="si">}</span><span class="s2">;"</span><span class="p">},</span>
+    <span class="p">{</span><span class="s2">"selector"</span><span class="p">:</span> <span class="s2">"position_float"</span><span class="p">,</span> <span class="s2">"props"</span><span class="p">:</span> <span class="sa">f</span><span class="s2">":</span><span class="si">{</span><span class="n">position_float</span><span class="si">}</span><span class="s2">;"</span><span class="p">},</span>
+    <span class="p">{</span><span class="s2">"selector"</span><span class="p">:</span> <span class="s2">"label"</span><span class="p">,</span> <span class="s2">"props"</span><span class="p">:</span> <span class="sa">f</span><span class="s2">":</span><span class="se">{{</span><span class="si">{</span><span class="n">label</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">':'</span><span class="p">,</span><span class="s1">'§'</span><span class="p">)</span><span class="si">}</span><span class="se">}}</span><span class="s2">;"</span><span class="p">}</span>
+<span class="p">],</span> <span class="n">overwrite</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Exception is made for the <code class="docutils literal notranslate"><span class="pre">hrules</span></code> argument which, in fact, controls all three
+commands: <code class="docutils literal notranslate"><span class="pre">toprule</span></code>, <code class="docutils literal notranslate"><span class="pre">bottomrule</span></code> and <code class="docutils literal notranslate"><span class="pre">midrule</span></code> simultaneously. Instead of
+setting <code class="docutils literal notranslate"><span class="pre">hrules</span></code> to <code class="docutils literal notranslate"><span class="pre">True</span></code>, it is also possible to set each
+individual rule definition, by manually setting the <code class="docutils literal notranslate"><span class="pre">table_styles</span></code>,
+for example below we set a regular <code class="docutils literal notranslate"><span class="pre">toprule</span></code>, set an <code class="docutils literal notranslate"><span class="pre">hline</span></code> for
+<code class="docutils literal notranslate"><span class="pre">bottomrule</span></code> and exclude the <code class="docutils literal notranslate"><span class="pre">midrule</span></code>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">set_table_styles</span><span class="p">([</span>
+    <span class="p">{</span><span class="s1">'selector'</span><span class="p">:</span> <span class="s1">'toprule'</span><span class="p">,</span> <span class="s1">'props'</span><span class="p">:</span> <span class="s1">':toprule;'</span><span class="p">},</span>
+    <span class="p">{</span><span class="s1">'selector'</span><span class="p">:</span> <span class="s1">'bottomrule'</span><span class="p">,</span> <span class="s1">'props'</span><span class="p">:</span> <span class="s1">':hline;'</span><span class="p">},</span>
+<span class="p">],</span> <span class="n">overwrite</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>If other <code class="docutils literal notranslate"><span class="pre">commands</span></code> are added to table styles they will be detected, and
+positioned immediately above the ‘\begin{tabular}’ command. For example to
+add odd and even row coloring, from the {colortbl} package, in format
+<code class="docutils literal notranslate"><span class="pre">\rowcolors{1}{pink}{red}</span></code>, use:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">set_table_styles</span><span class="p">([</span>
+    <span class="p">{</span><span class="s1">'selector'</span><span class="p">:</span> <span class="s1">'rowcolors'</span><span class="p">,</span> <span class="s1">'props'</span><span class="p">:</span> <span class="s1">':</span><span class="si">{1}{pink}{red}</span><span class="s1">;'</span><span class="p">}</span>
+<span class="p">],</span> <span class="n">overwrite</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>A more comprehensive example using these arguments is as follows:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">MultiIndex</span><span class="o">.</span><span class="n">from_tuples</span><span class="p">([</span>
+<span class="gp">... </span>    <span class="p">(</span><span class="s2">"Numeric"</span><span class="p">,</span> <span class="s2">"Integers"</span><span class="p">),</span>
+<span class="gp">... </span>    <span class="p">(</span><span class="s2">"Numeric"</span><span class="p">,</span> <span class="s2">"Floats"</span><span class="p">),</span>
+<span class="gp">... </span>    <span class="p">(</span><span class="s2">"Non-Numeric"</span><span class="p">,</span> <span class="s2">"Strings"</span><span class="p">)</span>
+<span class="gp">... </span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">df</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">MultiIndex</span><span class="o">.</span><span class="n">from_tuples</span><span class="p">([</span>
+<span class="gp">... </span>    <span class="p">(</span><span class="s2">"L0"</span><span class="p">,</span> <span class="s2">"ix1"</span><span class="p">),</span> <span class="p">(</span><span class="s2">"L0"</span><span class="p">,</span> <span class="s2">"ix2"</span><span class="p">),</span> <span class="p">(</span><span class="s2">"L1"</span><span class="p">,</span> <span class="s2">"ix3"</span><span class="p">)</span>
+<span class="gp">... </span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">s</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">highlight_max</span><span class="p">(</span>
+<span class="gp">... </span>    <span class="n">props</span><span class="o">=</span><span class="s1">'cellcolor:[HTML]</span><span class="si">{FFFF00}</span><span class="s1">; color:</span><span class="si">{red}</span><span class="s1">; itshape:; bfseries:;'</span>
+<span class="gp">... </span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">s</span><span class="o">.</span><span class="n">to_latex</span><span class="p">(</span>
+<span class="gp">... </span>    <span class="n">column_format</span><span class="o">=</span><span class="s2">"rrrrr"</span><span class="p">,</span> <span class="n">position</span><span class="o">=</span><span class="s2">"h"</span><span class="p">,</span> <span class="n">position_float</span><span class="o">=</span><span class="s2">"centering"</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">hrules</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">"table:5"</span><span class="p">,</span> <span class="n">caption</span><span class="o">=</span><span class="s2">"Styled LaTeX Table"</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">multirow_align</span><span class="o">=</span><span class="s2">"t"</span><span class="p">,</span> <span class="n">multicol_align</span><span class="o">=</span><span class="s2">"r"</span>
+<span class="gp">... </span><span class="p">)</span>  
+</pre></div>
+</div>
+<figure class="align-default">
+<img alt="../../_images/latex_2.png" src="../../_images/latex_2.png"/>
+</figure>
+<p><strong>Formatting</strong></p>
+<p>To format values <a class="reference internal" href="pandas.io.formats.style.Styler.format.html#pandas.io.formats.style.Styler.format" title="pandas.io.formats.style.Styler.format"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Styler.format()</span></code></a> should be used prior to calling
+<cite>Styler.to_latex</cite>, as well as other methods such as <a class="reference internal" href="pandas.io.formats.style.Styler.hide.html#pandas.io.formats.style.Styler.hide" title="pandas.io.formats.style.Styler.hide"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Styler.hide()</span></code></a>
+for example:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">s</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">s</span><span class="o">.</span><span class="n">table_styles</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">s</span><span class="o">.</span><span class="n">caption</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">s</span><span class="o">.</span><span class="n">format</span><span class="p">({</span>
+<span class="gp">... </span>   <span class="p">(</span><span class="s2">"Numeric"</span><span class="p">,</span> <span class="s2">"Integers"</span><span class="p">):</span> <span class="s1">'\$</span><span class="si">{}</span><span class="s1">'</span><span class="p">,</span>
+<span class="gp">... </span>   <span class="p">(</span><span class="s2">"Numeric"</span><span class="p">,</span> <span class="s2">"Floats"</span><span class="p">):</span> <span class="s1">'</span><span class="si">{:.3f}</span><span class="s1">'</span><span class="p">,</span>
+<span class="gp">... </span>   <span class="p">(</span><span class="s2">"Non-Numeric"</span><span class="p">,</span> <span class="s2">"Strings"</span><span class="p">):</span> <span class="nb">str</span><span class="o">.</span><span class="n">upper</span>
+<span class="gp">... </span><span class="p">})</span>  
+<span class="go">                Numeric      Non-Numeric</span>
+<span class="go">          Integers   Floats    Strings</span>
+<span class="go">L0    ix1       $1   2.200      DOGS</span>
+<span class="go">      ix2       $3   4.400      CATS</span>
+<span class="go">L1    ix3       $2   6.600      COWS</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">s</span><span class="o">.</span><span class="n">to_latex</span><span class="p">()</span>  
+<span class="go">\begin{tabular}{llrrl}</span>
+<span class="go">{} &amp; {} &amp; \multicolumn{2}{r}{Numeric} &amp; {Non-Numeric} \\</span>
+<span class="go">{} &amp; {} &amp; {Integers} &amp; {Floats} &amp; {Strings} \\</span>
+<span class="go">\multirow[c]{2}{*}{L0} &amp; ix1 &amp; \\$1 &amp; 2.200 &amp; DOGS \\</span>
+<span class="go"> &amp; ix2 &amp; \$3 &amp; 4.400 &amp; CATS \\</span>
+<span class="go">L1 &amp; ix3 &amp; \$2 &amp; 6.600 &amp; COWS \\</span>
+<span class="go">\end{tabular}</span>
+</pre></div>
+</div>
+<p><strong>CSS Conversion</strong></p>
+<p>This method can convert a Styler constructured with HTML-CSS to LaTeX using
+the following limited conversions.</p>
+<table class="table">
+<colgroup>
+<col style="width: 23%"/>
+<col style="width: 26%"/>
+<col style="width: 17%"/>
+<col style="width: 34%"/>
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>CSS Attribute</p></th>
+<th class="head"><p>CSS value</p></th>
+<th class="head"><p>LaTeX Command</p></th>
+<th class="head"><p>LaTeX Options</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>font-weight</p></td>
+<td><div class="line-block">
+<div class="line">bold</div>
+<div class="line">bolder</div>
+</div>
+</td>
+<td><div class="line-block">
+<div class="line">bfseries</div>
+<div class="line">bfseries</div>
+</div>
+</td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>font-style</p></td>
+<td><div class="line-block">
+<div class="line">italic</div>
+<div class="line">oblique</div>
+</div>
+</td>
+<td><div class="line-block">
+<div class="line">itshape</div>
+<div class="line">slshape</div>
+</div>
+</td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>background-color</p></td>
+<td><div class="line-block">
+<div class="line">red</div>
+<div class="line">#fe01ea</div>
+<div class="line">#f0e</div>
+<div class="line">rgb(128,255,0)</div>
+<div class="line">rgba(128,0,0,0.5)</div>
+<div class="line">rgb(25%,255,50%)</div>
+</div>
+</td>
+<td><p>cellcolor</p></td>
+<td><div class="line-block">
+<div class="line">{red}–lwrap</div>
+<div class="line">[HTML]{FE01EA}–lwrap</div>
+<div class="line">[HTML]{FF00EE}–lwrap</div>
+<div class="line">[rgb]{0.5,1,0}–lwrap</div>
+<div class="line">[rgb]{0.5,0,0}–lwrap</div>
+<div class="line">[rgb]{0.25,1,0.5}–lwrap</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td><p>color</p></td>
+<td><div class="line-block">
+<div class="line">red</div>
+<div class="line">#fe01ea</div>
+<div class="line">#f0e</div>
+<div class="line">rgb(128,255,0)</div>
+<div class="line">rgba(128,0,0,0.5)</div>
+<div class="line">rgb(25%,255,50%)</div>
+</div>
+</td>
+<td><p>color</p></td>
+<td><div class="line-block">
+<div class="line">{red}</div>
+<div class="line">[HTML]{FE01EA}</div>
+<div class="line">[HTML]{FF00EE}</div>
+<div class="line">[rgb]{0.5,1,0}</div>
+<div class="line">[rgb]{0.5,0,0}</div>
+<div class="line">[rgb]{0.25,1,0.5}</div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<p>It is also possible to add user-defined LaTeX only styles to a HTML-CSS Styler
+using the <code class="docutils literal notranslate"><span class="pre">--latex</span></code> flag, and to add LaTeX parsing options that the
+converter will detect within a CSS-comment.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([[</span><span class="mi">1</span><span class="p">]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">df</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">set_properties</span><span class="p">(</span>
+<span class="gp">... </span>    <span class="o">**</span><span class="p">{</span><span class="s2">"font-weight"</span><span class="p">:</span> <span class="s2">"bold /* --dwrap */"</span><span class="p">,</span> <span class="s2">"Huge"</span><span class="p">:</span> <span class="s2">"--latex--rwrap"</span><span class="p">}</span>
+<span class="gp">... </span><span class="p">)</span><span class="o">.</span><span class="n">to_latex</span><span class="p">(</span><span class="n">convert_css</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>  
+<span class="go">\begin{tabular}{lr}</span>
+<span class="go">{} &amp; {0} \\</span>
+<span class="go">0 &amp; {\bfseries}{\Huge{1}} \\</span>
+<span class="go">\end{tabular}</span>
+</pre></div>
+</div>
+<p class="rubric">Examples</p>
+<p>Below we give a complete step by step example adding some advanced features
+and noting some common gotchas.</p>
+<p>First we create the DataFrame and Styler as usual, including MultiIndex rows
+and columns, which allow for more advanced formatting options:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">cidx</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">MultiIndex</span><span class="o">.</span><span class="n">from_arrays</span><span class="p">([</span>
+<span class="gp">... </span>    <span class="p">[</span><span class="s2">"Equity"</span><span class="p">,</span> <span class="s2">"Equity"</span><span class="p">,</span> <span class="s2">"Equity"</span><span class="p">,</span> <span class="s2">"Equity"</span><span class="p">,</span>
+<span class="gp">... </span>     <span class="s2">"Stats"</span><span class="p">,</span> <span class="s2">"Stats"</span><span class="p">,</span> <span class="s2">"Stats"</span><span class="p">,</span> <span class="s2">"Stats"</span><span class="p">,</span> <span class="s2">"Rating"</span><span class="p">],</span>
+<span class="gp">... </span>    <span class="p">[</span><span class="s2">"Energy"</span><span class="p">,</span> <span class="s2">"Energy"</span><span class="p">,</span> <span class="s2">"Consumer"</span><span class="p">,</span> <span class="s2">"Consumer"</span><span class="p">,</span> <span class="s2">""</span><span class="p">,</span> <span class="s2">""</span><span class="p">,</span> <span class="s2">""</span><span class="p">,</span> <span class="s2">""</span><span class="p">,</span> <span class="s2">""</span><span class="p">],</span>
+<span class="gp">... </span>    <span class="p">[</span><span class="s2">"BP"</span><span class="p">,</span> <span class="s2">"Shell"</span><span class="p">,</span> <span class="s2">"H&amp;M"</span><span class="p">,</span> <span class="s2">"Unilever"</span><span class="p">,</span>
+<span class="gp">... </span>     <span class="s2">"Std Dev"</span><span class="p">,</span> <span class="s2">"Variance"</span><span class="p">,</span> <span class="s2">"52w High"</span><span class="p">,</span> <span class="s2">"52w Low"</span><span class="p">,</span> <span class="s2">""</span><span class="p">]</span>
+<span class="gp">... </span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">iidx</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">MultiIndex</span><span class="o">.</span><span class="n">from_arrays</span><span class="p">([</span>
+<span class="gp">... </span>    <span class="p">[</span><span class="s2">"Equity"</span><span class="p">,</span> <span class="s2">"Equity"</span><span class="p">,</span> <span class="s2">"Equity"</span><span class="p">,</span> <span class="s2">"Equity"</span><span class="p">],</span>
+<span class="gp">... </span>    <span class="p">[</span><span class="s2">"Energy"</span><span class="p">,</span> <span class="s2">"Energy"</span><span class="p">,</span> <span class="s2">"Consumer"</span><span class="p">,</span> <span class="s2">"Consumer"</span><span class="p">],</span>
+<span class="gp">... </span>    <span class="p">[</span><span class="s2">"BP"</span><span class="p">,</span> <span class="s2">"Shell"</span><span class="p">,</span> <span class="s2">"H&amp;M"</span><span class="p">,</span> <span class="s2">"Unilever"</span><span class="p">]</span>
+<span class="gp">... </span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">styler</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([</span>
+<span class="gp">... </span>    <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">,</span> <span class="mf">0.66</span><span class="p">,</span> <span class="mf">0.72</span><span class="p">,</span> <span class="mf">32.1678</span><span class="p">,</span> <span class="mf">32.1678</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span> <span class="mf">335.12</span><span class="p">,</span> <span class="mf">240.89</span><span class="p">,</span> <span class="s2">"Buy"</span><span class="p">],</span>
+<span class="gp">... </span>    <span class="p">[</span><span class="mf">0.8</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.69</span><span class="p">,</span> <span class="mf">0.79</span><span class="p">,</span> <span class="mf">1.876</span><span class="p">,</span> <span class="mf">1.876</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span> <span class="mf">14.12</span><span class="p">,</span> <span class="mf">19.78</span><span class="p">,</span> <span class="s2">"Hold"</span><span class="p">],</span>
+<span class="gp">... </span>    <span class="p">[</span><span class="mf">0.66</span><span class="p">,</span> <span class="mf">0.69</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.86</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">7</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span> <span class="mf">210.9</span><span class="p">,</span> <span class="mf">140.6</span><span class="p">,</span> <span class="s2">"Buy"</span><span class="p">],</span>
+<span class="gp">... </span>    <span class="p">[</span><span class="mf">0.72</span><span class="p">,</span> <span class="mf">0.79</span><span class="p">,</span> <span class="mf">0.86</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">213.76</span><span class="p">,</span> <span class="mf">213.76</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2807</span><span class="p">,</span> <span class="mi">3678</span><span class="p">,</span> <span class="s2">"Sell"</span><span class="p">],</span>
+<span class="gp">... </span><span class="p">],</span> <span class="n">columns</span><span class="o">=</span><span class="n">cidx</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">iidx</span><span class="p">)</span><span class="o">.</span><span class="n">style</span>
+</pre></div>
+</div>
+<p>Second we will format the display and, since our table is quite wide, will
+hide the repeated level-0 of the index:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">styler</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">subset</span><span class="o">=</span><span class="s2">"Equity"</span><span class="p">,</span> <span class="n">precision</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="gp">... </span>      <span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">subset</span><span class="o">=</span><span class="s2">"Stats"</span><span class="p">,</span> <span class="n">precision</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">thousands</span><span class="o">=</span><span class="s2">","</span><span class="p">)</span>
+<span class="gp">... </span>      <span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">subset</span><span class="o">=</span><span class="s2">"Rating"</span><span class="p">,</span> <span class="n">formatter</span><span class="o">=</span><span class="nb">str</span><span class="o">.</span><span class="n">upper</span><span class="p">)</span>
+<span class="gp">... </span>      <span class="o">.</span><span class="n">format_index</span><span class="p">(</span><span class="n">escape</span><span class="o">=</span><span class="s2">"latex"</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="gp">... </span>      <span class="o">.</span><span class="n">format_index</span><span class="p">(</span><span class="n">escape</span><span class="o">=</span><span class="s2">"latex"</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="gp">... </span>      <span class="o">.</span><span class="n">hide</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>  
+</pre></div>
+</div>
+<p>Note that one of the string entries of the index and column headers is “H&amp;M”.
+Without applying the <cite>escape=”latex”</cite> option to the <cite>format_index</cite> method the
+resultant LaTeX will fail to render, and the error returned is quite
+difficult to debug. Using the appropriate escape the “&amp;” is converted to “\&amp;”.</p>
+<p>Thirdly we will apply some (CSS-HTML) styles to our object. We will use a
+builtin method and also define our own method to highlight the stock
+recommendation:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">rating_color</span><span class="p">(</span><span class="n">v</span><span class="p">):</span>
+<span class="gp">... </span>    <span class="k">if</span> <span class="n">v</span> <span class="o">==</span> <span class="s2">"Buy"</span><span class="p">:</span> <span class="n">color</span> <span class="o">=</span> <span class="s2">"#33ff85"</span>
+<span class="gp">... </span>    <span class="k">elif</span> <span class="n">v</span> <span class="o">==</span> <span class="s2">"Sell"</span><span class="p">:</span> <span class="n">color</span> <span class="o">=</span> <span class="s2">"#ff5933"</span>
+<span class="gp">... </span>    <span class="k">else</span><span class="p">:</span> <span class="n">color</span> <span class="o">=</span> <span class="s2">"#ffdd33"</span>
+<span class="gp">... </span>    <span class="k">return</span> <span class="sa">f</span><span class="s2">"color: </span><span class="si">{</span><span class="n">color</span><span class="si">}</span><span class="s2">; font-weight: bold;"</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">styler</span><span class="o">.</span><span class="n">background_gradient</span><span class="p">(</span><span class="n">cmap</span><span class="o">=</span><span class="s2">"inferno"</span><span class="p">,</span> <span class="n">subset</span><span class="o">=</span><span class="s2">"Equity"</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="gp">... </span>      <span class="o">.</span><span class="n">applymap</span><span class="p">(</span><span class="n">rating_color</span><span class="p">,</span> <span class="n">subset</span><span class="o">=</span><span class="s2">"Rating"</span><span class="p">)</span>  
+</pre></div>
+</div>
+<p>All the above styles will work with HTML (see below) and LaTeX upon conversion:</p>
+<figure class="align-default">
+<img alt="../../_images/latex_stocks_html.png" src="../../_images/latex_stocks_html.png"/>
+</figure>
+<p>However, we finally want to add one LaTeX only style
+(from the {graphicx} package), that is not easy to convert from CSS and
+pandas does not support it. Notice the <cite>–latex</cite> flag used here,
+as well as <cite>–rwrap</cite> to ensure this is formatted correctly and
+not ignored upon conversion.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">styler</span><span class="o">.</span><span class="n">applymap_index</span><span class="p">(</span>
+<span class="gp">... </span>    <span class="k">lambda</span> <span class="n">v</span><span class="p">:</span> <span class="s2">"rotatebox:</span><span class="si">{45}</span><span class="s2">--rwrap--latex;"</span><span class="p">,</span> <span class="n">level</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span>
+<span class="gp">... </span><span class="p">)</span>  
+</pre></div>
+</div>
+<p>Finally we render our LaTeX adding in other options as required:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">styler</span><span class="o">.</span><span class="n">to_latex</span><span class="p">(</span>
+<span class="gp">... </span>    <span class="n">caption</span><span class="o">=</span><span class="s2">"Selected stock correlation and simple statistics."</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">clines</span><span class="o">=</span><span class="s2">"skip-last;data"</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">convert_css</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">position_float</span><span class="o">=</span><span class="s2">"centering"</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">multicol_align</span><span class="o">=</span><span class="s2">"|c|"</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">hrules</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+<span class="gp">... </span><span class="p">)</span>  
+<span class="go">\begin{table}</span>
+<span class="go">\centering</span>
+<span class="go">\caption{Selected stock correlation and simple statistics.}</span>
+<span class="go">\begin{tabular}{llrrrrrrrrl}</span>
+<span class="go">\toprule</span>
+<span class="go"> &amp;  &amp; \multicolumn{4}{|c|}{Equity} &amp; \multicolumn{4}{|c|}{Stats} &amp; Rating \\</span>
+<span class="go"> &amp;  &amp; \multicolumn{2}{|c|}{Energy} &amp; \multicolumn{2}{|c|}{Consumer} &amp;</span>
+<span class="go">\multicolumn{4}{|c|}{} &amp;  \\</span>
+<span class="go"> &amp;  &amp; \rotatebox{45}{BP} &amp; \rotatebox{45}{Shell} &amp; \rotatebox{45}{H\&amp;M} &amp;</span>
+<span class="go">\rotatebox{45}{Unilever} &amp; \rotatebox{45}{Std Dev} &amp; \rotatebox{45}{Variance} &amp;</span>
+<span class="go">\rotatebox{45}{52w High} &amp; \rotatebox{45}{52w Low} &amp; \rotatebox{45}{} \\</span>
+<span class="go">\midrule</span>
+<span class="go">\multirow[c]{2}{*}{Energy} &amp; BP &amp; {\cellcolor[HTML]{FCFFA4}}</span>
+<span class="go">\color[HTML]{000000} 1.00 &amp; {\cellcolor[HTML]{FCA50A}} \color[HTML]{000000}</span>
+<span class="go">0.80 &amp; {\cellcolor[HTML]{EB6628}} \color[HTML]{F1F1F1} 0.66 &amp;</span>
+<span class="go">{\cellcolor[HTML]{F68013}} \color[HTML]{F1F1F1} 0.72 &amp; 32.2 &amp; 1,034.8 &amp; 335.1</span>
+<span class="go">&amp; 240.9 &amp; \color[HTML]{33FF85} \bfseries BUY \\</span>
+<span class="go"> &amp; Shell &amp; {\cellcolor[HTML]{FCA50A}} \color[HTML]{000000} 0.80 &amp;</span>
+<span class="go">{\cellcolor[HTML]{FCFFA4}} \color[HTML]{000000} 1.00 &amp;</span>
+<span class="go">{\cellcolor[HTML]{F1731D}} \color[HTML]{F1F1F1} 0.69 &amp;</span>
+<span class="go">{\cellcolor[HTML]{FCA108}} \color[HTML]{000000} 0.79 &amp; 1.9 &amp; 3.5 &amp; 14.1 &amp;</span>
+<span class="go">19.8 &amp; \color[HTML]{FFDD33} \bfseries HOLD \\</span>
+<span class="go">\cline{1-11}</span>
+<span class="go">\multirow[c]{2}{*}{Consumer} &amp; H\&amp;M &amp; {\cellcolor[HTML]{EB6628}}</span>
+<span class="go">\color[HTML]{F1F1F1} 0.66 &amp; {\cellcolor[HTML]{F1731D}} \color[HTML]{F1F1F1}</span>
+<span class="go">0.69 &amp; {\cellcolor[HTML]{FCFFA4}} \color[HTML]{000000} 1.00 &amp;</span>
+<span class="go">{\cellcolor[HTML]{FAC42A}} \color[HTML]{000000} 0.86 &amp; 7.0 &amp; 49.0 &amp; 210.9 &amp;</span>
+<span class="go">140.6 &amp; \color[HTML]{33FF85} \bfseries BUY \\</span>
+<span class="go"> &amp; Unilever &amp; {\cellcolor[HTML]{F68013}} \color[HTML]{F1F1F1} 0.72 &amp;</span>
+<span class="go">{\cellcolor[HTML]{FCA108}} \color[HTML]{000000} 0.79 &amp;</span>
+<span class="go">{\cellcolor[HTML]{FAC42A}} \color[HTML]{000000} 0.86 &amp;</span>
+<span class="go">{\cellcolor[HTML]{FCFFA4}} \color[HTML]{000000} 1.00 &amp; 213.8 &amp; 45,693.3 &amp;</span>
+<span class="go">2,807.0 &amp; 3,678.0 &amp; \color[HTML]{FF5933} \bfseries SELL \\</span>
+<span class="go">\cline{1-11}</span>
+<span class="go">\bottomrule</span>
+<span class="go">\end{tabular}</span>
+<span class="go">\end{table}</span>
+</pre></div>
+</div>
+<figure class="align-default">
+<img alt="../../_images/latex_stocks.png" src="../../_images/latex_stocks.png"/>
+</figure>
+</dd></dl>
+</section>
+</div>
+
+</main>
+</div>
+</div>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+</body>
+</html>

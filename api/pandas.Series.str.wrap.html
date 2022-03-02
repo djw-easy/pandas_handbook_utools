@@ -1,0 +1,122 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="Docutils 0.17.1: http://docutils.sourceforge.net/" name="generator"/>
+<title>pandas.Series.str.wrap — pandas 1.4.1 documentation</title>
+<link href="../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet"/>
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet"/>
+<link href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css" rel="stylesheet"/>
+<link as="font" crossorigin="" href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2" rel="preload" type="font/woff2"/>
+<link as="font" crossorigin="" href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2" rel="preload" type="font/woff2"/>
+<link href="../../_static/pygments.css" rel="stylesheet" type="text/css">
+<link href="../../_static/styles/pydata-sphinx-theme.css" rel="stylesheet" type="text/css">
+<link href="../../_static/plot_directive.css" rel="stylesheet" type="text/css">
+<link href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" rel="stylesheet" type="text/css">
+<link href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" rel="stylesheet" type="text/css">
+<link href="../../_static/css/getting_started.css" rel="stylesheet" type="text/css"/>
+<link href="../../_static/css/pandas.css" rel="stylesheet" type="text/css"/>
+<link as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf" rel="preload"/>
+<script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+<script src="../../_static/jquery.js"></script>
+<script src="../../_static/underscore.js"></script>
+<script src="../../_static/doctools.js"></script>
+<script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
+<link href="../../_static/favicon.ico" rel="shortcut icon">
+<link href="../../genindex.html" rel="index" title="Index"/>
+<link href="../../search.html" rel="search" title="Search"/>
+<link href="pandas.Series.str.zfill.html" rel="next" title="pandas.Series.str.zfill"/>
+<link href="pandas.Series.str.upper.html" rel="prev" title="pandas.Series.str.upper"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<meta content="en" name="docsearch:language"/>
+<script async="" src="https://www.google-analytics.com/analytics.js"></script>
+<script>
+                        window.ga = window.ga || function () {
+                            (ga.q = ga.q || []).push(arguments) };
+                        ga.l = +new Date;
+                        ga('create', 'UA-27880019-2', 'auto');
+                        ga('set', 'anonymizeIp', true);
+                        ga('send', 'pageview');
+                    </script>
+</link></link></link></link></link></link></head>
+<body data-offset="80" data-spy="scroll" data-target="#bd-toc-nav">
+<div class="container-fluid" id="banner"></div>
+
+<div class="container-xl">
+<div class="row">
+
+
+<main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
+<div>
+<section id="pandas-series-str-wrap">
+<h1>pandas.Series.str.wrap<a class="headerlink" href="#pandas-series-str-wrap" title="Permalink to this headline">¶</a></h1>
+<dl class="py method">
+<dt class="sig sig-object py" id="pandas.Series.str.wrap">
+<span class="sig-prename descclassname"><span class="pre">Series.str.</span></span><span class="sig-name descname"><span class="pre">wrap</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">width</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/pandas-dev/pandas/blob/v1.4.1/pandas/core/strings/accessor.py#L2035-L2092"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pandas.Series.str.wrap" title="Permalink to this definition">¶</a></dt>
+<dd><p>Wrap strings in Series/Index at specified line width.</p>
+<p>This method has the same keyword parameters and defaults as
+<a class="reference external" href="https://docs.python.org/3/library/textwrap.html#textwrap.TextWrapper" title="(in Python v3.10)"><code class="xref py py-class docutils literal notranslate"><span class="pre">textwrap.TextWrapper</span></code></a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>width</strong><span class="classifier">int</span></dt><dd><p>Maximum line width.</p>
+</dd>
+<dt><strong>expand_tabs</strong><span class="classifier">bool, optional</span></dt><dd><p>If True, tab characters will be expanded to spaces (default: True).</p>
+</dd>
+<dt><strong>replace_whitespace</strong><span class="classifier">bool, optional</span></dt><dd><p>If True, each whitespace character (as defined by string.whitespace)
+remaining after tab expansion will be replaced by a single space
+(default: True).</p>
+</dd>
+<dt><strong>drop_whitespace</strong><span class="classifier">bool, optional</span></dt><dd><p>If True, whitespace that, after wrapping, happens to end up at the
+beginning or end of a line is dropped (default: True).</p>
+</dd>
+<dt><strong>break_long_words</strong><span class="classifier">bool, optional</span></dt><dd><p>If True, then words longer than width will be broken in order to ensure
+that no lines are longer than width. If it is false, long words will
+not be broken, and some lines may be longer than width (default: True).</p>
+</dd>
+<dt><strong>break_on_hyphens</strong><span class="classifier">bool, optional</span></dt><dd><p>If True, wrapping will occur preferably on whitespace and right after
+hyphens in compound words, as it is customary in English. If false,
+only whitespaces will be considered as potentially good places for line
+breaks, but you need to set break_long_words to false if you want truly
+insecable words (default: True).</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt>Series or Index</dt><dd></dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<p>Internally, this method uses a <a class="reference external" href="https://docs.python.org/3/library/textwrap.html#textwrap.TextWrapper" title="(in Python v3.10)"><code class="xref py py-class docutils literal notranslate"><span class="pre">textwrap.TextWrapper</span></code></a> instance with
+default settings. To achieve behavior matching R’s stringr library str_wrap
+function, use the arguments:</p>
+<ul class="simple">
+<li><p>expand_tabs = False</p></li>
+<li><p>replace_whitespace = True</p></li>
+<li><p>drop_whitespace = True</p></li>
+<li><p>break_long_words = False</p></li>
+<li><p>break_on_hyphens = False</p></li>
+</ul>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">s</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="s1">'line to be wrapped'</span><span class="p">,</span> <span class="s1">'another line to be wrapped'</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">s</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">wrap</span><span class="p">(</span><span class="mi">12</span><span class="p">)</span>
+<span class="go">0             line to be\nwrapped</span>
+<span class="go">1    another line\nto be\nwrapped</span>
+<span class="go">dtype: object</span>
+</pre></div>
+</div>
+</dd></dl>
+</section>
+</div>
+
+</main>
+</div>
+</div>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+</body>
+</html>

@@ -1,0 +1,130 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="Docutils 0.17.1: http://docutils.sourceforge.net/" name="generator"/>
+<title>pandas.timedelta_range — pandas 1.4.1 documentation</title>
+<link href="../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet"/>
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet"/>
+<link href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css" rel="stylesheet"/>
+<link as="font" crossorigin="" href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2" rel="preload" type="font/woff2"/>
+<link as="font" crossorigin="" href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2" rel="preload" type="font/woff2"/>
+<link href="../../_static/pygments.css" rel="stylesheet" type="text/css">
+<link href="../../_static/styles/pydata-sphinx-theme.css" rel="stylesheet" type="text/css">
+<link href="../../_static/plot_directive.css" rel="stylesheet" type="text/css">
+<link href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" rel="stylesheet" type="text/css">
+<link href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" rel="stylesheet" type="text/css">
+<link href="../../_static/css/getting_started.css" rel="stylesheet" type="text/css"/>
+<link href="../../_static/css/pandas.css" rel="stylesheet" type="text/css"/>
+<link as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf" rel="preload"/>
+<script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+<script src="../../_static/jquery.js"></script>
+<script src="../../_static/underscore.js"></script>
+<script src="../../_static/doctools.js"></script>
+<script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
+<link href="../../_static/favicon.ico" rel="shortcut icon">
+<link href="../../genindex.html" rel="index" title="Index"/>
+<link href="../../search.html" rel="search" title="Search"/>
+<link href="pandas.infer_freq.html" rel="next" title="pandas.infer_freq"/>
+<link href="pandas.period_range.html" rel="prev" title="pandas.period_range"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<meta content="en" name="docsearch:language"/>
+<script async="" src="https://www.google-analytics.com/analytics.js"></script>
+<script>
+                        window.ga = window.ga || function () {
+                            (ga.q = ga.q || []).push(arguments) };
+                        ga.l = +new Date;
+                        ga('create', 'UA-27880019-2', 'auto');
+                        ga('set', 'anonymizeIp', true);
+                        ga('send', 'pageview');
+                    </script>
+</link></link></link></link></link></link></head>
+<body data-offset="80" data-spy="scroll" data-target="#bd-toc-nav">
+<div class="container-fluid" id="banner"></div>
+
+<div class="container-xl">
+<div class="row">
+
+
+<main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
+<div>
+<section id="pandas-timedelta-range">
+<h1>pandas.timedelta_range<a class="headerlink" href="#pandas-timedelta-range" title="Permalink to this headline">¶</a></h1>
+<dl class="py function">
+<dt class="sig sig-object py" id="pandas.timedelta_range">
+<span class="sig-prename descclassname"><span class="pre">pandas.</span></span><span class="sig-name descname"><span class="pre">timedelta_range</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">start</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">periods</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">freq</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">closed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/pandas-dev/pandas/blob/v1.4.1/pandas/core/indexes/timedeltas.py#L199-L276"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pandas.timedelta_range" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a fixed frequency TimedeltaIndex, with day as the default
+frequency.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>start</strong><span class="classifier">str or timedelta-like, default None</span></dt><dd><p>Left bound for generating timedeltas.</p>
+</dd>
+<dt><strong>end</strong><span class="classifier">str or timedelta-like, default None</span></dt><dd><p>Right bound for generating timedeltas.</p>
+</dd>
+<dt><strong>periods</strong><span class="classifier">int, default None</span></dt><dd><p>Number of periods to generate.</p>
+</dd>
+<dt><strong>freq</strong><span class="classifier">str or DateOffset, default ‘D’</span></dt><dd><p>Frequency strings can have multiples, e.g. ‘5H’.</p>
+</dd>
+<dt><strong>name</strong><span class="classifier">str, default None</span></dt><dd><p>Name of the resulting TimedeltaIndex.</p>
+</dd>
+<dt><strong>closed</strong><span class="classifier">str, default None</span></dt><dd><p>Make the interval closed with respect to the given frequency to
+the ‘left’, ‘right’, or both sides (None).</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt>TimedeltaIndex</dt><dd></dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<p>Of the four parameters <code class="docutils literal notranslate"><span class="pre">start</span></code>, <code class="docutils literal notranslate"><span class="pre">end</span></code>, <code class="docutils literal notranslate"><span class="pre">periods</span></code>, and <code class="docutils literal notranslate"><span class="pre">freq</span></code>,
+exactly three must be specified. If <code class="docutils literal notranslate"><span class="pre">freq</span></code> is omitted, the resulting
+<code class="docutils literal notranslate"><span class="pre">TimedeltaIndex</span></code> will have <code class="docutils literal notranslate"><span class="pre">periods</span></code> linearly spaced elements between
+<code class="docutils literal notranslate"><span class="pre">start</span></code> and <code class="docutils literal notranslate"><span class="pre">end</span></code> (closed on both sides).</p>
+<p>To learn more about the frequency strings, please see <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/user_guide/timeseries.html#offset-aliases">this link</a>.</p>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">pd</span><span class="o">.</span><span class="n">timedelta_range</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="s1">'1 day'</span><span class="p">,</span> <span class="n">periods</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+<span class="go">TimedeltaIndex(['1 days', '2 days', '3 days', '4 days'],</span>
+<span class="go">               dtype='timedelta64[ns]', freq='D')</span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">closed</span></code> parameter specifies which endpoint is included. The default
+behavior is to include both endpoints.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">pd</span><span class="o">.</span><span class="n">timedelta_range</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="s1">'1 day'</span><span class="p">,</span> <span class="n">periods</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">closed</span><span class="o">=</span><span class="s1">'right'</span><span class="p">)</span>
+<span class="go">TimedeltaIndex(['2 days', '3 days', '4 days'],</span>
+<span class="go">               dtype='timedelta64[ns]', freq='D')</span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">freq</span></code> parameter specifies the frequency of the TimedeltaIndex.
+Only fixed frequencies can be passed, non-fixed frequencies such as
+‘M’ (month end) will raise.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">pd</span><span class="o">.</span><span class="n">timedelta_range</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="s1">'1 day'</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s1">'2 days'</span><span class="p">,</span> <span class="n">freq</span><span class="o">=</span><span class="s1">'6H'</span><span class="p">)</span>
+<span class="go">TimedeltaIndex(['1 days 00:00:00', '1 days 06:00:00', '1 days 12:00:00',</span>
+<span class="go">                '1 days 18:00:00', '2 days 00:00:00'],</span>
+<span class="go">               dtype='timedelta64[ns]', freq='6H')</span>
+</pre></div>
+</div>
+<p>Specify <code class="docutils literal notranslate"><span class="pre">start</span></code>, <code class="docutils literal notranslate"><span class="pre">end</span></code>, and <code class="docutils literal notranslate"><span class="pre">periods</span></code>; the frequency is generated
+automatically (linearly spaced).</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">pd</span><span class="o">.</span><span class="n">timedelta_range</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="s1">'1 day'</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s1">'5 days'</span><span class="p">,</span> <span class="n">periods</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+<span class="go">TimedeltaIndex(['1 days 00:00:00', '2 days 08:00:00', '3 days 16:00:00',</span>
+<span class="go">                '5 days 00:00:00'],</span>
+<span class="go">               dtype='timedelta64[ns]', freq=None)</span>
+</pre></div>
+</div>
+</dd></dl>
+</section>
+</div>
+
+</main>
+</div>
+</div>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+</body>
+</html>

@@ -1,0 +1,236 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="Docutils 0.17.1: http://docutils.sourceforge.net/" name="generator"/>
+<title>pandas.DataFrame.rmul — pandas 1.4.1 documentation</title>
+<link href="../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet"/>
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet"/>
+<link href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css" rel="stylesheet"/>
+<link as="font" crossorigin="" href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2" rel="preload" type="font/woff2"/>
+<link as="font" crossorigin="" href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2" rel="preload" type="font/woff2"/>
+<link href="../../_static/pygments.css" rel="stylesheet" type="text/css">
+<link href="../../_static/styles/pydata-sphinx-theme.css" rel="stylesheet" type="text/css">
+<link href="../../_static/plot_directive.css" rel="stylesheet" type="text/css">
+<link href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" rel="stylesheet" type="text/css">
+<link href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" rel="stylesheet" type="text/css">
+<link href="../../_static/css/getting_started.css" rel="stylesheet" type="text/css"/>
+<link href="../../_static/css/pandas.css" rel="stylesheet" type="text/css"/>
+<link as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf" rel="preload"/>
+<script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+<script src="../../_static/jquery.js"></script>
+<script src="../../_static/underscore.js"></script>
+<script src="../../_static/doctools.js"></script>
+<script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
+<link href="../../_static/favicon.ico" rel="shortcut icon">
+<link href="../../genindex.html" rel="index" title="Index"/>
+<link href="../../search.html" rel="search" title="Search"/>
+<link href="pandas.DataFrame.rolling.html" rel="next" title="pandas.DataFrame.rolling"/>
+<link href="pandas.DataFrame.rmod.html" rel="prev" title="pandas.DataFrame.rmod"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<meta content="en" name="docsearch:language"/>
+<script async="" src="https://www.google-analytics.com/analytics.js"></script>
+<script>
+                        window.ga = window.ga || function () {
+                            (ga.q = ga.q || []).push(arguments) };
+                        ga.l = +new Date;
+                        ga('create', 'UA-27880019-2', 'auto');
+                        ga('set', 'anonymizeIp', true);
+                        ga('send', 'pageview');
+                    </script>
+</link></link></link></link></link></link></head>
+<body data-offset="80" data-spy="scroll" data-target="#bd-toc-nav">
+<div class="container-fluid" id="banner"></div>
+
+<div class="container-xl">
+<div class="row">
+
+
+<main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
+<div>
+<section id="pandas-dataframe-rmul">
+<h1>pandas.DataFrame.rmul<a class="headerlink" href="#pandas-dataframe-rmul" title="Permalink to this headline">¶</a></h1>
+<dl class="py method">
+<dt class="sig sig-object py" id="pandas.DataFrame.rmul">
+<span class="sig-prename descclassname"><span class="pre">DataFrame.</span></span><span class="sig-name descname"><span class="pre">rmul</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axis</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'columns'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">level</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fill_value</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/pandas-dev/pandas/blob/v1.4.1/pandas/core/ops/__init__.py#L418-L449"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pandas.DataFrame.rmul" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get Multiplication of dataframe and other, element-wise (binary operator <cite>rmul</cite>).</p>
+<p>Equivalent to <code class="docutils literal notranslate"><span class="pre">other</span> <span class="pre">*</span> <span class="pre">dataframe</span></code>, but with support to substitute a fill_value
+for missing data in one of the inputs. With reverse version, <cite>mul</cite>.</p>
+<p>Among flexible wrappers (<cite>add</cite>, <cite>sub</cite>, <cite>mul</cite>, <cite>div</cite>, <cite>mod</cite>, <cite>pow</cite>) to
+arithmetic operators: <cite>+</cite>, <cite>-</cite>, <cite>*</cite>, <cite>/</cite>, <cite>//</cite>, <cite>%</cite>, <cite>**</cite>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>other</strong><span class="classifier">scalar, sequence, Series, or DataFrame</span></dt><dd><p>Any single or multiple element data structure, or list-like object.</p>
+</dd>
+<dt><strong>axis</strong><span class="classifier">{0 or ‘index’, 1 or ‘columns’}</span></dt><dd><p>Whether to compare by the index (0 or ‘index’) or columns
+(1 or ‘columns’). For Series input, axis to match Series index on.</p>
+</dd>
+<dt><strong>level</strong><span class="classifier">int or label</span></dt><dd><p>Broadcast across a level, matching Index values on the
+passed MultiIndex level.</p>
+</dd>
+<dt><strong>fill_value</strong><span class="classifier">float or None, default None</span></dt><dd><p>Fill existing missing (NaN) values, and any new element needed for
+successful DataFrame alignment, with this value before computation.
+If data in both corresponding DataFrame locations is missing
+the result will be missing.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt>DataFrame</dt><dd><p>Result of the arithmetic operation.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<dl class="simple">
+<dt><a class="reference internal" href="pandas.DataFrame.add.html#pandas.DataFrame.add" title="pandas.DataFrame.add"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DataFrame.add</span></code></a></dt><dd><p>Add DataFrames.</p>
+</dd>
+<dt><a class="reference internal" href="pandas.DataFrame.sub.html#pandas.DataFrame.sub" title="pandas.DataFrame.sub"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DataFrame.sub</span></code></a></dt><dd><p>Subtract DataFrames.</p>
+</dd>
+<dt><a class="reference internal" href="pandas.DataFrame.mul.html#pandas.DataFrame.mul" title="pandas.DataFrame.mul"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DataFrame.mul</span></code></a></dt><dd><p>Multiply DataFrames.</p>
+</dd>
+<dt><a class="reference internal" href="pandas.DataFrame.div.html#pandas.DataFrame.div" title="pandas.DataFrame.div"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DataFrame.div</span></code></a></dt><dd><p>Divide DataFrames (float division).</p>
+</dd>
+<dt><a class="reference internal" href="pandas.DataFrame.truediv.html#pandas.DataFrame.truediv" title="pandas.DataFrame.truediv"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DataFrame.truediv</span></code></a></dt><dd><p>Divide DataFrames (float division).</p>
+</dd>
+<dt><a class="reference internal" href="pandas.DataFrame.floordiv.html#pandas.DataFrame.floordiv" title="pandas.DataFrame.floordiv"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DataFrame.floordiv</span></code></a></dt><dd><p>Divide DataFrames (integer division).</p>
+</dd>
+<dt><a class="reference internal" href="pandas.DataFrame.mod.html#pandas.DataFrame.mod" title="pandas.DataFrame.mod"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DataFrame.mod</span></code></a></dt><dd><p>Calculate modulo (remainder after division).</p>
+</dd>
+<dt><a class="reference internal" href="pandas.DataFrame.pow.html#pandas.DataFrame.pow" title="pandas.DataFrame.pow"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DataFrame.pow</span></code></a></dt><dd><p>Calculate exponential power.</p>
+</dd>
+</dl>
+</div>
+<p class="rubric">Notes</p>
+<p>Mismatched indices will be unioned together.</p>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">'angles'</span><span class="p">:</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span>
+<span class="gp">... </span>                   <span class="s1">'degrees'</span><span class="p">:</span> <span class="p">[</span><span class="mi">360</span><span class="p">,</span> <span class="mi">180</span><span class="p">,</span> <span class="mi">360</span><span class="p">]},</span>
+<span class="gp">... </span>                  <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="s1">'circle'</span><span class="p">,</span> <span class="s1">'triangle'</span><span class="p">,</span> <span class="s1">'rectangle'</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">df</span>
+<span class="go">           angles  degrees</span>
+<span class="go">circle          0      360</span>
+<span class="go">triangle        3      180</span>
+<span class="go">rectangle       4      360</span>
+</pre></div>
+</div>
+<p>Add a scalar with operator version which return the same
+results.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df</span> <span class="o">+</span> <span class="mi">1</span>
+<span class="go">           angles  degrees</span>
+<span class="go">circle          1      361</span>
+<span class="go">triangle        4      181</span>
+<span class="go">rectangle       5      361</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="go">           angles  degrees</span>
+<span class="go">circle          1      361</span>
+<span class="go">triangle        4      181</span>
+<span class="go">rectangle       5      361</span>
+</pre></div>
+</div>
+<p>Divide by constant with reverse version.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df</span><span class="o">.</span><span class="n">div</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+<span class="go">           angles  degrees</span>
+<span class="go">circle        0.0     36.0</span>
+<span class="go">triangle      0.3     18.0</span>
+<span class="go">rectangle     0.4     36.0</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df</span><span class="o">.</span><span class="n">rdiv</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+<span class="go">             angles   degrees</span>
+<span class="go">circle          inf  0.027778</span>
+<span class="go">triangle   3.333333  0.055556</span>
+<span class="go">rectangle  2.500000  0.027778</span>
+</pre></div>
+</div>
+<p>Subtract a list and Series by axis with operator version.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df</span> <span class="o">-</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span>
+<span class="go">           angles  degrees</span>
+<span class="go">circle         -1      358</span>
+<span class="go">triangle        2      178</span>
+<span class="go">rectangle       3      358</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df</span><span class="o">.</span><span class="n">sub</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="s1">'columns'</span><span class="p">)</span>
+<span class="go">           angles  degrees</span>
+<span class="go">circle         -1      358</span>
+<span class="go">triangle        2      178</span>
+<span class="go">rectangle       3      358</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="s1">'circle'</span><span class="p">,</span> <span class="s1">'triangle'</span><span class="p">,</span> <span class="s1">'rectangle'</span><span class="p">]),</span>
+<span class="gp">... </span>       <span class="n">axis</span><span class="o">=</span><span class="s1">'index'</span><span class="p">)</span>
+<span class="go">           angles  degrees</span>
+<span class="go">circle         -1      359</span>
+<span class="go">triangle        2      179</span>
+<span class="go">rectangle       3      359</span>
+</pre></div>
+</div>
+<p>Multiply a DataFrame of different shape with operator version.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">other</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">'angles'</span><span class="p">:</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]},</span>
+<span class="gp">... </span>                     <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="s1">'circle'</span><span class="p">,</span> <span class="s1">'triangle'</span><span class="p">,</span> <span class="s1">'rectangle'</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">other</span>
+<span class="go">           angles</span>
+<span class="go">circle          0</span>
+<span class="go">triangle        3</span>
+<span class="go">rectangle       4</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df</span> <span class="o">*</span> <span class="n">other</span>
+<span class="go">           angles  degrees</span>
+<span class="go">circle          0      NaN</span>
+<span class="go">triangle        9      NaN</span>
+<span class="go">rectangle      16      NaN</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df</span><span class="o">.</span><span class="n">mul</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">fill_value</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="go">           angles  degrees</span>
+<span class="go">circle          0      0.0</span>
+<span class="go">triangle        9      0.0</span>
+<span class="go">rectangle      16      0.0</span>
+</pre></div>
+</div>
+<p>Divide by a MultiIndex by level.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df_multindex</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">'angles'</span><span class="p">:</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">],</span>
+<span class="gp">... </span>                             <span class="s1">'degrees'</span><span class="p">:</span> <span class="p">[</span><span class="mi">360</span><span class="p">,</span> <span class="mi">180</span><span class="p">,</span> <span class="mi">360</span><span class="p">,</span> <span class="mi">360</span><span class="p">,</span> <span class="mi">540</span><span class="p">,</span> <span class="mi">720</span><span class="p">]},</span>
+<span class="gp">... </span>                            <span class="n">index</span><span class="o">=</span><span class="p">[[</span><span class="s1">'A'</span><span class="p">,</span> <span class="s1">'A'</span><span class="p">,</span> <span class="s1">'A'</span><span class="p">,</span> <span class="s1">'B'</span><span class="p">,</span> <span class="s1">'B'</span><span class="p">,</span> <span class="s1">'B'</span><span class="p">],</span>
+<span class="gp">... </span>                                   <span class="p">[</span><span class="s1">'circle'</span><span class="p">,</span> <span class="s1">'triangle'</span><span class="p">,</span> <span class="s1">'rectangle'</span><span class="p">,</span>
+<span class="gp">... </span>                                    <span class="s1">'square'</span><span class="p">,</span> <span class="s1">'pentagon'</span><span class="p">,</span> <span class="s1">'hexagon'</span><span class="p">]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">df_multindex</span>
+<span class="go">             angles  degrees</span>
+<span class="go">A circle          0      360</span>
+<span class="go">  triangle        3      180</span>
+<span class="go">  rectangle       4      360</span>
+<span class="go">B square          4      360</span>
+<span class="go">  pentagon        5      540</span>
+<span class="go">  hexagon         6      720</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df</span><span class="o">.</span><span class="n">div</span><span class="p">(</span><span class="n">df_multindex</span><span class="p">,</span> <span class="n">level</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">fill_value</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="go">             angles  degrees</span>
+<span class="go">A circle        NaN      1.0</span>
+<span class="go">  triangle      1.0      1.0</span>
+<span class="go">  rectangle     1.0      1.0</span>
+<span class="go">B square        0.0      0.0</span>
+<span class="go">  pentagon      0.0      0.0</span>
+<span class="go">  hexagon       0.0      0.0</span>
+</pre></div>
+</div>
+</dd></dl>
+</section>
+</div>
+
+</main>
+</div>
+</div>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+</body>
+</html>

@@ -1,0 +1,202 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="Docutils 0.17.1: http://docutils.sourceforge.net/" name="generator"/>
+<title>pandas.Timedelta — pandas 1.4.1 documentation</title>
+<link href="../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet"/>
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet"/>
+<link href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css" rel="stylesheet"/>
+<link as="font" crossorigin="" href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2" rel="preload" type="font/woff2"/>
+<link as="font" crossorigin="" href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2" rel="preload" type="font/woff2"/>
+<link href="../../_static/pygments.css" rel="stylesheet" type="text/css">
+<link href="../../_static/styles/pydata-sphinx-theme.css" rel="stylesheet" type="text/css">
+<link href="../../_static/plot_directive.css" rel="stylesheet" type="text/css">
+<link href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" rel="stylesheet" type="text/css">
+<link href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" rel="stylesheet" type="text/css">
+<link href="../../_static/css/getting_started.css" rel="stylesheet" type="text/css"/>
+<link href="../../_static/css/pandas.css" rel="stylesheet" type="text/css"/>
+<link as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf" rel="preload"/>
+<script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+<script src="../../_static/jquery.js"></script>
+<script src="../../_static/underscore.js"></script>
+<script src="../../_static/doctools.js"></script>
+<script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
+<link href="../../_static/favicon.ico" rel="shortcut icon">
+<link href="../../genindex.html" rel="index" title="Index"/>
+<link href="../../search.html" rel="search" title="Search"/>
+<link href="pandas.Timedelta.asm8.html" rel="next" title="pandas.Timedelta.asm8"/>
+<link href="pandas.DatetimeTZDtype.tz.html" rel="prev" title="pandas.DatetimeTZDtype.tz"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<meta content="en" name="docsearch:language"/>
+<script async="" src="https://www.google-analytics.com/analytics.js"></script>
+<script>
+                        window.ga = window.ga || function () {
+                            (ga.q = ga.q || []).push(arguments) };
+                        ga.l = +new Date;
+                        ga('create', 'UA-27880019-2', 'auto');
+                        ga('set', 'anonymizeIp', true);
+                        ga('send', 'pageview');
+                    </script>
+</link></link></link></link></link></link></head>
+<body data-offset="80" data-spy="scroll" data-target="#bd-toc-nav">
+<div class="container-fluid" id="banner"></div>
+
+<div class="container-xl">
+<div class="row">
+
+
+<main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
+<div>
+<section id="pandas-timedelta">
+<h1>pandas.Timedelta<a class="headerlink" href="#pandas-timedelta" title="Permalink to this headline">¶</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="pandas.Timedelta">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pandas.</span></span><span class="sig-name descname"><span class="pre">Timedelta</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value=&lt;object</span> <span class="pre">object&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">unit=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">**kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pandas.Timedelta" title="Permalink to this definition">¶</a></dt>
+<dd><p>Represents a duration, the difference between two dates or times.</p>
+<p>Timedelta is the pandas equivalent of python’s <code class="docutils literal notranslate"><span class="pre">datetime.timedelta</span></code>
+and is interchangeable with it in most cases.</p>
+<dl class="field-list">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl>
+<dt><strong>value</strong><span class="classifier">Timedelta, timedelta, np.timedelta64, str, or int</span></dt><dd></dd>
+<dt><strong>unit</strong><span class="classifier">str, default ‘ns’</span></dt><dd><p>Denote the unit of the input, if input is an integer.</p>
+<p>Possible values:</p>
+<ul class="simple">
+<li><p>‘W’, ‘D’, ‘T’, ‘S’, ‘L’, ‘U’, or ‘N’</p></li>
+<li><p>‘days’ or ‘day’</p></li>
+<li><p>‘hours’, ‘hour’, ‘hr’, or ‘h’</p></li>
+<li><p>‘minutes’, ‘minute’, ‘min’, or ‘m’</p></li>
+<li><p>‘seconds’, ‘second’, or ‘sec’</p></li>
+<li><p>‘milliseconds’, ‘millisecond’, ‘millis’, or ‘milli’</p></li>
+<li><p>‘microseconds’, ‘microsecond’, ‘micros’, or ‘micro’</p></li>
+<li><p>‘nanoseconds’, ‘nanosecond’, ‘nanos’, ‘nano’, or ‘ns’.</p></li>
+</ul>
+</dd>
+<dt><strong>**kwargs</strong></dt><dd><p>Available kwargs: {days, seconds, microseconds,
+milliseconds, minutes, hours, weeks}.
+Values for construction in compat with datetime.timedelta.
+Numpy ints and floats will be coerced to python ints and floats.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<p>The constructor may take in either both values of value and unit or
+kwargs as above. Either one of them must be used during initialization</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">.value</span></code> attribute is always in ns.</p>
+<p>If the precision is higher than nanoseconds, the precision of the duration is
+truncated to nanoseconds.</p>
+<p class="rubric">Examples</p>
+<p>Here we initialize Timedelta object with both value and unit</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">td</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Timedelta</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s2">"d"</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">td</span>
+<span class="go">Timedelta('1 days 00:00:00')</span>
+</pre></div>
+</div>
+<p>Here we initialize the Timedelta object with kwargs</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">td2</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Timedelta</span><span class="p">(</span><span class="n">days</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">td2</span>
+<span class="go">Timedelta('1 days 00:00:00')</span>
+</pre></div>
+</div>
+<p>We see that either way we get the same result</p>
+<p class="rubric">Attributes</p>
+<table class="longtable table autosummary">
+<colgroup>
+<col style="width: 10%"/>
+<col style="width: 90%"/>
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="pandas.Timedelta.asm8.html#pandas.Timedelta.asm8" title="pandas.Timedelta.asm8"><code class="xref py py-obj docutils literal notranslate"><span class="pre">asm8</span></code></a></p></td>
+<td><p>Return a numpy timedelta64 array scalar view.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="pandas.Timedelta.components.html#pandas.Timedelta.components" title="pandas.Timedelta.components"><code class="xref py py-obj docutils literal notranslate"><span class="pre">components</span></code></a></p></td>
+<td><p>Return a components namedtuple-like.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="pandas.Timedelta.days.html#pandas.Timedelta.days" title="pandas.Timedelta.days"><code class="xref py py-obj docutils literal notranslate"><span class="pre">days</span></code></a></p></td>
+<td><p>Number of days.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="pandas.Timedelta.delta.html#pandas.Timedelta.delta" title="pandas.Timedelta.delta"><code class="xref py py-obj docutils literal notranslate"><span class="pre">delta</span></code></a></p></td>
+<td><p>Return the timedelta in nanoseconds (ns), for internal compatibility.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="pandas.Timedelta.microseconds.html#pandas.Timedelta.microseconds" title="pandas.Timedelta.microseconds"><code class="xref py py-obj docutils literal notranslate"><span class="pre">microseconds</span></code></a></p></td>
+<td><p>Number of microseconds (&gt;= 0 and less than 1 second).</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="pandas.Timedelta.nanoseconds.html#pandas.Timedelta.nanoseconds" title="pandas.Timedelta.nanoseconds"><code class="xref py py-obj docutils literal notranslate"><span class="pre">nanoseconds</span></code></a></p></td>
+<td><p>Return the number of nanoseconds (n), where 0 &lt;= n &lt; 1 microsecond.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="pandas.Timedelta.resolution_string.html#pandas.Timedelta.resolution_string" title="pandas.Timedelta.resolution_string"><code class="xref py py-obj docutils literal notranslate"><span class="pre">resolution_string</span></code></a></p></td>
+<td><p>Return a string representing the lowest timedelta resolution.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="pandas.Timedelta.seconds.html#pandas.Timedelta.seconds" title="pandas.Timedelta.seconds"><code class="xref py py-obj docutils literal notranslate"><span class="pre">seconds</span></code></a></p></td>
+<td><p>Number of seconds (&gt;= 0 and less than 1 day).</p></td>
+</tr>
+</tbody>
+</table>
+<table class="table">
+<colgroup>
+<col style="width: 62%"/>
+<col style="width: 38%"/>
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><strong>freq</strong></p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p><strong>is_populated</strong></p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p><strong>value</strong></p></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Methods</p>
+<table class="longtable table autosummary">
+<colgroup>
+<col style="width: 10%"/>
+<col style="width: 90%"/>
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="pandas.Timedelta.ceil.html#pandas.Timedelta.ceil" title="pandas.Timedelta.ceil"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ceil</span></code></a>(freq)</p></td>
+<td><p>Return a new Timedelta ceiled to this resolution.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="pandas.Timedelta.floor.html#pandas.Timedelta.floor" title="pandas.Timedelta.floor"><code class="xref py py-obj docutils literal notranslate"><span class="pre">floor</span></code></a>(freq)</p></td>
+<td><p>Return a new Timedelta floored to this resolution.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="pandas.Timedelta.isoformat.html#pandas.Timedelta.isoformat" title="pandas.Timedelta.isoformat"><code class="xref py py-obj docutils literal notranslate"><span class="pre">isoformat</span></code></a></p></td>
+<td><p>Format Timedelta as ISO 8601 Duration like <code class="docutils literal notranslate"><span class="pre">P[n]Y[n]M[n]DT[n]H[n]M[n]S</span></code>, where the <code class="docutils literal notranslate"><span class="pre">[n]</span></code> s are replaced by the values.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="pandas.Timedelta.round.html#pandas.Timedelta.round" title="pandas.Timedelta.round"><code class="xref py py-obj docutils literal notranslate"><span class="pre">round</span></code></a>(freq)</p></td>
+<td><p>Round the Timedelta to the specified resolution.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="pandas.Timedelta.to_numpy.html#pandas.Timedelta.to_numpy" title="pandas.Timedelta.to_numpy"><code class="xref py py-obj docutils literal notranslate"><span class="pre">to_numpy</span></code></a></p></td>
+<td><p>Convert the Timedelta to a NumPy timedelta64.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="pandas.Timedelta.to_pytimedelta.html#pandas.Timedelta.to_pytimedelta" title="pandas.Timedelta.to_pytimedelta"><code class="xref py py-obj docutils literal notranslate"><span class="pre">to_pytimedelta</span></code></a></p></td>
+<td><p>Convert a pandas Timedelta object into a python <code class="docutils literal notranslate"><span class="pre">datetime.timedelta</span></code> object.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="pandas.Timedelta.to_timedelta64.html#pandas.Timedelta.to_timedelta64" title="pandas.Timedelta.to_timedelta64"><code class="xref py py-obj docutils literal notranslate"><span class="pre">to_timedelta64</span></code></a></p></td>
+<td><p>Return a numpy.timedelta64 object with 'ns' precision.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="pandas.Timedelta.total_seconds.html#pandas.Timedelta.total_seconds" title="pandas.Timedelta.total_seconds"><code class="xref py py-obj docutils literal notranslate"><span class="pre">total_seconds</span></code></a></p></td>
+<td><p>Total seconds in the duration.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="pandas.Timedelta.view.html#pandas.Timedelta.view" title="pandas.Timedelta.view"><code class="xref py py-obj docutils literal notranslate"><span class="pre">view</span></code></a></p></td>
+<td><p>Array view compatibility.</p></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+</section>
+</div>
+
+</main>
+</div>
+</div>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+</body>
+</html>

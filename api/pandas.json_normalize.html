@@ -1,0 +1,206 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="Docutils 0.17.1: http://docutils.sourceforge.net/" name="generator"/>
+<title>pandas.json_normalize — pandas 1.4.1 documentation</title>
+<link href="../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet"/>
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet"/>
+<link href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css" rel="stylesheet"/>
+<link as="font" crossorigin="" href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2" rel="preload" type="font/woff2"/>
+<link as="font" crossorigin="" href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2" rel="preload" type="font/woff2"/>
+<link href="../../_static/pygments.css" rel="stylesheet" type="text/css">
+<link href="../../_static/styles/pydata-sphinx-theme.css" rel="stylesheet" type="text/css">
+<link href="../../_static/plot_directive.css" rel="stylesheet" type="text/css">
+<link href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" rel="stylesheet" type="text/css">
+<link href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" rel="stylesheet" type="text/css">
+<link href="../../_static/css/getting_started.css" rel="stylesheet" type="text/css"/>
+<link href="../../_static/css/pandas.css" rel="stylesheet" type="text/css"/>
+<link as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf" rel="preload"/>
+<script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+<script src="../../_static/jquery.js"></script>
+<script src="../../_static/underscore.js"></script>
+<script src="../../_static/doctools.js"></script>
+<script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
+<link href="../../_static/favicon.ico" rel="shortcut icon">
+<link href="../../genindex.html" rel="index" title="Index"/>
+<link href="../../search.html" rel="search" title="Search"/>
+<link href="pandas.DataFrame.to_json.html" rel="next" title="pandas.DataFrame.to_json"/>
+<link href="pandas.read_json.html" rel="prev" title="pandas.read_json"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<meta content="en" name="docsearch:language"/>
+<script async="" src="https://www.google-analytics.com/analytics.js"></script>
+<script>
+                        window.ga = window.ga || function () {
+                            (ga.q = ga.q || []).push(arguments) };
+                        ga.l = +new Date;
+                        ga('create', 'UA-27880019-2', 'auto');
+                        ga('set', 'anonymizeIp', true);
+                        ga('send', 'pageview');
+                    </script>
+</link></link></link></link></link></link></head>
+<body data-offset="80" data-spy="scroll" data-target="#bd-toc-nav">
+<div class="container-fluid" id="banner"></div>
+
+<div class="container-xl">
+<div class="row">
+
+
+<main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
+<div>
+<section id="pandas-json-normalize">
+<h1>pandas.json_normalize<a class="headerlink" href="#pandas-json-normalize" title="Permalink to this headline">¶</a></h1>
+<dl class="py function">
+<dt class="sig sig-object py" id="pandas.json_normalize">
+<span class="sig-prename descclassname"><span class="pre">pandas.</span></span><span class="sig-name descname"><span class="pre">json_normalize</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">record_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">meta</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">meta_prefix</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">record_prefix</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">errors</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'raise'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sep</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'.'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_level</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/pandas-dev/pandas/blob/v1.4.1/pandas/io/json/_normalize.py#L241-L536"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pandas.json_normalize" title="Permalink to this definition">¶</a></dt>
+<dd><p>Normalize semi-structured JSON data into a flat table.</p>
+<dl class="field-list">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl>
+<dt><strong>data</strong><span class="classifier">dict or list of dicts</span></dt><dd><p>Unserialized JSON objects.</p>
+</dd>
+<dt><strong>record_path</strong><span class="classifier">str or list of str, default None</span></dt><dd><p>Path in each object to list of records. If not passed, data will be
+assumed to be an array of records.</p>
+</dd>
+<dt><strong>meta</strong><span class="classifier">list of paths (str or list of str), default None</span></dt><dd><p>Fields to use as metadata for each record in resulting table.</p>
+</dd>
+<dt><strong>meta_prefix</strong><span class="classifier">str, default None</span></dt><dd><p>If True, prefix records with dotted (?) path, e.g. foo.bar.field if
+meta is [‘foo’, ‘bar’].</p>
+</dd>
+<dt><strong>record_prefix</strong><span class="classifier">str, default None</span></dt><dd><p>If True, prefix records with dotted (?) path, e.g. foo.bar.field if
+path to records is [‘foo’, ‘bar’].</p>
+</dd>
+<dt><strong>errors</strong><span class="classifier">{‘raise’, ‘ignore’}, default ‘raise’</span></dt><dd><p>Configures error handling.</p>
+<ul class="simple">
+<li><p>‘ignore’ : will ignore KeyError if keys listed in meta are not
+always present.</p></li>
+<li><p>‘raise’ : will raise KeyError if keys listed in meta are not
+always present.</p></li>
+</ul>
+</dd>
+<dt><strong>sep</strong><span class="classifier">str, default ‘.’</span></dt><dd><p>Nested records will generate names separated by sep.
+e.g., for sep=’.’, {‘foo’: {‘bar’: 0}} -&gt; foo.bar.</p>
+</dd>
+<dt><strong>max_level</strong><span class="classifier">int, default None</span></dt><dd><p>Max number of levels(depth of dict) to normalize.
+if None, normalizes all levels.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">New in version 0.25.0.</span></p>
+</div>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>frame</strong><span class="classifier">DataFrame</span></dt><dd></dd>
+<dt>Normalize semi-structured JSON data into a flat table.</dt><dd></dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">data</span> <span class="o">=</span> <span class="p">[</span>
+<span class="gp">... </span>    <span class="p">{</span><span class="s2">"id"</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">"name"</span><span class="p">:</span> <span class="p">{</span><span class="s2">"first"</span><span class="p">:</span> <span class="s2">"Coleen"</span><span class="p">,</span> <span class="s2">"last"</span><span class="p">:</span> <span class="s2">"Volk"</span><span class="p">}},</span>
+<span class="gp">... </span>    <span class="p">{</span><span class="s2">"name"</span><span class="p">:</span> <span class="p">{</span><span class="s2">"given"</span><span class="p">:</span> <span class="s2">"Mark"</span><span class="p">,</span> <span class="s2">"family"</span><span class="p">:</span> <span class="s2">"Regner"</span><span class="p">}},</span>
+<span class="gp">... </span>    <span class="p">{</span><span class="s2">"id"</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="s2">"name"</span><span class="p">:</span> <span class="s2">"Faye Raker"</span><span class="p">},</span>
+<span class="gp">... </span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pd</span><span class="o">.</span><span class="n">json_normalize</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+<span class="go">    id name.first name.last name.given name.family        name</span>
+<span class="go">0  1.0     Coleen      Volk        NaN         NaN         NaN</span>
+<span class="go">1  NaN        NaN       NaN       Mark      Regner         NaN</span>
+<span class="go">2  2.0        NaN       NaN        NaN         NaN  Faye Raker</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">data</span> <span class="o">=</span> <span class="p">[</span>
+<span class="gp">... </span>    <span class="p">{</span>
+<span class="gp">... </span>        <span class="s2">"id"</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+<span class="gp">... </span>        <span class="s2">"name"</span><span class="p">:</span> <span class="s2">"Cole Volk"</span><span class="p">,</span>
+<span class="gp">... </span>        <span class="s2">"fitness"</span><span class="p">:</span> <span class="p">{</span><span class="s2">"height"</span><span class="p">:</span> <span class="mi">130</span><span class="p">,</span> <span class="s2">"weight"</span><span class="p">:</span> <span class="mi">60</span><span class="p">},</span>
+<span class="gp">... </span>    <span class="p">},</span>
+<span class="gp">... </span>    <span class="p">{</span><span class="s2">"name"</span><span class="p">:</span> <span class="s2">"Mark Reg"</span><span class="p">,</span> <span class="s2">"fitness"</span><span class="p">:</span> <span class="p">{</span><span class="s2">"height"</span><span class="p">:</span> <span class="mi">130</span><span class="p">,</span> <span class="s2">"weight"</span><span class="p">:</span> <span class="mi">60</span><span class="p">}},</span>
+<span class="gp">... </span>    <span class="p">{</span>
+<span class="gp">... </span>        <span class="s2">"id"</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+<span class="gp">... </span>        <span class="s2">"name"</span><span class="p">:</span> <span class="s2">"Faye Raker"</span><span class="p">,</span>
+<span class="gp">... </span>        <span class="s2">"fitness"</span><span class="p">:</span> <span class="p">{</span><span class="s2">"height"</span><span class="p">:</span> <span class="mi">130</span><span class="p">,</span> <span class="s2">"weight"</span><span class="p">:</span> <span class="mi">60</span><span class="p">},</span>
+<span class="gp">... </span>    <span class="p">},</span>
+<span class="gp">... </span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pd</span><span class="o">.</span><span class="n">json_normalize</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">max_level</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="go">    id        name                        fitness</span>
+<span class="go">0  1.0   Cole Volk  {'height': 130, 'weight': 60}</span>
+<span class="go">1  NaN    Mark Reg  {'height': 130, 'weight': 60}</span>
+<span class="go">2  2.0  Faye Raker  {'height': 130, 'weight': 60}</span>
+</pre></div>
+</div>
+<p>Normalizes nested data up to level 1.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">data</span> <span class="o">=</span> <span class="p">[</span>
+<span class="gp">... </span>    <span class="p">{</span>
+<span class="gp">... </span>        <span class="s2">"id"</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+<span class="gp">... </span>        <span class="s2">"name"</span><span class="p">:</span> <span class="s2">"Cole Volk"</span><span class="p">,</span>
+<span class="gp">... </span>        <span class="s2">"fitness"</span><span class="p">:</span> <span class="p">{</span><span class="s2">"height"</span><span class="p">:</span> <span class="mi">130</span><span class="p">,</span> <span class="s2">"weight"</span><span class="p">:</span> <span class="mi">60</span><span class="p">},</span>
+<span class="gp">... </span>    <span class="p">},</span>
+<span class="gp">... </span>    <span class="p">{</span><span class="s2">"name"</span><span class="p">:</span> <span class="s2">"Mark Reg"</span><span class="p">,</span> <span class="s2">"fitness"</span><span class="p">:</span> <span class="p">{</span><span class="s2">"height"</span><span class="p">:</span> <span class="mi">130</span><span class="p">,</span> <span class="s2">"weight"</span><span class="p">:</span> <span class="mi">60</span><span class="p">}},</span>
+<span class="gp">... </span>    <span class="p">{</span>
+<span class="gp">... </span>        <span class="s2">"id"</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+<span class="gp">... </span>        <span class="s2">"name"</span><span class="p">:</span> <span class="s2">"Faye Raker"</span><span class="p">,</span>
+<span class="gp">... </span>        <span class="s2">"fitness"</span><span class="p">:</span> <span class="p">{</span><span class="s2">"height"</span><span class="p">:</span> <span class="mi">130</span><span class="p">,</span> <span class="s2">"weight"</span><span class="p">:</span> <span class="mi">60</span><span class="p">},</span>
+<span class="gp">... </span>    <span class="p">},</span>
+<span class="gp">... </span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pd</span><span class="o">.</span><span class="n">json_normalize</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">max_level</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="go">    id        name  fitness.height  fitness.weight</span>
+<span class="go">0  1.0   Cole Volk             130              60</span>
+<span class="go">1  NaN    Mark Reg             130              60</span>
+<span class="go">2  2.0  Faye Raker             130              60</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">data</span> <span class="o">=</span> <span class="p">[</span>
+<span class="gp">... </span>    <span class="p">{</span>
+<span class="gp">... </span>        <span class="s2">"state"</span><span class="p">:</span> <span class="s2">"Florida"</span><span class="p">,</span>
+<span class="gp">... </span>        <span class="s2">"shortname"</span><span class="p">:</span> <span class="s2">"FL"</span><span class="p">,</span>
+<span class="gp">... </span>        <span class="s2">"info"</span><span class="p">:</span> <span class="p">{</span><span class="s2">"governor"</span><span class="p">:</span> <span class="s2">"Rick Scott"</span><span class="p">},</span>
+<span class="gp">... </span>        <span class="s2">"counties"</span><span class="p">:</span> <span class="p">[</span>
+<span class="gp">... </span>            <span class="p">{</span><span class="s2">"name"</span><span class="p">:</span> <span class="s2">"Dade"</span><span class="p">,</span> <span class="s2">"population"</span><span class="p">:</span> <span class="mi">12345</span><span class="p">},</span>
+<span class="gp">... </span>            <span class="p">{</span><span class="s2">"name"</span><span class="p">:</span> <span class="s2">"Broward"</span><span class="p">,</span> <span class="s2">"population"</span><span class="p">:</span> <span class="mi">40000</span><span class="p">},</span>
+<span class="gp">... </span>            <span class="p">{</span><span class="s2">"name"</span><span class="p">:</span> <span class="s2">"Palm Beach"</span><span class="p">,</span> <span class="s2">"population"</span><span class="p">:</span> <span class="mi">60000</span><span class="p">},</span>
+<span class="gp">... </span>        <span class="p">],</span>
+<span class="gp">... </span>    <span class="p">},</span>
+<span class="gp">... </span>    <span class="p">{</span>
+<span class="gp">... </span>        <span class="s2">"state"</span><span class="p">:</span> <span class="s2">"Ohio"</span><span class="p">,</span>
+<span class="gp">... </span>        <span class="s2">"shortname"</span><span class="p">:</span> <span class="s2">"OH"</span><span class="p">,</span>
+<span class="gp">... </span>        <span class="s2">"info"</span><span class="p">:</span> <span class="p">{</span><span class="s2">"governor"</span><span class="p">:</span> <span class="s2">"John Kasich"</span><span class="p">},</span>
+<span class="gp">... </span>        <span class="s2">"counties"</span><span class="p">:</span> <span class="p">[</span>
+<span class="gp">... </span>            <span class="p">{</span><span class="s2">"name"</span><span class="p">:</span> <span class="s2">"Summit"</span><span class="p">,</span> <span class="s2">"population"</span><span class="p">:</span> <span class="mi">1234</span><span class="p">},</span>
+<span class="gp">... </span>            <span class="p">{</span><span class="s2">"name"</span><span class="p">:</span> <span class="s2">"Cuyahoga"</span><span class="p">,</span> <span class="s2">"population"</span><span class="p">:</span> <span class="mi">1337</span><span class="p">},</span>
+<span class="gp">... </span>        <span class="p">],</span>
+<span class="gp">... </span>    <span class="p">},</span>
+<span class="gp">... </span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">result</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">json_normalize</span><span class="p">(</span>
+<span class="gp">... </span>    <span class="n">data</span><span class="p">,</span> <span class="s2">"counties"</span><span class="p">,</span> <span class="p">[</span><span class="s2">"state"</span><span class="p">,</span> <span class="s2">"shortname"</span><span class="p">,</span> <span class="p">[</span><span class="s2">"info"</span><span class="p">,</span> <span class="s2">"governor"</span><span class="p">]]</span>
+<span class="gp">... </span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">result</span>
+<span class="go">         name  population    state shortname info.governor</span>
+<span class="go">0        Dade       12345   Florida    FL    Rick Scott</span>
+<span class="go">1     Broward       40000   Florida    FL    Rick Scott</span>
+<span class="go">2  Palm Beach       60000   Florida    FL    Rick Scott</span>
+<span class="go">3      Summit        1234   Ohio       OH    John Kasich</span>
+<span class="go">4    Cuyahoga        1337   Ohio       OH    John Kasich</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">data</span> <span class="o">=</span> <span class="p">{</span><span class="s2">"A"</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pd</span><span class="o">.</span><span class="n">json_normalize</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="s2">"A"</span><span class="p">,</span> <span class="n">record_prefix</span><span class="o">=</span><span class="s2">"Prefix."</span><span class="p">)</span>
+<span class="go">    Prefix.0</span>
+<span class="go">0          1</span>
+<span class="go">1          2</span>
+</pre></div>
+</div>
+<p>Returns normalized data with columns prefixed with the given string.</p>
+</dd></dl>
+</section>
+</div>
+
+</main>
+</div>
+</div>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+</body>
+</html>

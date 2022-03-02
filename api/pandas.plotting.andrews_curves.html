@@ -1,0 +1,113 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="Docutils 0.17.1: http://docutils.sourceforge.net/" name="generator"/>
+<title>pandas.plotting.andrews_curves — pandas 1.4.1 documentation</title>
+<link href="../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet"/>
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet"/>
+<link href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css" rel="stylesheet"/>
+<link as="font" crossorigin="" href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2" rel="preload" type="font/woff2"/>
+<link as="font" crossorigin="" href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2" rel="preload" type="font/woff2"/>
+<link href="../../_static/pygments.css" rel="stylesheet" type="text/css">
+<link href="../../_static/styles/pydata-sphinx-theme.css" rel="stylesheet" type="text/css">
+<link href="../../_static/plot_directive.css" rel="stylesheet" type="text/css">
+<link href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" rel="stylesheet" type="text/css">
+<link href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" rel="stylesheet" type="text/css">
+<link href="../../_static/css/getting_started.css" rel="stylesheet" type="text/css"/>
+<link href="../../_static/css/pandas.css" rel="stylesheet" type="text/css"/>
+<link as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf" rel="preload"/>
+<script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+<script src="../../_static/jquery.js"></script>
+<script src="../../_static/underscore.js"></script>
+<script src="../../_static/doctools.js"></script>
+<script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
+<link href="../../_static/favicon.ico" rel="shortcut icon">
+<link href="../../genindex.html" rel="index" title="Index"/>
+<link href="../../search.html" rel="search" title="Search"/>
+<link href="pandas.plotting.autocorrelation_plot.html" rel="next" title="pandas.plotting.autocorrelation_plot"/>
+<link href="../plotting.html" rel="prev" title="Plotting"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<meta content="en" name="docsearch:language"/>
+<script async="" src="https://www.google-analytics.com/analytics.js"></script>
+<script>
+                        window.ga = window.ga || function () {
+                            (ga.q = ga.q || []).push(arguments) };
+                        ga.l = +new Date;
+                        ga('create', 'UA-27880019-2', 'auto');
+                        ga('set', 'anonymizeIp', true);
+                        ga('send', 'pageview');
+                    </script>
+</link></link></link></link></link></link></head>
+<body data-offset="80" data-spy="scroll" data-target="#bd-toc-nav">
+<div class="container-fluid" id="banner"></div>
+
+<div class="container-xl">
+<div class="row">
+
+
+<main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
+<div>
+<section id="pandas-plotting-andrews-curves">
+<h1>pandas.plotting.andrews_curves<a class="headerlink" href="#pandas-plotting-andrews-curves" title="Permalink to this headline">¶</a></h1>
+<dl class="py function">
+<dt class="sig sig-object py" id="pandas.plotting.andrews_curves">
+<span class="sig-prename descclassname"><span class="pre">pandas.plotting.</span></span><span class="sig-name descname"><span class="pre">andrews_curves</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">frame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">class_column</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ax</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">samples</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">200</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">color</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">colormap</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/pandas-dev/pandas/blob/v1.4.1/pandas/plotting/_misc.py#L240-L297"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pandas.plotting.andrews_curves" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generate a matplotlib plot of Andrews curves, for visualising clusters of
+multivariate data.</p>
+<p>Andrews curves have the functional form:</p>
+<dl class="simple">
+<dt>f(t) = x_1/sqrt(2) + x_2 sin(t) + x_3 cos(t) +</dt><dd><p>x_4 sin(2t) + x_5 cos(2t) + …</p>
+</dd>
+</dl>
+<p>Where x coefficients correspond to the values of each dimension and t is
+linearly spaced between -pi and +pi. Each row of frame then corresponds to
+a single curve.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>frame</strong><span class="classifier">DataFrame</span></dt><dd><p>Data to be plotted, preferably normalized to (0.0, 1.0).</p>
+</dd>
+<dt><strong>class_column</strong><span class="classifier">Name of the column containing class names</span></dt><dd></dd>
+<dt><strong>ax</strong><span class="classifier">matplotlib axes object, default None</span></dt><dd></dd>
+<dt><strong>samples</strong><span class="classifier">Number of points to plot in each curve</span></dt><dd></dd>
+<dt><strong>color</strong><span class="classifier">list or tuple, optional</span></dt><dd><p>Colors to use for the different classes.</p>
+</dd>
+<dt><strong>colormap</strong><span class="classifier">str or matplotlib colormap object, default None</span></dt><dd><p>Colormap to select colors from. If string, load colormap with that name
+from matplotlib.</p>
+</dd>
+<dt><strong>**kwargs</strong></dt><dd><p>Options to pass to matplotlib plotting method.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt>class:<cite>matplotlip.axis.Axes</cite></dt><dd></dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span>
+<span class="gp">... </span>    <span class="s1">'https://raw.github.com/pandas-dev/'</span>
+<span class="gp">... </span>    <span class="s1">'pandas/main/pandas/tests/io/data/csv/iris.csv'</span>
+<span class="gp">... </span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pd</span><span class="o">.</span><span class="n">plotting</span><span class="o">.</span><span class="n">andrews_curves</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="s1">'Name'</span><span class="p">)</span>
+<span class="go">&lt;AxesSubplot:title={'center':'width'}&gt;</span>
+</pre></div>
+</div>
+<figure class="align-default">
+<img alt="../../_images/pandas-plotting-andrews_curves-1.png" class="plot-directive" src="../../_images/pandas-plotting-andrews_curves-1.png">
+</img></figure>
+</dd></dl>
+</section>
+</div>
+
+</main>
+</div>
+</div>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+</body>
+</html>

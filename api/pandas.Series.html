@@ -1,0 +1,820 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="Docutils 0.17.1: http://docutils.sourceforge.net/" name="generator"/>
+<title>pandas.Series — pandas 1.4.1 documentation</title>
+<link href="../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet"/>
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet"/>
+<link href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css" rel="stylesheet"/>
+<link as="font" crossorigin="" href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2" rel="preload" type="font/woff2"/>
+<link as="font" crossorigin="" href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2" rel="preload" type="font/woff2"/>
+<link href="../../_static/pygments.css" rel="stylesheet" type="text/css">
+<link href="../../_static/styles/pydata-sphinx-theme.css" rel="stylesheet" type="text/css">
+<link href="../../_static/plot_directive.css" rel="stylesheet" type="text/css">
+<link href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" rel="stylesheet" type="text/css">
+<link href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" rel="stylesheet" type="text/css">
+<link href="../../_static/css/getting_started.css" rel="stylesheet" type="text/css"/>
+<link href="../../_static/css/pandas.css" rel="stylesheet" type="text/css"/>
+<link as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf" rel="preload"/>
+<script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+<script src="../../_static/jquery.js"></script>
+<script src="../../_static/underscore.js"></script>
+<script src="../../_static/doctools.js"></script>
+<script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
+<link href="../../_static/favicon.ico" rel="shortcut icon">
+<link href="../../genindex.html" rel="index" title="Index"/>
+<link href="../../search.html" rel="search" title="Search"/>
+<link href="pandas.Series.T.html" rel="next" title="pandas.Series.T"/>
+<link href="../series.html" rel="prev" title="Series"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<meta content="en" name="docsearch:language"/>
+<script async="" src="https://www.google-analytics.com/analytics.js"></script>
+<script>
+                        window.ga = window.ga || function () {
+                            (ga.q = ga.q || []).push(arguments) };
+                        ga.l = +new Date;
+                        ga('create', 'UA-27880019-2', 'auto');
+                        ga('set', 'anonymizeIp', true);
+                        ga('send', 'pageview');
+                    </script>
+</link></link></link></link></link></link></head>
+<body data-offset="80" data-spy="scroll" data-target="#bd-toc-nav">
+<div class="container-fluid" id="banner"></div>
+
+<div class="container-xl">
+<div class="row">
+
+
+<main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
+<div>
+<section id="pandas-series">
+<h1>pandas.Series<a class="headerlink" href="#pandas-series" title="Permalink to this headline">¶</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="pandas.Series">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pandas.</span></span><span class="sig-name descname"><span class="pre">Series</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">index</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dtype</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">copy</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fastpath</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/pandas-dev/pandas/blob/v1.4.1/pandas/core/series.py#L201-L5639"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pandas.Series" title="Permalink to this definition">¶</a></dt>
+<dd><p>One-dimensional ndarray with axis labels (including time series).</p>
+<p>Labels need not be unique but must be a hashable type. The object
+supports both integer- and label-based indexing and provides a host of
+methods for performing operations involving the index. Statistical
+methods from ndarray have been overridden to automatically exclude
+missing data (currently represented as NaN).</p>
+<p>Operations between Series (+, -, /, *, **) align values based on their
+associated index values– they need not be the same length. The result
+index will be the sorted union of the two indexes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>data</strong><span class="classifier">array-like, Iterable, dict, or scalar value</span></dt><dd><p>Contains data stored in Series. If data is a dict, argument order is
+maintained.</p>
+</dd>
+<dt><strong>index</strong><span class="classifier">array-like or Index (1d)</span></dt><dd><p>Values must be hashable and have the same length as <cite>data</cite>.
+Non-unique index values are allowed. Will default to
+RangeIndex (0, 1, 2, …, n) if not provided. If data is dict-like
+and index is None, then the keys in the data are used as the index. If the
+index is not None, the resulting Series is reindexed with the index values.</p>
+</dd>
+<dt><strong>dtype</strong><span class="classifier">str, numpy.dtype, or ExtensionDtype, optional</span></dt><dd><p>Data type for the output Series. If not specified, this will be
+inferred from <cite>data</cite>.
+See the <a class="reference internal" href="../../user_guide/basics.html#basics-dtypes"><span class="std std-ref">user guide</span></a> for more usages.</p>
+</dd>
+<dt><strong>name</strong><span class="classifier">str, optional</span></dt><dd><p>The name to give to the Series.</p>
+</dd>
+<dt><strong>copy</strong><span class="classifier">bool, default False</span></dt><dd><p>Copy input data. Only affects Series or 1d ndarray input. See examples.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<p>Constructing Series from a dictionary with an Index specified</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">d</span> <span class="o">=</span> <span class="p">{</span><span class="s1">'a'</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">'b'</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="s1">'c'</span><span class="p">:</span> <span class="mi">3</span><span class="p">}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ser</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">d</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="s1">'a'</span><span class="p">,</span> <span class="s1">'b'</span><span class="p">,</span> <span class="s1">'c'</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ser</span>
+<span class="go">a   1</span>
+<span class="go">b   2</span>
+<span class="go">c   3</span>
+<span class="go">dtype: int64</span>
+</pre></div>
+</div>
+<p>The keys of the dictionary match with the Index values, hence the Index
+values have no effect.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">d</span> <span class="o">=</span> <span class="p">{</span><span class="s1">'a'</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">'b'</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="s1">'c'</span><span class="p">:</span> <span class="mi">3</span><span class="p">}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ser</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">d</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="s1">'x'</span><span class="p">,</span> <span class="s1">'y'</span><span class="p">,</span> <span class="s1">'z'</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ser</span>
+<span class="go">x   NaN</span>
+<span class="go">y   NaN</span>
+<span class="go">z   NaN</span>
+<span class="go">dtype: float64</span>
+</pre></div>
+</div>
+<p>Note that the Index is first build with the keys from the dictionary.
+After this the Series is reindexed with the given Index values, hence we
+get all NaN as a result.</p>
+<p>Constructing Series from a list with <cite>copy=False</cite>.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">r</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ser</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">copy</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ser</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">999</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">r</span>
+<span class="go">[1, 2]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ser</span>
+<span class="go">0    999</span>
+<span class="go">1      2</span>
+<span class="go">dtype: int64</span>
+</pre></div>
+</div>
+<p>Due to input data type the Series has a <cite>copy</cite> of
+the original data even though <cite>copy=False</cite>, so
+the data is unchanged.</p>
+<p>Constructing Series from a 1d ndarray with <cite>copy=False</cite>.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">r</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ser</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">copy</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ser</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">999</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">r</span>
+<span class="go">array([999,   2])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ser</span>
+<span class="go">0    999</span>
+<span class="go">1      2</span>
+<span class="go">dtype: int64</span>
+</pre></div>
+</div>
+<p>Due to input data type the Series has a <cite>view</cite> on
+the original data, so
+the data is changed as well.</p>
+<p class="rubric">Attributes</p>
+<table class="longtable table autosummary">
+<colgroup>
+<col style="width: 10%"/>
+<col style="width: 90%"/>
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="pandas.Series.T.html#pandas.Series.T" title="pandas.Series.T"><code class="xref py py-obj docutils literal notranslate"><span class="pre">T</span></code></a></p></td>
+<td><p>Return the transpose, which is by definition self.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="pandas.Series.array.html#pandas.Series.array" title="pandas.Series.array"><code class="xref py py-obj docutils literal notranslate"><span class="pre">array</span></code></a></p></td>
+<td><p>The ExtensionArray of the data backing this Series or Index.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="pandas.Series.at.html#pandas.Series.at" title="pandas.Series.at"><code class="xref py py-obj docutils literal notranslate"><span class="pre">at</span></code></a></p></td>
+<td><p>Access a single value for a row/column label pair.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="pandas.Series.attrs.html#pandas.Series.attrs" title="pandas.Series.attrs"><code class="xref py py-obj docutils literal notranslate"><span class="pre">attrs</span></code></a></p></td>
+<td><p>Dictionary of global attributes of this dataset.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="pandas.Series.axes.html#pandas.Series.axes" title="pandas.Series.axes"><code class="xref py py-obj docutils literal notranslate"><span class="pre">axes</span></code></a></p></td>
+<td><p>Return a list of the row axis labels.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="pandas.Series.dtype.html#pandas.Series.dtype" title="pandas.Series.dtype"><code class="xref py py-obj docutils literal notranslate"><span class="pre">dtype</span></code></a></p></td>
+<td><p>Return the dtype object of the underlying data.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="pandas.Series.dtypes.html#pandas.Series.dtypes" title="pandas.Series.dtypes"><code class="xref py py-obj docutils literal notranslate"><span class="pre">dtypes</span></code></a></p></td>
+<td><p>Return the dtype object of the underlying data.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="pandas.Series.flags.html#pandas.Series.flags" title="pandas.Series.flags"><code class="xref py py-obj docutils literal notranslate"><span class="pre">flags</span></code></a></p></td>
+<td><p>Get the properties associated with this pandas object.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="pandas.Series.hasnans.html#pandas.Series.hasnans" title="pandas.Series.hasnans"><code class="xref py py-obj docutils literal notranslate"><span class="pre">hasnans</span></code></a></p></td>
+<td><p>Return True if there are any NaNs.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="pandas.Series.iat.html#pandas.Series.iat" title="pandas.Series.iat"><code class="xref py py-obj docutils literal notranslate"><span class="pre">iat</span></code></a></p></td>
+<td><p>Access a single value for a row/column pair by integer position.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="pandas.Series.iloc.html#pandas.Series.iloc" title="pandas.Series.iloc"><code class="xref py py-obj docutils literal notranslate"><span class="pre">iloc</span></code></a></p></td>
+<td><p>Purely integer-location based indexing for selection by position.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="pandas.Series.index.html#pandas.Series.index" title="pandas.Series.index"><code class="xref py py-obj docutils literal notranslate"><span class="pre">index</span></code></a></p></td>
+<td><p>The index (axis labels) of the Series.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="pandas.Series.is_monotonic.html#pandas.Series.is_monotonic" title="pandas.Series.is_monotonic"><code class="xref py py-obj docutils literal notranslate"><span class="pre">is_monotonic</span></code></a></p></td>
+<td><p>Return boolean if values in the object are monotonic_increasing.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="pandas.Series.is_monotonic_decreasing.html#pandas.Series.is_monotonic_decreasing" title="pandas.Series.is_monotonic_decreasing"><code class="xref py py-obj docutils literal notranslate"><span class="pre">is_monotonic_decreasing</span></code></a></p></td>
+<td><p>Return boolean if values in the object are monotonic_decreasing.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="pandas.Series.is_monotonic_increasing.html#pandas.Series.is_monotonic_increasing" title="pandas.Series.is_monotonic_increasing"><code class="xref py py-obj docutils literal notranslate"><span class="pre">is_monotonic_increasing</span></code></a></p></td>
+<td><p>Alias for is_monotonic.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="pandas.Series.is_unique.html#pandas.Series.is_unique" title="pandas.Series.is_unique"><code class="xref py py-obj docutils literal notranslate"><span class="pre">is_unique</span></code></a></p></td>
+<td><p>Return boolean if values in the object are unique.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="pandas.Series.loc.html#pandas.Series.loc" title="pandas.Series.loc"><code class="xref py py-obj docutils literal notranslate"><span class="pre">loc</span></code></a></p></td>
+<td><p>Access a group of rows and columns by label(s) or a boolean array.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="pandas.Series.name.html#pandas.Series.name" title="pandas.Series.name"><code class="xref py py-obj docutils literal notranslate"><span class="pre">name</span></code></a></p></td>
+<td><p>Return the name of the Series.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="pandas.Series.nbytes.html#pandas.Series.nbytes" title="pandas.Series.nbytes"><code class="xref py py-obj docutils literal notranslate"><span class="pre">nbytes</span></code></a></p></td>
+<td><p>Return the number of bytes in the underlying data.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="pandas.Series.ndim.html#pandas.Series.ndim" title="pandas.Series.ndim"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ndim</span></code></a></p></td>
+<td><p>Number of dimensions of the underlying data, by definition 1.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="pandas.Series.shape.html#pandas.Series.shape" title="pandas.Series.shape"><code class="xref py py-obj docutils literal notranslate"><span class="pre">shape</span></code></a></p></td>
+<td><p>Return a tuple of the shape of the underlying data.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="pandas.Series.size.html#pandas.Series.size" title="pandas.Series.size"><code class="xref py py-obj docutils literal notranslate"><span class="pre">size</span></code></a></p></td>
+<td><p>Return the number of elements in the underlying data.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="pandas.Series.values.html#pandas.Series.values" title="pandas.Series.values"><code class="xref py py-obj docutils literal notranslate"><span class="pre">values</span></code></a></p></td>
+<td><p>Return Series as ndarray or ndarray-like depending on the dtype.</p></td>
+</tr>
+</tbody>
+</table>
+<table class="table">
+<colgroup>
+<col style="width: 47%"/>
+<col style="width: 53%"/>
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><strong>empty</strong></p></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Methods</p>
+<table class="longtable table autosummary">
+<colgroup>
+<col style="width: 10%"/>
+<col style="width: 90%"/>
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="pandas.Series.abs.html#pandas.Series.abs" title="pandas.Series.abs"><code class="xref py py-obj docutils literal notranslate"><span class="pre">abs</span></code></a>()</p></td>
+<td><p>Return a Series/DataFrame with absolute numeric value of each element.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="pandas.Series.add.html#pandas.Series.add" title="pandas.Series.add"><code class="xref py py-obj docutils literal notranslate"><span class="pre">add</span></code></a>(other[, level, fill_value, axis])</p></td>
+<td><p>Return Addition of series and other, element-wise (binary operator <cite>add</cite>).</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="pandas.Series.add_prefix.html#pandas.Series.add_prefix" title="pandas.Series.add_prefix"><code class="xref py py-obj docutils literal notranslate"><span class="pre">add_prefix</span></code></a>(prefix)</p></td>
+<td><p>Prefix labels with string <cite>prefix</cite>.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="pandas.Series.add_suffix.html#pandas.Series.add_suffix" title="pandas.Series.add_suffix"><code class="xref py py-obj docutils literal notranslate"><span class="pre">add_suffix</span></code></a>(suffix)</p></td>
+<td><p>Suffix labels with string <cite>suffix</cite>.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="pandas.Series.agg.html#pandas.Series.agg" title="pandas.Series.agg"><code class="xref py py-obj docutils literal notranslate"><span class="pre">agg</span></code></a>([func, axis])</p></td>
+<td><p>Aggregate using one or more operations over the specified axis.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="pandas.Series.aggregate.html#pandas.Series.aggregate" title="pandas.Series.aggregate"><code class="xref py py-obj docutils literal notranslate"><span class="pre">aggregate</span></code></a>([func, axis])</p></td>
+<td><p>Aggregate using one or more operations over the specified axis.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="pandas.Series.align.html#pandas.Series.align" title="pandas.Series.align"><code class="xref py py-obj docutils literal notranslate"><span class="pre">align</span></code></a>(other[, join, axis, level, copy, ...])</p></td>
+<td><p>Align two objects on their axes with the specified join method.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="pandas.Series.all.html#pandas.Series.all" title="pandas.Series.all"><code class="xref py py-obj docutils literal notranslate"><span class="pre">all</span></code></a>([axis, bool_only, skipna, level])</p></td>
+<td><p>Return whether all elements are True, potentially over an axis.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="pandas.Series.any.html#pandas.Series.any" title="pandas.Series.any"><code class="xref py py-obj docutils literal notranslate"><span class="pre">any</span></code></a>([axis, bool_only, skipna, level])</p></td>
+<td><p>Return whether any element is True, potentially over an axis.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="pandas.Series.append.html#pandas.Series.append" title="pandas.Series.append"><code class="xref py py-obj docutils literal notranslate"><span class="pre">append</span></code></a>(to_append[, ignore_index, ...])</p></td>
+<td><p>(DEPRECATED) Concatenate two or more Series.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="pandas.Series.apply.html#pandas.Series.apply" title="pandas.Series.apply"><code class="xref py py-obj docutils literal notranslate"><span class="pre">apply</span></code></a>(func[, convert_dtype, args])</p></td>
+<td><p>Invoke function on values of Series.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="pandas.Series.argmax.html#pandas.Series.argmax" title="pandas.Series.argmax"><code class="xref py py-obj docutils literal notranslate"><span class="pre">argmax</span></code></a>([axis, skipna])</p></td>
+<td><p>Return int position of the largest value in the Series.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="pandas.Series.argmin.html#pandas.Series.argmin" title="pandas.Series.argmin"><code class="xref py py-obj docutils literal notranslate"><span class="pre">argmin</span></code></a>([axis, skipna])</p></td>
+<td><p>Return int position of the smallest value in the Series.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="pandas.Series.argsort.html#pandas.Series.argsort" title="pandas.Series.argsort"><code class="xref py py-obj docutils literal notranslate"><span class="pre">argsort</span></code></a>([axis, kind, order])</p></td>
+<td><p>Return the integer indices that would sort the Series values.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="pandas.Series.asfreq.html#pandas.Series.asfreq" title="pandas.Series.asfreq"><code class="xref py py-obj docutils literal notranslate"><span class="pre">asfreq</span></code></a>(freq[, method, how, normalize, ...])</p></td>
+<td><p>Convert time series to specified frequency.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="pandas.Series.asof.html#pandas.Series.asof" title="pandas.Series.asof"><code class="xref py py-obj docutils literal notranslate"><span class="pre">asof</span></code></a>(where[, subset])</p></td>
+<td><p>Return the last row(s) without any NaNs before <cite>where</cite>.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="pandas.Series.astype.html#pandas.Series.astype" title="pandas.Series.astype"><code class="xref py py-obj docutils literal notranslate"><span class="pre">astype</span></code></a>(dtype[, copy, errors])</p></td>
+<td><p>Cast a pandas object to a specified dtype <code class="docutils literal notranslate"><span class="pre">dtype</span></code>.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="pandas.Series.at_time.html#pandas.Series.at_time" title="pandas.Series.at_time"><code class="xref py py-obj docutils literal notranslate"><span class="pre">at_time</span></code></a>(time[, asof, axis])</p></td>
+<td><p>Select values at particular time of day (e.g., 9:30AM).</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="pandas.Series.autocorr.html#pandas.Series.autocorr" title="pandas.Series.autocorr"><code class="xref py py-obj docutils literal notranslate"><span class="pre">autocorr</span></code></a>([lag])</p></td>
+<td><p>Compute the lag-N autocorrelation.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="pandas.Series.backfill.html#pandas.Series.backfill" title="pandas.Series.backfill"><code class="xref py py-obj docutils literal notranslate"><span class="pre">backfill</span></code></a>([axis, inplace, limit, downcast])</p></td>
+<td><p>Synonym for <a class="reference internal" href="pandas.DataFrame.fillna.html#pandas.DataFrame.fillna" title="pandas.DataFrame.fillna"><code class="xref py py-meth docutils literal notranslate"><span class="pre">DataFrame.fillna()</span></code></a> with <code class="docutils literal notranslate"><span class="pre">method='bfill'</span></code>.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="pandas.Series.between.html#pandas.Series.between" title="pandas.Series.between"><code class="xref py py-obj docutils literal notranslate"><span class="pre">between</span></code></a>(left, right[, inclusive])</p></td>
+<td><p>Return boolean Series equivalent to left &lt;= series &lt;= right.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="pandas.Series.between_time.html#pandas.Series.between_time" title="pandas.Series.between_time"><code class="xref py py-obj docutils literal notranslate"><span class="pre">between_time</span></code></a>(start_time, end_time[, ...])</p></td>
+<td><p>Select values between particular times of the day (e.g., 9:00-9:30 AM).</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="pandas.Series.bfill.html#pandas.Series.bfill" title="pandas.Series.bfill"><code class="xref py py-obj docutils literal notranslate"><span class="pre">bfill</span></code></a>([axis, inplace, limit, downcast])</p></td>
+<td><p>Synonym for <a class="reference internal" href="pandas.DataFrame.fillna.html#pandas.DataFrame.fillna" title="pandas.DataFrame.fillna"><code class="xref py py-meth docutils literal notranslate"><span class="pre">DataFrame.fillna()</span></code></a> with <code class="docutils literal notranslate"><span class="pre">method='bfill'</span></code>.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="pandas.Series.bool.html#pandas.Series.bool" title="pandas.Series.bool"><code class="xref py py-obj docutils literal notranslate"><span class="pre">bool</span></code></a>()</p></td>
+<td><p>Return the bool of a single element Series or DataFrame.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="pandas.Series.cat.html#pandas.Series.cat" title="pandas.Series.cat"><code class="xref py py-obj docutils literal notranslate"><span class="pre">cat</span></code></a></p></td>
+<td><p>alias of <code class="xref py py-class docutils literal notranslate"><span class="pre">pandas.core.arrays.categorical.CategoricalAccessor</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="pandas.Series.clip.html#pandas.Series.clip" title="pandas.Series.clip"><code class="xref py py-obj docutils literal notranslate"><span class="pre">clip</span></code></a>([lower, upper, axis, inplace])</p></td>
+<td><p>Trim values at input threshold(s).</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="pandas.Series.combine.html#pandas.Series.combine" title="pandas.Series.combine"><code class="xref py py-obj docutils literal notranslate"><span class="pre">combine</span></code></a>(other, func[, fill_value])</p></td>
+<td><p>Combine the Series with a Series or scalar according to <cite>func</cite>.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="pandas.Series.combine_first.html#pandas.Series.combine_first" title="pandas.Series.combine_first"><code class="xref py py-obj docutils literal notranslate"><span class="pre">combine_first</span></code></a>(other)</p></td>
+<td><p>Update null elements with value in the same location in 'other'.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="pandas.Series.compare.html#pandas.Series.compare" title="pandas.Series.compare"><code class="xref py py-obj docutils literal notranslate"><span class="pre">compare</span></code></a>(other[, align_axis, keep_shape, ...])</p></td>
+<td><p>Compare to another Series and show the differences.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="pandas.Series.convert_dtypes.html#pandas.Series.convert_dtypes" title="pandas.Series.convert_dtypes"><code class="xref py py-obj docutils literal notranslate"><span class="pre">convert_dtypes</span></code></a>([infer_objects, ...])</p></td>
+<td><p>Convert columns to best possible dtypes using dtypes supporting <code class="docutils literal notranslate"><span class="pre">pd.NA</span></code>.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="pandas.Series.copy.html#pandas.Series.copy" title="pandas.Series.copy"><code class="xref py py-obj docutils literal notranslate"><span class="pre">copy</span></code></a>([deep])</p></td>
+<td><p>Make a copy of this object's indices and data.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="pandas.Series.corr.html#pandas.Series.corr" title="pandas.Series.corr"><code class="xref py py-obj docutils literal notranslate"><span class="pre">corr</span></code></a>(other[, method, min_periods])</p></td>
+<td><p>Compute correlation with <cite>other</cite> Series, excluding missing values.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="pandas.Series.count.html#pandas.Series.count" title="pandas.Series.count"><code class="xref py py-obj docutils literal notranslate"><span class="pre">count</span></code></a>([level])</p></td>
+<td><p>Return number of non-NA/null observations in the Series.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="pandas.Series.cov.html#pandas.Series.cov" title="pandas.Series.cov"><code class="xref py py-obj docutils literal notranslate"><span class="pre">cov</span></code></a>(other[, min_periods, ddof])</p></td>
+<td><p>Compute covariance with Series, excluding missing values.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="pandas.Series.cummax.html#pandas.Series.cummax" title="pandas.Series.cummax"><code class="xref py py-obj docutils literal notranslate"><span class="pre">cummax</span></code></a>([axis, skipna])</p></td>
+<td><p>Return cumulative maximum over a DataFrame or Series axis.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="pandas.Series.cummin.html#pandas.Series.cummin" title="pandas.Series.cummin"><code class="xref py py-obj docutils literal notranslate"><span class="pre">cummin</span></code></a>([axis, skipna])</p></td>
+<td><p>Return cumulative minimum over a DataFrame or Series axis.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="pandas.Series.cumprod.html#pandas.Series.cumprod" title="pandas.Series.cumprod"><code class="xref py py-obj docutils literal notranslate"><span class="pre">cumprod</span></code></a>([axis, skipna])</p></td>
+<td><p>Return cumulative product over a DataFrame or Series axis.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="pandas.Series.cumsum.html#pandas.Series.cumsum" title="pandas.Series.cumsum"><code class="xref py py-obj docutils literal notranslate"><span class="pre">cumsum</span></code></a>([axis, skipna])</p></td>
+<td><p>Return cumulative sum over a DataFrame or Series axis.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="pandas.Series.describe.html#pandas.Series.describe" title="pandas.Series.describe"><code class="xref py py-obj docutils literal notranslate"><span class="pre">describe</span></code></a>([percentiles, include, exclude, ...])</p></td>
+<td><p>Generate descriptive statistics.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="pandas.Series.diff.html#pandas.Series.diff" title="pandas.Series.diff"><code class="xref py py-obj docutils literal notranslate"><span class="pre">diff</span></code></a>([periods])</p></td>
+<td><p>First discrete difference of element.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="pandas.Series.div.html#pandas.Series.div" title="pandas.Series.div"><code class="xref py py-obj docutils literal notranslate"><span class="pre">div</span></code></a>(other[, level, fill_value, axis])</p></td>
+<td><p>Return Floating division of series and other, element-wise (binary operator <cite>truediv</cite>).</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="pandas.Series.divide.html#pandas.Series.divide" title="pandas.Series.divide"><code class="xref py py-obj docutils literal notranslate"><span class="pre">divide</span></code></a>(other[, level, fill_value, axis])</p></td>
+<td><p>Return Floating division of series and other, element-wise (binary operator <cite>truediv</cite>).</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="pandas.Series.divmod.html#pandas.Series.divmod" title="pandas.Series.divmod"><code class="xref py py-obj docutils literal notranslate"><span class="pre">divmod</span></code></a>(other[, level, fill_value, axis])</p></td>
+<td><p>Return Integer division and modulo of series and other, element-wise (binary operator <cite>divmod</cite>).</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="pandas.Series.dot.html#pandas.Series.dot" title="pandas.Series.dot"><code class="xref py py-obj docutils literal notranslate"><span class="pre">dot</span></code></a>(other)</p></td>
+<td><p>Compute the dot product between the Series and the columns of other.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="pandas.Series.drop.html#pandas.Series.drop" title="pandas.Series.drop"><code class="xref py py-obj docutils literal notranslate"><span class="pre">drop</span></code></a>([labels, axis, index, columns, level, ...])</p></td>
+<td><p>Return Series with specified index labels removed.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="pandas.Series.drop_duplicates.html#pandas.Series.drop_duplicates" title="pandas.Series.drop_duplicates"><code class="xref py py-obj docutils literal notranslate"><span class="pre">drop_duplicates</span></code></a>([keep, inplace])</p></td>
+<td><p>Return Series with duplicate values removed.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="pandas.Series.droplevel.html#pandas.Series.droplevel" title="pandas.Series.droplevel"><code class="xref py py-obj docutils literal notranslate"><span class="pre">droplevel</span></code></a>(level[, axis])</p></td>
+<td><p>Return Series/DataFrame with requested index / column level(s) removed.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="pandas.Series.dropna.html#pandas.Series.dropna" title="pandas.Series.dropna"><code class="xref py py-obj docutils literal notranslate"><span class="pre">dropna</span></code></a>([axis, inplace, how])</p></td>
+<td><p>Return a new Series with missing values removed.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="pandas.Series.dt.html#pandas.Series.dt" title="pandas.Series.dt"><code class="xref py py-obj docutils literal notranslate"><span class="pre">dt</span></code></a></p></td>
+<td><p>alias of <code class="xref py py-class docutils literal notranslate"><span class="pre">pandas.core.indexes.accessors.CombinedDatetimelikeProperties</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="pandas.Series.duplicated.html#pandas.Series.duplicated" title="pandas.Series.duplicated"><code class="xref py py-obj docutils literal notranslate"><span class="pre">duplicated</span></code></a>([keep])</p></td>
+<td><p>Indicate duplicate Series values.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="pandas.Series.eq.html#pandas.Series.eq" title="pandas.Series.eq"><code class="xref py py-obj docutils literal notranslate"><span class="pre">eq</span></code></a>(other[, level, fill_value, axis])</p></td>
+<td><p>Return Equal to of series and other, element-wise (binary operator <cite>eq</cite>).</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="pandas.Series.equals.html#pandas.Series.equals" title="pandas.Series.equals"><code class="xref py py-obj docutils literal notranslate"><span class="pre">equals</span></code></a>(other)</p></td>
+<td><p>Test whether two objects contain the same elements.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="pandas.Series.ewm.html#pandas.Series.ewm" title="pandas.Series.ewm"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ewm</span></code></a>([com, span, halflife, alpha, ...])</p></td>
+<td><p>Provide exponentially weighted (EW) calculations.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="pandas.Series.expanding.html#pandas.Series.expanding" title="pandas.Series.expanding"><code class="xref py py-obj docutils literal notranslate"><span class="pre">expanding</span></code></a>([min_periods, center, axis, method])</p></td>
+<td><p>Provide expanding window calculations.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="pandas.Series.explode.html#pandas.Series.explode" title="pandas.Series.explode"><code class="xref py py-obj docutils literal notranslate"><span class="pre">explode</span></code></a>([ignore_index])</p></td>
+<td><p>Transform each element of a list-like to a row.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="pandas.Series.factorize.html#pandas.Series.factorize" title="pandas.Series.factorize"><code class="xref py py-obj docutils literal notranslate"><span class="pre">factorize</span></code></a>([sort, na_sentinel])</p></td>
+<td><p>Encode the object as an enumerated type or categorical variable.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="pandas.Series.ffill.html#pandas.Series.ffill" title="pandas.Series.ffill"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ffill</span></code></a>([axis, inplace, limit, downcast])</p></td>
+<td><p>Synonym for <a class="reference internal" href="pandas.DataFrame.fillna.html#pandas.DataFrame.fillna" title="pandas.DataFrame.fillna"><code class="xref py py-meth docutils literal notranslate"><span class="pre">DataFrame.fillna()</span></code></a> with <code class="docutils literal notranslate"><span class="pre">method='ffill'</span></code>.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="pandas.Series.fillna.html#pandas.Series.fillna" title="pandas.Series.fillna"><code class="xref py py-obj docutils literal notranslate"><span class="pre">fillna</span></code></a>([value, method, axis, inplace, ...])</p></td>
+<td><p>Fill NA/NaN values using the specified method.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="pandas.Series.filter.html#pandas.Series.filter" title="pandas.Series.filter"><code class="xref py py-obj docutils literal notranslate"><span class="pre">filter</span></code></a>([items, like, regex, axis])</p></td>
+<td><p>Subset the dataframe rows or columns according to the specified index labels.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="pandas.Series.first.html#pandas.Series.first" title="pandas.Series.first"><code class="xref py py-obj docutils literal notranslate"><span class="pre">first</span></code></a>(offset)</p></td>
+<td><p>Select initial periods of time series data based on a date offset.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="pandas.Series.first_valid_index.html#pandas.Series.first_valid_index" title="pandas.Series.first_valid_index"><code class="xref py py-obj docutils literal notranslate"><span class="pre">first_valid_index</span></code></a>()</p></td>
+<td><p>Return index for first non-NA value or None, if no non-NA value is found.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="pandas.Series.floordiv.html#pandas.Series.floordiv" title="pandas.Series.floordiv"><code class="xref py py-obj docutils literal notranslate"><span class="pre">floordiv</span></code></a>(other[, level, fill_value, axis])</p></td>
+<td><p>Return Integer division of series and other, element-wise (binary operator <cite>floordiv</cite>).</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="pandas.Series.ge.html#pandas.Series.ge" title="pandas.Series.ge"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ge</span></code></a>(other[, level, fill_value, axis])</p></td>
+<td><p>Return Greater than or equal to of series and other, element-wise (binary operator <cite>ge</cite>).</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="pandas.Series.get.html#pandas.Series.get" title="pandas.Series.get"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get</span></code></a>(key[, default])</p></td>
+<td><p>Get item from object for given key (ex: DataFrame column).</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="pandas.Series.groupby.html#pandas.Series.groupby" title="pandas.Series.groupby"><code class="xref py py-obj docutils literal notranslate"><span class="pre">groupby</span></code></a>([by, axis, level, as_index, sort, ...])</p></td>
+<td><p>Group Series using a mapper or by a Series of columns.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="pandas.Series.gt.html#pandas.Series.gt" title="pandas.Series.gt"><code class="xref py py-obj docutils literal notranslate"><span class="pre">gt</span></code></a>(other[, level, fill_value, axis])</p></td>
+<td><p>Return Greater than of series and other, element-wise (binary operator <cite>gt</cite>).</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="pandas.Series.head.html#pandas.Series.head" title="pandas.Series.head"><code class="xref py py-obj docutils literal notranslate"><span class="pre">head</span></code></a>([n])</p></td>
+<td><p>Return the first <cite>n</cite> rows.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="pandas.Series.hist.html#pandas.Series.hist" title="pandas.Series.hist"><code class="xref py py-obj docutils literal notranslate"><span class="pre">hist</span></code></a>([by, ax, grid, xlabelsize, xrot, ...])</p></td>
+<td><p>Draw histogram of the input series using matplotlib.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="pandas.Series.idxmax.html#pandas.Series.idxmax" title="pandas.Series.idxmax"><code class="xref py py-obj docutils literal notranslate"><span class="pre">idxmax</span></code></a>([axis, skipna])</p></td>
+<td><p>Return the row label of the maximum value.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="pandas.Series.idxmin.html#pandas.Series.idxmin" title="pandas.Series.idxmin"><code class="xref py py-obj docutils literal notranslate"><span class="pre">idxmin</span></code></a>([axis, skipna])</p></td>
+<td><p>Return the row label of the minimum value.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="pandas.Series.infer_objects.html#pandas.Series.infer_objects" title="pandas.Series.infer_objects"><code class="xref py py-obj docutils literal notranslate"><span class="pre">infer_objects</span></code></a>()</p></td>
+<td><p>Attempt to infer better dtypes for object columns.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="pandas.Series.info.html#pandas.Series.info" title="pandas.Series.info"><code class="xref py py-obj docutils literal notranslate"><span class="pre">info</span></code></a>([verbose, buf, max_cols, memory_usage, ...])</p></td>
+<td><p>Print a concise summary of a Series.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="pandas.Series.interpolate.html#pandas.Series.interpolate" title="pandas.Series.interpolate"><code class="xref py py-obj docutils literal notranslate"><span class="pre">interpolate</span></code></a>([method, axis, limit, inplace, ...])</p></td>
+<td><p>Fill NaN values using an interpolation method.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="pandas.Series.isin.html#pandas.Series.isin" title="pandas.Series.isin"><code class="xref py py-obj docutils literal notranslate"><span class="pre">isin</span></code></a>(values)</p></td>
+<td><p>Whether elements in Series are contained in <cite>values</cite>.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="pandas.Series.isna.html#pandas.Series.isna" title="pandas.Series.isna"><code class="xref py py-obj docutils literal notranslate"><span class="pre">isna</span></code></a>()</p></td>
+<td><p>Detect missing values.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="pandas.Series.isnull.html#pandas.Series.isnull" title="pandas.Series.isnull"><code class="xref py py-obj docutils literal notranslate"><span class="pre">isnull</span></code></a>()</p></td>
+<td><p>Series.isnull is an alias for Series.isna.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="pandas.Series.item.html#pandas.Series.item" title="pandas.Series.item"><code class="xref py py-obj docutils literal notranslate"><span class="pre">item</span></code></a>()</p></td>
+<td><p>Return the first element of the underlying data as a Python scalar.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="pandas.Series.items.html#pandas.Series.items" title="pandas.Series.items"><code class="xref py py-obj docutils literal notranslate"><span class="pre">items</span></code></a>()</p></td>
+<td><p>Lazily iterate over (index, value) tuples.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="pandas.Series.iteritems.html#pandas.Series.iteritems" title="pandas.Series.iteritems"><code class="xref py py-obj docutils literal notranslate"><span class="pre">iteritems</span></code></a>()</p></td>
+<td><p>Lazily iterate over (index, value) tuples.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="pandas.Series.keys.html#pandas.Series.keys" title="pandas.Series.keys"><code class="xref py py-obj docutils literal notranslate"><span class="pre">keys</span></code></a>()</p></td>
+<td><p>Return alias for index.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="pandas.Series.kurt.html#pandas.Series.kurt" title="pandas.Series.kurt"><code class="xref py py-obj docutils literal notranslate"><span class="pre">kurt</span></code></a>([axis, skipna, level, numeric_only])</p></td>
+<td><p>Return unbiased kurtosis over requested axis.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="pandas.Series.kurtosis.html#pandas.Series.kurtosis" title="pandas.Series.kurtosis"><code class="xref py py-obj docutils literal notranslate"><span class="pre">kurtosis</span></code></a>([axis, skipna, level, numeric_only])</p></td>
+<td><p>Return unbiased kurtosis over requested axis.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="pandas.Series.last.html#pandas.Series.last" title="pandas.Series.last"><code class="xref py py-obj docutils literal notranslate"><span class="pre">last</span></code></a>(offset)</p></td>
+<td><p>Select final periods of time series data based on a date offset.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="pandas.Series.last_valid_index.html#pandas.Series.last_valid_index" title="pandas.Series.last_valid_index"><code class="xref py py-obj docutils literal notranslate"><span class="pre">last_valid_index</span></code></a>()</p></td>
+<td><p>Return index for last non-NA value or None, if no non-NA value is found.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="pandas.Series.le.html#pandas.Series.le" title="pandas.Series.le"><code class="xref py py-obj docutils literal notranslate"><span class="pre">le</span></code></a>(other[, level, fill_value, axis])</p></td>
+<td><p>Return Less than or equal to of series and other, element-wise (binary operator <cite>le</cite>).</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="pandas.Series.lt.html#pandas.Series.lt" title="pandas.Series.lt"><code class="xref py py-obj docutils literal notranslate"><span class="pre">lt</span></code></a>(other[, level, fill_value, axis])</p></td>
+<td><p>Return Less than of series and other, element-wise (binary operator <cite>lt</cite>).</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="pandas.Series.mad.html#pandas.Series.mad" title="pandas.Series.mad"><code class="xref py py-obj docutils literal notranslate"><span class="pre">mad</span></code></a>([axis, skipna, level])</p></td>
+<td><p>Return the mean absolute deviation of the values over the requested axis.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="pandas.Series.map.html#pandas.Series.map" title="pandas.Series.map"><code class="xref py py-obj docutils literal notranslate"><span class="pre">map</span></code></a>(arg[, na_action])</p></td>
+<td><p>Map values of Series according to an input mapping or function.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="pandas.Series.mask.html#pandas.Series.mask" title="pandas.Series.mask"><code class="xref py py-obj docutils literal notranslate"><span class="pre">mask</span></code></a>(cond[, other, inplace, axis, level, ...])</p></td>
+<td><p>Replace values where the condition is True.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="pandas.Series.max.html#pandas.Series.max" title="pandas.Series.max"><code class="xref py py-obj docutils literal notranslate"><span class="pre">max</span></code></a>([axis, skipna, level, numeric_only])</p></td>
+<td><p>Return the maximum of the values over the requested axis.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="pandas.Series.mean.html#pandas.Series.mean" title="pandas.Series.mean"><code class="xref py py-obj docutils literal notranslate"><span class="pre">mean</span></code></a>([axis, skipna, level, numeric_only])</p></td>
+<td><p>Return the mean of the values over the requested axis.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="pandas.Series.median.html#pandas.Series.median" title="pandas.Series.median"><code class="xref py py-obj docutils literal notranslate"><span class="pre">median</span></code></a>([axis, skipna, level, numeric_only])</p></td>
+<td><p>Return the median of the values over the requested axis.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="pandas.Series.memory_usage.html#pandas.Series.memory_usage" title="pandas.Series.memory_usage"><code class="xref py py-obj docutils literal notranslate"><span class="pre">memory_usage</span></code></a>([index, deep])</p></td>
+<td><p>Return the memory usage of the Series.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="pandas.Series.min.html#pandas.Series.min" title="pandas.Series.min"><code class="xref py py-obj docutils literal notranslate"><span class="pre">min</span></code></a>([axis, skipna, level, numeric_only])</p></td>
+<td><p>Return the minimum of the values over the requested axis.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="pandas.Series.mod.html#pandas.Series.mod" title="pandas.Series.mod"><code class="xref py py-obj docutils literal notranslate"><span class="pre">mod</span></code></a>(other[, level, fill_value, axis])</p></td>
+<td><p>Return Modulo of series and other, element-wise (binary operator <cite>mod</cite>).</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="pandas.Series.mode.html#pandas.Series.mode" title="pandas.Series.mode"><code class="xref py py-obj docutils literal notranslate"><span class="pre">mode</span></code></a>([dropna])</p></td>
+<td><p>Return the mode(s) of the Series.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="pandas.Series.mul.html#pandas.Series.mul" title="pandas.Series.mul"><code class="xref py py-obj docutils literal notranslate"><span class="pre">mul</span></code></a>(other[, level, fill_value, axis])</p></td>
+<td><p>Return Multiplication of series and other, element-wise (binary operator <cite>mul</cite>).</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="pandas.Series.multiply.html#pandas.Series.multiply" title="pandas.Series.multiply"><code class="xref py py-obj docutils literal notranslate"><span class="pre">multiply</span></code></a>(other[, level, fill_value, axis])</p></td>
+<td><p>Return Multiplication of series and other, element-wise (binary operator <cite>mul</cite>).</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="pandas.Series.ne.html#pandas.Series.ne" title="pandas.Series.ne"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ne</span></code></a>(other[, level, fill_value, axis])</p></td>
+<td><p>Return Not equal to of series and other, element-wise (binary operator <cite>ne</cite>).</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="pandas.Series.nlargest.html#pandas.Series.nlargest" title="pandas.Series.nlargest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">nlargest</span></code></a>([n, keep])</p></td>
+<td><p>Return the largest <cite>n</cite> elements.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="pandas.Series.notna.html#pandas.Series.notna" title="pandas.Series.notna"><code class="xref py py-obj docutils literal notranslate"><span class="pre">notna</span></code></a>()</p></td>
+<td><p>Detect existing (non-missing) values.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="pandas.Series.notnull.html#pandas.Series.notnull" title="pandas.Series.notnull"><code class="xref py py-obj docutils literal notranslate"><span class="pre">notnull</span></code></a>()</p></td>
+<td><p>Series.notnull is an alias for Series.notna.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="pandas.Series.nsmallest.html#pandas.Series.nsmallest" title="pandas.Series.nsmallest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">nsmallest</span></code></a>([n, keep])</p></td>
+<td><p>Return the smallest <cite>n</cite> elements.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="pandas.Series.nunique.html#pandas.Series.nunique" title="pandas.Series.nunique"><code class="xref py py-obj docutils literal notranslate"><span class="pre">nunique</span></code></a>([dropna])</p></td>
+<td><p>Return number of unique elements in the object.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="pandas.Series.pad.html#pandas.Series.pad" title="pandas.Series.pad"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pad</span></code></a>([axis, inplace, limit, downcast])</p></td>
+<td><p>Synonym for <a class="reference internal" href="pandas.DataFrame.fillna.html#pandas.DataFrame.fillna" title="pandas.DataFrame.fillna"><code class="xref py py-meth docutils literal notranslate"><span class="pre">DataFrame.fillna()</span></code></a> with <code class="docutils literal notranslate"><span class="pre">method='ffill'</span></code>.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="pandas.Series.pct_change.html#pandas.Series.pct_change" title="pandas.Series.pct_change"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pct_change</span></code></a>([periods, fill_method, limit, freq])</p></td>
+<td><p>Percentage change between the current and a prior element.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="pandas.Series.pipe.html#pandas.Series.pipe" title="pandas.Series.pipe"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pipe</span></code></a>(func, *args, **kwargs)</p></td>
+<td><p>Apply chainable functions that expect Series or DataFrames.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="pandas.Series.plot.html#pandas.Series.plot" title="pandas.Series.plot"><code class="xref py py-obj docutils literal notranslate"><span class="pre">plot</span></code></a></p></td>
+<td><p>alias of <code class="xref py py-class docutils literal notranslate"><span class="pre">pandas.plotting._core.PlotAccessor</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="pandas.Series.pop.html#pandas.Series.pop" title="pandas.Series.pop"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pop</span></code></a>(item)</p></td>
+<td><p>Return item and drops from series.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="pandas.Series.pow.html#pandas.Series.pow" title="pandas.Series.pow"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pow</span></code></a>(other[, level, fill_value, axis])</p></td>
+<td><p>Return Exponential power of series and other, element-wise (binary operator <cite>pow</cite>).</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="pandas.Series.prod.html#pandas.Series.prod" title="pandas.Series.prod"><code class="xref py py-obj docutils literal notranslate"><span class="pre">prod</span></code></a>([axis, skipna, level, numeric_only, ...])</p></td>
+<td><p>Return the product of the values over the requested axis.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="pandas.Series.product.html#pandas.Series.product" title="pandas.Series.product"><code class="xref py py-obj docutils literal notranslate"><span class="pre">product</span></code></a>([axis, skipna, level, numeric_only, ...])</p></td>
+<td><p>Return the product of the values over the requested axis.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="pandas.Series.quantile.html#pandas.Series.quantile" title="pandas.Series.quantile"><code class="xref py py-obj docutils literal notranslate"><span class="pre">quantile</span></code></a>([q, interpolation])</p></td>
+<td><p>Return value at the given quantile.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="pandas.Series.radd.html#pandas.Series.radd" title="pandas.Series.radd"><code class="xref py py-obj docutils literal notranslate"><span class="pre">radd</span></code></a>(other[, level, fill_value, axis])</p></td>
+<td><p>Return Addition of series and other, element-wise (binary operator <cite>radd</cite>).</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="pandas.Series.rank.html#pandas.Series.rank" title="pandas.Series.rank"><code class="xref py py-obj docutils literal notranslate"><span class="pre">rank</span></code></a>([axis, method, numeric_only, ...])</p></td>
+<td><p>Compute numerical data ranks (1 through n) along axis.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="pandas.Series.ravel.html#pandas.Series.ravel" title="pandas.Series.ravel"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ravel</span></code></a>([order])</p></td>
+<td><p>Return the flattened underlying data as an ndarray.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="pandas.Series.rdiv.html#pandas.Series.rdiv" title="pandas.Series.rdiv"><code class="xref py py-obj docutils literal notranslate"><span class="pre">rdiv</span></code></a>(other[, level, fill_value, axis])</p></td>
+<td><p>Return Floating division of series and other, element-wise (binary operator <cite>rtruediv</cite>).</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="pandas.Series.rdivmod.html#pandas.Series.rdivmod" title="pandas.Series.rdivmod"><code class="xref py py-obj docutils literal notranslate"><span class="pre">rdivmod</span></code></a>(other[, level, fill_value, axis])</p></td>
+<td><p>Return Integer division and modulo of series and other, element-wise (binary operator <cite>rdivmod</cite>).</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="pandas.Series.reindex.html#pandas.Series.reindex" title="pandas.Series.reindex"><code class="xref py py-obj docutils literal notranslate"><span class="pre">reindex</span></code></a>(*args, **kwargs)</p></td>
+<td><p>Conform Series to new index with optional filling logic.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="pandas.Series.reindex_like.html#pandas.Series.reindex_like" title="pandas.Series.reindex_like"><code class="xref py py-obj docutils literal notranslate"><span class="pre">reindex_like</span></code></a>(other[, method, copy, limit, ...])</p></td>
+<td><p>Return an object with matching indices as other object.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="pandas.Series.rename.html#pandas.Series.rename" title="pandas.Series.rename"><code class="xref py py-obj docutils literal notranslate"><span class="pre">rename</span></code></a>([index, axis, copy, inplace, level, ...])</p></td>
+<td><p>Alter Series index labels or name.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="pandas.Series.rename_axis.html#pandas.Series.rename_axis" title="pandas.Series.rename_axis"><code class="xref py py-obj docutils literal notranslate"><span class="pre">rename_axis</span></code></a>([mapper, index, columns, axis, ...])</p></td>
+<td><p>Set the name of the axis for the index or columns.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="pandas.Series.reorder_levels.html#pandas.Series.reorder_levels" title="pandas.Series.reorder_levels"><code class="xref py py-obj docutils literal notranslate"><span class="pre">reorder_levels</span></code></a>(order)</p></td>
+<td><p>Rearrange index levels using input order.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="pandas.Series.repeat.html#pandas.Series.repeat" title="pandas.Series.repeat"><code class="xref py py-obj docutils literal notranslate"><span class="pre">repeat</span></code></a>(repeats[, axis])</p></td>
+<td><p>Repeat elements of a Series.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="pandas.Series.replace.html#pandas.Series.replace" title="pandas.Series.replace"><code class="xref py py-obj docutils literal notranslate"><span class="pre">replace</span></code></a>([to_replace, value, inplace, limit, ...])</p></td>
+<td><p>Replace values given in <cite>to_replace</cite> with <cite>value</cite>.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="pandas.Series.resample.html#pandas.Series.resample" title="pandas.Series.resample"><code class="xref py py-obj docutils literal notranslate"><span class="pre">resample</span></code></a>(rule[, axis, closed, label, ...])</p></td>
+<td><p>Resample time-series data.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="pandas.Series.reset_index.html#pandas.Series.reset_index" title="pandas.Series.reset_index"><code class="xref py py-obj docutils literal notranslate"><span class="pre">reset_index</span></code></a>([level, drop, name, inplace])</p></td>
+<td><p>Generate a new DataFrame or Series with the index reset.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="pandas.Series.rfloordiv.html#pandas.Series.rfloordiv" title="pandas.Series.rfloordiv"><code class="xref py py-obj docutils literal notranslate"><span class="pre">rfloordiv</span></code></a>(other[, level, fill_value, axis])</p></td>
+<td><p>Return Integer division of series and other, element-wise (binary operator <cite>rfloordiv</cite>).</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="pandas.Series.rmod.html#pandas.Series.rmod" title="pandas.Series.rmod"><code class="xref py py-obj docutils literal notranslate"><span class="pre">rmod</span></code></a>(other[, level, fill_value, axis])</p></td>
+<td><p>Return Modulo of series and other, element-wise (binary operator <cite>rmod</cite>).</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="pandas.Series.rmul.html#pandas.Series.rmul" title="pandas.Series.rmul"><code class="xref py py-obj docutils literal notranslate"><span class="pre">rmul</span></code></a>(other[, level, fill_value, axis])</p></td>
+<td><p>Return Multiplication of series and other, element-wise (binary operator <cite>rmul</cite>).</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="pandas.Series.rolling.html#pandas.Series.rolling" title="pandas.Series.rolling"><code class="xref py py-obj docutils literal notranslate"><span class="pre">rolling</span></code></a>(window[, min_periods, center, ...])</p></td>
+<td><p>Provide rolling window calculations.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="pandas.Series.round.html#pandas.Series.round" title="pandas.Series.round"><code class="xref py py-obj docutils literal notranslate"><span class="pre">round</span></code></a>([decimals])</p></td>
+<td><p>Round each value in a Series to the given number of decimals.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="pandas.Series.rpow.html#pandas.Series.rpow" title="pandas.Series.rpow"><code class="xref py py-obj docutils literal notranslate"><span class="pre">rpow</span></code></a>(other[, level, fill_value, axis])</p></td>
+<td><p>Return Exponential power of series and other, element-wise (binary operator <cite>rpow</cite>).</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="pandas.Series.rsub.html#pandas.Series.rsub" title="pandas.Series.rsub"><code class="xref py py-obj docutils literal notranslate"><span class="pre">rsub</span></code></a>(other[, level, fill_value, axis])</p></td>
+<td><p>Return Subtraction of series and other, element-wise (binary operator <cite>rsub</cite>).</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="pandas.Series.rtruediv.html#pandas.Series.rtruediv" title="pandas.Series.rtruediv"><code class="xref py py-obj docutils literal notranslate"><span class="pre">rtruediv</span></code></a>(other[, level, fill_value, axis])</p></td>
+<td><p>Return Floating division of series and other, element-wise (binary operator <cite>rtruediv</cite>).</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="pandas.Series.sample.html#pandas.Series.sample" title="pandas.Series.sample"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sample</span></code></a>([n, frac, replace, weights, ...])</p></td>
+<td><p>Return a random sample of items from an axis of object.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="pandas.Series.searchsorted.html#pandas.Series.searchsorted" title="pandas.Series.searchsorted"><code class="xref py py-obj docutils literal notranslate"><span class="pre">searchsorted</span></code></a>(value[, side, sorter])</p></td>
+<td><p>Find indices where elements should be inserted to maintain order.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="pandas.Series.sem.html#pandas.Series.sem" title="pandas.Series.sem"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sem</span></code></a>([axis, skipna, level, ddof, numeric_only])</p></td>
+<td><p>Return unbiased standard error of the mean over requested axis.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="pandas.Series.set_axis.html#pandas.Series.set_axis" title="pandas.Series.set_axis"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_axis</span></code></a>(labels[, axis, inplace])</p></td>
+<td><p>Assign desired index to given axis.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="pandas.Series.set_flags.html#pandas.Series.set_flags" title="pandas.Series.set_flags"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_flags</span></code></a>(*[, copy, allows_duplicate_labels])</p></td>
+<td><p>Return a new object with updated flags.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="pandas.Series.shift.html#pandas.Series.shift" title="pandas.Series.shift"><code class="xref py py-obj docutils literal notranslate"><span class="pre">shift</span></code></a>([periods, freq, axis, fill_value])</p></td>
+<td><p>Shift index by desired number of periods with an optional time <cite>freq</cite>.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="pandas.Series.skew.html#pandas.Series.skew" title="pandas.Series.skew"><code class="xref py py-obj docutils literal notranslate"><span class="pre">skew</span></code></a>([axis, skipna, level, numeric_only])</p></td>
+<td><p>Return unbiased skew over requested axis.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="pandas.Series.slice_shift.html#pandas.Series.slice_shift" title="pandas.Series.slice_shift"><code class="xref py py-obj docutils literal notranslate"><span class="pre">slice_shift</span></code></a>([periods, axis])</p></td>
+<td><p>(DEPRECATED) Equivalent to <cite>shift</cite> without copying data.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="pandas.Series.sort_index.html#pandas.Series.sort_index" title="pandas.Series.sort_index"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sort_index</span></code></a>([axis, level, ascending, ...])</p></td>
+<td><p>Sort Series by index labels.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="pandas.Series.sort_values.html#pandas.Series.sort_values" title="pandas.Series.sort_values"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sort_values</span></code></a>([axis, ascending, inplace, ...])</p></td>
+<td><p>Sort by the values.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="pandas.Series.sparse.html#pandas.Series.sparse" title="pandas.Series.sparse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sparse</span></code></a></p></td>
+<td><p>alias of <code class="xref py py-class docutils literal notranslate"><span class="pre">pandas.core.arrays.sparse.accessor.SparseAccessor</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="pandas.Series.squeeze.html#pandas.Series.squeeze" title="pandas.Series.squeeze"><code class="xref py py-obj docutils literal notranslate"><span class="pre">squeeze</span></code></a>([axis])</p></td>
+<td><p>Squeeze 1 dimensional axis objects into scalars.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="pandas.Series.std.html#pandas.Series.std" title="pandas.Series.std"><code class="xref py py-obj docutils literal notranslate"><span class="pre">std</span></code></a>([axis, skipna, level, ddof, numeric_only])</p></td>
+<td><p>Return sample standard deviation over requested axis.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="pandas.Series.str.html#pandas.Series.str" title="pandas.Series.str"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a></p></td>
+<td><p>alias of <code class="xref py py-class docutils literal notranslate"><span class="pre">pandas.core.strings.accessor.StringMethods</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="pandas.Series.sub.html#pandas.Series.sub" title="pandas.Series.sub"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sub</span></code></a>(other[, level, fill_value, axis])</p></td>
+<td><p>Return Subtraction of series and other, element-wise (binary operator <cite>sub</cite>).</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="pandas.Series.subtract.html#pandas.Series.subtract" title="pandas.Series.subtract"><code class="xref py py-obj docutils literal notranslate"><span class="pre">subtract</span></code></a>(other[, level, fill_value, axis])</p></td>
+<td><p>Return Subtraction of series and other, element-wise (binary operator <cite>sub</cite>).</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="pandas.Series.sum.html#pandas.Series.sum" title="pandas.Series.sum"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sum</span></code></a>([axis, skipna, level, numeric_only, ...])</p></td>
+<td><p>Return the sum of the values over the requested axis.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="pandas.Series.swapaxes.html#pandas.Series.swapaxes" title="pandas.Series.swapaxes"><code class="xref py py-obj docutils literal notranslate"><span class="pre">swapaxes</span></code></a>(axis1, axis2[, copy])</p></td>
+<td><p>Interchange axes and swap values axes appropriately.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="pandas.Series.swaplevel.html#pandas.Series.swaplevel" title="pandas.Series.swaplevel"><code class="xref py py-obj docutils literal notranslate"><span class="pre">swaplevel</span></code></a>([i, j, copy])</p></td>
+<td><p>Swap levels i and j in a <a class="reference internal" href="pandas.MultiIndex.html#pandas.MultiIndex" title="pandas.MultiIndex"><code class="xref py py-class docutils literal notranslate"><span class="pre">MultiIndex</span></code></a>.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="pandas.Series.tail.html#pandas.Series.tail" title="pandas.Series.tail"><code class="xref py py-obj docutils literal notranslate"><span class="pre">tail</span></code></a>([n])</p></td>
+<td><p>Return the last <cite>n</cite> rows.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="pandas.Series.take.html#pandas.Series.take" title="pandas.Series.take"><code class="xref py py-obj docutils literal notranslate"><span class="pre">take</span></code></a>(indices[, axis, is_copy])</p></td>
+<td><p>Return the elements in the given <em>positional</em> indices along an axis.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="pandas.Series.to_clipboard.html#pandas.Series.to_clipboard" title="pandas.Series.to_clipboard"><code class="xref py py-obj docutils literal notranslate"><span class="pre">to_clipboard</span></code></a>([excel, sep])</p></td>
+<td><p>Copy object to the system clipboard.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="pandas.Series.to_csv.html#pandas.Series.to_csv" title="pandas.Series.to_csv"><code class="xref py py-obj docutils literal notranslate"><span class="pre">to_csv</span></code></a>([path_or_buf, sep, na_rep, ...])</p></td>
+<td><p>Write object to a comma-separated values (csv) file.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="pandas.Series.to_dict.html#pandas.Series.to_dict" title="pandas.Series.to_dict"><code class="xref py py-obj docutils literal notranslate"><span class="pre">to_dict</span></code></a>([into])</p></td>
+<td><p>Convert Series to {label -&gt; value} dict or dict-like object.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="pandas.Series.to_excel.html#pandas.Series.to_excel" title="pandas.Series.to_excel"><code class="xref py py-obj docutils literal notranslate"><span class="pre">to_excel</span></code></a>(excel_writer[, sheet_name, na_rep, ...])</p></td>
+<td><p>Write object to an Excel sheet.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="pandas.Series.to_frame.html#pandas.Series.to_frame" title="pandas.Series.to_frame"><code class="xref py py-obj docutils literal notranslate"><span class="pre">to_frame</span></code></a>([name])</p></td>
+<td><p>Convert Series to DataFrame.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="pandas.Series.to_hdf.html#pandas.Series.to_hdf" title="pandas.Series.to_hdf"><code class="xref py py-obj docutils literal notranslate"><span class="pre">to_hdf</span></code></a>(path_or_buf, key[, mode, complevel, ...])</p></td>
+<td><p>Write the contained data to an HDF5 file using HDFStore.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="pandas.Series.to_json.html#pandas.Series.to_json" title="pandas.Series.to_json"><code class="xref py py-obj docutils literal notranslate"><span class="pre">to_json</span></code></a>([path_or_buf, orient, date_format, ...])</p></td>
+<td><p>Convert the object to a JSON string.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="pandas.Series.to_latex.html#pandas.Series.to_latex" title="pandas.Series.to_latex"><code class="xref py py-obj docutils literal notranslate"><span class="pre">to_latex</span></code></a>([buf, columns, col_space, header, ...])</p></td>
+<td><p>Render object to a LaTeX tabular, longtable, or nested table.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="pandas.Series.to_list.html#pandas.Series.to_list" title="pandas.Series.to_list"><code class="xref py py-obj docutils literal notranslate"><span class="pre">to_list</span></code></a>()</p></td>
+<td><p>Return a list of the values.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="pandas.Series.to_markdown.html#pandas.Series.to_markdown" title="pandas.Series.to_markdown"><code class="xref py py-obj docutils literal notranslate"><span class="pre">to_markdown</span></code></a>([buf, mode, index, storage_options])</p></td>
+<td><p>Print Series in Markdown-friendly format.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="pandas.Series.to_numpy.html#pandas.Series.to_numpy" title="pandas.Series.to_numpy"><code class="xref py py-obj docutils literal notranslate"><span class="pre">to_numpy</span></code></a>([dtype, copy, na_value])</p></td>
+<td><p>A NumPy ndarray representing the values in this Series or Index.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="pandas.Series.to_period.html#pandas.Series.to_period" title="pandas.Series.to_period"><code class="xref py py-obj docutils literal notranslate"><span class="pre">to_period</span></code></a>([freq, copy])</p></td>
+<td><p>Convert Series from DatetimeIndex to PeriodIndex.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="pandas.Series.to_pickle.html#pandas.Series.to_pickle" title="pandas.Series.to_pickle"><code class="xref py py-obj docutils literal notranslate"><span class="pre">to_pickle</span></code></a>(path[, compression, protocol, ...])</p></td>
+<td><p>Pickle (serialize) object to file.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="pandas.Series.to_sql.html#pandas.Series.to_sql" title="pandas.Series.to_sql"><code class="xref py py-obj docutils literal notranslate"><span class="pre">to_sql</span></code></a>(name, con[, schema, if_exists, ...])</p></td>
+<td><p>Write records stored in a DataFrame to a SQL database.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="pandas.Series.to_string.html#pandas.Series.to_string" title="pandas.Series.to_string"><code class="xref py py-obj docutils literal notranslate"><span class="pre">to_string</span></code></a>([buf, na_rep, float_format, ...])</p></td>
+<td><p>Render a string representation of the Series.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="pandas.Series.to_timestamp.html#pandas.Series.to_timestamp" title="pandas.Series.to_timestamp"><code class="xref py py-obj docutils literal notranslate"><span class="pre">to_timestamp</span></code></a>([freq, how, copy])</p></td>
+<td><p>Cast to DatetimeIndex of Timestamps, at <em>beginning</em> of period.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="pandas.Series.to_xarray.html#pandas.Series.to_xarray" title="pandas.Series.to_xarray"><code class="xref py py-obj docutils literal notranslate"><span class="pre">to_xarray</span></code></a>()</p></td>
+<td><p>Return an xarray object from the pandas object.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="pandas.Series.tolist.html#pandas.Series.tolist" title="pandas.Series.tolist"><code class="xref py py-obj docutils literal notranslate"><span class="pre">tolist</span></code></a>()</p></td>
+<td><p>Return a list of the values.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="pandas.Series.transform.html#pandas.Series.transform" title="pandas.Series.transform"><code class="xref py py-obj docutils literal notranslate"><span class="pre">transform</span></code></a>(func[, axis])</p></td>
+<td><p>Call <code class="docutils literal notranslate"><span class="pre">func</span></code> on self producing a Series with the same axis shape as self.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="pandas.Series.transpose.html#pandas.Series.transpose" title="pandas.Series.transpose"><code class="xref py py-obj docutils literal notranslate"><span class="pre">transpose</span></code></a>(*args, **kwargs)</p></td>
+<td><p>Return the transpose, which is by definition self.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="pandas.Series.truediv.html#pandas.Series.truediv" title="pandas.Series.truediv"><code class="xref py py-obj docutils literal notranslate"><span class="pre">truediv</span></code></a>(other[, level, fill_value, axis])</p></td>
+<td><p>Return Floating division of series and other, element-wise (binary operator <cite>truediv</cite>).</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="pandas.Series.truncate.html#pandas.Series.truncate" title="pandas.Series.truncate"><code class="xref py py-obj docutils literal notranslate"><span class="pre">truncate</span></code></a>([before, after, axis, copy])</p></td>
+<td><p>Truncate a Series or DataFrame before and after some index value.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="pandas.Series.tshift.html#pandas.Series.tshift" title="pandas.Series.tshift"><code class="xref py py-obj docutils literal notranslate"><span class="pre">tshift</span></code></a>([periods, freq, axis])</p></td>
+<td><p>(DEPRECATED) Shift the time index, using the index's frequency if available.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="pandas.Series.tz_convert.html#pandas.Series.tz_convert" title="pandas.Series.tz_convert"><code class="xref py py-obj docutils literal notranslate"><span class="pre">tz_convert</span></code></a>(tz[, axis, level, copy])</p></td>
+<td><p>Convert tz-aware axis to target time zone.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="pandas.Series.tz_localize.html#pandas.Series.tz_localize" title="pandas.Series.tz_localize"><code class="xref py py-obj docutils literal notranslate"><span class="pre">tz_localize</span></code></a>(tz[, axis, level, copy, ...])</p></td>
+<td><p>Localize tz-naive index of a Series or DataFrame to target time zone.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="pandas.Series.unique.html#pandas.Series.unique" title="pandas.Series.unique"><code class="xref py py-obj docutils literal notranslate"><span class="pre">unique</span></code></a>()</p></td>
+<td><p>Return unique values of Series object.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="pandas.Series.unstack.html#pandas.Series.unstack" title="pandas.Series.unstack"><code class="xref py py-obj docutils literal notranslate"><span class="pre">unstack</span></code></a>([level, fill_value])</p></td>
+<td><p>Unstack, also known as pivot, Series with MultiIndex to produce DataFrame.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="pandas.Series.update.html#pandas.Series.update" title="pandas.Series.update"><code class="xref py py-obj docutils literal notranslate"><span class="pre">update</span></code></a>(other)</p></td>
+<td><p>Modify Series in place using values from passed Series.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="pandas.Series.value_counts.html#pandas.Series.value_counts" title="pandas.Series.value_counts"><code class="xref py py-obj docutils literal notranslate"><span class="pre">value_counts</span></code></a>([normalize, sort, ascending, ...])</p></td>
+<td><p>Return a Series containing counts of unique values.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="pandas.Series.var.html#pandas.Series.var" title="pandas.Series.var"><code class="xref py py-obj docutils literal notranslate"><span class="pre">var</span></code></a>([axis, skipna, level, ddof, numeric_only])</p></td>
+<td><p>Return unbiased variance over requested axis.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="pandas.Series.view.html#pandas.Series.view" title="pandas.Series.view"><code class="xref py py-obj docutils literal notranslate"><span class="pre">view</span></code></a>([dtype])</p></td>
+<td><p>Create a new view of the Series.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="pandas.Series.where.html#pandas.Series.where" title="pandas.Series.where"><code class="xref py py-obj docutils literal notranslate"><span class="pre">where</span></code></a>(cond[, other, inplace, axis, level, ...])</p></td>
+<td><p>Replace values where the condition is False.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="pandas.Series.xs.html#pandas.Series.xs" title="pandas.Series.xs"><code class="xref py py-obj docutils literal notranslate"><span class="pre">xs</span></code></a>(key[, axis, level, drop_level])</p></td>
+<td><p>Return cross-section from the Series/DataFrame.</p></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+</section>
+</div>
+
+</main>
+</div>
+</div>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+</body>
+</html>

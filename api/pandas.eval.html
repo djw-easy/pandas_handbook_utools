@@ -1,0 +1,188 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="Docutils 0.17.1: http://docutils.sourceforge.net/" name="generator"/>
+<title>pandas.eval — pandas 1.4.1 documentation</title>
+<link href="../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet"/>
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet"/>
+<link href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css" rel="stylesheet"/>
+<link as="font" crossorigin="" href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2" rel="preload" type="font/woff2"/>
+<link as="font" crossorigin="" href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2" rel="preload" type="font/woff2"/>
+<link href="../../_static/pygments.css" rel="stylesheet" type="text/css">
+<link href="../../_static/styles/pydata-sphinx-theme.css" rel="stylesheet" type="text/css">
+<link href="../../_static/plot_directive.css" rel="stylesheet" type="text/css">
+<link href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" rel="stylesheet" type="text/css">
+<link href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" rel="stylesheet" type="text/css">
+<link href="../../_static/css/getting_started.css" rel="stylesheet" type="text/css"/>
+<link href="../../_static/css/pandas.css" rel="stylesheet" type="text/css"/>
+<link as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf" rel="preload"/>
+<script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+<script src="../../_static/jquery.js"></script>
+<script src="../../_static/underscore.js"></script>
+<script src="../../_static/doctools.js"></script>
+<script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
+<link href="../../_static/favicon.ico" rel="shortcut icon">
+<link href="../../genindex.html" rel="index" title="Index"/>
+<link href="../../search.html" rel="search" title="Search"/>
+<link href="pandas.util.hash_array.html" rel="next" title="pandas.util.hash_array"/>
+<link href="pandas.interval_range.html" rel="prev" title="pandas.interval_range"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<meta content="en" name="docsearch:language"/>
+<script async="" src="https://www.google-analytics.com/analytics.js"></script>
+<script>
+                        window.ga = window.ga || function () {
+                            (ga.q = ga.q || []).push(arguments) };
+                        ga.l = +new Date;
+                        ga('create', 'UA-27880019-2', 'auto');
+                        ga('set', 'anonymizeIp', true);
+                        ga('send', 'pageview');
+                    </script>
+</link></link></link></link></link></link></head>
+<body data-offset="80" data-spy="scroll" data-target="#bd-toc-nav">
+<div class="container-fluid" id="banner"></div>
+
+<div class="container-xl">
+<div class="row">
+
+
+<main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
+<div>
+<section id="pandas-eval">
+<h1>pandas.eval<a class="headerlink" href="#pandas-eval" title="Permalink to this headline">¶</a></h1>
+<dl class="py function">
+<dt class="sig sig-object py" id="pandas.eval">
+<span class="sig-prename descclassname"><span class="pre">pandas.</span></span><span class="sig-name descname"><span class="pre">eval</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">expr</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parser</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'pandas'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">engine</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">truediv</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">NoDefault.no_default</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">local_dict</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">global_dict</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">resolvers</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">()</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">level</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">target</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">inplace</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/pandas-dev/pandas/blob/v1.4.1/pandas/core/computation/eval.py#L166-L408"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pandas.eval" title="Permalink to this definition">¶</a></dt>
+<dd><p>Evaluate a Python expression as a string using various backends.</p>
+<p>The following arithmetic operations are supported: <code class="docutils literal notranslate"><span class="pre">+</span></code>, <code class="docutils literal notranslate"><span class="pre">-</span></code>, <code class="docutils literal notranslate"><span class="pre">*</span></code>,
+<code class="docutils literal notranslate"><span class="pre">/</span></code>, <code class="docutils literal notranslate"><span class="pre">**</span></code>, <code class="docutils literal notranslate"><span class="pre">%</span></code>, <code class="docutils literal notranslate"><span class="pre">//</span></code> (python engine only) along with the following
+boolean operations: <code class="docutils literal notranslate"><span class="pre">|</span></code> (or), <code class="docutils literal notranslate"><span class="pre">&amp;</span></code> (and), and <code class="docutils literal notranslate"><span class="pre">~</span></code> (not).
+Additionally, the <code class="docutils literal notranslate"><span class="pre">'pandas'</span></code> parser allows the use of <a class="reference external" href="https://docs.python.org/3/reference/expressions.html#and" title="(in Python v3.10)"><code class="xref std std-keyword docutils literal notranslate"><span class="pre">and</span></code></a>,
+<a class="reference external" href="https://docs.python.org/3/reference/expressions.html#or" title="(in Python v3.10)"><code class="xref std std-keyword docutils literal notranslate"><span class="pre">or</span></code></a>, and <a class="reference external" href="https://docs.python.org/3/reference/expressions.html#not" title="(in Python v3.10)"><code class="xref std std-keyword docutils literal notranslate"><span class="pre">not</span></code></a> with the same semantics as the
+corresponding bitwise operators. <a class="reference internal" href="pandas.Series.html#pandas.Series" title="pandas.Series"><code class="xref py py-class docutils literal notranslate"><span class="pre">Series</span></code></a> and
+<a class="reference internal" href="pandas.DataFrame.html#pandas.DataFrame" title="pandas.DataFrame"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataFrame</span></code></a> objects are supported and behave as they would
+with plain ol’ Python evaluation.</p>
+<dl class="field-list">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl>
+<dt><strong>expr</strong><span class="classifier">str</span></dt><dd><p>The expression to evaluate. This string cannot contain any Python
+<a class="reference external" href="https://docs.python.org/3/reference/simple_stmts.html#simple-statements">statements</a>,
+only Python <a class="reference external" href="https://docs.python.org/3/reference/simple_stmts.html#expression-statements">expressions</a>.</p>
+</dd>
+<dt><strong>parser</strong><span class="classifier">{‘pandas’, ‘python’}, default ‘pandas’</span></dt><dd><p>The parser to use to construct the syntax tree from the expression. The
+default of <code class="docutils literal notranslate"><span class="pre">'pandas'</span></code> parses code slightly different than standard
+Python. Alternatively, you can parse an expression using the
+<code class="docutils literal notranslate"><span class="pre">'python'</span></code> parser to retain strict Python semantics. See the
+<a class="reference internal" href="../../user_guide/enhancingperf.html#enhancingperf-eval"><span class="std std-ref">enhancing performance</span></a> documentation for
+more details.</p>
+</dd>
+<dt><strong>engine</strong><span class="classifier">{‘python’, ‘numexpr’}, default ‘numexpr’</span></dt><dd><p>The engine used to evaluate the expression. Supported engines are</p>
+<ul class="simple">
+<li><p>None : tries to use <code class="docutils literal notranslate"><span class="pre">numexpr</span></code>, falls back to <code class="docutils literal notranslate"><span class="pre">python</span></code></p></li>
+<li><dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">'numexpr'</span></code>: This default engine evaluates pandas objects using</dt><dd><p>numexpr for large speed ups in complex expressions
+with large frames.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">'python'</span></code>: Performs operations as if you had <code class="docutils literal notranslate"><span class="pre">eval</span></code>’d in top</dt><dd><p>level python. This engine is generally not that useful.</p>
+</dd>
+</dl>
+</li>
+</ul>
+<p>More backends may be available in the future.</p>
+</dd>
+<dt><strong>truediv</strong><span class="classifier">bool, optional</span></dt><dd><p>Whether to use true division, like in Python &gt;= 3.</p>
+<div class="deprecated">
+<p><span class="versionmodified deprecated">Deprecated since version 1.0.0.</span></p>
+</div>
+</dd>
+<dt><strong>local_dict</strong><span class="classifier">dict or None, optional</span></dt><dd><p>A dictionary of local variables, taken from locals() by default.</p>
+</dd>
+<dt><strong>global_dict</strong><span class="classifier">dict or None, optional</span></dt><dd><p>A dictionary of global variables, taken from globals() by default.</p>
+</dd>
+<dt><strong>resolvers</strong><span class="classifier">list of dict-like or None, optional</span></dt><dd><p>A list of objects implementing the <code class="docutils literal notranslate"><span class="pre">__getitem__</span></code> special method that
+you can use to inject an additional collection of namespaces to use for
+variable lookup. For example, this is used in the
+<a class="reference internal" href="pandas.DataFrame.query.html#pandas.DataFrame.query" title="pandas.DataFrame.query"><code class="xref py py-meth docutils literal notranslate"><span class="pre">query()</span></code></a> method to inject the
+<code class="docutils literal notranslate"><span class="pre">DataFrame.index</span></code> and <code class="docutils literal notranslate"><span class="pre">DataFrame.columns</span></code>
+variables that refer to their respective <a class="reference internal" href="pandas.DataFrame.html#pandas.DataFrame" title="pandas.DataFrame"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataFrame</span></code></a>
+instance attributes.</p>
+</dd>
+<dt><strong>level</strong><span class="classifier">int, optional</span></dt><dd><p>The number of prior stack frames to traverse and add to the current
+scope. Most users will <strong>not</strong> need to change this parameter.</p>
+</dd>
+<dt><strong>target</strong><span class="classifier">object, optional, default None</span></dt><dd><p>This is the target object for assignment. It is used when there is
+variable assignment in the expression. If so, then <cite>target</cite> must
+support item assignment with string keys, and if a copy is being
+returned, it must also support <cite>.copy()</cite>.</p>
+</dd>
+<dt><strong>inplace</strong><span class="classifier">bool, default False</span></dt><dd><p>If <cite>target</cite> is provided, and the expression mutates <cite>target</cite>, whether
+to modify <cite>target</cite> inplace. Otherwise, return a copy of <cite>target</cite> with
+the mutation.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt>ndarray, numeric scalar, DataFrame, Series, or None</dt><dd><p>The completion value of evaluating the given code or None if <code class="docutils literal notranslate"><span class="pre">inplace=True</span></code>.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-odd">Raises</dt>
+<dd class="field-odd"><dl>
+<dt>ValueError</dt><dd><p>There are many instances where such an error can be raised:</p>
+<ul>
+<li><p><cite>target=None</cite>, but the expression is multiline.</p></li>
+<li><p>The expression is multiline, but not all them have item assignment.
+An example of such an arrangement is this:</p>
+<p>a = b + 1
+a + 2</p>
+<p>Here, there are expressions on different lines, making it multiline,
+but the last line has no variable assigned to the output of <cite>a + 2</cite>.</p>
+</li>
+<li><p><cite>inplace=True</cite>, but the expression is missing item assignment.</p></li>
+<li><p>Item assignment is provided, but the <cite>target</cite> does not support
+string item assignment.</p></li>
+<li><p>Item assignment is provided and <cite>inplace=False</cite>, but the <cite>target</cite>
+does not support the <cite>.copy()</cite> method</p></li>
+</ul>
+</dd>
+</dl>
+</dd>
+</dl>
+
+<p class="rubric">Notes</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">dtype</span></code> of any objects involved in an arithmetic <code class="docutils literal notranslate"><span class="pre">%</span></code> operation are
+recursively cast to <code class="docutils literal notranslate"><span class="pre">float64</span></code>.</p>
+<p>See the <a class="reference internal" href="../../user_guide/enhancingperf.html#enhancingperf-eval"><span class="std std-ref">enhancing performance</span></a> documentation for
+more details.</p>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s2">"animal"</span><span class="p">:</span> <span class="p">[</span><span class="s2">"dog"</span><span class="p">,</span> <span class="s2">"pig"</span><span class="p">],</span> <span class="s2">"age"</span><span class="p">:</span> <span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">]})</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">df</span>
+<span class="go">  animal  age</span>
+<span class="go">0    dog   10</span>
+<span class="go">1    pig   20</span>
+</pre></div>
+</div>
+<p>We can add a new column using <code class="docutils literal notranslate"><span class="pre">pd.eval</span></code>:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">pd</span><span class="o">.</span><span class="n">eval</span><span class="p">(</span><span class="s2">"double_age = df.age * 2"</span><span class="p">,</span> <span class="n">target</span><span class="o">=</span><span class="n">df</span><span class="p">)</span>
+<span class="go">  animal  age  double_age</span>
+<span class="go">0    dog   10          20</span>
+<span class="go">1    pig   20          40</span>
+</pre></div>
+</div>
+</dd></dl>
+</section>
+</div>
+
+</main>
+</div>
+</div>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+</body>
+</html>

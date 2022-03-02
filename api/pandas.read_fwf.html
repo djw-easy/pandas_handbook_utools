@@ -1,0 +1,110 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="Docutils 0.17.1: http://docutils.sourceforge.net/" name="generator"/>
+<title>pandas.read_fwf — pandas 1.4.1 documentation</title>
+<link href="../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet"/>
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet"/>
+<link href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css" rel="stylesheet"/>
+<link as="font" crossorigin="" href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2" rel="preload" type="font/woff2"/>
+<link as="font" crossorigin="" href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2" rel="preload" type="font/woff2"/>
+<link href="../../_static/pygments.css" rel="stylesheet" type="text/css">
+<link href="../../_static/styles/pydata-sphinx-theme.css" rel="stylesheet" type="text/css">
+<link href="../../_static/plot_directive.css" rel="stylesheet" type="text/css">
+<link href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" rel="stylesheet" type="text/css">
+<link href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" rel="stylesheet" type="text/css">
+<link href="../../_static/css/getting_started.css" rel="stylesheet" type="text/css"/>
+<link href="../../_static/css/pandas.css" rel="stylesheet" type="text/css"/>
+<link as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf" rel="preload"/>
+<script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+<script src="../../_static/jquery.js"></script>
+<script src="../../_static/underscore.js"></script>
+<script src="../../_static/doctools.js"></script>
+<script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
+<link href="../../_static/favicon.ico" rel="shortcut icon">
+<link href="../../genindex.html" rel="index" title="Index"/>
+<link href="../../search.html" rel="search" title="Search"/>
+<link href="pandas.read_clipboard.html" rel="next" title="pandas.read_clipboard"/>
+<link href="pandas.DataFrame.to_csv.html" rel="prev" title="pandas.DataFrame.to_csv"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<meta content="en" name="docsearch:language"/>
+<script async="" src="https://www.google-analytics.com/analytics.js"></script>
+<script>
+                        window.ga = window.ga || function () {
+                            (ga.q = ga.q || []).push(arguments) };
+                        ga.l = +new Date;
+                        ga('create', 'UA-27880019-2', 'auto');
+                        ga('set', 'anonymizeIp', true);
+                        ga('send', 'pageview');
+                    </script>
+</link></link></link></link></link></link></head>
+<body data-offset="80" data-spy="scroll" data-target="#bd-toc-nav">
+<div class="container-fluid" id="banner"></div>
+
+<div class="container-xl">
+<div class="row">
+
+
+<main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
+<div>
+<section id="pandas-read-fwf">
+<h1>pandas.read_fwf<a class="headerlink" href="#pandas-read-fwf" title="Permalink to this headline">¶</a></h1>
+<dl class="py function">
+<dt class="sig sig-object py" id="pandas.read_fwf">
+<span class="sig-prename descclassname"><span class="pre">pandas.</span></span><span class="sig-name descname"><span class="pre">read_fwf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filepath_or_buffer</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">colspecs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'infer'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">widths</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">infer_nrows</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">100</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwds</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/pandas-dev/pandas/blob/v1.4.1/pandas/io/parsers/readers.py#L782-L876"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pandas.read_fwf" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read a table of fixed-width formatted lines into DataFrame.</p>
+<p>Also supports optionally iterating or breaking of the file
+into chunks.</p>
+<p>Additional help can be found in the <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/user_guide/io.html">online docs for IO Tools</a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>filepath_or_buffer</strong><span class="classifier">str, path object, or file-like object</span></dt><dd><p>String, path object (implementing <code class="docutils literal notranslate"><span class="pre">os.PathLike[str]</span></code>), or file-like
+object implementing a text <code class="docutils literal notranslate"><span class="pre">read()</span></code> function.The string could be a URL.
+Valid URL schemes include http, ftp, s3, and file. For file URLs, a host is
+expected. A local file could be:
+<code class="docutils literal notranslate"><span class="pre">file://localhost/path/to/table.csv</span></code>.</p>
+</dd>
+<dt><strong>colspecs</strong><span class="classifier">list of tuple (int, int) or ‘infer’. optional</span></dt><dd><p>A list of tuples giving the extents of the fixed-width
+fields of each line as half-open intervals (i.e., [from, to[ ).
+String value ‘infer’ can be used to instruct the parser to try
+detecting the column specifications from the first 100 rows of
+the data which are not being skipped via skiprows (default=’infer’).</p>
+</dd>
+<dt><strong>widths</strong><span class="classifier">list of int, optional</span></dt><dd><p>A list of field widths which can be used instead of ‘colspecs’ if
+the intervals are contiguous.</p>
+</dd>
+<dt><strong>infer_nrows</strong><span class="classifier">int, default 100</span></dt><dd><p>The number of rows to consider when letting the parser determine the
+<cite>colspecs</cite>.</p>
+</dd>
+<dt><strong>**kwds</strong><span class="classifier">optional</span></dt><dd><p>Optional keyword arguments can be passed to <code class="docutils literal notranslate"><span class="pre">TextFileReader</span></code>.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt>DataFrame or TextFileReader</dt><dd><p>A comma-separated values (csv) file is returned as two-dimensional
+data structure with labeled axes.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">pd</span><span class="o">.</span><span class="n">read_fwf</span><span class="p">(</span><span class="s1">'data.csv'</span><span class="p">)</span>  
+</pre></div>
+</div>
+</dd></dl>
+</section>
+</div>
+
+</main>
+</div>
+</div>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+</body>
+</html>

@@ -1,0 +1,162 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="Docutils 0.17.1: http://docutils.sourceforge.net/" name="generator"/>
+<title>pandas.core.resample.Resampler.apply — pandas 1.4.1 documentation</title>
+<link href="../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet"/>
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet"/>
+<link href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css" rel="stylesheet"/>
+<link as="font" crossorigin="" href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2" rel="preload" type="font/woff2"/>
+<link as="font" crossorigin="" href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2" rel="preload" type="font/woff2"/>
+<link href="../../_static/pygments.css" rel="stylesheet" type="text/css">
+<link href="../../_static/styles/pydata-sphinx-theme.css" rel="stylesheet" type="text/css">
+<link href="../../_static/plot_directive.css" rel="stylesheet" type="text/css">
+<link href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" rel="stylesheet" type="text/css">
+<link href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" rel="stylesheet" type="text/css">
+<link href="../../_static/css/getting_started.css" rel="stylesheet" type="text/css"/>
+<link href="../../_static/css/pandas.css" rel="stylesheet" type="text/css"/>
+<link as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf" rel="preload"/>
+<script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+<script src="../../_static/jquery.js"></script>
+<script src="../../_static/underscore.js"></script>
+<script src="../../_static/doctools.js"></script>
+<script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
+<link href="../../_static/favicon.ico" rel="shortcut icon">
+<link href="../../genindex.html" rel="index" title="Index"/>
+<link href="../../search.html" rel="search" title="Search"/>
+<link href="pandas.core.resample.Resampler.aggregate.html" rel="next" title="pandas.core.resample.Resampler.aggregate"/>
+<link href="pandas.core.resample.Resampler.get_group.html" rel="prev" title="pandas.core.resample.Resampler.get_group"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<meta content="en" name="docsearch:language"/>
+<script async="" src="https://www.google-analytics.com/analytics.js"></script>
+<script>
+                        window.ga = window.ga || function () {
+                            (ga.q = ga.q || []).push(arguments) };
+                        ga.l = +new Date;
+                        ga('create', 'UA-27880019-2', 'auto');
+                        ga('set', 'anonymizeIp', true);
+                        ga('send', 'pageview');
+                    </script>
+</link></link></link></link></link></link></head>
+<body data-offset="80" data-spy="scroll" data-target="#bd-toc-nav">
+<div class="container-fluid" id="banner"></div>
+
+<div class="container-xl">
+<div class="row">
+
+
+<main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
+<div>
+<section id="pandas-core-resample-resampler-apply">
+<h1>pandas.core.resample.Resampler.apply<a class="headerlink" href="#pandas-core-resample-resampler-apply" title="Permalink to this headline">¶</a></h1>
+<dl class="py method">
+<dt class="sig sig-object py" id="pandas.core.resample.Resampler.apply">
+<span class="sig-prename descclassname"><span class="pre">Resampler.</span></span><span class="sig-name descname"><span class="pre">apply</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">func</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/pandas-dev/pandas/blob/v1.4.1/pandas/core/resample.py#L338-L353"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pandas.core.resample.Resampler.apply" title="Permalink to this definition">¶</a></dt>
+<dd><p>Aggregate using one or more operations over the specified axis.</p>
+<dl class="field-list">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl>
+<dt><strong>func</strong><span class="classifier">function, str, list or dict</span></dt><dd><p>Function to use for aggregating the data. If a function, must either
+work when passed a DataFrame or when passed to DataFrame.apply.</p>
+<p>Accepted combinations are:</p>
+<ul class="simple">
+<li><p>function</p></li>
+<li><p>string function name</p></li>
+<li><p>list of functions and/or function names, e.g. <code class="docutils literal notranslate"><span class="pre">[np.sum,</span> <span class="pre">'mean']</span></code></p></li>
+<li><p>dict of axis labels -&gt; functions, function names or list of such.</p></li>
+</ul>
+</dd>
+<dt><strong>*args</strong></dt><dd><p>Positional arguments to pass to <cite>func</cite>.</p>
+</dd>
+<dt><strong>**kwargs</strong></dt><dd><p>Keyword arguments to pass to <cite>func</cite>.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl>
+<dt>scalar, Series or DataFrame</dt><dd><p>The return can be:</p>
+<ul class="simple">
+<li><p>scalar : when Series.agg is called with single function</p></li>
+<li><p>Series : when DataFrame.agg is called with a single function</p></li>
+<li><p>DataFrame : when DataFrame.agg is called with several functions</p></li>
+</ul>
+<p>Return scalar, Series or DataFrame.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<dl class="simple">
+<dt><code class="xref py py-obj docutils literal notranslate"><span class="pre">DataFrame.groupby.aggregate</span></code></dt><dd><p>Aggregate using callable, string, dict, or list of string/callables.</p>
+</dd>
+<dt><code class="xref py py-obj docutils literal notranslate"><span class="pre">DataFrame.resample.transform</span></code></dt><dd><p>Transforms the Series on each group based on the given function.</p>
+</dd>
+<dt><code class="xref py py-obj docutils literal notranslate"><span class="pre">DataFrame.aggregate</span></code></dt><dd><p>Aggregate using one or more operations over the specified axis.</p>
+</dd>
+</dl>
+</div>
+<p class="rubric">Notes</p>
+<p><cite>agg</cite> is an alias for <cite>aggregate</cite>. Use the alias.</p>
+<p>Functions that mutate the passed object can produce unexpected
+behavior or errors and are not supported. See <a class="reference internal" href="../../user_guide/gotchas.html#gotchas-udf-mutation"><span class="std std-ref">Mutating with User Defined Function (UDF) methods</span></a>
+for more details.</p>
+<p>A passed user-defined-function will be passed a Series for evaluation.</p>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">s</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">],</span>
+<span class="gp">... </span>              <span class="n">index</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">date_range</span><span class="p">(</span><span class="s1">'20130101'</span><span class="p">,</span> <span class="n">periods</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">freq</span><span class="o">=</span><span class="s1">'s'</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">s</span>
+<span class="go">2013-01-01 00:00:00    1</span>
+<span class="go">2013-01-01 00:00:01    2</span>
+<span class="go">2013-01-01 00:00:02    3</span>
+<span class="go">2013-01-01 00:00:03    4</span>
+<span class="go">2013-01-01 00:00:04    5</span>
+<span class="go">Freq: S, dtype: int64</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">r</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">resample</span><span class="p">(</span><span class="s1">'2s'</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">r</span><span class="o">.</span><span class="n">agg</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">)</span>
+<span class="go">2013-01-01 00:00:00    3</span>
+<span class="go">2013-01-01 00:00:02    7</span>
+<span class="go">2013-01-01 00:00:04    5</span>
+<span class="go">Freq: 2S, dtype: int64</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">r</span><span class="o">.</span><span class="n">agg</span><span class="p">([</span><span class="s1">'sum'</span><span class="p">,</span> <span class="s1">'mean'</span><span class="p">,</span> <span class="s1">'max'</span><span class="p">])</span>
+<span class="go">                     sum  mean  max</span>
+<span class="go">2013-01-01 00:00:00    3   1.5    2</span>
+<span class="go">2013-01-01 00:00:02    7   3.5    4</span>
+<span class="go">2013-01-01 00:00:04    5   5.0    5</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">r</span><span class="o">.</span><span class="n">agg</span><span class="p">({</span><span class="s1">'result'</span><span class="p">:</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span> <span class="o">/</span> <span class="n">x</span><span class="o">.</span><span class="n">std</span><span class="p">(),</span>
+<span class="gp">... </span>       <span class="s1">'total'</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">})</span>
+<span class="go">                       result  total</span>
+<span class="go">2013-01-01 00:00:00  2.121320      3</span>
+<span class="go">2013-01-01 00:00:02  4.949747      7</span>
+<span class="go">2013-01-01 00:00:04       NaN      5</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">r</span><span class="o">.</span><span class="n">agg</span><span class="p">(</span><span class="n">average</span><span class="o">=</span><span class="s2">"mean"</span><span class="p">,</span> <span class="n">total</span><span class="o">=</span><span class="s2">"sum"</span><span class="p">)</span>
+<span class="go">                         average  total</span>
+<span class="go">2013-01-01 00:00:00      1.5      3</span>
+<span class="go">2013-01-01 00:00:02      3.5      7</span>
+<span class="go">2013-01-01 00:00:04      5.0      5</span>
+</pre></div>
+</div>
+</dd></dl>
+</section>
+</div>
+
+</main>
+</div>
+</div>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+</body>
+</html>

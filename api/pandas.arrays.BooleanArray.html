@@ -1,0 +1,135 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="Docutils 0.17.1: http://docutils.sourceforge.net/" name="generator"/>
+<title>pandas.arrays.BooleanArray — pandas 1.4.1 documentation</title>
+<link href="../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet"/>
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet"/>
+<link href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css" rel="stylesheet"/>
+<link as="font" crossorigin="" href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2" rel="preload" type="font/woff2"/>
+<link as="font" crossorigin="" href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2" rel="preload" type="font/woff2"/>
+<link href="../../_static/pygments.css" rel="stylesheet" type="text/css">
+<link href="../../_static/styles/pydata-sphinx-theme.css" rel="stylesheet" type="text/css">
+<link href="../../_static/plot_directive.css" rel="stylesheet" type="text/css">
+<link href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" rel="stylesheet" type="text/css">
+<link href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" rel="stylesheet" type="text/css">
+<link href="../../_static/css/getting_started.css" rel="stylesheet" type="text/css"/>
+<link href="../../_static/css/pandas.css" rel="stylesheet" type="text/css"/>
+<link as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf" rel="preload"/>
+<script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+<script src="../../_static/jquery.js"></script>
+<script src="../../_static/underscore.js"></script>
+<script src="../../_static/doctools.js"></script>
+<script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
+<link href="../../_static/favicon.ico" rel="shortcut icon">
+<link href="../../genindex.html" rel="index" title="Index"/>
+<link href="../../search.html" rel="search" title="Search"/>
+<link href="pandas.BooleanDtype.html" rel="next" title="pandas.BooleanDtype"/>
+<link href="pandas.StringDtype.html" rel="prev" title="pandas.StringDtype"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<meta content="en" name="docsearch:language"/>
+<script async="" src="https://www.google-analytics.com/analytics.js"></script>
+<script>
+                        window.ga = window.ga || function () {
+                            (ga.q = ga.q || []).push(arguments) };
+                        ga.l = +new Date;
+                        ga('create', 'UA-27880019-2', 'auto');
+                        ga('set', 'anonymizeIp', true);
+                        ga('send', 'pageview');
+                    </script>
+</link></link></link></link></link></link></head>
+<body data-offset="80" data-spy="scroll" data-target="#bd-toc-nav">
+<div class="container-fluid" id="banner"></div>
+
+<div class="container-xl">
+<div class="row">
+
+
+<main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
+<div>
+<section id="pandas-arrays-booleanarray">
+<h1>pandas.arrays.BooleanArray<a class="headerlink" href="#pandas-arrays-booleanarray" title="Permalink to this headline">¶</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="pandas.arrays.BooleanArray">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pandas.arrays.</span></span><span class="sig-name descname"><span class="pre">BooleanArray</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">values</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mask</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">copy</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/pandas-dev/pandas/blob/v1.4.1/pandas/core/arrays/boolean.py#L252-L535"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pandas.arrays.BooleanArray" title="Permalink to this definition">¶</a></dt>
+<dd><p>Array of boolean (True/False) data with missing values.</p>
+<p>This is a pandas Extension array for boolean data, under the hood
+represented by 2 numpy arrays: a boolean array with the data and
+a boolean array with the mask (True indicating missing).</p>
+<p>BooleanArray implements Kleene logic (sometimes called three-value
+logic) for logical operations. See <a class="reference internal" href="../../user_guide/boolean.html#boolean-kleene"><span class="std std-ref">Kleene logical operations</span></a> for more.</p>
+<p>To construct an BooleanArray from generic array-like input, use
+<a class="reference internal" href="pandas.array.html#pandas.array" title="pandas.array"><code class="xref py py-func docutils literal notranslate"><span class="pre">pandas.array()</span></code></a> specifying <code class="docutils literal notranslate"><span class="pre">dtype="boolean"</span></code> (see examples
+below).</p>
+<div class="versionadded">
+<p><span class="versionmodified added">New in version 1.0.0.</span></p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>BooleanArray is considered experimental. The implementation and
+parts of the API may change without warning.</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>values</strong><span class="classifier">numpy.ndarray</span></dt><dd><p>A 1-d boolean-dtype array with the data.</p>
+</dd>
+<dt><strong>mask</strong><span class="classifier">numpy.ndarray</span></dt><dd><p>A 1-d boolean-dtype array indicating missing values (True
+indicates missing).</p>
+</dd>
+<dt><strong>copy</strong><span class="classifier">bool, default False</span></dt><dd><p>Whether to copy the <cite>values</cite> and <cite>mask</cite> arrays.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt>BooleanArray</dt><dd></dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<p>Create an BooleanArray with <a class="reference internal" href="pandas.array.html#pandas.array" title="pandas.array"><code class="xref py py-func docutils literal notranslate"><span class="pre">pandas.array()</span></code></a>:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">pd</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="kc">True</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">None</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="s2">"boolean"</span><span class="p">)</span>
+<span class="go">&lt;BooleanArray&gt;</span>
+<span class="go">[True, False, &lt;NA&gt;]</span>
+<span class="go">Length: 3, dtype: boolean</span>
+</pre></div>
+</div>
+<p class="rubric">Attributes</p>
+<table class="table">
+<colgroup>
+<col style="width: 44%"/>
+<col style="width: 56%"/>
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><strong>None</strong></p></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Methods</p>
+<table class="table">
+<colgroup>
+<col style="width: 44%"/>
+<col style="width: 56%"/>
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><strong>None</strong></p></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+</section>
+</div>
+
+</main>
+</div>
+</div>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+</body>
+</html>

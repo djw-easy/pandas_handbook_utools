@@ -1,0 +1,146 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="Docutils 0.17.1: http://docutils.sourceforge.net/" name="generator"/>
+<title>pandas.Series.dropna — pandas 1.4.1 documentation</title>
+<link href="../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet"/>
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet"/>
+<link href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css" rel="stylesheet"/>
+<link as="font" crossorigin="" href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2" rel="preload" type="font/woff2"/>
+<link as="font" crossorigin="" href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2" rel="preload" type="font/woff2"/>
+<link href="../../_static/pygments.css" rel="stylesheet" type="text/css">
+<link href="../../_static/styles/pydata-sphinx-theme.css" rel="stylesheet" type="text/css">
+<link href="../../_static/plot_directive.css" rel="stylesheet" type="text/css">
+<link href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" rel="stylesheet" type="text/css">
+<link href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" rel="stylesheet" type="text/css">
+<link href="../../_static/css/getting_started.css" rel="stylesheet" type="text/css"/>
+<link href="../../_static/css/pandas.css" rel="stylesheet" type="text/css"/>
+<link as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf" rel="preload"/>
+<script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+<script src="../../_static/jquery.js"></script>
+<script src="../../_static/underscore.js"></script>
+<script src="../../_static/doctools.js"></script>
+<script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
+<link href="../../_static/favicon.ico" rel="shortcut icon">
+<link href="../../genindex.html" rel="index" title="Index"/>
+<link href="../../search.html" rel="search" title="Search"/>
+<link href="pandas.Series.dt.html" rel="next" title="pandas.Series.dt"/>
+<link href="pandas.Series.droplevel.html" rel="prev" title="pandas.Series.droplevel"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<meta content="en" name="docsearch:language"/>
+<script async="" src="https://www.google-analytics.com/analytics.js"></script>
+<script>
+                        window.ga = window.ga || function () {
+                            (ga.q = ga.q || []).push(arguments) };
+                        ga.l = +new Date;
+                        ga('create', 'UA-27880019-2', 'auto');
+                        ga('set', 'anonymizeIp', true);
+                        ga('send', 'pageview');
+                    </script>
+</link></link></link></link></link></link></head>
+<body data-offset="80" data-spy="scroll" data-target="#bd-toc-nav">
+<div class="container-fluid" id="banner"></div>
+
+<div class="container-xl">
+<div class="row">
+
+
+<main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
+<div>
+<section id="pandas-series-dropna">
+<h1>pandas.Series.dropna<a class="headerlink" href="#pandas-series-dropna" title="Permalink to this headline">¶</a></h1>
+<dl class="py method">
+<dt class="sig sig-object py" id="pandas.Series.dropna">
+<span class="sig-prename descclassname"><span class="pre">Series.</span></span><span class="sig-name descname"><span class="pre">dropna</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">axis</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">inplace</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">how</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/pandas-dev/pandas/blob/v1.4.1/pandas/core/series.py#L5301-L5388"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pandas.Series.dropna" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a new Series with missing values removed.</p>
+<p>See the <a class="reference internal" href="../../user_guide/missing_data.html#missing-data"><span class="std std-ref">User Guide</span></a> for more on which values are
+considered missing, and how to work with missing data.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>axis</strong><span class="classifier">{0 or ‘index’}, default 0</span></dt><dd><p>There is only one axis to drop values from.</p>
+</dd>
+<dt><strong>inplace</strong><span class="classifier">bool, default False</span></dt><dd><p>If True, do operation inplace and return None.</p>
+</dd>
+<dt><strong>how</strong><span class="classifier">str, optional</span></dt><dd><p>Not in use. Kept for compatibility.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt>Series or None</dt><dd><p>Series with NA entries dropped from it or None if <code class="docutils literal notranslate"><span class="pre">inplace=True</span></code>.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<dl class="simple">
+<dt><a class="reference internal" href="pandas.Series.isna.html#pandas.Series.isna" title="pandas.Series.isna"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Series.isna</span></code></a></dt><dd><p>Indicate missing values.</p>
+</dd>
+<dt><a class="reference internal" href="pandas.Series.notna.html#pandas.Series.notna" title="pandas.Series.notna"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Series.notna</span></code></a></dt><dd><p>Indicate existing (non-missing) values.</p>
+</dd>
+<dt><a class="reference internal" href="pandas.Series.fillna.html#pandas.Series.fillna" title="pandas.Series.fillna"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Series.fillna</span></code></a></dt><dd><p>Replace missing values.</p>
+</dd>
+<dt><a class="reference internal" href="pandas.DataFrame.dropna.html#pandas.DataFrame.dropna" title="pandas.DataFrame.dropna"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DataFrame.dropna</span></code></a></dt><dd><p>Drop rows or columns which contain NA values.</p>
+</dd>
+<dt><a class="reference internal" href="pandas.Index.dropna.html#pandas.Index.dropna" title="pandas.Index.dropna"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Index.dropna</span></code></a></dt><dd><p>Drop missing indices.</p>
+</dd>
+</dl>
+</div>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">ser</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="mf">1.</span><span class="p">,</span> <span class="mf">2.</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ser</span>
+<span class="go">0    1.0</span>
+<span class="go">1    2.0</span>
+<span class="go">2    NaN</span>
+<span class="go">dtype: float64</span>
+</pre></div>
+</div>
+<p>Drop NA values from a Series.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">ser</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span>
+<span class="go">0    1.0</span>
+<span class="go">1    2.0</span>
+<span class="go">dtype: float64</span>
+</pre></div>
+</div>
+<p>Keep the Series with valid entries in the same variable.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">ser</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ser</span>
+<span class="go">0    1.0</span>
+<span class="go">1    2.0</span>
+<span class="go">dtype: float64</span>
+</pre></div>
+</div>
+<p>Empty strings are not considered NA values. <code class="docutils literal notranslate"><span class="pre">None</span></code> is considered an
+NA value.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">ser</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">NaN</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">pd</span><span class="o">.</span><span class="n">NaT</span><span class="p">,</span> <span class="s1">''</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="s1">'I stay'</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ser</span>
+<span class="go">0       NaN</span>
+<span class="go">1         2</span>
+<span class="go">2       NaT</span>
+<span class="go">3</span>
+<span class="go">4      None</span>
+<span class="go">5    I stay</span>
+<span class="go">dtype: object</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ser</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span>
+<span class="go">1         2</span>
+<span class="go">3</span>
+<span class="go">5    I stay</span>
+<span class="go">dtype: object</span>
+</pre></div>
+</div>
+</dd></dl>
+</section>
+</div>
+
+</main>
+</div>
+</div>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+</body>
+</html>

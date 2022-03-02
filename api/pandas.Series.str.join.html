@@ -1,0 +1,132 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="Docutils 0.17.1: http://docutils.sourceforge.net/" name="generator"/>
+<title>pandas.Series.str.join — pandas 1.4.1 documentation</title>
+<link href="../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet"/>
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet"/>
+<link href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css" rel="stylesheet"/>
+<link as="font" crossorigin="" href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2" rel="preload" type="font/woff2"/>
+<link as="font" crossorigin="" href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2" rel="preload" type="font/woff2"/>
+<link href="../../_static/pygments.css" rel="stylesheet" type="text/css">
+<link href="../../_static/styles/pydata-sphinx-theme.css" rel="stylesheet" type="text/css">
+<link href="../../_static/plot_directive.css" rel="stylesheet" type="text/css">
+<link href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" rel="stylesheet" type="text/css">
+<link href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" rel="stylesheet" type="text/css">
+<link href="../../_static/css/getting_started.css" rel="stylesheet" type="text/css"/>
+<link href="../../_static/css/pandas.css" rel="stylesheet" type="text/css"/>
+<link as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf" rel="preload"/>
+<script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+<script src="../../_static/jquery.js"></script>
+<script src="../../_static/underscore.js"></script>
+<script src="../../_static/doctools.js"></script>
+<script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
+<link href="../../_static/favicon.ico" rel="shortcut icon">
+<link href="../../genindex.html" rel="index" title="Index"/>
+<link href="../../search.html" rel="search" title="Search"/>
+<link href="pandas.Series.str.len.html" rel="next" title="pandas.Series.str.len"/>
+<link href="pandas.Series.str.index.html" rel="prev" title="pandas.Series.str.index"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<meta content="en" name="docsearch:language"/>
+<script async="" src="https://www.google-analytics.com/analytics.js"></script>
+<script>
+                        window.ga = window.ga || function () {
+                            (ga.q = ga.q || []).push(arguments) };
+                        ga.l = +new Date;
+                        ga('create', 'UA-27880019-2', 'auto');
+                        ga('set', 'anonymizeIp', true);
+                        ga('send', 'pageview');
+                    </script>
+</link></link></link></link></link></link></head>
+<body data-offset="80" data-spy="scroll" data-target="#bd-toc-nav">
+<div class="container-fluid" id="banner"></div>
+
+<div class="container-xl">
+<div class="row">
+
+
+<main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
+<div>
+<section id="pandas-series-str-join">
+<h1>pandas.Series.str.join<a class="headerlink" href="#pandas-series-str-join" title="Permalink to this headline">¶</a></h1>
+<dl class="py method">
+<dt class="sig sig-object py" id="pandas.Series.str.join">
+<span class="sig-prename descclassname"><span class="pre">Series.str.</span></span><span class="sig-name descname"><span class="pre">join</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sep</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/pandas-dev/pandas/blob/v1.4.1/pandas/core/strings/accessor.py#L1023-L1087"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pandas.Series.str.join" title="Permalink to this definition">¶</a></dt>
+<dd><p>Join lists contained as elements in the Series/Index with passed delimiter.</p>
+<p>If the elements of a Series are lists themselves, join the content of these
+lists using the delimiter passed to the function.
+This function is an equivalent to <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str.join" title="(in Python v3.10)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">str.join()</span></code></a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>sep</strong><span class="classifier">str</span></dt><dd><p>Delimiter to use between list entries.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt>Series/Index: object</dt><dd><p>The list entries concatenated by intervening occurrences of the
+delimiter.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-odd">Raises</dt>
+<dd class="field-odd"><dl class="simple">
+<dt>AttributeError</dt><dd><p>If the supplied Series contains neither strings nor lists.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<dl class="simple">
+<dt><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str.join" title="(in Python v3.10)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str.join</span></code></a></dt><dd><p>Standard library version of this method.</p>
+</dd>
+<dt><a class="reference internal" href="pandas.Series.str.split.html#pandas.Series.str.split" title="pandas.Series.str.split"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Series.str.split</span></code></a></dt><dd><p>Split strings around given separator/delimiter.</p>
+</dd>
+</dl>
+</div>
+<p class="rubric">Notes</p>
+<p>If any of the list items is not a string object, the result of the join
+will be <cite>NaN</cite>.</p>
+<p class="rubric">Examples</p>
+<p>Example with a list that contains non-string elements.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">s</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([[</span><span class="s1">'lion'</span><span class="p">,</span> <span class="s1">'elephant'</span><span class="p">,</span> <span class="s1">'zebra'</span><span class="p">],</span>
+<span class="gp">... </span>               <span class="p">[</span><span class="mf">1.1</span><span class="p">,</span> <span class="mf">2.2</span><span class="p">,</span> <span class="mf">3.3</span><span class="p">],</span>
+<span class="gp">... </span>               <span class="p">[</span><span class="s1">'cat'</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="s1">'dog'</span><span class="p">],</span>
+<span class="gp">... </span>               <span class="p">[</span><span class="s1">'cow'</span><span class="p">,</span> <span class="mf">4.5</span><span class="p">,</span> <span class="s1">'goat'</span><span class="p">],</span>
+<span class="gp">... </span>               <span class="p">[</span><span class="s1">'duck'</span><span class="p">,</span> <span class="p">[</span><span class="s1">'swan'</span><span class="p">,</span> <span class="s1">'fish'</span><span class="p">],</span> <span class="s1">'guppy'</span><span class="p">]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">s</span>
+<span class="go">0        [lion, elephant, zebra]</span>
+<span class="go">1                [1.1, 2.2, 3.3]</span>
+<span class="go">2                [cat, nan, dog]</span>
+<span class="go">3               [cow, 4.5, goat]</span>
+<span class="go">4    [duck, [swan, fish], guppy]</span>
+<span class="go">dtype: object</span>
+</pre></div>
+</div>
+<p>Join all lists using a ‘-’. The lists containing object(s) of types other
+than str will produce a NaN.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">s</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s1">'-'</span><span class="p">)</span>
+<span class="go">0    lion-elephant-zebra</span>
+<span class="go">1                    NaN</span>
+<span class="go">2                    NaN</span>
+<span class="go">3                    NaN</span>
+<span class="go">4                    NaN</span>
+<span class="go">dtype: object</span>
+</pre></div>
+</div>
+</dd></dl>
+</section>
+</div>
+
+</main>
+</div>
+</div>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+</body>
+</html>

@@ -1,0 +1,136 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="Docutils 0.17.1: http://docutils.sourceforge.net/" name="generator"/>
+<title>pandas.DataFrame.to_gbq — pandas 1.4.1 documentation</title>
+<link href="../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet"/>
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet"/>
+<link href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css" rel="stylesheet"/>
+<link as="font" crossorigin="" href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2" rel="preload" type="font/woff2"/>
+<link as="font" crossorigin="" href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2" rel="preload" type="font/woff2"/>
+<link href="../../_static/pygments.css" rel="stylesheet" type="text/css">
+<link href="../../_static/styles/pydata-sphinx-theme.css" rel="stylesheet" type="text/css">
+<link href="../../_static/plot_directive.css" rel="stylesheet" type="text/css">
+<link href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" rel="stylesheet" type="text/css">
+<link href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" rel="stylesheet" type="text/css">
+<link href="../../_static/css/getting_started.css" rel="stylesheet" type="text/css"/>
+<link href="../../_static/css/pandas.css" rel="stylesheet" type="text/css"/>
+<link as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf" rel="preload"/>
+<script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+<script src="../../_static/jquery.js"></script>
+<script src="../../_static/underscore.js"></script>
+<script src="../../_static/doctools.js"></script>
+<script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
+<link href="../../_static/favicon.ico" rel="shortcut icon">
+<link href="../../genindex.html" rel="index" title="Index"/>
+<link href="../../search.html" rel="search" title="Search"/>
+<link href="pandas.DataFrame.to_hdf.html" rel="next" title="pandas.DataFrame.to_hdf"/>
+<link href="pandas.DataFrame.to_dict.html" rel="prev" title="pandas.DataFrame.to_dict"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<meta content="en" name="docsearch:language"/>
+<script async="" src="https://www.google-analytics.com/analytics.js"></script>
+<script>
+                        window.ga = window.ga || function () {
+                            (ga.q = ga.q || []).push(arguments) };
+                        ga.l = +new Date;
+                        ga('create', 'UA-27880019-2', 'auto');
+                        ga('set', 'anonymizeIp', true);
+                        ga('send', 'pageview');
+                    </script>
+</link></link></link></link></link></link></head>
+<body data-offset="80" data-spy="scroll" data-target="#bd-toc-nav">
+<div class="container-fluid" id="banner"></div>
+
+<div class="container-xl">
+<div class="row">
+
+
+<main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
+<div>
+<section id="pandas-dataframe-to-gbq">
+<h1>pandas.DataFrame.to_gbq<a class="headerlink" href="#pandas-dataframe-to-gbq" title="Permalink to this headline">¶</a></h1>
+<dl class="py method">
+<dt class="sig sig-object py" id="pandas.DataFrame.to_gbq">
+<span class="sig-prename descclassname"><span class="pre">DataFrame.</span></span><span class="sig-name descname"><span class="pre">to_gbq</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">destination_table</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">project_id</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">chunksize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reauth</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">if_exists</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'fail'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">auth_local_webserver</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">table_schema</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">location</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">progress_bar</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">credentials</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/pandas-dev/pandas/blob/v1.4.1/pandas/core/frame.py#L1962-L2066"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pandas.DataFrame.to_gbq" title="Permalink to this definition">¶</a></dt>
+<dd><p>Write a DataFrame to a Google BigQuery table.</p>
+<p>This function requires the <a class="reference external" href="https://pandas-gbq.readthedocs.io">pandas-gbq package</a>.</p>
+<p>See the <a class="reference external" href="https://pandas-gbq.readthedocs.io/en/latest/howto/authentication.html">How to authenticate with Google BigQuery</a>
+guide for authentication instructions.</p>
+<dl class="field-list">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl>
+<dt><strong>destination_table</strong><span class="classifier">str</span></dt><dd><p>Name of table to be written, in the form <code class="docutils literal notranslate"><span class="pre">dataset.tablename</span></code>.</p>
+</dd>
+<dt><strong>project_id</strong><span class="classifier">str, optional</span></dt><dd><p>Google BigQuery Account project ID. Optional when available from
+the environment.</p>
+</dd>
+<dt><strong>chunksize</strong><span class="classifier">int, optional</span></dt><dd><p>Number of rows to be inserted in each chunk from the dataframe.
+Set to <code class="docutils literal notranslate"><span class="pre">None</span></code> to load the whole dataframe at once.</p>
+</dd>
+<dt><strong>reauth</strong><span class="classifier">bool, default False</span></dt><dd><p>Force Google BigQuery to re-authenticate the user. This is useful
+if multiple accounts are used.</p>
+</dd>
+<dt><strong>if_exists</strong><span class="classifier">str, default ‘fail’</span></dt><dd><p>Behavior when the destination table exists. Value can be one of:</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">'fail'</span></code></dt><dd><p>If table exists raise pandas_gbq.gbq.TableCreationError.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">'replace'</span></code></dt><dd><p>If table exists, drop it, recreate it, and insert data.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">'append'</span></code></dt><dd><p>If table exists, insert data. Create if does not exist.</p>
+</dd>
+</dl>
+</dd>
+<dt><strong>auth_local_webserver</strong><span class="classifier">bool, default False</span></dt><dd><p>Use the <a class="reference external" href="https://google-auth-oauthlib.readthedocs.io/en/latest/reference/google_auth_oauthlib.flow.html#google_auth_oauthlib.flow.InstalledAppFlow.run_local_server">local webserver flow</a> instead of the <a class="reference external" href="https://google-auth-oauthlib.readthedocs.io/en/latest/reference/google_auth_oauthlib.flow.html#google_auth_oauthlib.flow.InstalledAppFlow.run_console">console flow</a>
+when getting user credentials.</p>
+<p><em>New in version 0.2.0 of pandas-gbq</em>.</p>
+</dd>
+<dt><strong>table_schema</strong><span class="classifier">list of dicts, optional</span></dt><dd><p>List of BigQuery table fields to which according DataFrame
+columns conform to, e.g. <code class="docutils literal notranslate"><span class="pre">[{'name':</span> <span class="pre">'col1',</span> <span class="pre">'type':</span>
+<span class="pre">'STRING'},...]</span></code>. If schema is not provided, it will be
+generated according to dtypes of DataFrame columns. See
+BigQuery API documentation on available names of a field.</p>
+<p><em>New in version 0.3.1 of pandas-gbq</em>.</p>
+</dd>
+<dt><strong>location</strong><span class="classifier">str, optional</span></dt><dd><p>Location where the load job should run. See the <a class="reference external" href="https://cloud.google.com/bigquery/docs/dataset-locations">BigQuery locations
+documentation</a> for a
+list of available locations. The location must match that of the
+target dataset.</p>
+<p><em>New in version 0.5.0 of pandas-gbq</em>.</p>
+</dd>
+<dt><strong>progress_bar</strong><span class="classifier">bool, default True</span></dt><dd><p>Use the library <cite>tqdm</cite> to show the progress bar for the upload,
+chunk by chunk.</p>
+<p><em>New in version 0.5.0 of pandas-gbq</em>.</p>
+</dd>
+<dt><strong>credentials</strong><span class="classifier">google.auth.credentials.Credentials, optional</span></dt><dd><p>Credentials for accessing Google APIs. Use this parameter to
+override default credentials, such as to use Compute Engine
+<code class="xref py py-class docutils literal notranslate"><span class="pre">google.auth.compute_engine.Credentials</span></code> or Service
+Account <code class="xref py py-class docutils literal notranslate"><span class="pre">google.oauth2.service_account.Credentials</span></code>
+directly.</p>
+<p><em>New in version 0.8.0 of pandas-gbq</em>.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<dl class="simple">
+<dt><a class="reference external" href="https://pandas-gbq.readthedocs.io/en/latest/api.html#pandas_gbq.to_gbq" title="(in pandas-gbq v0.14.1+1.g97c9aaa)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pandas_gbq.to_gbq</span></code></a></dt><dd><p>This function in the pandas-gbq library.</p>
+</dd>
+<dt><a class="reference internal" href="pandas.read_gbq.html#pandas.read_gbq" title="pandas.read_gbq"><code class="xref py py-obj docutils literal notranslate"><span class="pre">read_gbq</span></code></a></dt><dd><p>Read a DataFrame from Google BigQuery.</p>
+</dd>
+</dl>
+</div>
+</dd></dl>
+</section>
+</div>
+
+</main>
+</div>
+</div>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+</body>
+</html>

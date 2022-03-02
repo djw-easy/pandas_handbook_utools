@@ -1,0 +1,239 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="Docutils 0.17.1: http://docutils.sourceforge.net/" name="generator"/>
+<title>pandas.core.resample.Resampler.fillna — pandas 1.4.1 documentation</title>
+<link href="../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet"/>
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet"/>
+<link href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css" rel="stylesheet"/>
+<link as="font" crossorigin="" href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2" rel="preload" type="font/woff2"/>
+<link as="font" crossorigin="" href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2" rel="preload" type="font/woff2"/>
+<link href="../../_static/pygments.css" rel="stylesheet" type="text/css">
+<link href="../../_static/styles/pydata-sphinx-theme.css" rel="stylesheet" type="text/css">
+<link href="../../_static/plot_directive.css" rel="stylesheet" type="text/css">
+<link href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" rel="stylesheet" type="text/css">
+<link href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" rel="stylesheet" type="text/css">
+<link href="../../_static/css/getting_started.css" rel="stylesheet" type="text/css"/>
+<link href="../../_static/css/pandas.css" rel="stylesheet" type="text/css"/>
+<link as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf" rel="preload"/>
+<script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+<script src="../../_static/jquery.js"></script>
+<script src="../../_static/underscore.js"></script>
+<script src="../../_static/doctools.js"></script>
+<script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
+<link href="../../_static/favicon.ico" rel="shortcut icon">
+<link href="../../genindex.html" rel="index" title="Index"/>
+<link href="../../search.html" rel="search" title="Search"/>
+<link href="pandas.core.resample.Resampler.asfreq.html" rel="next" title="pandas.core.resample.Resampler.asfreq"/>
+<link href="pandas.core.resample.Resampler.nearest.html" rel="prev" title="pandas.core.resample.Resampler.nearest"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<meta content="en" name="docsearch:language"/>
+<script async="" src="https://www.google-analytics.com/analytics.js"></script>
+<script>
+                        window.ga = window.ga || function () {
+                            (ga.q = ga.q || []).push(arguments) };
+                        ga.l = +new Date;
+                        ga('create', 'UA-27880019-2', 'auto');
+                        ga('set', 'anonymizeIp', true);
+                        ga('send', 'pageview');
+                    </script>
+</link></link></link></link></link></link></head>
+<body data-offset="80" data-spy="scroll" data-target="#bd-toc-nav">
+<div class="container-fluid" id="banner"></div>
+
+<div class="container-xl">
+<div class="row">
+
+
+<main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
+<div>
+<section id="pandas-core-resample-resampler-fillna">
+<h1>pandas.core.resample.Resampler.fillna<a class="headerlink" href="#pandas-core-resample-resampler-fillna" title="Permalink to this headline">¶</a></h1>
+<dl class="py method">
+<dt class="sig sig-object py" id="pandas.core.resample.Resampler.fillna">
+<span class="sig-prename descclassname"><span class="pre">Resampler.</span></span><span class="sig-name descname"><span class="pre">fillna</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">method</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">limit</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/pandas-dev/pandas/blob/v1.4.1/pandas/core/resample.py#L718-L876"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pandas.core.resample.Resampler.fillna" title="Permalink to this definition">¶</a></dt>
+<dd><p>Fill missing values introduced by upsampling.</p>
+<p>In statistics, imputation is the process of replacing missing data with
+substituted values <a class="reference internal" href="#r26d0aea2a9b7-1" id="id1">[1]</a>. When resampling data, missing values may
+appear (e.g., when the resampling frequency is higher than the original
+frequency).</p>
+<p>Missing values that existed in the original data will
+not be modified.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>method</strong><span class="classifier">{‘pad’, ‘backfill’, ‘ffill’, ‘bfill’, ‘nearest’}</span></dt><dd><p>Method to use for filling holes in resampled data</p>
+<ul class="simple">
+<li><p>‘pad’ or ‘ffill’: use previous valid observation to fill gap
+(forward fill).</p></li>
+<li><p>‘backfill’ or ‘bfill’: use next valid observation to fill gap.</p></li>
+<li><p>‘nearest’: use nearest valid observation to fill gap.</p></li>
+</ul>
+</dd>
+<dt><strong>limit</strong><span class="classifier">int, optional</span></dt><dd><p>Limit of how many consecutive missing values to fill.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt>Series or DataFrame</dt><dd><p>An upsampled Series or DataFrame with missing values filled.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<dl class="simple">
+<dt><a class="reference internal" href="pandas.core.resample.Resampler.bfill.html#pandas.core.resample.Resampler.bfill" title="pandas.core.resample.Resampler.bfill"><code class="xref py py-obj docutils literal notranslate"><span class="pre">bfill</span></code></a></dt><dd><p>Backward fill NaN values in the resampled data.</p>
+</dd>
+<dt><a class="reference internal" href="pandas.core.resample.Resampler.ffill.html#pandas.core.resample.Resampler.ffill" title="pandas.core.resample.Resampler.ffill"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ffill</span></code></a></dt><dd><p>Forward fill NaN values in the resampled data.</p>
+</dd>
+<dt><a class="reference internal" href="pandas.core.resample.Resampler.nearest.html#pandas.core.resample.Resampler.nearest" title="pandas.core.resample.Resampler.nearest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">nearest</span></code></a></dt><dd><p>Fill NaN values in the resampled data with nearest neighbor starting from center.</p>
+</dd>
+<dt><a class="reference internal" href="pandas.core.resample.Resampler.interpolate.html#pandas.core.resample.Resampler.interpolate" title="pandas.core.resample.Resampler.interpolate"><code class="xref py py-obj docutils literal notranslate"><span class="pre">interpolate</span></code></a></dt><dd><p>Fill NaN values using interpolation.</p>
+</dd>
+<dt><code class="xref py py-obj docutils literal notranslate"><span class="pre">Series.fillna</span></code></dt><dd><p>Fill NaN values in the Series using the specified method, which can be ‘bfill’ and ‘ffill’.</p>
+</dd>
+<dt><code class="xref py py-obj docutils literal notranslate"><span class="pre">DataFrame.fillna</span></code></dt><dd><p>Fill NaN values in the DataFrame using the specified method, which can be ‘bfill’ and ‘ffill’.</p>
+</dd>
+</dl>
+</div>
+<p class="rubric">References</p>
+<dl class="citation">
+<dt class="label" id="r26d0aea2a9b7-1"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
+<dd><p><a class="reference external" href="https://en.wikipedia.org/wiki/Imputation_(statistics">https://en.wikipedia.org/wiki/Imputation_(statistics</a>)</p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<p>Resampling a Series:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">s</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span>
+<span class="gp">... </span>              <span class="n">index</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">date_range</span><span class="p">(</span><span class="s1">'20180101'</span><span class="p">,</span> <span class="n">periods</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">freq</span><span class="o">=</span><span class="s1">'h'</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">s</span>
+<span class="go">2018-01-01 00:00:00    1</span>
+<span class="go">2018-01-01 01:00:00    2</span>
+<span class="go">2018-01-01 02:00:00    3</span>
+<span class="go">Freq: H, dtype: int64</span>
+</pre></div>
+</div>
+<p>Without filling the missing values you get:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">s</span><span class="o">.</span><span class="n">resample</span><span class="p">(</span><span class="s2">"30min"</span><span class="p">)</span><span class="o">.</span><span class="n">asfreq</span><span class="p">()</span>
+<span class="go">2018-01-01 00:00:00    1.0</span>
+<span class="go">2018-01-01 00:30:00    NaN</span>
+<span class="go">2018-01-01 01:00:00    2.0</span>
+<span class="go">2018-01-01 01:30:00    NaN</span>
+<span class="go">2018-01-01 02:00:00    3.0</span>
+<span class="go">Freq: 30T, dtype: float64</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">s</span><span class="o">.</span><span class="n">resample</span><span class="p">(</span><span class="s1">'30min'</span><span class="p">)</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="s2">"backfill"</span><span class="p">)</span>
+<span class="go">2018-01-01 00:00:00    1</span>
+<span class="go">2018-01-01 00:30:00    2</span>
+<span class="go">2018-01-01 01:00:00    2</span>
+<span class="go">2018-01-01 01:30:00    3</span>
+<span class="go">2018-01-01 02:00:00    3</span>
+<span class="go">Freq: 30T, dtype: int64</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">s</span><span class="o">.</span><span class="n">resample</span><span class="p">(</span><span class="s1">'15min'</span><span class="p">)</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="s2">"backfill"</span><span class="p">,</span> <span class="n">limit</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="go">2018-01-01 00:00:00    1.0</span>
+<span class="go">2018-01-01 00:15:00    NaN</span>
+<span class="go">2018-01-01 00:30:00    2.0</span>
+<span class="go">2018-01-01 00:45:00    2.0</span>
+<span class="go">2018-01-01 01:00:00    2.0</span>
+<span class="go">2018-01-01 01:15:00    NaN</span>
+<span class="go">2018-01-01 01:30:00    3.0</span>
+<span class="go">2018-01-01 01:45:00    3.0</span>
+<span class="go">2018-01-01 02:00:00    3.0</span>
+<span class="go">Freq: 15T, dtype: float64</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">s</span><span class="o">.</span><span class="n">resample</span><span class="p">(</span><span class="s1">'30min'</span><span class="p">)</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="s2">"pad"</span><span class="p">)</span>
+<span class="go">2018-01-01 00:00:00    1</span>
+<span class="go">2018-01-01 00:30:00    1</span>
+<span class="go">2018-01-01 01:00:00    2</span>
+<span class="go">2018-01-01 01:30:00    2</span>
+<span class="go">2018-01-01 02:00:00    3</span>
+<span class="go">Freq: 30T, dtype: int64</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">s</span><span class="o">.</span><span class="n">resample</span><span class="p">(</span><span class="s1">'30min'</span><span class="p">)</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="s2">"nearest"</span><span class="p">)</span>
+<span class="go">2018-01-01 00:00:00    1</span>
+<span class="go">2018-01-01 00:30:00    2</span>
+<span class="go">2018-01-01 01:00:00    2</span>
+<span class="go">2018-01-01 01:30:00    3</span>
+<span class="go">2018-01-01 02:00:00    3</span>
+<span class="go">Freq: 30T, dtype: int64</span>
+</pre></div>
+</div>
+<p>Missing values present before the upsampling are not affected.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">sm</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span>
+<span class="gp">... </span>              <span class="n">index</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">date_range</span><span class="p">(</span><span class="s1">'20180101'</span><span class="p">,</span> <span class="n">periods</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">freq</span><span class="o">=</span><span class="s1">'h'</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">sm</span>
+<span class="go">2018-01-01 00:00:00    1.0</span>
+<span class="go">2018-01-01 01:00:00    NaN</span>
+<span class="go">2018-01-01 02:00:00    3.0</span>
+<span class="go">Freq: H, dtype: float64</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">sm</span><span class="o">.</span><span class="n">resample</span><span class="p">(</span><span class="s1">'30min'</span><span class="p">)</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="s1">'backfill'</span><span class="p">)</span>
+<span class="go">2018-01-01 00:00:00    1.0</span>
+<span class="go">2018-01-01 00:30:00    NaN</span>
+<span class="go">2018-01-01 01:00:00    NaN</span>
+<span class="go">2018-01-01 01:30:00    3.0</span>
+<span class="go">2018-01-01 02:00:00    3.0</span>
+<span class="go">Freq: 30T, dtype: float64</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">sm</span><span class="o">.</span><span class="n">resample</span><span class="p">(</span><span class="s1">'30min'</span><span class="p">)</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="s1">'pad'</span><span class="p">)</span>
+<span class="go">2018-01-01 00:00:00    1.0</span>
+<span class="go">2018-01-01 00:30:00    1.0</span>
+<span class="go">2018-01-01 01:00:00    NaN</span>
+<span class="go">2018-01-01 01:30:00    NaN</span>
+<span class="go">2018-01-01 02:00:00    3.0</span>
+<span class="go">Freq: 30T, dtype: float64</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">sm</span><span class="o">.</span><span class="n">resample</span><span class="p">(</span><span class="s1">'30min'</span><span class="p">)</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="s1">'nearest'</span><span class="p">)</span>
+<span class="go">2018-01-01 00:00:00    1.0</span>
+<span class="go">2018-01-01 00:30:00    NaN</span>
+<span class="go">2018-01-01 01:00:00    NaN</span>
+<span class="go">2018-01-01 01:30:00    3.0</span>
+<span class="go">2018-01-01 02:00:00    3.0</span>
+<span class="go">Freq: 30T, dtype: float64</span>
+</pre></div>
+</div>
+<p>DataFrame resampling is done column-wise. All the same options are
+available.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">'a'</span><span class="p">:</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="mi">6</span><span class="p">],</span> <span class="s1">'b'</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">]},</span>
+<span class="gp">... </span>                  <span class="n">index</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">date_range</span><span class="p">(</span><span class="s1">'20180101'</span><span class="p">,</span> <span class="n">periods</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
+<span class="gp">... </span>                                      <span class="n">freq</span><span class="o">=</span><span class="s1">'h'</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">df</span>
+<span class="go">                       a  b</span>
+<span class="go">2018-01-01 00:00:00  2.0  1</span>
+<span class="go">2018-01-01 01:00:00  NaN  3</span>
+<span class="go">2018-01-01 02:00:00  6.0  5</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df</span><span class="o">.</span><span class="n">resample</span><span class="p">(</span><span class="s1">'30min'</span><span class="p">)</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="s2">"bfill"</span><span class="p">)</span>
+<span class="go">                       a  b</span>
+<span class="go">2018-01-01 00:00:00  2.0  1</span>
+<span class="go">2018-01-01 00:30:00  NaN  3</span>
+<span class="go">2018-01-01 01:00:00  NaN  3</span>
+<span class="go">2018-01-01 01:30:00  6.0  5</span>
+<span class="go">2018-01-01 02:00:00  6.0  5</span>
+</pre></div>
+</div>
+</dd></dl>
+</section>
+</div>
+
+</main>
+</div>
+</div>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+</body>
+</html>

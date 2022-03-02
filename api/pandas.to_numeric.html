@@ -1,0 +1,168 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="Docutils 0.17.1: http://docutils.sourceforge.net/" name="generator"/>
+<title>pandas.to_numeric — pandas 1.4.1 documentation</title>
+<link href="../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet"/>
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet"/>
+<link href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css" rel="stylesheet"/>
+<link as="font" crossorigin="" href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2" rel="preload" type="font/woff2"/>
+<link as="font" crossorigin="" href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2" rel="preload" type="font/woff2"/>
+<link href="../../_static/pygments.css" rel="stylesheet" type="text/css">
+<link href="../../_static/styles/pydata-sphinx-theme.css" rel="stylesheet" type="text/css">
+<link href="../../_static/plot_directive.css" rel="stylesheet" type="text/css">
+<link href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" rel="stylesheet" type="text/css">
+<link href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" rel="stylesheet" type="text/css">
+<link href="../../_static/css/getting_started.css" rel="stylesheet" type="text/css"/>
+<link href="../../_static/css/pandas.css" rel="stylesheet" type="text/css"/>
+<link as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf" rel="preload"/>
+<script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+<script src="../../_static/jquery.js"></script>
+<script src="../../_static/underscore.js"></script>
+<script src="../../_static/doctools.js"></script>
+<script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
+<link href="../../_static/favicon.ico" rel="shortcut icon">
+<link href="../../genindex.html" rel="index" title="Index"/>
+<link href="../../search.html" rel="search" title="Search"/>
+<link href="pandas.to_datetime.html" rel="next" title="pandas.to_datetime"/>
+<link href="pandas.notnull.html" rel="prev" title="pandas.notnull"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<meta content="en" name="docsearch:language"/>
+<script async="" src="https://www.google-analytics.com/analytics.js"></script>
+<script>
+                        window.ga = window.ga || function () {
+                            (ga.q = ga.q || []).push(arguments) };
+                        ga.l = +new Date;
+                        ga('create', 'UA-27880019-2', 'auto');
+                        ga('set', 'anonymizeIp', true);
+                        ga('send', 'pageview');
+                    </script>
+</link></link></link></link></link></link></head>
+<body data-offset="80" data-spy="scroll" data-target="#bd-toc-nav">
+<div class="container-fluid" id="banner"></div>
+
+<div class="container-xl">
+<div class="row">
+
+
+<main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
+<div>
+<section id="pandas-to-numeric">
+<h1>pandas.to_numeric<a class="headerlink" href="#pandas-to-numeric" title="Permalink to this headline">¶</a></h1>
+<dl class="py function">
+<dt class="sig sig-object py" id="pandas.to_numeric">
+<span class="sig-prename descclassname"><span class="pre">pandas.</span></span><span class="sig-name descname"><span class="pre">to_numeric</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">arg</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">errors</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'raise'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">downcast</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/pandas-dev/pandas/blob/v1.4.1/pandas/core/tools/numeric.py#L27-L243"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pandas.to_numeric" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert argument to a numeric type.</p>
+<p>The default return dtype is <cite>float64</cite> or <cite>int64</cite>
+depending on the data supplied. Use the <cite>downcast</cite> parameter
+to obtain other dtypes.</p>
+<p>Please note that precision loss may occur if really large numbers
+are passed in. Due to the internal limitations of <cite>ndarray</cite>, if
+numbers smaller than <cite>-9223372036854775808</cite> (np.iinfo(np.int64).min)
+or larger than <cite>18446744073709551615</cite> (np.iinfo(np.uint64).max) are
+passed in, it is very likely they will be converted to float so that
+they can stored in an <cite>ndarray</cite>. These warnings apply similarly to
+<cite>Series</cite> since it internally leverages <cite>ndarray</cite>.</p>
+<dl class="field-list">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl>
+<dt><strong>arg</strong><span class="classifier">scalar, list, tuple, 1-d array, or Series</span></dt><dd><p>Argument to be converted.</p>
+</dd>
+<dt><strong>errors</strong><span class="classifier">{‘ignore’, ‘raise’, ‘coerce’}, default ‘raise’</span></dt><dd><ul class="simple">
+<li><p>If ‘raise’, then invalid parsing will raise an exception.</p></li>
+<li><p>If ‘coerce’, then invalid parsing will be set as NaN.</p></li>
+<li><p>If ‘ignore’, then invalid parsing will return the input.</p></li>
+</ul>
+</dd>
+<dt><strong>downcast</strong><span class="classifier">str, default None</span></dt><dd><p>Can be ‘integer’, ‘signed’, ‘unsigned’, or ‘float’.
+If not None, and if the data has been successfully cast to a
+numerical dtype (or if the data was numeric to begin with),
+downcast that resulting data to the smallest numerical dtype
+possible according to the following rules:</p>
+<ul class="simple">
+<li><p>‘integer’ or ‘signed’: smallest signed int dtype (min.: np.int8)</p></li>
+<li><p>‘unsigned’: smallest unsigned int dtype (min.: np.uint8)</p></li>
+<li><p>‘float’: smallest float dtype (min.: np.float32)</p></li>
+</ul>
+<p>As this behaviour is separate from the core conversion to
+numeric values, any errors raised during the downcasting
+will be surfaced regardless of the value of the ‘errors’ input.</p>
+<p>In addition, downcasting will only occur if the size
+of the resulting data’s dtype is strictly larger than
+the dtype it is to be cast to, so if none of the dtypes
+checked satisfy that specification, no downcasting will be
+performed on the data.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt>ret</dt><dd><p>Numeric if parsing succeeded.
+Return type depends on input. Series if Series, otherwise ndarray.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+
+<p class="rubric">Examples</p>
+<p>Take separate series and convert to numeric, coercing when told to</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">s</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="s1">'1.0'</span><span class="p">,</span> <span class="s1">'2'</span><span class="p">,</span> <span class="o">-</span><span class="mi">3</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pd</span><span class="o">.</span><span class="n">to_numeric</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+<span class="go">0    1.0</span>
+<span class="go">1    2.0</span>
+<span class="go">2   -3.0</span>
+<span class="go">dtype: float64</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pd</span><span class="o">.</span><span class="n">to_numeric</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">downcast</span><span class="o">=</span><span class="s1">'float'</span><span class="p">)</span>
+<span class="go">0    1.0</span>
+<span class="go">1    2.0</span>
+<span class="go">2   -3.0</span>
+<span class="go">dtype: float32</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pd</span><span class="o">.</span><span class="n">to_numeric</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">downcast</span><span class="o">=</span><span class="s1">'signed'</span><span class="p">)</span>
+<span class="go">0    1</span>
+<span class="go">1    2</span>
+<span class="go">2   -3</span>
+<span class="go">dtype: int8</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">s</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="s1">'apple'</span><span class="p">,</span> <span class="s1">'1.0'</span><span class="p">,</span> <span class="s1">'2'</span><span class="p">,</span> <span class="o">-</span><span class="mi">3</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pd</span><span class="o">.</span><span class="n">to_numeric</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">errors</span><span class="o">=</span><span class="s1">'ignore'</span><span class="p">)</span>
+<span class="go">0    apple</span>
+<span class="go">1      1.0</span>
+<span class="go">2        2</span>
+<span class="go">3       -3</span>
+<span class="go">dtype: object</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pd</span><span class="o">.</span><span class="n">to_numeric</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">errors</span><span class="o">=</span><span class="s1">'coerce'</span><span class="p">)</span>
+<span class="go">0    NaN</span>
+<span class="go">1    1.0</span>
+<span class="go">2    2.0</span>
+<span class="go">3   -3.0</span>
+<span class="go">dtype: float64</span>
+</pre></div>
+</div>
+<p>Downcasting of nullable integer and floating dtypes is supported:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">s</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="s2">"Int64"</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pd</span><span class="o">.</span><span class="n">to_numeric</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">downcast</span><span class="o">=</span><span class="s2">"integer"</span><span class="p">)</span>
+<span class="go">0    1</span>
+<span class="go">1    2</span>
+<span class="go">2    3</span>
+<span class="go">dtype: Int8</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">s</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">2.1</span><span class="p">,</span> <span class="mf">3.0</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="s2">"Float64"</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pd</span><span class="o">.</span><span class="n">to_numeric</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">downcast</span><span class="o">=</span><span class="s2">"float"</span><span class="p">)</span>
+<span class="go">0    1.0</span>
+<span class="go">1    2.1</span>
+<span class="go">2    3.0</span>
+<span class="go">dtype: Float32</span>
+</pre></div>
+</div>
+</dd></dl>
+</section>
+</div>
+
+</main>
+</div>
+</div>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+</body>
+</html>

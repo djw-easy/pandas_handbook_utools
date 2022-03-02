@@ -1,0 +1,205 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="Docutils 0.17.1: http://docutils.sourceforge.net/" name="generator"/>
+<title>pandas.Interval — pandas 1.4.1 documentation</title>
+<link href="../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet"/>
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet"/>
+<link href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css" rel="stylesheet"/>
+<link as="font" crossorigin="" href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2" rel="preload" type="font/woff2"/>
+<link as="font" crossorigin="" href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2" rel="preload" type="font/woff2"/>
+<link href="../../_static/pygments.css" rel="stylesheet" type="text/css">
+<link href="../../_static/styles/pydata-sphinx-theme.css" rel="stylesheet" type="text/css">
+<link href="../../_static/plot_directive.css" rel="stylesheet" type="text/css">
+<link href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" rel="stylesheet" type="text/css">
+<link href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" rel="stylesheet" type="text/css">
+<link href="../../_static/css/getting_started.css" rel="stylesheet" type="text/css"/>
+<link href="../../_static/css/pandas.css" rel="stylesheet" type="text/css"/>
+<link as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf" rel="preload"/>
+<script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+<script src="../../_static/jquery.js"></script>
+<script src="../../_static/underscore.js"></script>
+<script src="../../_static/doctools.js"></script>
+<script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
+<link href="../../_static/favicon.ico" rel="shortcut icon">
+<link href="../../genindex.html" rel="index" title="Index"/>
+<link href="../../search.html" rel="search" title="Search"/>
+<link href="pandas.Interval.closed.html" rel="next" title="pandas.Interval.closed"/>
+<link href="pandas.PeriodDtype.freq.html" rel="prev" title="pandas.PeriodDtype.freq"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<meta content="en" name="docsearch:language"/>
+<script async="" src="https://www.google-analytics.com/analytics.js"></script>
+<script>
+                        window.ga = window.ga || function () {
+                            (ga.q = ga.q || []).push(arguments) };
+                        ga.l = +new Date;
+                        ga('create', 'UA-27880019-2', 'auto');
+                        ga('set', 'anonymizeIp', true);
+                        ga('send', 'pageview');
+                    </script>
+</link></link></link></link></link></link></head>
+<body data-offset="80" data-spy="scroll" data-target="#bd-toc-nav">
+<div class="container-fluid" id="banner"></div>
+
+<div class="container-xl">
+<div class="row">
+
+
+<main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
+<div>
+<section id="pandas-interval">
+<h1>pandas.Interval<a class="headerlink" href="#pandas-interval" title="Permalink to this headline">¶</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="pandas.Interval">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pandas.</span></span><span class="sig-name descname"><span class="pre">Interval</span></span><a class="headerlink" href="#pandas.Interval" title="Permalink to this definition">¶</a></dt>
+<dd><p>Immutable object implementing an Interval, a bounded slice-like interval.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>left</strong><span class="classifier">orderable scalar</span></dt><dd><p>Left bound for the interval.</p>
+</dd>
+<dt><strong>right</strong><span class="classifier">orderable scalar</span></dt><dd><p>Right bound for the interval.</p>
+</dd>
+<dt><strong>closed</strong><span class="classifier">{‘right’, ‘left’, ‘both’, ‘neither’}, default ‘right’</span></dt><dd><p>Whether the interval is closed on the left-side, right-side, both or
+neither. See the Notes for more detailed explanation.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<dl class="simple">
+<dt><a class="reference internal" href="pandas.IntervalIndex.html#pandas.IntervalIndex" title="pandas.IntervalIndex"><code class="xref py py-obj docutils literal notranslate"><span class="pre">IntervalIndex</span></code></a></dt><dd><p>An Index of Interval objects that are all closed on the same side.</p>
+</dd>
+<dt><a class="reference internal" href="pandas.cut.html#pandas.cut" title="pandas.cut"><code class="xref py py-obj docutils literal notranslate"><span class="pre">cut</span></code></a></dt><dd><p>Convert continuous data into discrete bins (Categorical of Interval objects).</p>
+</dd>
+<dt><a class="reference internal" href="pandas.qcut.html#pandas.qcut" title="pandas.qcut"><code class="xref py py-obj docutils literal notranslate"><span class="pre">qcut</span></code></a></dt><dd><p>Convert continuous data into bins (Categorical of Interval objects) based on quantiles.</p>
+</dd>
+<dt><a class="reference internal" href="pandas.Period.html#pandas.Period" title="pandas.Period"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Period</span></code></a></dt><dd><p>Represents a period of time.</p>
+</dd>
+</dl>
+</div>
+<p class="rubric">Notes</p>
+<p>The parameters <cite>left</cite> and <cite>right</cite> must be from the same type, you must be
+able to compare them and they must satisfy <code class="docutils literal notranslate"><span class="pre">left</span> <span class="pre">&lt;=</span> <span class="pre">right</span></code>.</p>
+<p>A closed interval (in mathematics denoted by square brackets) contains
+its endpoints, i.e. the closed interval <code class="docutils literal notranslate"><span class="pre">[0,</span> <span class="pre">5]</span></code> is characterized by the
+conditions <code class="docutils literal notranslate"><span class="pre">0</span> <span class="pre">&lt;=</span> <span class="pre">x</span> <span class="pre">&lt;=</span> <span class="pre">5</span></code>. This is what <code class="docutils literal notranslate"><span class="pre">closed='both'</span></code> stands for.
+An open interval (in mathematics denoted by parentheses) does not contain
+its endpoints, i.e. the open interval <code class="docutils literal notranslate"><span class="pre">(0,</span> <span class="pre">5)</span></code> is characterized by the
+conditions <code class="docutils literal notranslate"><span class="pre">0</span> <span class="pre">&lt;</span> <span class="pre">x</span> <span class="pre">&lt;</span> <span class="pre">5</span></code>. This is what <code class="docutils literal notranslate"><span class="pre">closed='neither'</span></code> stands for.
+Intervals can also be half-open or half-closed, i.e. <code class="docutils literal notranslate"><span class="pre">[0,</span> <span class="pre">5)</span></code> is
+described by <code class="docutils literal notranslate"><span class="pre">0</span> <span class="pre">&lt;=</span> <span class="pre">x</span> <span class="pre">&lt;</span> <span class="pre">5</span></code> (<code class="docutils literal notranslate"><span class="pre">closed='left'</span></code>) and <code class="docutils literal notranslate"><span class="pre">(0,</span> <span class="pre">5]</span></code> is
+described by <code class="docutils literal notranslate"><span class="pre">0</span> <span class="pre">&lt;</span> <span class="pre">x</span> <span class="pre">&lt;=</span> <span class="pre">5</span></code> (<code class="docutils literal notranslate"><span class="pre">closed='right'</span></code>).</p>
+<p class="rubric">Examples</p>
+<p>It is possible to build Intervals of different types, like numeric ones:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">iv</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Interval</span><span class="p">(</span><span class="n">left</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">right</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">iv</span>
+<span class="go">Interval(0, 5, closed='right')</span>
+</pre></div>
+</div>
+<p>You can check if an element belongs to it</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="mf">2.5</span> <span class="ow">in</span> <span class="n">iv</span>
+<span class="go">True</span>
+</pre></div>
+</div>
+<p>You can test the bounds (<code class="docutils literal notranslate"><span class="pre">closed='right'</span></code>, so <code class="docutils literal notranslate"><span class="pre">0</span> <span class="pre">&lt;</span> <span class="pre">x</span> <span class="pre">&lt;=</span> <span class="pre">5</span></code>):</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="mi">0</span> <span class="ow">in</span> <span class="n">iv</span>
+<span class="go">False</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="mi">5</span> <span class="ow">in</span> <span class="n">iv</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="mf">0.0001</span> <span class="ow">in</span> <span class="n">iv</span>
+<span class="go">True</span>
+</pre></div>
+</div>
+<p>Calculate its length</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">iv</span><span class="o">.</span><span class="n">length</span>
+<span class="go">5</span>
+</pre></div>
+</div>
+<p>You can operate with <cite>+</cite> and <cite>*</cite> over an Interval and the operation
+is applied to each of its bounds, so the result depends on the type
+of the bound elements</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">shifted_iv</span> <span class="o">=</span> <span class="n">iv</span> <span class="o">+</span> <span class="mi">3</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">shifted_iv</span>
+<span class="go">Interval(3, 8, closed='right')</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">extended_iv</span> <span class="o">=</span> <span class="n">iv</span> <span class="o">*</span> <span class="mf">10.0</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">extended_iv</span>
+<span class="go">Interval(0.0, 50.0, closed='right')</span>
+</pre></div>
+</div>
+<p>To create a time interval you can use Timestamps as the bounds</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">year_2017</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Interval</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">Timestamp</span><span class="p">(</span><span class="s1">'2017-01-01 00:00:00'</span><span class="p">),</span>
+<span class="gp">... </span>                        <span class="n">pd</span><span class="o">.</span><span class="n">Timestamp</span><span class="p">(</span><span class="s1">'2018-01-01 00:00:00'</span><span class="p">),</span>
+<span class="gp">... </span>                        <span class="n">closed</span><span class="o">=</span><span class="s1">'left'</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pd</span><span class="o">.</span><span class="n">Timestamp</span><span class="p">(</span><span class="s1">'2017-01-01 00:00'</span><span class="p">)</span> <span class="ow">in</span> <span class="n">year_2017</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">year_2017</span><span class="o">.</span><span class="n">length</span>
+<span class="go">Timedelta('365 days 00:00:00')</span>
+</pre></div>
+</div>
+<p class="rubric">Attributes</p>
+<table class="longtable table autosummary">
+<colgroup>
+<col style="width: 10%"/>
+<col style="width: 90%"/>
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="pandas.Interval.closed.html#pandas.Interval.closed" title="pandas.Interval.closed"><code class="xref py py-obj docutils literal notranslate"><span class="pre">closed</span></code></a></p></td>
+<td><p>Whether the interval is closed on the left-side, right-side, both or neither.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="pandas.Interval.closed_left.html#pandas.Interval.closed_left" title="pandas.Interval.closed_left"><code class="xref py py-obj docutils literal notranslate"><span class="pre">closed_left</span></code></a></p></td>
+<td><p>Check if the interval is closed on the left side.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="pandas.Interval.closed_right.html#pandas.Interval.closed_right" title="pandas.Interval.closed_right"><code class="xref py py-obj docutils literal notranslate"><span class="pre">closed_right</span></code></a></p></td>
+<td><p>Check if the interval is closed on the right side.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="pandas.Interval.is_empty.html#pandas.Interval.is_empty" title="pandas.Interval.is_empty"><code class="xref py py-obj docutils literal notranslate"><span class="pre">is_empty</span></code></a></p></td>
+<td><p>Indicates if an interval is empty, meaning it contains no points.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="pandas.Interval.left.html#pandas.Interval.left" title="pandas.Interval.left"><code class="xref py py-obj docutils literal notranslate"><span class="pre">left</span></code></a></p></td>
+<td><p>Left bound for the interval.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="pandas.Interval.length.html#pandas.Interval.length" title="pandas.Interval.length"><code class="xref py py-obj docutils literal notranslate"><span class="pre">length</span></code></a></p></td>
+<td><p>Return the length of the Interval.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="pandas.Interval.mid.html#pandas.Interval.mid" title="pandas.Interval.mid"><code class="xref py py-obj docutils literal notranslate"><span class="pre">mid</span></code></a></p></td>
+<td><p>Return the midpoint of the Interval.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="pandas.Interval.open_left.html#pandas.Interval.open_left" title="pandas.Interval.open_left"><code class="xref py py-obj docutils literal notranslate"><span class="pre">open_left</span></code></a></p></td>
+<td><p>Check if the interval is open on the left side.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="pandas.Interval.open_right.html#pandas.Interval.open_right" title="pandas.Interval.open_right"><code class="xref py py-obj docutils literal notranslate"><span class="pre">open_right</span></code></a></p></td>
+<td><p>Check if the interval is open on the right side.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="pandas.Interval.right.html#pandas.Interval.right" title="pandas.Interval.right"><code class="xref py py-obj docutils literal notranslate"><span class="pre">right</span></code></a></p></td>
+<td><p>Right bound for the interval.</p></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Methods</p>
+<table class="longtable table autosummary">
+<colgroup>
+<col style="width: 10%"/>
+<col style="width: 90%"/>
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="pandas.Interval.overlaps.html#pandas.Interval.overlaps" title="pandas.Interval.overlaps"><code class="xref py py-obj docutils literal notranslate"><span class="pre">overlaps</span></code></a></p></td>
+<td><p>Check whether two Interval objects overlap.</p></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+</section>
+</div>
+
+</main>
+</div>
+</div>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+</body>
+</html>

@@ -1,0 +1,222 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="Docutils 0.17.1: http://docutils.sourceforge.net/" name="generator"/>
+<title>pandas.Series.str.isalpha — pandas 1.4.1 documentation</title>
+<link href="../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet"/>
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet"/>
+<link href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css" rel="stylesheet"/>
+<link as="font" crossorigin="" href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2" rel="preload" type="font/woff2"/>
+<link as="font" crossorigin="" href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2" rel="preload" type="font/woff2"/>
+<link href="../../_static/pygments.css" rel="stylesheet" type="text/css">
+<link href="../../_static/styles/pydata-sphinx-theme.css" rel="stylesheet" type="text/css">
+<link href="../../_static/plot_directive.css" rel="stylesheet" type="text/css">
+<link href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" rel="stylesheet" type="text/css">
+<link href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" rel="stylesheet" type="text/css">
+<link href="../../_static/css/getting_started.css" rel="stylesheet" type="text/css"/>
+<link href="../../_static/css/pandas.css" rel="stylesheet" type="text/css"/>
+<link as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf" rel="preload"/>
+<script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+<script src="../../_static/jquery.js"></script>
+<script src="../../_static/underscore.js"></script>
+<script src="../../_static/doctools.js"></script>
+<script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
+<link href="../../_static/favicon.ico" rel="shortcut icon">
+<link href="../../genindex.html" rel="index" title="Index"/>
+<link href="../../search.html" rel="search" title="Search"/>
+<link href="pandas.Series.str.isdigit.html" rel="next" title="pandas.Series.str.isdigit"/>
+<link href="pandas.Series.str.isalnum.html" rel="prev" title="pandas.Series.str.isalnum"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<meta content="en" name="docsearch:language"/>
+<script async="" src="https://www.google-analytics.com/analytics.js"></script>
+<script>
+                        window.ga = window.ga || function () {
+                            (ga.q = ga.q || []).push(arguments) };
+                        ga.l = +new Date;
+                        ga('create', 'UA-27880019-2', 'auto');
+                        ga('set', 'anonymizeIp', true);
+                        ga('send', 'pageview');
+                    </script>
+</link></link></link></link></link></link></head>
+<body data-offset="80" data-spy="scroll" data-target="#bd-toc-nav">
+<div class="container-fluid" id="banner"></div>
+
+<div class="container-xl">
+<div class="row">
+
+
+<main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
+<div>
+<section id="pandas-series-str-isalpha">
+<h1>pandas.Series.str.isalpha<a class="headerlink" href="#pandas-series-str-isalpha" title="Permalink to this headline">¶</a></h1>
+<dl class="py method">
+<dt class="sig sig-object py" id="pandas.Series.str.isalpha">
+<span class="sig-prename descclassname"><span class="pre">Series.str.</span></span><span class="sig-name descname"><span class="pre">isalpha</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/pandas-dev/pandas/blob/v1.4.1/pandas/core/strings/accessor.py#L134-L137"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pandas.Series.str.isalpha" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check whether all characters in each string are alphabetic.</p>
+<p>This is equivalent to running the Python string method
+<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str.isalpha" title="(in Python v3.10)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">str.isalpha()</span></code></a> for each element of the Series/Index. If a string
+has zero characters, <code class="docutils literal notranslate"><span class="pre">False</span></code> is returned for that check.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><dl class="simple">
+<dt>Series or Index of bool</dt><dd><p>Series or Index of boolean values with the same length as the original
+Series/Index.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<dl class="simple">
+<dt><a class="reference internal" href="#pandas.Series.str.isalpha" title="pandas.Series.str.isalpha"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Series.str.isalpha</span></code></a></dt><dd><p>Check whether all characters are alphabetic.</p>
+</dd>
+<dt><a class="reference internal" href="pandas.Series.str.isnumeric.html#pandas.Series.str.isnumeric" title="pandas.Series.str.isnumeric"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Series.str.isnumeric</span></code></a></dt><dd><p>Check whether all characters are numeric.</p>
+</dd>
+<dt><a class="reference internal" href="pandas.Series.str.isalnum.html#pandas.Series.str.isalnum" title="pandas.Series.str.isalnum"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Series.str.isalnum</span></code></a></dt><dd><p>Check whether all characters are alphanumeric.</p>
+</dd>
+<dt><a class="reference internal" href="pandas.Series.str.isdigit.html#pandas.Series.str.isdigit" title="pandas.Series.str.isdigit"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Series.str.isdigit</span></code></a></dt><dd><p>Check whether all characters are digits.</p>
+</dd>
+<dt><a class="reference internal" href="pandas.Series.str.isdecimal.html#pandas.Series.str.isdecimal" title="pandas.Series.str.isdecimal"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Series.str.isdecimal</span></code></a></dt><dd><p>Check whether all characters are decimal.</p>
+</dd>
+<dt><a class="reference internal" href="pandas.Series.str.isspace.html#pandas.Series.str.isspace" title="pandas.Series.str.isspace"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Series.str.isspace</span></code></a></dt><dd><p>Check whether all characters are whitespace.</p>
+</dd>
+<dt><a class="reference internal" href="pandas.Series.str.islower.html#pandas.Series.str.islower" title="pandas.Series.str.islower"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Series.str.islower</span></code></a></dt><dd><p>Check whether all characters are lowercase.</p>
+</dd>
+<dt><a class="reference internal" href="pandas.Series.str.isupper.html#pandas.Series.str.isupper" title="pandas.Series.str.isupper"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Series.str.isupper</span></code></a></dt><dd><p>Check whether all characters are uppercase.</p>
+</dd>
+<dt><a class="reference internal" href="pandas.Series.str.istitle.html#pandas.Series.str.istitle" title="pandas.Series.str.istitle"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Series.str.istitle</span></code></a></dt><dd><p>Check whether all characters are titlecase.</p>
+</dd>
+</dl>
+</div>
+<p class="rubric">Examples</p>
+<p><strong>Checks for Alphabetic and Numeric Characters</strong></p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">s1</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="s1">'one'</span><span class="p">,</span> <span class="s1">'one1'</span><span class="p">,</span> <span class="s1">'1'</span><span class="p">,</span> <span class="s1">''</span><span class="p">])</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">s1</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">isalpha</span><span class="p">()</span>
+<span class="go">0     True</span>
+<span class="go">1    False</span>
+<span class="go">2    False</span>
+<span class="go">3    False</span>
+<span class="go">dtype: bool</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">s1</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">isnumeric</span><span class="p">()</span>
+<span class="go">0    False</span>
+<span class="go">1    False</span>
+<span class="go">2     True</span>
+<span class="go">3    False</span>
+<span class="go">dtype: bool</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">s1</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">isalnum</span><span class="p">()</span>
+<span class="go">0     True</span>
+<span class="go">1     True</span>
+<span class="go">2     True</span>
+<span class="go">3    False</span>
+<span class="go">dtype: bool</span>
+</pre></div>
+</div>
+<p>Note that checks against characters mixed with any additional punctuation
+or whitespace will evaluate to false for an alphanumeric check.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">s2</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="s1">'A B'</span><span class="p">,</span> <span class="s1">'1.5'</span><span class="p">,</span> <span class="s1">'3,000'</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">s2</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">isalnum</span><span class="p">()</span>
+<span class="go">0    False</span>
+<span class="go">1    False</span>
+<span class="go">2    False</span>
+<span class="go">dtype: bool</span>
+</pre></div>
+</div>
+<p><strong>More Detailed Checks for Numeric Characters</strong></p>
+<p>There are several different but overlapping sets of numeric characters that
+can be checked for.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">s3</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="s1">'23'</span><span class="p">,</span> <span class="s1">'³'</span><span class="p">,</span> <span class="s1">'⅕'</span><span class="p">,</span> <span class="s1">''</span><span class="p">])</span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">s3.str.isdecimal</span></code> method checks for characters used to form numbers
+in base 10.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">s3</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">isdecimal</span><span class="p">()</span>
+<span class="go">0     True</span>
+<span class="go">1    False</span>
+<span class="go">2    False</span>
+<span class="go">3    False</span>
+<span class="go">dtype: bool</span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">s.str.isdigit</span></code> method is the same as <code class="docutils literal notranslate"><span class="pre">s3.str.isdecimal</span></code> but also
+includes special digits, like superscripted and subscripted digits in
+unicode.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">s3</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">isdigit</span><span class="p">()</span>
+<span class="go">0     True</span>
+<span class="go">1     True</span>
+<span class="go">2    False</span>
+<span class="go">3    False</span>
+<span class="go">dtype: bool</span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">s.str.isnumeric</span></code> method is the same as <code class="docutils literal notranslate"><span class="pre">s3.str.isdigit</span></code> but also
+includes other characters that can represent quantities such as unicode
+fractions.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">s3</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">isnumeric</span><span class="p">()</span>
+<span class="go">0     True</span>
+<span class="go">1     True</span>
+<span class="go">2     True</span>
+<span class="go">3    False</span>
+<span class="go">dtype: bool</span>
+</pre></div>
+</div>
+<p><strong>Checks for Whitespace</strong></p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">s4</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="s1">' '</span><span class="p">,</span> <span class="s1">'</span><span class="se">\t\r\n</span><span class="s1"> '</span><span class="p">,</span> <span class="s1">''</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">s4</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">isspace</span><span class="p">()</span>
+<span class="go">0     True</span>
+<span class="go">1     True</span>
+<span class="go">2    False</span>
+<span class="go">dtype: bool</span>
+</pre></div>
+</div>
+<p><strong>Checks for Character Case</strong></p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">s5</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="s1">'leopard'</span><span class="p">,</span> <span class="s1">'Golden Eagle'</span><span class="p">,</span> <span class="s1">'SNAKE'</span><span class="p">,</span> <span class="s1">''</span><span class="p">])</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">s5</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">islower</span><span class="p">()</span>
+<span class="go">0     True</span>
+<span class="go">1    False</span>
+<span class="go">2    False</span>
+<span class="go">3    False</span>
+<span class="go">dtype: bool</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">s5</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">isupper</span><span class="p">()</span>
+<span class="go">0    False</span>
+<span class="go">1    False</span>
+<span class="go">2     True</span>
+<span class="go">3    False</span>
+<span class="go">dtype: bool</span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">s5.str.istitle</span></code> method checks for whether all words are in title
+case (whether only the first letter of each word is capitalized). Words are
+assumed to be as any sequence of non-numeric characters separated by
+whitespace characters.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">s5</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">istitle</span><span class="p">()</span>
+<span class="go">0    False</span>
+<span class="go">1     True</span>
+<span class="go">2    False</span>
+<span class="go">3    False</span>
+<span class="go">dtype: bool</span>
+</pre></div>
+</div>
+</dd></dl>
+</section>
+</div>
+
+</main>
+</div>
+</div>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+</body>
+</html>

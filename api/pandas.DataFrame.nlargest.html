@@ -1,0 +1,175 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="Docutils 0.17.1: http://docutils.sourceforge.net/" name="generator"/>
+<title>pandas.DataFrame.nlargest — pandas 1.4.1 documentation</title>
+<link href="../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet"/>
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet"/>
+<link href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css" rel="stylesheet"/>
+<link as="font" crossorigin="" href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2" rel="preload" type="font/woff2"/>
+<link as="font" crossorigin="" href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2" rel="preload" type="font/woff2"/>
+<link href="../../_static/pygments.css" rel="stylesheet" type="text/css">
+<link href="../../_static/styles/pydata-sphinx-theme.css" rel="stylesheet" type="text/css">
+<link href="../../_static/plot_directive.css" rel="stylesheet" type="text/css">
+<link href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" rel="stylesheet" type="text/css">
+<link href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" rel="stylesheet" type="text/css">
+<link href="../../_static/css/getting_started.css" rel="stylesheet" type="text/css"/>
+<link href="../../_static/css/pandas.css" rel="stylesheet" type="text/css"/>
+<link as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf" rel="preload"/>
+<script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+<script src="../../_static/jquery.js"></script>
+<script src="../../_static/underscore.js"></script>
+<script src="../../_static/doctools.js"></script>
+<script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
+<link href="../../_static/favicon.ico" rel="shortcut icon">
+<link href="../../genindex.html" rel="index" title="Index"/>
+<link href="../../search.html" rel="search" title="Search"/>
+<link href="pandas.DataFrame.notna.html" rel="next" title="pandas.DataFrame.notna"/>
+<link href="pandas.DataFrame.ne.html" rel="prev" title="pandas.DataFrame.ne"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<meta content="en" name="docsearch:language"/>
+<script async="" src="https://www.google-analytics.com/analytics.js"></script>
+<script>
+                        window.ga = window.ga || function () {
+                            (ga.q = ga.q || []).push(arguments) };
+                        ga.l = +new Date;
+                        ga('create', 'UA-27880019-2', 'auto');
+                        ga('set', 'anonymizeIp', true);
+                        ga('send', 'pageview');
+                    </script>
+</link></link></link></link></link></link></head>
+<body data-offset="80" data-spy="scroll" data-target="#bd-toc-nav">
+<div class="container-fluid" id="banner"></div>
+
+<div class="container-xl">
+<div class="row">
+
+
+<main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
+<div>
+<section id="pandas-dataframe-nlargest">
+<h1>pandas.DataFrame.nlargest<a class="headerlink" href="#pandas-dataframe-nlargest" title="Permalink to this headline">¶</a></h1>
+<dl class="py method">
+<dt class="sig sig-object py" id="pandas.DataFrame.nlargest">
+<span class="sig-prename descclassname"><span class="pre">DataFrame.</span></span><span class="sig-name descname"><span class="pre">nlargest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">columns</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">keep</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'first'</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/pandas-dev/pandas/blob/v1.4.1/pandas/core/frame.py#L6579-L6684"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pandas.DataFrame.nlargest" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the first <cite>n</cite> rows ordered by <cite>columns</cite> in descending order.</p>
+<p>Return the first <cite>n</cite> rows with the largest values in <cite>columns</cite>, in
+descending order. The columns that are not specified are returned as
+well, but not used for ordering.</p>
+<p>This method is equivalent to
+<code class="docutils literal notranslate"><span class="pre">df.sort_values(columns,</span> <span class="pre">ascending=False).head(n)</span></code>, but more
+performant.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>n</strong><span class="classifier">int</span></dt><dd><p>Number of rows to return.</p>
+</dd>
+<dt><strong>columns</strong><span class="classifier">label or list of labels</span></dt><dd><p>Column label(s) to order by.</p>
+</dd>
+<dt><strong>keep</strong><span class="classifier">{‘first’, ‘last’, ‘all’}, default ‘first’</span></dt><dd><p>Where there are duplicate values:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">first</span></code> : prioritize the first occurrence(s)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">last</span></code> : prioritize the last occurrence(s)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">all</span></code> : do not drop any duplicates, even it means
+selecting more than <cite>n</cite> items.</p></li>
+</ul>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt>DataFrame</dt><dd><p>The first <cite>n</cite> rows ordered by the given columns in descending
+order.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<dl class="simple">
+<dt><a class="reference internal" href="pandas.DataFrame.nsmallest.html#pandas.DataFrame.nsmallest" title="pandas.DataFrame.nsmallest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DataFrame.nsmallest</span></code></a></dt><dd><p>Return the first <cite>n</cite> rows ordered by <cite>columns</cite> in ascending order.</p>
+</dd>
+<dt><a class="reference internal" href="pandas.DataFrame.sort_values.html#pandas.DataFrame.sort_values" title="pandas.DataFrame.sort_values"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DataFrame.sort_values</span></code></a></dt><dd><p>Sort DataFrame by the values.</p>
+</dd>
+<dt><a class="reference internal" href="pandas.DataFrame.head.html#pandas.DataFrame.head" title="pandas.DataFrame.head"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DataFrame.head</span></code></a></dt><dd><p>Return the first <cite>n</cite> rows without re-ordering.</p>
+</dd>
+</dl>
+</div>
+<p class="rubric">Notes</p>
+<p>This function cannot be used with all column types. For example, when
+specifying columns with <cite>object</cite> or <cite>category</cite> dtypes, <code class="docutils literal notranslate"><span class="pre">TypeError</span></code> is
+raised.</p>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">'population'</span><span class="p">:</span> <span class="p">[</span><span class="mi">59000000</span><span class="p">,</span> <span class="mi">65000000</span><span class="p">,</span> <span class="mi">434000</span><span class="p">,</span>
+<span class="gp">... </span>                                  <span class="mi">434000</span><span class="p">,</span> <span class="mi">434000</span><span class="p">,</span> <span class="mi">337000</span><span class="p">,</span> <span class="mi">11300</span><span class="p">,</span>
+<span class="gp">... </span>                                  <span class="mi">11300</span><span class="p">,</span> <span class="mi">11300</span><span class="p">],</span>
+<span class="gp">... </span>                   <span class="s1">'GDP'</span><span class="p">:</span> <span class="p">[</span><span class="mi">1937894</span><span class="p">,</span> <span class="mi">2583560</span> <span class="p">,</span> <span class="mi">12011</span><span class="p">,</span> <span class="mi">4520</span><span class="p">,</span> <span class="mi">12128</span><span class="p">,</span>
+<span class="gp">... </span>                           <span class="mi">17036</span><span class="p">,</span> <span class="mi">182</span><span class="p">,</span> <span class="mi">38</span><span class="p">,</span> <span class="mi">311</span><span class="p">],</span>
+<span class="gp">... </span>                   <span class="s1">'alpha-2'</span><span class="p">:</span> <span class="p">[</span><span class="s2">"IT"</span><span class="p">,</span> <span class="s2">"FR"</span><span class="p">,</span> <span class="s2">"MT"</span><span class="p">,</span> <span class="s2">"MV"</span><span class="p">,</span> <span class="s2">"BN"</span><span class="p">,</span>
+<span class="gp">... </span>                               <span class="s2">"IS"</span><span class="p">,</span> <span class="s2">"NR"</span><span class="p">,</span> <span class="s2">"TV"</span><span class="p">,</span> <span class="s2">"AI"</span><span class="p">]},</span>
+<span class="gp">... </span>                  <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="s2">"Italy"</span><span class="p">,</span> <span class="s2">"France"</span><span class="p">,</span> <span class="s2">"Malta"</span><span class="p">,</span>
+<span class="gp">... </span>                         <span class="s2">"Maldives"</span><span class="p">,</span> <span class="s2">"Brunei"</span><span class="p">,</span> <span class="s2">"Iceland"</span><span class="p">,</span>
+<span class="gp">... </span>                         <span class="s2">"Nauru"</span><span class="p">,</span> <span class="s2">"Tuvalu"</span><span class="p">,</span> <span class="s2">"Anguilla"</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">df</span>
+<span class="go">          population      GDP alpha-2</span>
+<span class="go">Italy       59000000  1937894      IT</span>
+<span class="go">France      65000000  2583560      FR</span>
+<span class="go">Malta         434000    12011      MT</span>
+<span class="go">Maldives      434000     4520      MV</span>
+<span class="go">Brunei        434000    12128      BN</span>
+<span class="go">Iceland       337000    17036      IS</span>
+<span class="go">Nauru          11300      182      NR</span>
+<span class="go">Tuvalu         11300       38      TV</span>
+<span class="go">Anguilla       11300      311      AI</span>
+</pre></div>
+</div>
+<p>In the following example, we will use <code class="docutils literal notranslate"><span class="pre">nlargest</span></code> to select the three
+rows having the largest values in column “population”.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df</span><span class="o">.</span><span class="n">nlargest</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="s1">'population'</span><span class="p">)</span>
+<span class="go">        population      GDP alpha-2</span>
+<span class="go">France    65000000  2583560      FR</span>
+<span class="go">Italy     59000000  1937894      IT</span>
+<span class="go">Malta       434000    12011      MT</span>
+</pre></div>
+</div>
+<p>When using <code class="docutils literal notranslate"><span class="pre">keep='last'</span></code>, ties are resolved in reverse order:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df</span><span class="o">.</span><span class="n">nlargest</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="s1">'population'</span><span class="p">,</span> <span class="n">keep</span><span class="o">=</span><span class="s1">'last'</span><span class="p">)</span>
+<span class="go">        population      GDP alpha-2</span>
+<span class="go">France    65000000  2583560      FR</span>
+<span class="go">Italy     59000000  1937894      IT</span>
+<span class="go">Brunei      434000    12128      BN</span>
+</pre></div>
+</div>
+<p>When using <code class="docutils literal notranslate"><span class="pre">keep='all'</span></code>, all duplicate items are maintained:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df</span><span class="o">.</span><span class="n">nlargest</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="s1">'population'</span><span class="p">,</span> <span class="n">keep</span><span class="o">=</span><span class="s1">'all'</span><span class="p">)</span>
+<span class="go">          population      GDP alpha-2</span>
+<span class="go">France      65000000  2583560      FR</span>
+<span class="go">Italy       59000000  1937894      IT</span>
+<span class="go">Malta         434000    12011      MT</span>
+<span class="go">Maldives      434000     4520      MV</span>
+<span class="go">Brunei        434000    12128      BN</span>
+</pre></div>
+</div>
+<p>To order by the largest values in column “population” and then “GDP”,
+we can specify multiple columns like in the next example.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df</span><span class="o">.</span><span class="n">nlargest</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="p">[</span><span class="s1">'population'</span><span class="p">,</span> <span class="s1">'GDP'</span><span class="p">])</span>
+<span class="go">        population      GDP alpha-2</span>
+<span class="go">France    65000000  2583560      FR</span>
+<span class="go">Italy     59000000  1937894      IT</span>
+<span class="go">Brunei      434000    12128      BN</span>
+</pre></div>
+</div>
+</dd></dl>
+</section>
+</div>
+
+</main>
+</div>
+</div>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+</body>
+</html>

@@ -1,0 +1,210 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="Docutils 0.17.1: http://docutils.sourceforge.net/" name="generator"/>
+<title>pandas.date_range — pandas 1.4.1 documentation</title>
+<link href="../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet"/>
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet"/>
+<link href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css" rel="stylesheet"/>
+<link as="font" crossorigin="" href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2" rel="preload" type="font/woff2"/>
+<link as="font" crossorigin="" href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2" rel="preload" type="font/woff2"/>
+<link href="../../_static/pygments.css" rel="stylesheet" type="text/css">
+<link href="../../_static/styles/pydata-sphinx-theme.css" rel="stylesheet" type="text/css">
+<link href="../../_static/plot_directive.css" rel="stylesheet" type="text/css">
+<link href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" rel="stylesheet" type="text/css">
+<link href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" rel="stylesheet" type="text/css">
+<link href="../../_static/css/getting_started.css" rel="stylesheet" type="text/css"/>
+<link href="../../_static/css/pandas.css" rel="stylesheet" type="text/css"/>
+<link as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf" rel="preload"/>
+<script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+<script src="../../_static/jquery.js"></script>
+<script src="../../_static/underscore.js"></script>
+<script src="../../_static/doctools.js"></script>
+<script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
+<link href="../../_static/favicon.ico" rel="shortcut icon">
+<link href="../../genindex.html" rel="index" title="Index"/>
+<link href="../../search.html" rel="search" title="Search"/>
+<link href="pandas.bdate_range.html" rel="next" title="pandas.bdate_range"/>
+<link href="pandas.to_timedelta.html" rel="prev" title="pandas.to_timedelta"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<meta content="en" name="docsearch:language"/>
+<script async="" src="https://www.google-analytics.com/analytics.js"></script>
+<script>
+                        window.ga = window.ga || function () {
+                            (ga.q = ga.q || []).push(arguments) };
+                        ga.l = +new Date;
+                        ga('create', 'UA-27880019-2', 'auto');
+                        ga('set', 'anonymizeIp', true);
+                        ga('send', 'pageview');
+                    </script>
+</link></link></link></link></link></link></head>
+<body data-offset="80" data-spy="scroll" data-target="#bd-toc-nav">
+<div class="container-fluid" id="banner"></div>
+
+<div class="container-xl">
+<div class="row">
+
+
+<main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
+<div>
+<section id="pandas-date-range">
+<h1>pandas.date_range<a class="headerlink" href="#pandas-date-range" title="Permalink to this headline">¶</a></h1>
+<dl class="py function">
+<dt class="sig sig-object py" id="pandas.date_range">
+<span class="sig-prename descclassname"><span class="pre">pandas.</span></span><span class="sig-name descname"><span class="pre">date_range</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">start</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">periods</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">freq</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tz</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">normalize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">closed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">NoDefault.no_default</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">inclusive</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/pandas-dev/pandas/blob/v1.4.1/pandas/core/indexes/datetimes.py#L879-L1080"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pandas.date_range" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a fixed frequency DatetimeIndex.</p>
+<p>Returns the range of equally spaced time points (where the difference between any
+two adjacent points is specified by the given frequency) such that they all
+satisfy <cite>start &lt;[=] x &lt;[=] end</cite>, where the first one and the last one are, resp.,
+the first and last time points in that range that fall on the boundary of <code class="docutils literal notranslate"><span class="pre">freq</span></code>
+(if given as a frequency string) or that are valid for <code class="docutils literal notranslate"><span class="pre">freq</span></code> (if given as a
+<a class="reference internal" href="pandas.tseries.offsets.DateOffset.html#pandas.tseries.offsets.DateOffset" title="pandas.tseries.offsets.DateOffset"><code class="xref py py-class docutils literal notranslate"><span class="pre">pandas.tseries.offsets.DateOffset</span></code></a>). (If exactly one of <code class="docutils literal notranslate"><span class="pre">start</span></code>,
+<code class="docutils literal notranslate"><span class="pre">end</span></code>, or <code class="docutils literal notranslate"><span class="pre">freq</span></code> is <em>not</em> specified, this missing parameter can be computed
+given <code class="docutils literal notranslate"><span class="pre">periods</span></code>, the number of timesteps in the range. See the note below.)</p>
+<dl class="field-list">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl>
+<dt><strong>start</strong><span class="classifier">str or datetime-like, optional</span></dt><dd><p>Left bound for generating dates.</p>
+</dd>
+<dt><strong>end</strong><span class="classifier">str or datetime-like, optional</span></dt><dd><p>Right bound for generating dates.</p>
+</dd>
+<dt><strong>periods</strong><span class="classifier">int, optional</span></dt><dd><p>Number of periods to generate.</p>
+</dd>
+<dt><strong>freq</strong><span class="classifier">str or DateOffset, default ‘D’</span></dt><dd><p>Frequency strings can have multiples, e.g. ‘5H’. See
+<a class="reference internal" href="../../user_guide/timeseries.html#timeseries-offset-aliases"><span class="std std-ref">here</span></a> for a list of
+frequency aliases.</p>
+</dd>
+<dt><strong>tz</strong><span class="classifier">str or tzinfo, optional</span></dt><dd><p>Time zone name for returning localized DatetimeIndex, for example
+‘Asia/Hong_Kong’. By default, the resulting DatetimeIndex is
+timezone-naive.</p>
+</dd>
+<dt><strong>normalize</strong><span class="classifier">bool, default False</span></dt><dd><p>Normalize start/end dates to midnight before generating date range.</p>
+</dd>
+<dt><strong>name</strong><span class="classifier">str, default None</span></dt><dd><p>Name of the resulting DatetimeIndex.</p>
+</dd>
+<dt><strong>closed</strong><span class="classifier">{None, ‘left’, ‘right’}, optional</span></dt><dd><p>Make the interval closed with respect to the given frequency to
+the ‘left’, ‘right’, or both sides (None, the default).</p>
+<div class="deprecated">
+<p><span class="versionmodified deprecated">Deprecated since version 1.4.0: </span>Argument <cite>closed</cite> has been deprecated to standardize boundary inputs.
+Use <cite>inclusive</cite> instead, to set each bound as closed or open.</p>
+</div>
+</dd>
+<dt><strong>inclusive</strong><span class="classifier">{“both”, “neither”, “left”, “right”}, default “both”</span></dt><dd><p>Include boundaries; Whether to set each bound as closed or open.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">New in version 1.4.0.</span></p>
+</div>
+</dd>
+<dt><strong>**kwargs</strong></dt><dd><p>For compatibility. Has no effect on the result.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>rng</strong><span class="classifier">DatetimeIndex</span></dt><dd></dd>
+</dl>
+</dd>
+</dl>
+
+<p class="rubric">Notes</p>
+<p>Of the four parameters <code class="docutils literal notranslate"><span class="pre">start</span></code>, <code class="docutils literal notranslate"><span class="pre">end</span></code>, <code class="docutils literal notranslate"><span class="pre">periods</span></code>, and <code class="docutils literal notranslate"><span class="pre">freq</span></code>,
+exactly three must be specified. If <code class="docutils literal notranslate"><span class="pre">freq</span></code> is omitted, the resulting
+<code class="docutils literal notranslate"><span class="pre">DatetimeIndex</span></code> will have <code class="docutils literal notranslate"><span class="pre">periods</span></code> linearly spaced elements between
+<code class="docutils literal notranslate"><span class="pre">start</span></code> and <code class="docutils literal notranslate"><span class="pre">end</span></code> (closed on both sides).</p>
+<p>To learn more about the frequency strings, please see <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/user_guide/timeseries.html#offset-aliases">this link</a>.</p>
+<p class="rubric">Examples</p>
+<p><strong>Specifying the values</strong></p>
+<p>The next four examples generate the same <cite>DatetimeIndex</cite>, but vary
+the combination of <cite>start</cite>, <cite>end</cite> and <cite>periods</cite>.</p>
+<p>Specify <cite>start</cite> and <cite>end</cite>, with the default daily frequency.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">pd</span><span class="o">.</span><span class="n">date_range</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="s1">'1/1/2018'</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s1">'1/08/2018'</span><span class="p">)</span>
+<span class="go">DatetimeIndex(['2018-01-01', '2018-01-02', '2018-01-03', '2018-01-04',</span>
+<span class="go">               '2018-01-05', '2018-01-06', '2018-01-07', '2018-01-08'],</span>
+<span class="go">              dtype='datetime64[ns]', freq='D')</span>
+</pre></div>
+</div>
+<p>Specify <cite>start</cite> and <cite>periods</cite>, the number of periods (days).</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">pd</span><span class="o">.</span><span class="n">date_range</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="s1">'1/1/2018'</span><span class="p">,</span> <span class="n">periods</span><span class="o">=</span><span class="mi">8</span><span class="p">)</span>
+<span class="go">DatetimeIndex(['2018-01-01', '2018-01-02', '2018-01-03', '2018-01-04',</span>
+<span class="go">               '2018-01-05', '2018-01-06', '2018-01-07', '2018-01-08'],</span>
+<span class="go">              dtype='datetime64[ns]', freq='D')</span>
+</pre></div>
+</div>
+<p>Specify <cite>end</cite> and <cite>periods</cite>, the number of periods (days).</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">pd</span><span class="o">.</span><span class="n">date_range</span><span class="p">(</span><span class="n">end</span><span class="o">=</span><span class="s1">'1/1/2018'</span><span class="p">,</span> <span class="n">periods</span><span class="o">=</span><span class="mi">8</span><span class="p">)</span>
+<span class="go">DatetimeIndex(['2017-12-25', '2017-12-26', '2017-12-27', '2017-12-28',</span>
+<span class="go">               '2017-12-29', '2017-12-30', '2017-12-31', '2018-01-01'],</span>
+<span class="go">              dtype='datetime64[ns]', freq='D')</span>
+</pre></div>
+</div>
+<p>Specify <cite>start</cite>, <cite>end</cite>, and <cite>periods</cite>; the frequency is generated
+automatically (linearly spaced).</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">pd</span><span class="o">.</span><span class="n">date_range</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="s1">'2018-04-24'</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s1">'2018-04-27'</span><span class="p">,</span> <span class="n">periods</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="go">DatetimeIndex(['2018-04-24 00:00:00', '2018-04-25 12:00:00',</span>
+<span class="go">               '2018-04-27 00:00:00'],</span>
+<span class="go">              dtype='datetime64[ns]', freq=None)</span>
+</pre></div>
+</div>
+<p><strong>Other Parameters</strong></p>
+<p>Changed the <cite>freq</cite> (frequency) to <code class="docutils literal notranslate"><span class="pre">'M'</span></code> (month end frequency).</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">pd</span><span class="o">.</span><span class="n">date_range</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="s1">'1/1/2018'</span><span class="p">,</span> <span class="n">periods</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">freq</span><span class="o">=</span><span class="s1">'M'</span><span class="p">)</span>
+<span class="go">DatetimeIndex(['2018-01-31', '2018-02-28', '2018-03-31', '2018-04-30',</span>
+<span class="go">               '2018-05-31'],</span>
+<span class="go">              dtype='datetime64[ns]', freq='M')</span>
+</pre></div>
+</div>
+<p>Multiples are allowed</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">pd</span><span class="o">.</span><span class="n">date_range</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="s1">'1/1/2018'</span><span class="p">,</span> <span class="n">periods</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">freq</span><span class="o">=</span><span class="s1">'3M'</span><span class="p">)</span>
+<span class="go">DatetimeIndex(['2018-01-31', '2018-04-30', '2018-07-31', '2018-10-31',</span>
+<span class="go">               '2019-01-31'],</span>
+<span class="go">              dtype='datetime64[ns]', freq='3M')</span>
+</pre></div>
+</div>
+<p><cite>freq</cite> can also be specified as an Offset object.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">pd</span><span class="o">.</span><span class="n">date_range</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="s1">'1/1/2018'</span><span class="p">,</span> <span class="n">periods</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">freq</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">offsets</span><span class="o">.</span><span class="n">MonthEnd</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span>
+<span class="go">DatetimeIndex(['2018-01-31', '2018-04-30', '2018-07-31', '2018-10-31',</span>
+<span class="go">               '2019-01-31'],</span>
+<span class="go">              dtype='datetime64[ns]', freq='3M')</span>
+</pre></div>
+</div>
+<p>Specify <cite>tz</cite> to set the timezone.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">pd</span><span class="o">.</span><span class="n">date_range</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="s1">'1/1/2018'</span><span class="p">,</span> <span class="n">periods</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">tz</span><span class="o">=</span><span class="s1">'Asia/Tokyo'</span><span class="p">)</span>
+<span class="go">DatetimeIndex(['2018-01-01 00:00:00+09:00', '2018-01-02 00:00:00+09:00',</span>
+<span class="go">               '2018-01-03 00:00:00+09:00', '2018-01-04 00:00:00+09:00',</span>
+<span class="go">               '2018-01-05 00:00:00+09:00'],</span>
+<span class="go">              dtype='datetime64[ns, Asia/Tokyo]', freq='D')</span>
+</pre></div>
+</div>
+<p><cite>inclusive</cite> controls whether to include <cite>start</cite> and <cite>end</cite> that are on the
+boundary. The default, “both”, includes boundary points on either end.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">pd</span><span class="o">.</span><span class="n">date_range</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="s1">'2017-01-01'</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s1">'2017-01-04'</span><span class="p">,</span> <span class="n">inclusive</span><span class="o">=</span><span class="s2">"both"</span><span class="p">)</span>
+<span class="go">DatetimeIndex(['2017-01-01', '2017-01-02', '2017-01-03', '2017-01-04'],</span>
+<span class="go">              dtype='datetime64[ns]', freq='D')</span>
+</pre></div>
+</div>
+<p>Use <code class="docutils literal notranslate"><span class="pre">inclusive='left'</span></code> to exclude <cite>end</cite> if it falls on the boundary.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">pd</span><span class="o">.</span><span class="n">date_range</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="s1">'2017-01-01'</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s1">'2017-01-04'</span><span class="p">,</span> <span class="n">inclusive</span><span class="o">=</span><span class="s1">'left'</span><span class="p">)</span>
+<span class="go">DatetimeIndex(['2017-01-01', '2017-01-02', '2017-01-03'],</span>
+<span class="go">              dtype='datetime64[ns]', freq='D')</span>
+</pre></div>
+</div>
+<p>Use <code class="docutils literal notranslate"><span class="pre">inclusive='right'</span></code> to exclude <cite>start</cite> if it falls on the boundary, and
+similarly <code class="docutils literal notranslate"><span class="pre">inclusive='neither'</span></code> will exclude both <cite>start</cite> and <cite>end</cite>.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">pd</span><span class="o">.</span><span class="n">date_range</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="s1">'2017-01-01'</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s1">'2017-01-04'</span><span class="p">,</span> <span class="n">inclusive</span><span class="o">=</span><span class="s1">'right'</span><span class="p">)</span>
+<span class="go">DatetimeIndex(['2017-01-02', '2017-01-03', '2017-01-04'],</span>
+<span class="go">              dtype='datetime64[ns]', freq='D')</span>
+</pre></div>
+</div>
+</dd></dl>
+</section>
+</div>
+
+</main>
+</div>
+</div>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+</body>
+</html>

@@ -1,0 +1,230 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="Docutils 0.17.1: http://docutils.sourceforge.net/" name="generator"/>
+<title>pandas.core.groupby.DataFrameGroupBy.aggregate — pandas 1.4.1 documentation</title>
+<link href="../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet"/>
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet"/>
+<link href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css" rel="stylesheet"/>
+<link as="font" crossorigin="" href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2" rel="preload" type="font/woff2"/>
+<link as="font" crossorigin="" href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2" rel="preload" type="font/woff2"/>
+<link href="../../_static/pygments.css" rel="stylesheet" type="text/css">
+<link href="../../_static/styles/pydata-sphinx-theme.css" rel="stylesheet" type="text/css">
+<link href="../../_static/plot_directive.css" rel="stylesheet" type="text/css">
+<link href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" rel="stylesheet" type="text/css">
+<link href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" rel="stylesheet" type="text/css">
+<link href="../../_static/css/getting_started.css" rel="stylesheet" type="text/css"/>
+<link href="../../_static/css/pandas.css" rel="stylesheet" type="text/css"/>
+<link as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf" rel="preload"/>
+<script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+<script src="../../_static/jquery.js"></script>
+<script src="../../_static/underscore.js"></script>
+<script src="../../_static/doctools.js"></script>
+<script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
+<link href="../../_static/favicon.ico" rel="shortcut icon">
+<link href="../../genindex.html" rel="index" title="Index"/>
+<link href="../../search.html" rel="search" title="Search"/>
+<link href="pandas.core.groupby.SeriesGroupBy.transform.html" rel="next" title="pandas.core.groupby.SeriesGroupBy.transform"/>
+<link href="pandas.core.groupby.SeriesGroupBy.aggregate.html" rel="prev" title="pandas.core.groupby.SeriesGroupBy.aggregate"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<meta content="en" name="docsearch:language"/>
+<script async="" src="https://www.google-analytics.com/analytics.js"></script>
+<script>
+                        window.ga = window.ga || function () {
+                            (ga.q = ga.q || []).push(arguments) };
+                        ga.l = +new Date;
+                        ga('create', 'UA-27880019-2', 'auto');
+                        ga('set', 'anonymizeIp', true);
+                        ga('send', 'pageview');
+                    </script>
+</link></link></link></link></link></link></head>
+<body data-offset="80" data-spy="scroll" data-target="#bd-toc-nav">
+<div class="container-fluid" id="banner"></div>
+
+<div class="container-xl">
+<div class="row">
+
+
+<main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
+<div>
+<section id="pandas-core-groupby-dataframegroupby-aggregate">
+<h1>pandas.core.groupby.DataFrameGroupBy.aggregate<a class="headerlink" href="#pandas-core-groupby-dataframegroupby-aggregate" title="Permalink to this headline">¶</a></h1>
+<dl class="py method">
+<dt class="sig sig-object py" id="pandas.core.groupby.DataFrameGroupBy.aggregate">
+<span class="sig-prename descclassname"><span class="pre">DataFrameGroupBy.</span></span><span class="sig-name descname"><span class="pre">aggregate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">func</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">engine</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">engine_kwargs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/pandas-dev/pandas/blob/v1.4.1/pandas/core/groupby/generic.py#L853-L927"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pandas.core.groupby.DataFrameGroupBy.aggregate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Aggregate using one or more operations over the specified axis.</p>
+<dl class="field-list">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl>
+<dt><strong>func</strong><span class="classifier">function, str, list or dict</span></dt><dd><p>Function to use for aggregating the data. If a function, must either
+work when passed a DataFrame or when passed to DataFrame.apply.</p>
+<p>Accepted combinations are:</p>
+<ul class="simple">
+<li><p>function</p></li>
+<li><p>string function name</p></li>
+<li><p>list of functions and/or function names, e.g. <code class="docutils literal notranslate"><span class="pre">[np.sum,</span> <span class="pre">'mean']</span></code></p></li>
+<li><p>dict of axis labels -&gt; functions, function names or list of such.</p></li>
+</ul>
+<p>Can also accept a Numba JIT function with
+<code class="docutils literal notranslate"><span class="pre">engine='numba'</span></code> specified. Only passing a single function is supported
+with this engine.</p>
+<p>If the <code class="docutils literal notranslate"><span class="pre">'numba'</span></code> engine is chosen, the function must be
+a user defined function with <code class="docutils literal notranslate"><span class="pre">values</span></code> and <code class="docutils literal notranslate"><span class="pre">index</span></code> as the
+first and second arguments respectively in the function signature.
+Each group’s index will be passed to the user defined function
+and optionally available for use.</p>
+<div class="versionchanged">
+<p><span class="versionmodified changed">Changed in version 1.1.0.</span></p>
+</div>
+</dd>
+<dt><strong>*args</strong></dt><dd><p>Positional arguments to pass to func.</p>
+</dd>
+<dt><strong>engine</strong><span class="classifier">str, default None</span></dt><dd><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">'cython'</span></code> : Runs the function through C-extensions from cython.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">'numba'</span></code> : Runs the function through JIT compiled code from numba.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">None</span></code> : Defaults to <code class="docutils literal notranslate"><span class="pre">'cython'</span></code> or globally setting <code class="docutils literal notranslate"><span class="pre">compute.use_numba</span></code></p></li>
+</ul>
+<div class="versionadded">
+<p><span class="versionmodified added">New in version 1.1.0.</span></p>
+</div>
+</dd>
+<dt><strong>engine_kwargs</strong><span class="classifier">dict, default None</span></dt><dd><ul class="simple">
+<li><p>For <code class="docutils literal notranslate"><span class="pre">'cython'</span></code> engine, there are no accepted <code class="docutils literal notranslate"><span class="pre">engine_kwargs</span></code></p></li>
+<li><p>For <code class="docutils literal notranslate"><span class="pre">'numba'</span></code> engine, the engine can accept <code class="docutils literal notranslate"><span class="pre">nopython</span></code>, <code class="docutils literal notranslate"><span class="pre">nogil</span></code>
+and <code class="docutils literal notranslate"><span class="pre">parallel</span></code> dictionary keys. The values must either be <code class="docutils literal notranslate"><span class="pre">True</span></code> or
+<code class="docutils literal notranslate"><span class="pre">False</span></code>. The default <code class="docutils literal notranslate"><span class="pre">engine_kwargs</span></code> for the <code class="docutils literal notranslate"><span class="pre">'numba'</span></code> engine is
+<code class="docutils literal notranslate"><span class="pre">{'nopython':</span> <span class="pre">True,</span> <span class="pre">'nogil':</span> <span class="pre">False,</span> <span class="pre">'parallel':</span> <span class="pre">False}</span></code> and will be
+applied to the function</p></li>
+</ul>
+<div class="versionadded">
+<p><span class="versionmodified added">New in version 1.1.0.</span></p>
+</div>
+</dd>
+<dt><strong>**kwargs</strong></dt><dd><p>Keyword arguments to be passed into func.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt>DataFrame</dt><dd></dd>
+</dl>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<dl class="simple">
+<dt><code class="xref py py-obj docutils literal notranslate"><span class="pre">DataFrame.groupby.apply</span></code></dt><dd><p>Apply function func group-wise and combine the results together.</p>
+</dd>
+<dt><code class="xref py py-obj docutils literal notranslate"><span class="pre">DataFrame.groupby.transform</span></code></dt><dd><p>Aggregate using one or more operations over the specified axis.</p>
+</dd>
+<dt><code class="xref py py-obj docutils literal notranslate"><span class="pre">DataFrame.aggregate</span></code></dt><dd><p>Transforms the Series on each group based on the given function.</p>
+</dd>
+</dl>
+</div>
+<p class="rubric">Notes</p>
+<p>When using <code class="docutils literal notranslate"><span class="pre">engine='numba'</span></code>, there will be no “fall back” behavior internally.
+The group data and group index will be passed as numpy arrays to the JITed
+user defined function, and no alternative execution attempts will be tried.</p>
+<p>Functions that mutate the passed object can produce unexpected
+behavior or errors and are not supported. See <a class="reference internal" href="../../user_guide/gotchas.html#gotchas-udf-mutation"><span class="std std-ref">Mutating with User Defined Function (UDF) methods</span></a>
+for more details.</p>
+<div class="versionchanged">
+<p><span class="versionmodified changed">Changed in version 1.3.0: </span>The resulting dtype will reflect the return value of the passed <code class="docutils literal notranslate"><span class="pre">func</span></code>,
+see the examples below.</p>
+</div>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
+<span class="gp">... </span>    <span class="p">{</span>
+<span class="gp">... </span>        <span class="s2">"A"</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span>
+<span class="gp">... </span>        <span class="s2">"B"</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span>
+<span class="gp">... </span>        <span class="s2">"C"</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.362838</span><span class="p">,</span> <span class="mf">0.227877</span><span class="p">,</span> <span class="mf">1.267767</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.562860</span><span class="p">],</span>
+<span class="gp">... </span>    <span class="p">}</span>
+<span class="gp">... </span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df</span>
+<span class="go">   A  B         C</span>
+<span class="go">0  1  1  0.362838</span>
+<span class="go">1  1  2  0.227877</span>
+<span class="go">2  2  3  1.267767</span>
+<span class="go">3  2  4 -0.562860</span>
+</pre></div>
+</div>
+<p>The aggregation is for each column.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">'A'</span><span class="p">)</span><span class="o">.</span><span class="n">agg</span><span class="p">(</span><span class="s1">'min'</span><span class="p">)</span>
+<span class="go">   B         C</span>
+<span class="go">A</span>
+<span class="go">1  1  0.227877</span>
+<span class="go">2  3 -0.562860</span>
+</pre></div>
+</div>
+<p>Multiple aggregations</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">'A'</span><span class="p">)</span><span class="o">.</span><span class="n">agg</span><span class="p">([</span><span class="s1">'min'</span><span class="p">,</span> <span class="s1">'max'</span><span class="p">])</span>
+<span class="go">    B             C</span>
+<span class="go">  min max       min       max</span>
+<span class="go">A</span>
+<span class="go">1   1   2  0.227877  0.362838</span>
+<span class="go">2   3   4 -0.562860  1.267767</span>
+</pre></div>
+</div>
+<p>Select a column for aggregation</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">'A'</span><span class="p">)</span><span class="o">.</span><span class="n">B</span><span class="o">.</span><span class="n">agg</span><span class="p">([</span><span class="s1">'min'</span><span class="p">,</span> <span class="s1">'max'</span><span class="p">])</span>
+<span class="go">   min  max</span>
+<span class="go">A</span>
+<span class="go">1    1    2</span>
+<span class="go">2    3    4</span>
+</pre></div>
+</div>
+<p>Different aggregations per column</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">'A'</span><span class="p">)</span><span class="o">.</span><span class="n">agg</span><span class="p">({</span><span class="s1">'B'</span><span class="p">:</span> <span class="p">[</span><span class="s1">'min'</span><span class="p">,</span> <span class="s1">'max'</span><span class="p">],</span> <span class="s1">'C'</span><span class="p">:</span> <span class="s1">'sum'</span><span class="p">})</span>
+<span class="go">    B             C</span>
+<span class="go">  min max       sum</span>
+<span class="go">A</span>
+<span class="go">1   1   2  0.590715</span>
+<span class="go">2   3   4  0.704907</span>
+</pre></div>
+</div>
+<p>To control the output names with different aggregations per column,
+pandas supports “named aggregation”</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">"A"</span><span class="p">)</span><span class="o">.</span><span class="n">agg</span><span class="p">(</span>
+<span class="gp">... </span>    <span class="n">b_min</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">NamedAgg</span><span class="p">(</span><span class="n">column</span><span class="o">=</span><span class="s2">"B"</span><span class="p">,</span> <span class="n">aggfunc</span><span class="o">=</span><span class="s2">"min"</span><span class="p">),</span>
+<span class="gp">... </span>    <span class="n">c_sum</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">NamedAgg</span><span class="p">(</span><span class="n">column</span><span class="o">=</span><span class="s2">"C"</span><span class="p">,</span> <span class="n">aggfunc</span><span class="o">=</span><span class="s2">"sum"</span><span class="p">))</span>
+<span class="go">   b_min     c_sum</span>
+<span class="go">A</span>
+<span class="go">1      1  0.590715</span>
+<span class="go">2      3  0.704907</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>The keywords are the <em>output</em> column names</p></li>
+<li><p>The values are tuples whose first element is the column to select
+and the second element is the aggregation to apply to that column.
+Pandas provides the <code class="docutils literal notranslate"><span class="pre">pandas.NamedAgg</span></code> namedtuple with the fields
+<code class="docutils literal notranslate"><span class="pre">['column',</span> <span class="pre">'aggfunc']</span></code> to make it clearer what the arguments are.
+As usual, the aggregation can be a callable or a string alias.</p></li>
+</ul>
+<p>See <a class="reference internal" href="../../user_guide/groupby.html#groupby-aggregate-named"><span class="std std-ref">Named aggregation</span></a> for more.</p>
+<div class="versionchanged">
+<p><span class="versionmodified changed">Changed in version 1.3.0: </span>The resulting dtype will reflect the return value of the aggregating function.</p>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">"A"</span><span class="p">)[[</span><span class="s2">"B"</span><span class="p">]]</span><span class="o">.</span><span class="n">agg</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span><span class="o">.</span><span class="n">min</span><span class="p">())</span>
+<span class="go">      B</span>
+<span class="go">A</span>
+<span class="go">1   1.0</span>
+<span class="go">2   3.0</span>
+</pre></div>
+</div>
+</dd></dl>
+</section>
+</div>
+
+</main>
+</div>
+</div>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+</body>
+</html>

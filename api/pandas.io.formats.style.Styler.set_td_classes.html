@@ -1,0 +1,132 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="Docutils 0.17.1: http://docutils.sourceforge.net/" name="generator"/>
+<title>pandas.io.formats.style.Styler.set_td_classes — pandas 1.4.1 documentation</title>
+<link href="../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet"/>
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet"/>
+<link href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css" rel="stylesheet"/>
+<link as="font" crossorigin="" href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2" rel="preload" type="font/woff2"/>
+<link as="font" crossorigin="" href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2" rel="preload" type="font/woff2"/>
+<link href="../../_static/pygments.css" rel="stylesheet" type="text/css">
+<link href="../../_static/styles/pydata-sphinx-theme.css" rel="stylesheet" type="text/css">
+<link href="../../_static/plot_directive.css" rel="stylesheet" type="text/css">
+<link href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" rel="stylesheet" type="text/css">
+<link href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" rel="stylesheet" type="text/css">
+<link href="../../_static/css/getting_started.css" rel="stylesheet" type="text/css"/>
+<link href="../../_static/css/pandas.css" rel="stylesheet" type="text/css"/>
+<link as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf" rel="preload"/>
+<script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+<script src="../../_static/jquery.js"></script>
+<script src="../../_static/underscore.js"></script>
+<script src="../../_static/doctools.js"></script>
+<script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
+<link href="../../_static/favicon.ico" rel="shortcut icon">
+<link href="../../genindex.html" rel="index" title="Index"/>
+<link href="../../search.html" rel="search" title="Search"/>
+<link href="pandas.io.formats.style.Styler.set_tooltips.html" rel="next" title="pandas.io.formats.style.Styler.set_tooltips"/>
+<link href="pandas.io.formats.style.Styler.set_table_styles.html" rel="prev" title="pandas.io.formats.style.Styler.set_table_styles"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<meta content="en" name="docsearch:language"/>
+<script async="" src="https://www.google-analytics.com/analytics.js"></script>
+<script>
+                        window.ga = window.ga || function () {
+                            (ga.q = ga.q || []).push(arguments) };
+                        ga.l = +new Date;
+                        ga('create', 'UA-27880019-2', 'auto');
+                        ga('set', 'anonymizeIp', true);
+                        ga('send', 'pageview');
+                    </script>
+</link></link></link></link></link></link></head>
+<body data-offset="80" data-spy="scroll" data-target="#bd-toc-nav">
+<div class="container-fluid" id="banner"></div>
+
+<div class="container-xl">
+<div class="row">
+
+
+<main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
+<div>
+<section id="pandas-io-formats-style-styler-set-td-classes">
+<h1>pandas.io.formats.style.Styler.set_td_classes<a class="headerlink" href="#pandas-io-formats-style-styler-set-td-classes" title="Permalink to this headline">¶</a></h1>
+<dl class="py method">
+<dt class="sig sig-object py" id="pandas.io.formats.style.Styler.set_td_classes">
+<span class="sig-prename descclassname"><span class="pre">Styler.</span></span><span class="sig-name descname"><span class="pre">set_td_classes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">classes</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/pandas-dev/pandas/blob/v1.4.1/pandas/io/formats/style.py#L1193-L1267"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pandas.io.formats.style.Styler.set_td_classes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the DataFrame of strings added to the <code class="docutils literal notranslate"><span class="pre">class</span></code> attribute of <code class="docutils literal notranslate"><span class="pre">&lt;td&gt;</span></code>
+HTML elements.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>classes</strong><span class="classifier">DataFrame</span></dt><dd><p>DataFrame containing strings that will be translated to CSS classes,
+mapped by identical column and index key values that must exist on the
+underlying Styler data. None, NaN values, and empty strings will
+be ignored and not affect the rendered HTML.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>self</strong><span class="classifier">Styler</span></dt><dd></dd>
+</dl>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<dl class="simple">
+<dt><a class="reference internal" href="pandas.io.formats.style.Styler.set_table_styles.html#pandas.io.formats.style.Styler.set_table_styles" title="pandas.io.formats.style.Styler.set_table_styles"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Styler.set_table_styles</span></code></a></dt><dd><p>Set the table styles included within the <code class="docutils literal notranslate"><span class="pre">&lt;style&gt;</span></code> HTML element.</p>
+</dd>
+<dt><a class="reference internal" href="pandas.io.formats.style.Styler.set_table_attributes.html#pandas.io.formats.style.Styler.set_table_attributes" title="pandas.io.formats.style.Styler.set_table_attributes"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Styler.set_table_attributes</span></code></a></dt><dd><p>Set the table attributes added to the <code class="docutils literal notranslate"><span class="pre">&lt;table&gt;</span></code> HTML element.</p>
+</dd>
+</dl>
+</div>
+<p class="rubric">Notes</p>
+<p>Can be used in combination with <code class="docutils literal notranslate"><span class="pre">Styler.set_table_styles</span></code> to define an
+internal CSS solution without reference to external CSS files.</p>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="p">[[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">]],</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">"A"</span><span class="p">,</span> <span class="s2">"B"</span><span class="p">,</span> <span class="s2">"C"</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">classes</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([</span>
+<span class="gp">... </span>    <span class="p">[</span><span class="s2">"min-val red"</span><span class="p">,</span> <span class="s2">""</span><span class="p">,</span> <span class="s2">"blue"</span><span class="p">],</span>
+<span class="gp">... </span>    <span class="p">[</span><span class="s2">"red"</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="s2">"blue max-val"</span><span class="p">]</span>
+<span class="gp">... </span><span class="p">],</span> <span class="n">index</span><span class="o">=</span><span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">df</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">set_td_classes</span><span class="p">(</span><span class="n">classes</span><span class="p">)</span>  
+</pre></div>
+</div>
+<p>Using <cite>MultiIndex</cite> columns and a <cite>classes</cite> <cite>DataFrame</cite> as a subset of the
+underlying,</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">],[</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">]],</span> <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="s2">"a"</span><span class="p">,</span> <span class="s2">"b"</span><span class="p">],</span>
+<span class="gp">... </span>    <span class="n">columns</span><span class="o">=</span><span class="p">[[</span><span class="s2">"level0"</span><span class="p">,</span> <span class="s2">"level0"</span><span class="p">],</span> <span class="p">[</span><span class="s2">"level1a"</span><span class="p">,</span> <span class="s2">"level1b"</span><span class="p">]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">classes</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([</span><span class="s2">"min-val"</span><span class="p">],</span> <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="s2">"a"</span><span class="p">],</span>
+<span class="gp">... </span>    <span class="n">columns</span><span class="o">=</span><span class="p">[[</span><span class="s2">"level0"</span><span class="p">],[</span><span class="s2">"level1a"</span><span class="p">]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">df</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">set_td_classes</span><span class="p">(</span><span class="n">classes</span><span class="p">)</span>  
+</pre></div>
+</div>
+<p>Form of the output with new additional css classes,</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([[</span><span class="mi">1</span><span class="p">]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">css</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([[</span><span class="s2">"other-class"</span><span class="p">]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">s</span> <span class="o">=</span> <span class="n">Styler</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">uuid</span><span class="o">=</span><span class="s2">"_"</span><span class="p">,</span> <span class="n">cell_ids</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">set_td_classes</span><span class="p">(</span><span class="n">css</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">s</span><span class="o">.</span><span class="n">hide</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">to_html</span><span class="p">()</span>  
+<span class="go">'&lt;style type="text/css"&gt;&lt;/style&gt;'</span>
+<span class="go">'&lt;table id="T__"&gt;'</span>
+<span class="go">'  &lt;thead&gt;'</span>
+<span class="go">'    &lt;tr&gt;&lt;th class="col_heading level0 col0" &gt;0&lt;/th&gt;&lt;/tr&gt;'</span>
+<span class="go">'  &lt;/thead&gt;'</span>
+<span class="go">'  &lt;tbody&gt;'</span>
+<span class="go">'    &lt;tr&gt;&lt;td class="data row0 col0 other-class" &gt;1&lt;/td&gt;&lt;/tr&gt;'</span>
+<span class="go">'  &lt;/tbody&gt;'</span>
+<span class="go">'&lt;/table&gt;'</span>
+</pre></div>
+</div>
+</dd></dl>
+</section>
+</div>
+
+</main>
+</div>
+</div>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+</body>
+</html>

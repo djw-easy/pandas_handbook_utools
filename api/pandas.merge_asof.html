@@ -1,0 +1,310 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="Docutils 0.17.1: http://docutils.sourceforge.net/" name="generator"/>
+<title>pandas.merge_asof — pandas 1.4.1 documentation</title>
+<link href="../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet"/>
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet"/>
+<link href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css" rel="stylesheet"/>
+<link as="font" crossorigin="" href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2" rel="preload" type="font/woff2"/>
+<link as="font" crossorigin="" href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2" rel="preload" type="font/woff2"/>
+<link href="../../_static/pygments.css" rel="stylesheet" type="text/css">
+<link href="../../_static/styles/pydata-sphinx-theme.css" rel="stylesheet" type="text/css">
+<link href="../../_static/plot_directive.css" rel="stylesheet" type="text/css">
+<link href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" rel="stylesheet" type="text/css">
+<link href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" rel="stylesheet" type="text/css">
+<link href="../../_static/css/getting_started.css" rel="stylesheet" type="text/css"/>
+<link href="../../_static/css/pandas.css" rel="stylesheet" type="text/css"/>
+<link as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf" rel="preload"/>
+<script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+<script src="../../_static/jquery.js"></script>
+<script src="../../_static/underscore.js"></script>
+<script src="../../_static/doctools.js"></script>
+<script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
+<link href="../../_static/favicon.ico" rel="shortcut icon">
+<link href="../../genindex.html" rel="index" title="Index"/>
+<link href="../../search.html" rel="search" title="Search"/>
+<link href="pandas.concat.html" rel="next" title="pandas.concat"/>
+<link href="pandas.merge_ordered.html" rel="prev" title="pandas.merge_ordered"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<meta content="en" name="docsearch:language"/>
+<script async="" src="https://www.google-analytics.com/analytics.js"></script>
+<script>
+                        window.ga = window.ga || function () {
+                            (ga.q = ga.q || []).push(arguments) };
+                        ga.l = +new Date;
+                        ga('create', 'UA-27880019-2', 'auto');
+                        ga('set', 'anonymizeIp', true);
+                        ga('send', 'pageview');
+                    </script>
+</link></link></link></link></link></link></head>
+<body data-offset="80" data-spy="scroll" data-target="#bd-toc-nav">
+<div class="container-fluid" id="banner"></div>
+
+<div class="container-xl">
+<div class="row">
+
+
+<main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
+<div>
+<section id="pandas-merge-asof">
+<h1>pandas.merge_asof<a class="headerlink" href="#pandas-merge-asof" title="Permalink to this headline">¶</a></h1>
+<dl class="py function">
+<dt class="sig sig-object py" id="pandas.merge_asof">
+<span class="sig-prename descclassname"><span class="pre">pandas.</span></span><span class="sig-name descname"><span class="pre">merge_asof</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">left</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">right</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">on</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">left_on</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">right_on</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">left_index</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">right_index</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">by</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">left_by</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">right_by</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">suffixes</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">('_x',</span> <span class="pre">'_y')</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tolerance</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">allow_exact_matches</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">direction</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'backward'</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/pandas-dev/pandas/blob/v1.4.1/pandas/core/reshape/merge.py#L326-L598"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pandas.merge_asof" title="Permalink to this definition">¶</a></dt>
+<dd><p>Perform a merge by key distance.</p>
+<p>This is similar to a left-join except that we match on nearest
+key rather than equal keys. Both DataFrames must be sorted by the key.</p>
+<p>For each row in the left DataFrame:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>A “backward” search selects the last row in the right DataFrame whose
+‘on’ key is less than or equal to the left’s key.</p></li>
+<li><p>A “forward” search selects the first row in the right DataFrame whose
+‘on’ key is greater than or equal to the left’s key.</p></li>
+<li><p>A “nearest” search selects the row in the right DataFrame whose ‘on’
+key is closest in absolute distance to the left’s key.</p></li>
+</ul>
+</div></blockquote>
+<p>The default is “backward” and is compatible in versions below 0.20.0.
+The direction parameter was added in version 0.20.0 and introduces
+“forward” and “nearest”.</p>
+<p>Optionally match on equivalent keys with ‘by’ before searching with ‘on’.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>left</strong><span class="classifier">DataFrame or named Series</span></dt><dd></dd>
+<dt><strong>right</strong><span class="classifier">DataFrame or named Series</span></dt><dd></dd>
+<dt><strong>on</strong><span class="classifier">label</span></dt><dd><p>Field name to join on. Must be found in both DataFrames.
+The data MUST be ordered. Furthermore this must be a numeric column,
+such as datetimelike, integer, or float. On or left_on/right_on
+must be given.</p>
+</dd>
+<dt><strong>left_on</strong><span class="classifier">label</span></dt><dd><p>Field name to join on in left DataFrame.</p>
+</dd>
+<dt><strong>right_on</strong><span class="classifier">label</span></dt><dd><p>Field name to join on in right DataFrame.</p>
+</dd>
+<dt><strong>left_index</strong><span class="classifier">bool</span></dt><dd><p>Use the index of the left DataFrame as the join key.</p>
+</dd>
+<dt><strong>right_index</strong><span class="classifier">bool</span></dt><dd><p>Use the index of the right DataFrame as the join key.</p>
+</dd>
+<dt><strong>by</strong><span class="classifier">column name or list of column names</span></dt><dd><p>Match on these columns before performing merge operation.</p>
+</dd>
+<dt><strong>left_by</strong><span class="classifier">column name</span></dt><dd><p>Field names to match on in the left DataFrame.</p>
+</dd>
+<dt><strong>right_by</strong><span class="classifier">column name</span></dt><dd><p>Field names to match on in the right DataFrame.</p>
+</dd>
+<dt><strong>suffixes</strong><span class="classifier">2-length sequence (tuple, list, …)</span></dt><dd><p>Suffix to apply to overlapping column names in the left and right
+side, respectively.</p>
+</dd>
+<dt><strong>tolerance</strong><span class="classifier">int or Timedelta, optional, default None</span></dt><dd><p>Select asof tolerance within this range; must be compatible
+with the merge index.</p>
+</dd>
+<dt><strong>allow_exact_matches</strong><span class="classifier">bool, default True</span></dt><dd><ul class="simple">
+<li><p>If True, allow matching with the same ‘on’ value
+(i.e. less-than-or-equal-to / greater-than-or-equal-to)</p></li>
+<li><p>If False, don’t match the same ‘on’ value
+(i.e., strictly less-than / strictly greater-than).</p></li>
+</ul>
+</dd>
+<dt><strong>direction</strong><span class="classifier">‘backward’ (default), ‘forward’, or ‘nearest’</span></dt><dd><p>Whether to search for prior, subsequent, or closest matches.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>merged</strong><span class="classifier">DataFrame</span></dt><dd></dd>
+</dl>
+</dd>
+</dl>
+
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">left</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s2">"a"</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">],</span> <span class="s2">"left_val"</span><span class="p">:</span> <span class="p">[</span><span class="s2">"a"</span><span class="p">,</span> <span class="s2">"b"</span><span class="p">,</span> <span class="s2">"c"</span><span class="p">]})</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">left</span>
+<span class="go">    a left_val</span>
+<span class="go">0   1        a</span>
+<span class="go">1   5        b</span>
+<span class="go">2  10        c</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">right</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s2">"a"</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">],</span> <span class="s2">"right_val"</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">]})</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">right</span>
+<span class="go">   a  right_val</span>
+<span class="go">0  1          1</span>
+<span class="go">1  2          2</span>
+<span class="go">2  3          3</span>
+<span class="go">3  6          6</span>
+<span class="go">4  7          7</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">pd</span><span class="o">.</span><span class="n">merge_asof</span><span class="p">(</span><span class="n">left</span><span class="p">,</span> <span class="n">right</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="s2">"a"</span><span class="p">)</span>
+<span class="go">    a left_val  right_val</span>
+<span class="go">0   1        a          1</span>
+<span class="go">1   5        b          3</span>
+<span class="go">2  10        c          7</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">pd</span><span class="o">.</span><span class="n">merge_asof</span><span class="p">(</span><span class="n">left</span><span class="p">,</span> <span class="n">right</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="s2">"a"</span><span class="p">,</span> <span class="n">allow_exact_matches</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="go">    a left_val  right_val</span>
+<span class="go">0   1        a        NaN</span>
+<span class="go">1   5        b        3.0</span>
+<span class="go">2  10        c        7.0</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">pd</span><span class="o">.</span><span class="n">merge_asof</span><span class="p">(</span><span class="n">left</span><span class="p">,</span> <span class="n">right</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="s2">"a"</span><span class="p">,</span> <span class="n">direction</span><span class="o">=</span><span class="s2">"forward"</span><span class="p">)</span>
+<span class="go">    a left_val  right_val</span>
+<span class="go">0   1        a        1.0</span>
+<span class="go">1   5        b        6.0</span>
+<span class="go">2  10        c        NaN</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">pd</span><span class="o">.</span><span class="n">merge_asof</span><span class="p">(</span><span class="n">left</span><span class="p">,</span> <span class="n">right</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="s2">"a"</span><span class="p">,</span> <span class="n">direction</span><span class="o">=</span><span class="s2">"nearest"</span><span class="p">)</span>
+<span class="go">    a left_val  right_val</span>
+<span class="go">0   1        a          1</span>
+<span class="go">1   5        b          6</span>
+<span class="go">2  10        c          7</span>
+</pre></div>
+</div>
+<p>We can use indexed DataFrames as well.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">left</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s2">"left_val"</span><span class="p">:</span> <span class="p">[</span><span class="s2">"a"</span><span class="p">,</span> <span class="s2">"b"</span><span class="p">,</span> <span class="s2">"c"</span><span class="p">]},</span> <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">left</span>
+<span class="go">   left_val</span>
+<span class="go">1         a</span>
+<span class="go">5         b</span>
+<span class="go">10        c</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">right</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s2">"right_val"</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">]},</span> <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">right</span>
+<span class="go">   right_val</span>
+<span class="go">1          1</span>
+<span class="go">2          2</span>
+<span class="go">3          3</span>
+<span class="go">6          6</span>
+<span class="go">7          7</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">pd</span><span class="o">.</span><span class="n">merge_asof</span><span class="p">(</span><span class="n">left</span><span class="p">,</span> <span class="n">right</span><span class="p">,</span> <span class="n">left_index</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">right_index</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="go">   left_val  right_val</span>
+<span class="go">1         a          1</span>
+<span class="go">5         b          3</span>
+<span class="go">10        c          7</span>
+</pre></div>
+</div>
+<p>Here is a real-world times-series example</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">quotes</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
+<span class="gp">... </span>    <span class="p">{</span>
+<span class="gp">... </span>        <span class="s2">"time"</span><span class="p">:</span> <span class="p">[</span>
+<span class="gp">... </span>            <span class="n">pd</span><span class="o">.</span><span class="n">Timestamp</span><span class="p">(</span><span class="s2">"2016-05-25 13:30:00.023"</span><span class="p">),</span>
+<span class="gp">... </span>            <span class="n">pd</span><span class="o">.</span><span class="n">Timestamp</span><span class="p">(</span><span class="s2">"2016-05-25 13:30:00.023"</span><span class="p">),</span>
+<span class="gp">... </span>            <span class="n">pd</span><span class="o">.</span><span class="n">Timestamp</span><span class="p">(</span><span class="s2">"2016-05-25 13:30:00.030"</span><span class="p">),</span>
+<span class="gp">... </span>            <span class="n">pd</span><span class="o">.</span><span class="n">Timestamp</span><span class="p">(</span><span class="s2">"2016-05-25 13:30:00.041"</span><span class="p">),</span>
+<span class="gp">... </span>            <span class="n">pd</span><span class="o">.</span><span class="n">Timestamp</span><span class="p">(</span><span class="s2">"2016-05-25 13:30:00.048"</span><span class="p">),</span>
+<span class="gp">... </span>            <span class="n">pd</span><span class="o">.</span><span class="n">Timestamp</span><span class="p">(</span><span class="s2">"2016-05-25 13:30:00.049"</span><span class="p">),</span>
+<span class="gp">... </span>            <span class="n">pd</span><span class="o">.</span><span class="n">Timestamp</span><span class="p">(</span><span class="s2">"2016-05-25 13:30:00.072"</span><span class="p">),</span>
+<span class="gp">... </span>            <span class="n">pd</span><span class="o">.</span><span class="n">Timestamp</span><span class="p">(</span><span class="s2">"2016-05-25 13:30:00.075"</span><span class="p">)</span>
+<span class="gp">... </span>        <span class="p">],</span>
+<span class="gp">... </span>        <span class="s2">"ticker"</span><span class="p">:</span> <span class="p">[</span>
+<span class="gp">... </span>               <span class="s2">"GOOG"</span><span class="p">,</span>
+<span class="gp">... </span>               <span class="s2">"MSFT"</span><span class="p">,</span>
+<span class="gp">... </span>               <span class="s2">"MSFT"</span><span class="p">,</span>
+<span class="gp">... </span>               <span class="s2">"MSFT"</span><span class="p">,</span>
+<span class="gp">... </span>               <span class="s2">"GOOG"</span><span class="p">,</span>
+<span class="gp">... </span>               <span class="s2">"AAPL"</span><span class="p">,</span>
+<span class="gp">... </span>               <span class="s2">"GOOG"</span><span class="p">,</span>
+<span class="gp">... </span>               <span class="s2">"MSFT"</span>
+<span class="gp">... </span>           <span class="p">],</span>
+<span class="gp">... </span>           <span class="s2">"bid"</span><span class="p">:</span> <span class="p">[</span><span class="mf">720.50</span><span class="p">,</span> <span class="mf">51.95</span><span class="p">,</span> <span class="mf">51.97</span><span class="p">,</span> <span class="mf">51.99</span><span class="p">,</span> <span class="mf">720.50</span><span class="p">,</span> <span class="mf">97.99</span><span class="p">,</span> <span class="mf">720.50</span><span class="p">,</span> <span class="mf">52.01</span><span class="p">],</span>
+<span class="gp">... </span>           <span class="s2">"ask"</span><span class="p">:</span> <span class="p">[</span><span class="mf">720.93</span><span class="p">,</span> <span class="mf">51.96</span><span class="p">,</span> <span class="mf">51.98</span><span class="p">,</span> <span class="mf">52.00</span><span class="p">,</span> <span class="mf">720.93</span><span class="p">,</span> <span class="mf">98.01</span><span class="p">,</span> <span class="mf">720.88</span><span class="p">,</span> <span class="mf">52.03</span><span class="p">]</span>
+<span class="gp">... </span>    <span class="p">}</span>
+<span class="gp">... </span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">quotes</span>
+<span class="go">                     time ticker     bid     ask</span>
+<span class="go">0 2016-05-25 13:30:00.023   GOOG  720.50  720.93</span>
+<span class="go">1 2016-05-25 13:30:00.023   MSFT   51.95   51.96</span>
+<span class="go">2 2016-05-25 13:30:00.030   MSFT   51.97   51.98</span>
+<span class="go">3 2016-05-25 13:30:00.041   MSFT   51.99   52.00</span>
+<span class="go">4 2016-05-25 13:30:00.048   GOOG  720.50  720.93</span>
+<span class="go">5 2016-05-25 13:30:00.049   AAPL   97.99   98.01</span>
+<span class="go">6 2016-05-25 13:30:00.072   GOOG  720.50  720.88</span>
+<span class="go">7 2016-05-25 13:30:00.075   MSFT   52.01   52.03</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">trades</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
+<span class="gp">... </span>       <span class="p">{</span>
+<span class="gp">... </span>           <span class="s2">"time"</span><span class="p">:</span> <span class="p">[</span>
+<span class="gp">... </span>               <span class="n">pd</span><span class="o">.</span><span class="n">Timestamp</span><span class="p">(</span><span class="s2">"2016-05-25 13:30:00.023"</span><span class="p">),</span>
+<span class="gp">... </span>               <span class="n">pd</span><span class="o">.</span><span class="n">Timestamp</span><span class="p">(</span><span class="s2">"2016-05-25 13:30:00.038"</span><span class="p">),</span>
+<span class="gp">... </span>               <span class="n">pd</span><span class="o">.</span><span class="n">Timestamp</span><span class="p">(</span><span class="s2">"2016-05-25 13:30:00.048"</span><span class="p">),</span>
+<span class="gp">... </span>               <span class="n">pd</span><span class="o">.</span><span class="n">Timestamp</span><span class="p">(</span><span class="s2">"2016-05-25 13:30:00.048"</span><span class="p">),</span>
+<span class="gp">... </span>               <span class="n">pd</span><span class="o">.</span><span class="n">Timestamp</span><span class="p">(</span><span class="s2">"2016-05-25 13:30:00.048"</span><span class="p">)</span>
+<span class="gp">... </span>           <span class="p">],</span>
+<span class="gp">... </span>           <span class="s2">"ticker"</span><span class="p">:</span> <span class="p">[</span><span class="s2">"MSFT"</span><span class="p">,</span> <span class="s2">"MSFT"</span><span class="p">,</span> <span class="s2">"GOOG"</span><span class="p">,</span> <span class="s2">"GOOG"</span><span class="p">,</span> <span class="s2">"AAPL"</span><span class="p">],</span>
+<span class="gp">... </span>           <span class="s2">"price"</span><span class="p">:</span> <span class="p">[</span><span class="mf">51.95</span><span class="p">,</span> <span class="mf">51.95</span><span class="p">,</span> <span class="mf">720.77</span><span class="p">,</span> <span class="mf">720.92</span><span class="p">,</span> <span class="mf">98.0</span><span class="p">],</span>
+<span class="gp">... </span>           <span class="s2">"quantity"</span><span class="p">:</span> <span class="p">[</span><span class="mi">75</span><span class="p">,</span> <span class="mi">155</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">]</span>
+<span class="gp">... </span>       <span class="p">}</span>
+<span class="gp">... </span>   <span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">trades</span>
+<span class="go">                     time ticker   price  quantity</span>
+<span class="go">0 2016-05-25 13:30:00.023   MSFT   51.95        75</span>
+<span class="go">1 2016-05-25 13:30:00.038   MSFT   51.95       155</span>
+<span class="go">2 2016-05-25 13:30:00.048   GOOG  720.77       100</span>
+<span class="go">3 2016-05-25 13:30:00.048   GOOG  720.92       100</span>
+<span class="go">4 2016-05-25 13:30:00.048   AAPL   98.00       100</span>
+</pre></div>
+</div>
+<p>By default we are taking the asof of the quotes</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">pd</span><span class="o">.</span><span class="n">merge_asof</span><span class="p">(</span><span class="n">trades</span><span class="p">,</span> <span class="n">quotes</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="s2">"time"</span><span class="p">,</span> <span class="n">by</span><span class="o">=</span><span class="s2">"ticker"</span><span class="p">)</span>
+<span class="go">                     time ticker   price  quantity     bid     ask</span>
+<span class="go">0 2016-05-25 13:30:00.023   MSFT   51.95        75   51.95   51.96</span>
+<span class="go">1 2016-05-25 13:30:00.038   MSFT   51.95       155   51.97   51.98</span>
+<span class="go">2 2016-05-25 13:30:00.048   GOOG  720.77       100  720.50  720.93</span>
+<span class="go">3 2016-05-25 13:30:00.048   GOOG  720.92       100  720.50  720.93</span>
+<span class="go">4 2016-05-25 13:30:00.048   AAPL   98.00       100     NaN     NaN</span>
+</pre></div>
+</div>
+<p>We only asof within 2ms between the quote time and the trade time</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">pd</span><span class="o">.</span><span class="n">merge_asof</span><span class="p">(</span>
+<span class="gp">... </span>    <span class="n">trades</span><span class="p">,</span> <span class="n">quotes</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="s2">"time"</span><span class="p">,</span> <span class="n">by</span><span class="o">=</span><span class="s2">"ticker"</span><span class="p">,</span> <span class="n">tolerance</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">Timedelta</span><span class="p">(</span><span class="s2">"2ms"</span><span class="p">)</span>
+<span class="gp">... </span><span class="p">)</span>
+<span class="go">                     time ticker   price  quantity     bid     ask</span>
+<span class="go">0 2016-05-25 13:30:00.023   MSFT   51.95        75   51.95   51.96</span>
+<span class="go">1 2016-05-25 13:30:00.038   MSFT   51.95       155     NaN     NaN</span>
+<span class="go">2 2016-05-25 13:30:00.048   GOOG  720.77       100  720.50  720.93</span>
+<span class="go">3 2016-05-25 13:30:00.048   GOOG  720.92       100  720.50  720.93</span>
+<span class="go">4 2016-05-25 13:30:00.048   AAPL   98.00       100     NaN     NaN</span>
+</pre></div>
+</div>
+<p>We only asof within 10ms between the quote time and the trade time
+and we exclude exact matches on time. However <em>prior</em> data will
+propagate forward</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">pd</span><span class="o">.</span><span class="n">merge_asof</span><span class="p">(</span>
+<span class="gp">... </span>    <span class="n">trades</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">quotes</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">on</span><span class="o">=</span><span class="s2">"time"</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">by</span><span class="o">=</span><span class="s2">"ticker"</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">tolerance</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">Timedelta</span><span class="p">(</span><span class="s2">"10ms"</span><span class="p">),</span>
+<span class="gp">... </span>    <span class="n">allow_exact_matches</span><span class="o">=</span><span class="kc">False</span>
+<span class="gp">... </span><span class="p">)</span>
+<span class="go">                     time ticker   price  quantity     bid     ask</span>
+<span class="go">0 2016-05-25 13:30:00.023   MSFT   51.95        75     NaN     NaN</span>
+<span class="go">1 2016-05-25 13:30:00.038   MSFT   51.95       155   51.97   51.98</span>
+<span class="go">2 2016-05-25 13:30:00.048   GOOG  720.77       100     NaN     NaN</span>
+<span class="go">3 2016-05-25 13:30:00.048   GOOG  720.92       100     NaN     NaN</span>
+<span class="go">4 2016-05-25 13:30:00.048   AAPL   98.00       100     NaN     NaN</span>
+</pre></div>
+</div>
+</dd></dl>
+</section>
+</div>
+
+</main>
+</div>
+</div>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+</body>
+</html>

@@ -1,0 +1,153 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="Docutils 0.17.1: http://docutils.sourceforge.net/" name="generator"/>
+<title>pandas.core.groupby.DataFrameGroupBy.take — pandas 1.4.1 documentation</title>
+<link href="../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet"/>
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet"/>
+<link href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css" rel="stylesheet"/>
+<link as="font" crossorigin="" href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2" rel="preload" type="font/woff2"/>
+<link as="font" crossorigin="" href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2" rel="preload" type="font/woff2"/>
+<link href="../../_static/pygments.css" rel="stylesheet" type="text/css">
+<link href="../../_static/styles/pydata-sphinx-theme.css" rel="stylesheet" type="text/css">
+<link href="../../_static/plot_directive.css" rel="stylesheet" type="text/css">
+<link href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" rel="stylesheet" type="text/css">
+<link href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" rel="stylesheet" type="text/css">
+<link href="../../_static/css/getting_started.css" rel="stylesheet" type="text/css"/>
+<link href="../../_static/css/pandas.css" rel="stylesheet" type="text/css"/>
+<link as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf" rel="preload"/>
+<script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+<script src="../../_static/jquery.js"></script>
+<script src="../../_static/underscore.js"></script>
+<script src="../../_static/doctools.js"></script>
+<script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
+<link href="../../_static/favicon.ico" rel="shortcut icon">
+<link href="../../genindex.html" rel="index" title="Index"/>
+<link href="../../search.html" rel="search" title="Search"/>
+<link href="pandas.core.groupby.DataFrameGroupBy.tshift.html" rel="next" title="pandas.core.groupby.DataFrameGroupBy.tshift"/>
+<link href="pandas.core.groupby.DataFrameGroupBy.skew.html" rel="prev" title="pandas.core.groupby.DataFrameGroupBy.skew"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<meta content="en" name="docsearch:language"/>
+<script async="" src="https://www.google-analytics.com/analytics.js"></script>
+<script>
+                        window.ga = window.ga || function () {
+                            (ga.q = ga.q || []).push(arguments) };
+                        ga.l = +new Date;
+                        ga('create', 'UA-27880019-2', 'auto');
+                        ga('set', 'anonymizeIp', true);
+                        ga('send', 'pageview');
+                    </script>
+</link></link></link></link></link></link></head>
+<body data-offset="80" data-spy="scroll" data-target="#bd-toc-nav">
+<div class="container-fluid" id="banner"></div>
+
+<div class="container-xl">
+<div class="row">
+
+
+<main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
+<div>
+<section id="pandas-core-groupby-dataframegroupby-take">
+<h1>pandas.core.groupby.DataFrameGroupBy.take<a class="headerlink" href="#pandas-core-groupby-dataframegroupby-take" title="Permalink to this headline">¶</a></h1>
+<dl class="py property">
+<dt class="sig sig-object py" id="pandas.core.groupby.DataFrameGroupBy.take">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">DataFrameGroupBy.</span></span><span class="sig-name descname"><span class="pre">take</span></span><a class="headerlink" href="#pandas.core.groupby.DataFrameGroupBy.take" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the elements in the given <em>positional</em> indices along an axis.</p>
+<p>This means that we are not indexing according to actual values in
+the index attribute of the object. We are indexing according to the
+actual position of the element in the object.</p>
+<dl class="field-list">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl>
+<dt><strong>indices</strong><span class="classifier">array-like</span></dt><dd><p>An array of ints indicating which positions to take.</p>
+</dd>
+<dt><strong>axis</strong><span class="classifier">{0 or ‘index’, 1 or ‘columns’, None}, default 0</span></dt><dd><p>The axis on which to select elements. <code class="docutils literal notranslate"><span class="pre">0</span></code> means that we are
+selecting rows, <code class="docutils literal notranslate"><span class="pre">1</span></code> means that we are selecting columns.</p>
+</dd>
+<dt><strong>is_copy</strong><span class="classifier">bool</span></dt><dd><p>Before pandas 1.0, <code class="docutils literal notranslate"><span class="pre">is_copy=False</span></code> can be specified to ensure
+that the return value is an actual copy. Starting with pandas 1.0,
+<code class="docutils literal notranslate"><span class="pre">take</span></code> always returns a copy, and the keyword is therefore
+deprecated.</p>
+<div class="deprecated">
+<p><span class="versionmodified deprecated">Deprecated since version 1.0.0.</span></p>
+</div>
+</dd>
+<dt><strong>**kwargs</strong></dt><dd><p>For compatibility with <code class="xref py py-meth docutils literal notranslate"><span class="pre">numpy.take()</span></code>. Has no effect on the
+output.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>taken</strong><span class="classifier">same type as caller</span></dt><dd><p>An array-like containing the elements taken from the object.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<dl class="simple">
+<dt><code class="xref py py-obj docutils literal notranslate"><span class="pre">DataFrame.loc</span></code></dt><dd><p>Select a subset of a DataFrame by labels.</p>
+</dd>
+<dt><code class="xref py py-obj docutils literal notranslate"><span class="pre">DataFrame.iloc</span></code></dt><dd><p>Select a subset of a DataFrame by positions.</p>
+</dd>
+<dt><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.take.html#numpy.take" title="(in NumPy v1.22)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">numpy.take</span></code></a></dt><dd><p>Take elements from an array along an axis.</p>
+</dd>
+</dl>
+</div>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([(</span><span class="s1">'falcon'</span><span class="p">,</span> <span class="s1">'bird'</span><span class="p">,</span> <span class="mf">389.0</span><span class="p">),</span>
+<span class="gp">... </span>                   <span class="p">(</span><span class="s1">'parrot'</span><span class="p">,</span> <span class="s1">'bird'</span><span class="p">,</span> <span class="mf">24.0</span><span class="p">),</span>
+<span class="gp">... </span>                   <span class="p">(</span><span class="s1">'lion'</span><span class="p">,</span> <span class="s1">'mammal'</span><span class="p">,</span> <span class="mf">80.5</span><span class="p">),</span>
+<span class="gp">... </span>                   <span class="p">(</span><span class="s1">'monkey'</span><span class="p">,</span> <span class="s1">'mammal'</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">)],</span>
+<span class="gp">... </span>                  <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">'name'</span><span class="p">,</span> <span class="s1">'class'</span><span class="p">,</span> <span class="s1">'max_speed'</span><span class="p">],</span>
+<span class="gp">... </span>                  <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">df</span>
+<span class="go">     name   class  max_speed</span>
+<span class="go">0  falcon    bird      389.0</span>
+<span class="go">2  parrot    bird       24.0</span>
+<span class="go">3    lion  mammal       80.5</span>
+<span class="go">1  monkey  mammal        NaN</span>
+</pre></div>
+</div>
+<p>Take elements at positions 0 and 3 along the axis 0 (default).</p>
+<p>Note how the actual indices selected (0 and 1) do not correspond to
+our selected indices 0 and 3. That’s because we are selecting the 0th
+and 3rd rows, not rows whose indices equal 0 and 3.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df</span><span class="o">.</span><span class="n">take</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
+<span class="go">     name   class  max_speed</span>
+<span class="go">0  falcon    bird      389.0</span>
+<span class="go">1  monkey  mammal        NaN</span>
+</pre></div>
+</div>
+<p>Take elements at indices 1 and 2 along the axis 1 (column selection).</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df</span><span class="o">.</span><span class="n">take</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="go">    class  max_speed</span>
+<span class="go">0    bird      389.0</span>
+<span class="go">2    bird       24.0</span>
+<span class="go">3  mammal       80.5</span>
+<span class="go">1  mammal        NaN</span>
+</pre></div>
+</div>
+<p>We may take elements using negative integers for positive indices,
+starting from the end of the object, just like with Python lists.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df</span><span class="o">.</span><span class="n">take</span><span class="p">([</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">])</span>
+<span class="go">     name   class  max_speed</span>
+<span class="go">1  monkey  mammal        NaN</span>
+<span class="go">3    lion  mammal       80.5</span>
+</pre></div>
+</div>
+</dd></dl>
+</section>
+</div>
+
+</main>
+</div>
+</div>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+</body>
+</html>

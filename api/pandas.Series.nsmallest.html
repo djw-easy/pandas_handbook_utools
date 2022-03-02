@@ -1,0 +1,168 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="Docutils 0.17.1: http://docutils.sourceforge.net/" name="generator"/>
+<title>pandas.Series.nsmallest — pandas 1.4.1 documentation</title>
+<link href="../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet"/>
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet"/>
+<link href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css" rel="stylesheet"/>
+<link as="font" crossorigin="" href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2" rel="preload" type="font/woff2"/>
+<link as="font" crossorigin="" href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2" rel="preload" type="font/woff2"/>
+<link href="../../_static/pygments.css" rel="stylesheet" type="text/css">
+<link href="../../_static/styles/pydata-sphinx-theme.css" rel="stylesheet" type="text/css">
+<link href="../../_static/plot_directive.css" rel="stylesheet" type="text/css">
+<link href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" rel="stylesheet" type="text/css">
+<link href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" rel="stylesheet" type="text/css">
+<link href="../../_static/css/getting_started.css" rel="stylesheet" type="text/css"/>
+<link href="../../_static/css/pandas.css" rel="stylesheet" type="text/css"/>
+<link as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf" rel="preload"/>
+<script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+<script src="../../_static/jquery.js"></script>
+<script src="../../_static/underscore.js"></script>
+<script src="../../_static/doctools.js"></script>
+<script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
+<link href="../../_static/favicon.ico" rel="shortcut icon">
+<link href="../../genindex.html" rel="index" title="Index"/>
+<link href="../../search.html" rel="search" title="Search"/>
+<link href="pandas.Series.nunique.html" rel="next" title="pandas.Series.nunique"/>
+<link href="pandas.Series.notnull.html" rel="prev" title="pandas.Series.notnull"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<meta content="en" name="docsearch:language"/>
+<script async="" src="https://www.google-analytics.com/analytics.js"></script>
+<script>
+                        window.ga = window.ga || function () {
+                            (ga.q = ga.q || []).push(arguments) };
+                        ga.l = +new Date;
+                        ga('create', 'UA-27880019-2', 'auto');
+                        ga('set', 'anonymizeIp', true);
+                        ga('send', 'pageview');
+                    </script>
+</link></link></link></link></link></link></head>
+<body data-offset="80" data-spy="scroll" data-target="#bd-toc-nav">
+<div class="container-fluid" id="banner"></div>
+
+<div class="container-xl">
+<div class="row">
+
+
+<main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
+<div>
+<section id="pandas-series-nsmallest">
+<h1>pandas.Series.nsmallest<a class="headerlink" href="#pandas-series-nsmallest" title="Permalink to this headline">¶</a></h1>
+<dl class="py method">
+<dt class="sig sig-object py" id="pandas.Series.nsmallest">
+<span class="sig-prename descclassname"><span class="pre">Series.</span></span><span class="sig-name descname"><span class="pre">nsmallest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">keep</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'first'</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/pandas-dev/pandas/blob/v1.4.1/pandas/core/series.py#L3838-L3933"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pandas.Series.nsmallest" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the smallest <cite>n</cite> elements.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>n</strong><span class="classifier">int, default 5</span></dt><dd><p>Return this many ascending sorted values.</p>
+</dd>
+<dt><strong>keep</strong><span class="classifier">{‘first’, ‘last’, ‘all’}, default ‘first’</span></dt><dd><p>When there are duplicate values that cannot all fit in a
+Series of <cite>n</cite> elements:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">first</span></code> : return the first <cite>n</cite> occurrences in order
+of appearance.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">last</span></code> : return the last <cite>n</cite> occurrences in reverse
+order of appearance.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">all</span></code> : keep all occurrences. This can result in a Series of
+size larger than <cite>n</cite>.</p></li>
+</ul>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt>Series</dt><dd><p>The <cite>n</cite> smallest values in the Series, sorted in increasing order.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<dl class="simple">
+<dt><a class="reference internal" href="pandas.Series.nlargest.html#pandas.Series.nlargest" title="pandas.Series.nlargest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Series.nlargest</span></code></a></dt><dd><p>Get the <cite>n</cite> largest elements.</p>
+</dd>
+<dt><a class="reference internal" href="pandas.Series.sort_values.html#pandas.Series.sort_values" title="pandas.Series.sort_values"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Series.sort_values</span></code></a></dt><dd><p>Sort Series by values.</p>
+</dd>
+<dt><a class="reference internal" href="pandas.Series.head.html#pandas.Series.head" title="pandas.Series.head"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Series.head</span></code></a></dt><dd><p>Return the first <cite>n</cite> rows.</p>
+</dd>
+</dl>
+</div>
+<p class="rubric">Notes</p>
+<p>Faster than <code class="docutils literal notranslate"><span class="pre">.sort_values().head(n)</span></code> for small <cite>n</cite> relative to
+the size of the <code class="docutils literal notranslate"><span class="pre">Series</span></code> object.</p>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">countries_population</span> <span class="o">=</span> <span class="p">{</span><span class="s2">"Italy"</span><span class="p">:</span> <span class="mi">59000000</span><span class="p">,</span> <span class="s2">"France"</span><span class="p">:</span> <span class="mi">65000000</span><span class="p">,</span>
+<span class="gp">... </span>                        <span class="s2">"Brunei"</span><span class="p">:</span> <span class="mi">434000</span><span class="p">,</span> <span class="s2">"Malta"</span><span class="p">:</span> <span class="mi">434000</span><span class="p">,</span>
+<span class="gp">... </span>                        <span class="s2">"Maldives"</span><span class="p">:</span> <span class="mi">434000</span><span class="p">,</span> <span class="s2">"Iceland"</span><span class="p">:</span> <span class="mi">337000</span><span class="p">,</span>
+<span class="gp">... </span>                        <span class="s2">"Nauru"</span><span class="p">:</span> <span class="mi">11300</span><span class="p">,</span> <span class="s2">"Tuvalu"</span><span class="p">:</span> <span class="mi">11300</span><span class="p">,</span>
+<span class="gp">... </span>                        <span class="s2">"Anguilla"</span><span class="p">:</span> <span class="mi">11300</span><span class="p">,</span> <span class="s2">"Montserrat"</span><span class="p">:</span> <span class="mi">5200</span><span class="p">}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">s</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">countries_population</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">s</span>
+<span class="go">Italy       59000000</span>
+<span class="go">France      65000000</span>
+<span class="go">Brunei        434000</span>
+<span class="go">Malta         434000</span>
+<span class="go">Maldives      434000</span>
+<span class="go">Iceland       337000</span>
+<span class="go">Nauru          11300</span>
+<span class="go">Tuvalu         11300</span>
+<span class="go">Anguilla       11300</span>
+<span class="go">Montserrat      5200</span>
+<span class="go">dtype: int64</span>
+</pre></div>
+</div>
+<p>The <cite>n</cite> smallest elements where <code class="docutils literal notranslate"><span class="pre">n=5</span></code> by default.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">s</span><span class="o">.</span><span class="n">nsmallest</span><span class="p">()</span>
+<span class="go">Montserrat    5200</span>
+<span class="go">Nauru        11300</span>
+<span class="go">Tuvalu       11300</span>
+<span class="go">Anguilla     11300</span>
+<span class="go">Iceland     337000</span>
+<span class="go">dtype: int64</span>
+</pre></div>
+</div>
+<p>The <cite>n</cite> smallest elements where <code class="docutils literal notranslate"><span class="pre">n=3</span></code>. Default <cite>keep</cite> value is
+‘first’ so Nauru and Tuvalu will be kept.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">s</span><span class="o">.</span><span class="n">nsmallest</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+<span class="go">Montserrat   5200</span>
+<span class="go">Nauru       11300</span>
+<span class="go">Tuvalu      11300</span>
+<span class="go">dtype: int64</span>
+</pre></div>
+</div>
+<p>The <cite>n</cite> smallest elements where <code class="docutils literal notranslate"><span class="pre">n=3</span></code> and keeping the last
+duplicates. Anguilla and Tuvalu will be kept since they are the last
+with value 11300 based on the index order.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">s</span><span class="o">.</span><span class="n">nsmallest</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="n">keep</span><span class="o">=</span><span class="s1">'last'</span><span class="p">)</span>
+<span class="go">Montserrat   5200</span>
+<span class="go">Anguilla    11300</span>
+<span class="go">Tuvalu      11300</span>
+<span class="go">dtype: int64</span>
+</pre></div>
+</div>
+<p>The <cite>n</cite> smallest elements where <code class="docutils literal notranslate"><span class="pre">n=3</span></code> with all duplicates kept. Note
+that the returned Series has four elements due to the three duplicates.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">s</span><span class="o">.</span><span class="n">nsmallest</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="n">keep</span><span class="o">=</span><span class="s1">'all'</span><span class="p">)</span>
+<span class="go">Montserrat   5200</span>
+<span class="go">Nauru       11300</span>
+<span class="go">Tuvalu      11300</span>
+<span class="go">Anguilla    11300</span>
+<span class="go">dtype: int64</span>
+</pre></div>
+</div>
+</dd></dl>
+</section>
+</div>
+
+</main>
+</div>
+</div>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+</body>
+</html>

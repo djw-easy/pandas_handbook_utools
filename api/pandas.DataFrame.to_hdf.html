@@ -1,0 +1,179 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="Docutils 0.17.1: http://docutils.sourceforge.net/" name="generator"/>
+<title>pandas.DataFrame.to_hdf — pandas 1.4.1 documentation</title>
+<link href="../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet"/>
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet"/>
+<link href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css" rel="stylesheet"/>
+<link as="font" crossorigin="" href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2" rel="preload" type="font/woff2"/>
+<link as="font" crossorigin="" href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2" rel="preload" type="font/woff2"/>
+<link href="../../_static/pygments.css" rel="stylesheet" type="text/css">
+<link href="../../_static/styles/pydata-sphinx-theme.css" rel="stylesheet" type="text/css">
+<link href="../../_static/plot_directive.css" rel="stylesheet" type="text/css">
+<link href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" rel="stylesheet" type="text/css">
+<link href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" rel="stylesheet" type="text/css">
+<link href="../../_static/css/getting_started.css" rel="stylesheet" type="text/css"/>
+<link href="../../_static/css/pandas.css" rel="stylesheet" type="text/css"/>
+<link as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf" rel="preload"/>
+<script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+<script src="../../_static/jquery.js"></script>
+<script src="../../_static/underscore.js"></script>
+<script src="../../_static/doctools.js"></script>
+<script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
+<link href="../../_static/favicon.ico" rel="shortcut icon">
+<link href="../../genindex.html" rel="index" title="Index"/>
+<link href="../../search.html" rel="search" title="Search"/>
+<link href="pandas.DataFrame.to_markdown.html" rel="next" title="pandas.DataFrame.to_markdown"/>
+<link href="pandas.DataFrame.to_gbq.html" rel="prev" title="pandas.DataFrame.to_gbq"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<meta content="en" name="docsearch:language"/>
+<script async="" src="https://www.google-analytics.com/analytics.js"></script>
+<script>
+                        window.ga = window.ga || function () {
+                            (ga.q = ga.q || []).push(arguments) };
+                        ga.l = +new Date;
+                        ga('create', 'UA-27880019-2', 'auto');
+                        ga('set', 'anonymizeIp', true);
+                        ga('send', 'pageview');
+                    </script>
+</link></link></link></link></link></link></head>
+<body data-offset="80" data-spy="scroll" data-target="#bd-toc-nav">
+<div class="container-fluid" id="banner"></div>
+
+<div class="container-xl">
+<div class="row">
+
+
+<main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
+<div>
+<section id="pandas-dataframe-to-hdf">
+<h1>pandas.DataFrame.to_hdf<a class="headerlink" href="#pandas-dataframe-to-hdf" title="Permalink to this headline">¶</a></h1>
+<dl class="py method">
+<dt class="sig sig-object py" id="pandas.DataFrame.to_hdf">
+<span class="sig-prename descclassname"><span class="pre">DataFrame.</span></span><span class="sig-name descname"><span class="pre">to_hdf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path_or_buf</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">key</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mode</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'a'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">complevel</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">complib</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">append</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">format</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">index</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">min_itemsize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nan_rep</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dropna</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data_columns</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">errors</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'strict'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">encoding</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'UTF-8'</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/pandas-dev/pandas/blob/v1.4.1/pandas/core/generic.py#L2649-L2791"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pandas.DataFrame.to_hdf" title="Permalink to this definition">¶</a></dt>
+<dd><p>Write the contained data to an HDF5 file using HDFStore.</p>
+<p>Hierarchical Data Format (HDF) is self-describing, allowing an
+application to interpret the structure and contents of a file with
+no outside information. One HDF file can hold a mix of related objects
+which can be accessed as a group or as individual objects.</p>
+<p>In order to add another DataFrame or Series to an existing HDF file
+please use append mode and a different a key.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>One can store a subclass of <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code> or <code class="docutils literal notranslate"><span class="pre">Series</span></code> to HDF5,
+but the type of the subclass is lost upon storing.</p>
+</div>
+<p>For more information see the <a class="reference internal" href="../../user_guide/io.html#io-hdf5"><span class="std std-ref">user guide</span></a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>path_or_buf</strong><span class="classifier">str or pandas.HDFStore</span></dt><dd><p>File path or HDFStore object.</p>
+</dd>
+<dt><strong>key</strong><span class="classifier">str</span></dt><dd><p>Identifier for the group in the store.</p>
+</dd>
+<dt><strong>mode</strong><span class="classifier">{‘a’, ‘w’, ‘r+’}, default ‘a’</span></dt><dd><p>Mode to open file:</p>
+<ul class="simple">
+<li><p>‘w’: write, a new file is created (an existing file with
+the same name would be deleted).</p></li>
+<li><p>‘a’: append, an existing file is opened for reading and
+writing, and if the file does not exist it is created.</p></li>
+<li><p>‘r+’: similar to ‘a’, but the file must already exist.</p></li>
+</ul>
+</dd>
+<dt><strong>complevel</strong><span class="classifier">{0-9}, default None</span></dt><dd><p>Specifies a compression level for data.
+A value of 0 or None disables compression.</p>
+</dd>
+<dt><strong>complib</strong><span class="classifier">{‘zlib’, ‘lzo’, ‘bzip2’, ‘blosc’}, default ‘zlib’</span></dt><dd><p>Specifies the compression library to be used.
+As of v0.20.2 these additional compressors for Blosc are supported
+(default if no compressor specified: ‘blosc:blosclz’):
+{‘blosc:blosclz’, ‘blosc:lz4’, ‘blosc:lz4hc’, ‘blosc:snappy’,
+‘blosc:zlib’, ‘blosc:zstd’}.
+Specifying a compression library which is not available issues
+a ValueError.</p>
+</dd>
+<dt><strong>append</strong><span class="classifier">bool, default False</span></dt><dd><p>For Table formats, append the input data to the existing.</p>
+</dd>
+<dt><strong>format</strong><span class="classifier">{‘fixed’, ‘table’, None}, default ‘fixed’</span></dt><dd><p>Possible values:</p>
+<ul class="simple">
+<li><p>‘fixed’: Fixed format. Fast writing/reading. Not-appendable,
+nor searchable.</p></li>
+<li><p>‘table’: Table format. Write as a PyTables Table structure
+which may perform worse but allow more flexible operations
+like searching / selecting subsets of the data.</p></li>
+<li><p>If None, pd.get_option(‘io.hdf.default_format’) is checked,
+followed by fallback to “fixed”.</p></li>
+</ul>
+</dd>
+<dt><strong>errors</strong><span class="classifier">str, default ‘strict’</span></dt><dd><p>Specifies how encoding and decoding errors are to be handled.
+See the errors argument for <a class="reference external" href="https://docs.python.org/3/library/functions.html#open" title="(in Python v3.10)"><code class="xref py py-func docutils literal notranslate"><span class="pre">open()</span></code></a> for a full list
+of options.</p>
+</dd>
+<dt><strong>encoding</strong><span class="classifier">str, default “UTF-8”</span></dt><dd></dd>
+<dt><strong>min_itemsize</strong><span class="classifier">dict or int, optional</span></dt><dd><p>Map column names to minimum string sizes for columns.</p>
+</dd>
+<dt><strong>nan_rep</strong><span class="classifier">Any, optional</span></dt><dd><p>How to represent null values as str.
+Not allowed with append=True.</p>
+</dd>
+<dt><strong>data_columns</strong><span class="classifier">list of columns or True, optional</span></dt><dd><p>List of columns to create as indexed data columns for on-disk
+queries, or True to use all columns. By default only the axes
+of the object are indexed. See <a class="reference internal" href="../../user_guide/io.html#io-hdf5-query-data-columns"><span class="std std-ref">Query via data columns</span></a>.
+Applicable only to format=’table’.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<dl class="simple">
+<dt><a class="reference internal" href="pandas.read_hdf.html#pandas.read_hdf" title="pandas.read_hdf"><code class="xref py py-obj docutils literal notranslate"><span class="pre">read_hdf</span></code></a></dt><dd><p>Read from HDF file.</p>
+</dd>
+<dt><a class="reference internal" href="pandas.DataFrame.to_parquet.html#pandas.DataFrame.to_parquet" title="pandas.DataFrame.to_parquet"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DataFrame.to_parquet</span></code></a></dt><dd><p>Write a DataFrame to the binary parquet format.</p>
+</dd>
+<dt><a class="reference internal" href="pandas.DataFrame.to_sql.html#pandas.DataFrame.to_sql" title="pandas.DataFrame.to_sql"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DataFrame.to_sql</span></code></a></dt><dd><p>Write to a SQL table.</p>
+</dd>
+<dt><a class="reference internal" href="pandas.DataFrame.to_feather.html#pandas.DataFrame.to_feather" title="pandas.DataFrame.to_feather"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DataFrame.to_feather</span></code></a></dt><dd><p>Write out feather-format for DataFrames.</p>
+</dd>
+<dt><a class="reference internal" href="pandas.DataFrame.to_csv.html#pandas.DataFrame.to_csv" title="pandas.DataFrame.to_csv"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DataFrame.to_csv</span></code></a></dt><dd><p>Write out to a csv file.</p>
+</dd>
+</dl>
+</div>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">'A'</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="s1">'B'</span><span class="p">:</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">]},</span>
+<span class="gp">... </span>                  <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="s1">'a'</span><span class="p">,</span> <span class="s1">'b'</span><span class="p">,</span> <span class="s1">'c'</span><span class="p">])</span>  
+<span class="gp">&gt;&gt;&gt; </span><span class="n">df</span><span class="o">.</span><span class="n">to_hdf</span><span class="p">(</span><span class="s1">'data.h5'</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="s1">'df'</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">'w'</span><span class="p">)</span>  
+</pre></div>
+</div>
+<p>We can add another object to the same file:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">s</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">])</span>  
+<span class="gp">&gt;&gt;&gt; </span><span class="n">s</span><span class="o">.</span><span class="n">to_hdf</span><span class="p">(</span><span class="s1">'data.h5'</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="s1">'s'</span><span class="p">)</span>  
+</pre></div>
+</div>
+<p>Reading from HDF file:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">pd</span><span class="o">.</span><span class="n">read_hdf</span><span class="p">(</span><span class="s1">'data.h5'</span><span class="p">,</span> <span class="s1">'df'</span><span class="p">)</span>  
+<span class="go">A  B</span>
+<span class="go">a  1  4</span>
+<span class="go">b  2  5</span>
+<span class="go">c  3  6</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pd</span><span class="o">.</span><span class="n">read_hdf</span><span class="p">(</span><span class="s1">'data.h5'</span><span class="p">,</span> <span class="s1">'s'</span><span class="p">)</span>  
+<span class="go">0    1</span>
+<span class="go">1    2</span>
+<span class="go">2    3</span>
+<span class="go">3    4</span>
+<span class="go">dtype: int64</span>
+</pre></div>
+</div>
+</dd></dl>
+</section>
+</div>
+
+</main>
+</div>
+</div>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+</body>
+</html>

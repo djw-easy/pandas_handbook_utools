@@ -1,0 +1,172 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="Docutils 0.17.1: http://docutils.sourceforge.net/" name="generator"/>
+<title>pandas.DataFrame.to_dict — pandas 1.4.1 documentation</title>
+<link href="../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet"/>
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet"/>
+<link href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css" rel="stylesheet"/>
+<link as="font" crossorigin="" href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2" rel="preload" type="font/woff2"/>
+<link as="font" crossorigin="" href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2" rel="preload" type="font/woff2"/>
+<link href="../../_static/pygments.css" rel="stylesheet" type="text/css">
+<link href="../../_static/styles/pydata-sphinx-theme.css" rel="stylesheet" type="text/css">
+<link href="../../_static/plot_directive.css" rel="stylesheet" type="text/css">
+<link href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" rel="stylesheet" type="text/css">
+<link href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" rel="stylesheet" type="text/css">
+<link href="../../_static/css/getting_started.css" rel="stylesheet" type="text/css"/>
+<link href="../../_static/css/pandas.css" rel="stylesheet" type="text/css"/>
+<link as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf" rel="preload"/>
+<script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+<script src="../../_static/jquery.js"></script>
+<script src="../../_static/underscore.js"></script>
+<script src="../../_static/doctools.js"></script>
+<script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
+<link href="../../_static/favicon.ico" rel="shortcut icon">
+<link href="../../genindex.html" rel="index" title="Index"/>
+<link href="../../search.html" rel="search" title="Search"/>
+<link href="pandas.DataFrame.to_gbq.html" rel="next" title="pandas.DataFrame.to_gbq"/>
+<link href="pandas.DataFrame.take.html" rel="prev" title="pandas.DataFrame.take"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<meta content="en" name="docsearch:language"/>
+<script async="" src="https://www.google-analytics.com/analytics.js"></script>
+<script>
+                        window.ga = window.ga || function () {
+                            (ga.q = ga.q || []).push(arguments) };
+                        ga.l = +new Date;
+                        ga('create', 'UA-27880019-2', 'auto');
+                        ga('set', 'anonymizeIp', true);
+                        ga('send', 'pageview');
+                    </script>
+</link></link></link></link></link></link></head>
+<body data-offset="80" data-spy="scroll" data-target="#bd-toc-nav">
+<div class="container-fluid" id="banner"></div>
+
+<div class="container-xl">
+<div class="row">
+
+
+<main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
+<div>
+<section id="pandas-dataframe-to-dict">
+<h1>pandas.DataFrame.to_dict<a class="headerlink" href="#pandas-dataframe-to-dict" title="Permalink to this headline">¶</a></h1>
+<dl class="py method">
+<dt class="sig sig-object py" id="pandas.DataFrame.to_dict">
+<span class="sig-prename descclassname"><span class="pre">DataFrame.</span></span><span class="sig-name descname"><span class="pre">to_dict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">orient='dict'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">into=&lt;class</span> <span class="pre">'dict'&gt;</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/pandas-dev/pandas/blob/v1.4.1/pandas/core/frame.py#L1762-L1960"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pandas.DataFrame.to_dict" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert the DataFrame to a dictionary.</p>
+<p>The type of the key-value pairs can be customized with the parameters
+(see below).</p>
+<dl class="field-list">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl>
+<dt><strong>orient</strong><span class="classifier">str {‘dict’, ‘list’, ‘series’, ‘split’, ‘records’, ‘index’}</span></dt><dd><p>Determines the type of the values of the dictionary.</p>
+<ul class="simple">
+<li><p>‘dict’ (default) : dict like {column -&gt; {index -&gt; value}}</p></li>
+<li><p>‘list’ : dict like {column -&gt; [values]}</p></li>
+<li><p>‘series’ : dict like {column -&gt; Series(values)}</p></li>
+<li><p>‘split’ : dict like
+{‘index’ -&gt; [index], ‘columns’ -&gt; [columns], ‘data’ -&gt; [values]}</p></li>
+<li><p>‘tight’ : dict like
+{‘index’ -&gt; [index], ‘columns’ -&gt; [columns], ‘data’ -&gt; [values],
+‘index_names’ -&gt; [index.names], ‘column_names’ -&gt; [column.names]}</p></li>
+<li><p>‘records’ : list like
+[{column -&gt; value}, … , {column -&gt; value}]</p></li>
+<li><p>‘index’ : dict like {index -&gt; {column -&gt; value}}</p></li>
+</ul>
+<p>Abbreviations are allowed. <cite>s</cite> indicates <cite>series</cite> and <cite>sp</cite>
+indicates <cite>split</cite>.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">New in version 1.4.0: </span>‘tight’ as an allowed value for the <code class="docutils literal notranslate"><span class="pre">orient</span></code> argument</p>
+</div>
+</dd>
+<dt><strong>into</strong><span class="classifier">class, default dict</span></dt><dd><p>The collections.abc.Mapping subclass used for all Mappings
+in the return value. Can be the actual class or an empty
+instance of the mapping type you want. If you want a
+collections.defaultdict, you must pass it initialized.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt>dict, list or collections.abc.Mapping</dt><dd><p>Return a collections.abc.Mapping object representing the DataFrame.
+The resulting transformation depends on the <cite>orient</cite> parameter.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<dl class="simple">
+<dt><a class="reference internal" href="pandas.DataFrame.from_dict.html#pandas.DataFrame.from_dict" title="pandas.DataFrame.from_dict"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DataFrame.from_dict</span></code></a></dt><dd><p>Create a DataFrame from a dictionary.</p>
+</dd>
+<dt><a class="reference internal" href="pandas.DataFrame.to_json.html#pandas.DataFrame.to_json" title="pandas.DataFrame.to_json"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DataFrame.to_json</span></code></a></dt><dd><p>Convert a DataFrame to JSON format.</p>
+</dd>
+</dl>
+</div>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">'col1'</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span>
+<span class="gp">... </span>                   <span class="s1">'col2'</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.75</span><span class="p">]},</span>
+<span class="gp">... </span>                  <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="s1">'row1'</span><span class="p">,</span> <span class="s1">'row2'</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">df</span>
+<span class="go">      col1  col2</span>
+<span class="go">row1     1  0.50</span>
+<span class="go">row2     2  0.75</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">df</span><span class="o">.</span><span class="n">to_dict</span><span class="p">()</span>
+<span class="go">{'col1': {'row1': 1, 'row2': 2}, 'col2': {'row1': 0.5, 'row2': 0.75}}</span>
+</pre></div>
+</div>
+<p>You can specify the return orientation.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df</span><span class="o">.</span><span class="n">to_dict</span><span class="p">(</span><span class="s1">'series'</span><span class="p">)</span>
+<span class="go">{'col1': row1    1</span>
+<span class="go">         row2    2</span>
+<span class="go">Name: col1, dtype: int64,</span>
+<span class="go">'col2': row1    0.50</span>
+<span class="go">        row2    0.75</span>
+<span class="go">Name: col2, dtype: float64}</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df</span><span class="o">.</span><span class="n">to_dict</span><span class="p">(</span><span class="s1">'split'</span><span class="p">)</span>
+<span class="go">{'index': ['row1', 'row2'], 'columns': ['col1', 'col2'],</span>
+<span class="go"> 'data': [[1, 0.5], [2, 0.75]]}</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df</span><span class="o">.</span><span class="n">to_dict</span><span class="p">(</span><span class="s1">'records'</span><span class="p">)</span>
+<span class="go">[{'col1': 1, 'col2': 0.5}, {'col1': 2, 'col2': 0.75}]</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df</span><span class="o">.</span><span class="n">to_dict</span><span class="p">(</span><span class="s1">'index'</span><span class="p">)</span>
+<span class="go">{'row1': {'col1': 1, 'col2': 0.5}, 'row2': {'col1': 2, 'col2': 0.75}}</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df</span><span class="o">.</span><span class="n">to_dict</span><span class="p">(</span><span class="s1">'tight'</span><span class="p">)</span>
+<span class="go">{'index': ['row1', 'row2'], 'columns': ['col1', 'col2'],</span>
+<span class="go"> 'data': [[1, 0.5], [2, 0.75]], 'index_names': [None], 'column_names': [None]}</span>
+</pre></div>
+</div>
+<p>You can also specify the mapping type.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">OrderedDict</span><span class="p">,</span> <span class="n">defaultdict</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">df</span><span class="o">.</span><span class="n">to_dict</span><span class="p">(</span><span class="n">into</span><span class="o">=</span><span class="n">OrderedDict</span><span class="p">)</span>
+<span class="go">OrderedDict([('col1', OrderedDict([('row1', 1), ('row2', 2)])),</span>
+<span class="go">             ('col2', OrderedDict([('row1', 0.5), ('row2', 0.75)]))])</span>
+</pre></div>
+</div>
+<p>If you want a <cite>defaultdict</cite>, you need to initialize it:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">dd</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">df</span><span class="o">.</span><span class="n">to_dict</span><span class="p">(</span><span class="s1">'records'</span><span class="p">,</span> <span class="n">into</span><span class="o">=</span><span class="n">dd</span><span class="p">)</span>
+<span class="go">[defaultdict(&lt;class 'list'&gt;, {'col1': 1, 'col2': 0.5}),</span>
+<span class="go"> defaultdict(&lt;class 'list'&gt;, {'col1': 2, 'col2': 0.75})]</span>
+</pre></div>
+</div>
+</dd></dl>
+</section>
+</div>
+
+</main>
+</div>
+</div>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+</body>
+</html>

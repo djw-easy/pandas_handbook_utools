@@ -1,0 +1,170 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="Docutils 0.17.1: http://docutils.sourceforge.net/" name="generator"/>
+<title>pandas.testing.assert_frame_equal — pandas 1.4.1 documentation</title>
+<link href="../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet"/>
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet"/>
+<link href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css" rel="stylesheet"/>
+<link as="font" crossorigin="" href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2" rel="preload" type="font/woff2"/>
+<link as="font" crossorigin="" href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2" rel="preload" type="font/woff2"/>
+<link href="../../_static/pygments.css" rel="stylesheet" type="text/css">
+<link href="../../_static/styles/pydata-sphinx-theme.css" rel="stylesheet" type="text/css">
+<link href="../../_static/plot_directive.css" rel="stylesheet" type="text/css">
+<link href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" rel="stylesheet" type="text/css">
+<link href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" rel="stylesheet" type="text/css">
+<link href="../../_static/css/getting_started.css" rel="stylesheet" type="text/css"/>
+<link href="../../_static/css/pandas.css" rel="stylesheet" type="text/css"/>
+<link as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf" rel="preload"/>
+<script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+<script src="../../_static/jquery.js"></script>
+<script src="../../_static/underscore.js"></script>
+<script src="../../_static/doctools.js"></script>
+<script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
+<link href="../../_static/favicon.ico" rel="shortcut icon">
+<link href="../../genindex.html" rel="index" title="Index"/>
+<link href="../../search.html" rel="search" title="Search"/>
+<link href="pandas.testing.assert_series_equal.html" rel="next" title="pandas.testing.assert_series_equal"/>
+<link href="pandas.option_context.__call__.html" rel="prev" title="pandas.option_context.__call__"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<meta content="en" name="docsearch:language"/>
+<script async="" src="https://www.google-analytics.com/analytics.js"></script>
+<script>
+                        window.ga = window.ga || function () {
+                            (ga.q = ga.q || []).push(arguments) };
+                        ga.l = +new Date;
+                        ga('create', 'UA-27880019-2', 'auto');
+                        ga('set', 'anonymizeIp', true);
+                        ga('send', 'pageview');
+                    </script>
+</link></link></link></link></link></link></head>
+<body data-offset="80" data-spy="scroll" data-target="#bd-toc-nav">
+<div class="container-fluid" id="banner"></div>
+
+<div class="container-xl">
+<div class="row">
+
+
+<main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
+<div>
+<section id="pandas-testing-assert-frame-equal">
+<h1>pandas.testing.assert_frame_equal<a class="headerlink" href="#pandas-testing-assert-frame-equal" title="Permalink to this headline">¶</a></h1>
+<dl class="py function">
+<dt class="sig sig-object py" id="pandas.testing.assert_frame_equal">
+<span class="sig-prename descclassname"><span class="pre">pandas.testing.</span></span><span class="sig-name descname"><span class="pre">assert_frame_equal</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">left</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">right</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">check_dtype</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">check_index_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'equiv'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">check_column_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'equiv'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">check_frame_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">check_less_precise</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">NoDefault.no_default</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">check_names</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">by_blocks</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">check_exact</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">check_datetimelike_compat</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">check_categorical</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">check_like</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">check_freq</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">check_flags</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rtol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1e-05</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">atol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1e-08</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">obj</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'DataFrame'</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/pandas-dev/pandas/blob/v1.4.1/pandas/_testing/asserters.py#L1125-L1348"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pandas.testing.assert_frame_equal" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check that left and right DataFrame are equal.</p>
+<p>This function is intended to compare two DataFrames and output any
+differences. Is is mostly intended for use in unit tests.
+Additional parameters allow varying the strictness of the
+equality checks performed.</p>
+<dl class="field-list">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl>
+<dt><strong>left</strong><span class="classifier">DataFrame</span></dt><dd><p>First DataFrame to compare.</p>
+</dd>
+<dt><strong>right</strong><span class="classifier">DataFrame</span></dt><dd><p>Second DataFrame to compare.</p>
+</dd>
+<dt><strong>check_dtype</strong><span class="classifier">bool, default True</span></dt><dd><p>Whether to check the DataFrame dtype is identical.</p>
+</dd>
+<dt><strong>check_index_type</strong><span class="classifier">bool or {‘equiv’}, default ‘equiv’</span></dt><dd><p>Whether to check the Index class, dtype and inferred_type
+are identical.</p>
+</dd>
+<dt><strong>check_column_type</strong><span class="classifier">bool or {‘equiv’}, default ‘equiv’</span></dt><dd><p>Whether to check the columns class, dtype and inferred_type
+are identical. Is passed as the <code class="docutils literal notranslate"><span class="pre">exact</span></code> argument of
+<a class="reference internal" href="pandas.testing.assert_index_equal.html#pandas.testing.assert_index_equal" title="pandas.testing.assert_index_equal"><code class="xref py py-func docutils literal notranslate"><span class="pre">assert_index_equal()</span></code></a>.</p>
+</dd>
+<dt><strong>check_frame_type</strong><span class="classifier">bool, default True</span></dt><dd><p>Whether to check the DataFrame class is identical.</p>
+</dd>
+<dt><strong>check_less_precise</strong><span class="classifier">bool or int, default False</span></dt><dd><p>Specify comparison precision. Only used when check_exact is False.
+5 digits (False) or 3 digits (True) after decimal points are compared.
+If int, then specify the digits to compare.</p>
+<p>When comparing two numbers, if the first number has magnitude less
+than 1e-5, we compare the two numbers directly and check whether
+they are equivalent within the specified precision. Otherwise, we
+compare the <strong>ratio</strong> of the second number to the first number and
+check whether it is equivalent to 1 within the specified precision.</p>
+<div class="deprecated">
+<p><span class="versionmodified deprecated">Deprecated since version 1.1.0: </span>Use <cite>rtol</cite> and <cite>atol</cite> instead to define relative/absolute
+tolerance, respectively. Similar to <a class="reference external" href="https://docs.python.org/3/library/math.html#math.isclose" title="(in Python v3.10)"><code class="xref py py-func docutils literal notranslate"><span class="pre">math.isclose()</span></code></a>.</p>
+</div>
+</dd>
+<dt><strong>check_names</strong><span class="classifier">bool, default True</span></dt><dd><p>Whether to check that the <cite>names</cite> attribute for both the <cite>index</cite>
+and <cite>column</cite> attributes of the DataFrame is identical.</p>
+</dd>
+<dt><strong>by_blocks</strong><span class="classifier">bool, default False</span></dt><dd><p>Specify how to compare internal data. If False, compare by columns.
+If True, compare by blocks.</p>
+</dd>
+<dt><strong>check_exact</strong><span class="classifier">bool, default False</span></dt><dd><p>Whether to compare number exactly.</p>
+</dd>
+<dt><strong>check_datetimelike_compat</strong><span class="classifier">bool, default False</span></dt><dd><p>Compare datetime-like which is comparable ignoring dtype.</p>
+</dd>
+<dt><strong>check_categorical</strong><span class="classifier">bool, default True</span></dt><dd><p>Whether to compare internal Categorical exactly.</p>
+</dd>
+<dt><strong>check_like</strong><span class="classifier">bool, default False</span></dt><dd><p>If True, ignore the order of index &amp; columns.
+Note: index labels must match their respective rows
+(same as in columns) - same labels must be with the same data.</p>
+</dd>
+<dt><strong>check_freq</strong><span class="classifier">bool, default True</span></dt><dd><p>Whether to check the <cite>freq</cite> attribute on a DatetimeIndex or TimedeltaIndex.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">New in version 1.1.0.</span></p>
+</div>
+</dd>
+<dt><strong>check_flags</strong><span class="classifier">bool, default True</span></dt><dd><p>Whether to check the <cite>flags</cite> attribute.</p>
+</dd>
+<dt><strong>rtol</strong><span class="classifier">float, default 1e-5</span></dt><dd><p>Relative tolerance. Only used when check_exact is False.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">New in version 1.1.0.</span></p>
+</div>
+</dd>
+<dt><strong>atol</strong><span class="classifier">float, default 1e-8</span></dt><dd><p>Absolute tolerance. Only used when check_exact is False.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">New in version 1.1.0.</span></p>
+</div>
+</dd>
+<dt><strong>obj</strong><span class="classifier">str, default ‘DataFrame’</span></dt><dd><p>Specify object name being compared, internally used to show appropriate
+assertion message.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+
+<p class="rubric">Examples</p>
+<p>This example shows comparing two DataFrames that are equal
+but with columns of differing dtypes.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pandas.testing</span> <span class="kn">import</span> <span class="n">assert_frame_equal</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">df1</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">'a'</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="s1">'b'</span><span class="p">:</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]})</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">df2</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">'a'</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="s1">'b'</span><span class="p">:</span> <span class="p">[</span><span class="mf">3.0</span><span class="p">,</span> <span class="mf">4.0</span><span class="p">]})</span>
+</pre></div>
+</div>
+<p>df1 equals itself.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">assert_frame_equal</span><span class="p">(</span><span class="n">df1</span><span class="p">,</span> <span class="n">df1</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>df1 differs from df2 as column ‘b’ is of a different type.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">assert_frame_equal</span><span class="p">(</span><span class="n">df1</span><span class="p">,</span> <span class="n">df2</span><span class="p">)</span>
+<span class="gt">Traceback (most recent call last):</span>
+<span class="c">...</span>
+<span class="gr">AssertionError</span>: <span class="n">Attributes of DataFrame.iloc[:, 1] (column name="b") are different</span>
+</pre></div>
+</div>
+<p>Attribute “dtype” are different
+[left]: int64
+[right]: float64</p>
+<p>Ignore differing dtypes in columns with check_dtype.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">assert_frame_equal</span><span class="p">(</span><span class="n">df1</span><span class="p">,</span> <span class="n">df2</span><span class="p">,</span> <span class="n">check_dtype</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+</section>
+</div>
+
+</main>
+</div>
+</div>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+</body>
+</html>

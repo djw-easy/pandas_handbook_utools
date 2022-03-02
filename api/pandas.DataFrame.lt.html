@@ -1,0 +1,218 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="Docutils 0.17.1: http://docutils.sourceforge.net/" name="generator"/>
+<title>pandas.DataFrame.lt — pandas 1.4.1 documentation</title>
+<link href="../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet"/>
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet"/>
+<link href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css" rel="stylesheet"/>
+<link as="font" crossorigin="" href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2" rel="preload" type="font/woff2"/>
+<link as="font" crossorigin="" href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2" rel="preload" type="font/woff2"/>
+<link href="../../_static/pygments.css" rel="stylesheet" type="text/css">
+<link href="../../_static/styles/pydata-sphinx-theme.css" rel="stylesheet" type="text/css">
+<link href="../../_static/plot_directive.css" rel="stylesheet" type="text/css">
+<link href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" rel="stylesheet" type="text/css">
+<link href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" rel="stylesheet" type="text/css">
+<link href="../../_static/css/getting_started.css" rel="stylesheet" type="text/css"/>
+<link href="../../_static/css/pandas.css" rel="stylesheet" type="text/css"/>
+<link as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf" rel="preload"/>
+<script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+<script src="../../_static/jquery.js"></script>
+<script src="../../_static/underscore.js"></script>
+<script src="../../_static/doctools.js"></script>
+<script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
+<link href="../../_static/favicon.ico" rel="shortcut icon">
+<link href="../../genindex.html" rel="index" title="Index"/>
+<link href="../../search.html" rel="search" title="Search"/>
+<link href="pandas.DataFrame.mad.html" rel="next" title="pandas.DataFrame.mad"/>
+<link href="pandas.DataFrame.lookup.html" rel="prev" title="pandas.DataFrame.lookup"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<meta content="en" name="docsearch:language"/>
+<script async="" src="https://www.google-analytics.com/analytics.js"></script>
+<script>
+                        window.ga = window.ga || function () {
+                            (ga.q = ga.q || []).push(arguments) };
+                        ga.l = +new Date;
+                        ga('create', 'UA-27880019-2', 'auto');
+                        ga('set', 'anonymizeIp', true);
+                        ga('send', 'pageview');
+                    </script>
+</link></link></link></link></link></link></head>
+<body data-offset="80" data-spy="scroll" data-target="#bd-toc-nav">
+<div class="container-fluid" id="banner"></div>
+
+<div class="container-xl">
+<div class="row">
+
+
+<main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
+<div>
+<section id="pandas-dataframe-lt">
+<h1>pandas.DataFrame.lt<a class="headerlink" href="#pandas-dataframe-lt" title="Permalink to this headline">¶</a></h1>
+<dl class="py method">
+<dt class="sig sig-object py" id="pandas.DataFrame.lt">
+<span class="sig-prename descclassname"><span class="pre">DataFrame.</span></span><span class="sig-name descname"><span class="pre">lt</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axis</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'columns'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">level</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/pandas-dev/pandas/blob/v1.4.1/pandas/core/ops/__init__.py#L464-L471"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pandas.DataFrame.lt" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get Less than of dataframe and other, element-wise (binary operator <cite>lt</cite>).</p>
+<p>Among flexible wrappers (<cite>eq</cite>, <cite>ne</cite>, <cite>le</cite>, <cite>lt</cite>, <cite>ge</cite>, <cite>gt</cite>) to comparison
+operators.</p>
+<p>Equivalent to <cite>==</cite>, <cite>!=</cite>, <cite>&lt;=</cite>, <cite>&lt;</cite>, <cite>&gt;=</cite>, <cite>&gt;</cite> with support to choose axis
+(rows or columns) and level for comparison.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>other</strong><span class="classifier">scalar, sequence, Series, or DataFrame</span></dt><dd><p>Any single or multiple element data structure, or list-like object.</p>
+</dd>
+<dt><strong>axis</strong><span class="classifier">{0 or ‘index’, 1 or ‘columns’}, default ‘columns’</span></dt><dd><p>Whether to compare by the index (0 or ‘index’) or columns
+(1 or ‘columns’).</p>
+</dd>
+<dt><strong>level</strong><span class="classifier">int or label</span></dt><dd><p>Broadcast across a level, matching Index values on the passed
+MultiIndex level.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt>DataFrame of bool</dt><dd><p>Result of the comparison.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<dl class="simple">
+<dt><a class="reference internal" href="pandas.DataFrame.eq.html#pandas.DataFrame.eq" title="pandas.DataFrame.eq"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DataFrame.eq</span></code></a></dt><dd><p>Compare DataFrames for equality elementwise.</p>
+</dd>
+<dt><a class="reference internal" href="pandas.DataFrame.ne.html#pandas.DataFrame.ne" title="pandas.DataFrame.ne"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DataFrame.ne</span></code></a></dt><dd><p>Compare DataFrames for inequality elementwise.</p>
+</dd>
+<dt><a class="reference internal" href="pandas.DataFrame.le.html#pandas.DataFrame.le" title="pandas.DataFrame.le"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DataFrame.le</span></code></a></dt><dd><p>Compare DataFrames for less than inequality or equality elementwise.</p>
+</dd>
+<dt><a class="reference internal" href="#pandas.DataFrame.lt" title="pandas.DataFrame.lt"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DataFrame.lt</span></code></a></dt><dd><p>Compare DataFrames for strictly less than inequality elementwise.</p>
+</dd>
+<dt><a class="reference internal" href="pandas.DataFrame.ge.html#pandas.DataFrame.ge" title="pandas.DataFrame.ge"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DataFrame.ge</span></code></a></dt><dd><p>Compare DataFrames for greater than inequality or equality elementwise.</p>
+</dd>
+<dt><a class="reference internal" href="pandas.DataFrame.gt.html#pandas.DataFrame.gt" title="pandas.DataFrame.gt"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DataFrame.gt</span></code></a></dt><dd><p>Compare DataFrames for strictly greater than inequality elementwise.</p>
+</dd>
+</dl>
+</div>
+<p class="rubric">Notes</p>
+<p>Mismatched indices will be unioned together.
+<cite>NaN</cite> values are considered different (i.e. <cite>NaN</cite> != <cite>NaN</cite>).</p>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">'cost'</span><span class="p">:</span> <span class="p">[</span><span class="mi">250</span><span class="p">,</span> <span class="mi">150</span><span class="p">,</span> <span class="mi">100</span><span class="p">],</span>
+<span class="gp">... </span>                   <span class="s1">'revenue'</span><span class="p">:</span> <span class="p">[</span><span class="mi">100</span><span class="p">,</span> <span class="mi">250</span><span class="p">,</span> <span class="mi">300</span><span class="p">]},</span>
+<span class="gp">... </span>                  <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="s1">'A'</span><span class="p">,</span> <span class="s1">'B'</span><span class="p">,</span> <span class="s1">'C'</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">df</span>
+<span class="go">   cost  revenue</span>
+<span class="go">A   250      100</span>
+<span class="go">B   150      250</span>
+<span class="go">C   100      300</span>
+</pre></div>
+</div>
+<p>Comparison with a scalar, using either the operator or method:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df</span> <span class="o">==</span> <span class="mi">100</span>
+<span class="go">    cost  revenue</span>
+<span class="go">A  False     True</span>
+<span class="go">B  False    False</span>
+<span class="go">C   True    False</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df</span><span class="o">.</span><span class="n">eq</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+<span class="go">    cost  revenue</span>
+<span class="go">A  False     True</span>
+<span class="go">B  False    False</span>
+<span class="go">C   True    False</span>
+</pre></div>
+</div>
+<p>When <cite>other</cite> is a <a class="reference internal" href="pandas.Series.html#pandas.Series" title="pandas.Series"><code class="xref py py-class docutils literal notranslate"><span class="pre">Series</span></code></a>, the columns of a DataFrame are aligned
+with the index of <cite>other</cite> and broadcast:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df</span> <span class="o">!=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="mi">100</span><span class="p">,</span> <span class="mi">250</span><span class="p">],</span> <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="s2">"cost"</span><span class="p">,</span> <span class="s2">"revenue"</span><span class="p">])</span>
+<span class="go">    cost  revenue</span>
+<span class="go">A   True     True</span>
+<span class="go">B   True    False</span>
+<span class="go">C  False     True</span>
+</pre></div>
+</div>
+<p>Use the method to control the broadcast axis:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df</span><span class="o">.</span><span class="n">ne</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="mi">100</span><span class="p">,</span> <span class="mi">300</span><span class="p">],</span> <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="s2">"A"</span><span class="p">,</span> <span class="s2">"D"</span><span class="p">]),</span> <span class="n">axis</span><span class="o">=</span><span class="s1">'index'</span><span class="p">)</span>
+<span class="go">   cost  revenue</span>
+<span class="go">A  True    False</span>
+<span class="go">B  True     True</span>
+<span class="go">C  True     True</span>
+<span class="go">D  True     True</span>
+</pre></div>
+</div>
+<p>When comparing to an arbitrary sequence, the number of columns must
+match the number elements in <cite>other</cite>:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df</span> <span class="o">==</span> <span class="p">[</span><span class="mi">250</span><span class="p">,</span> <span class="mi">100</span><span class="p">]</span>
+<span class="go">    cost  revenue</span>
+<span class="go">A   True     True</span>
+<span class="go">B  False    False</span>
+<span class="go">C  False    False</span>
+</pre></div>
+</div>
+<p>Use the method to control the axis:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df</span><span class="o">.</span><span class="n">eq</span><span class="p">([</span><span class="mi">250</span><span class="p">,</span> <span class="mi">250</span><span class="p">,</span> <span class="mi">100</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="s1">'index'</span><span class="p">)</span>
+<span class="go">    cost  revenue</span>
+<span class="go">A   True    False</span>
+<span class="go">B  False     True</span>
+<span class="go">C   True    False</span>
+</pre></div>
+</div>
+<p>Compare to a DataFrame of different shape.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">other</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">'revenue'</span><span class="p">:</span> <span class="p">[</span><span class="mi">300</span><span class="p">,</span> <span class="mi">250</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">150</span><span class="p">]},</span>
+<span class="gp">... </span>                     <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="s1">'A'</span><span class="p">,</span> <span class="s1">'B'</span><span class="p">,</span> <span class="s1">'C'</span><span class="p">,</span> <span class="s1">'D'</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">other</span>
+<span class="go">   revenue</span>
+<span class="go">A      300</span>
+<span class="go">B      250</span>
+<span class="go">C      100</span>
+<span class="go">D      150</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df</span><span class="o">.</span><span class="n">gt</span><span class="p">(</span><span class="n">other</span><span class="p">)</span>
+<span class="go">    cost  revenue</span>
+<span class="go">A  False    False</span>
+<span class="go">B  False    False</span>
+<span class="go">C  False     True</span>
+<span class="go">D  False    False</span>
+</pre></div>
+</div>
+<p>Compare to a MultiIndex by level.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df_multindex</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">'cost'</span><span class="p">:</span> <span class="p">[</span><span class="mi">250</span><span class="p">,</span> <span class="mi">150</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">150</span><span class="p">,</span> <span class="mi">300</span><span class="p">,</span> <span class="mi">220</span><span class="p">],</span>
+<span class="gp">... </span>                             <span class="s1">'revenue'</span><span class="p">:</span> <span class="p">[</span><span class="mi">100</span><span class="p">,</span> <span class="mi">250</span><span class="p">,</span> <span class="mi">300</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">175</span><span class="p">,</span> <span class="mi">225</span><span class="p">]},</span>
+<span class="gp">... </span>                            <span class="n">index</span><span class="o">=</span><span class="p">[[</span><span class="s1">'Q1'</span><span class="p">,</span> <span class="s1">'Q1'</span><span class="p">,</span> <span class="s1">'Q1'</span><span class="p">,</span> <span class="s1">'Q2'</span><span class="p">,</span> <span class="s1">'Q2'</span><span class="p">,</span> <span class="s1">'Q2'</span><span class="p">],</span>
+<span class="gp">... </span>                                   <span class="p">[</span><span class="s1">'A'</span><span class="p">,</span> <span class="s1">'B'</span><span class="p">,</span> <span class="s1">'C'</span><span class="p">,</span> <span class="s1">'A'</span><span class="p">,</span> <span class="s1">'B'</span><span class="p">,</span> <span class="s1">'C'</span><span class="p">]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">df_multindex</span>
+<span class="go">      cost  revenue</span>
+<span class="go">Q1 A   250      100</span>
+<span class="go">   B   150      250</span>
+<span class="go">   C   100      300</span>
+<span class="go">Q2 A   150      200</span>
+<span class="go">   B   300      175</span>
+<span class="go">   C   220      225</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df</span><span class="o">.</span><span class="n">le</span><span class="p">(</span><span class="n">df_multindex</span><span class="p">,</span> <span class="n">level</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="go">       cost  revenue</span>
+<span class="go">Q1 A   True     True</span>
+<span class="go">   B   True     True</span>
+<span class="go">   C   True     True</span>
+<span class="go">Q2 A  False     True</span>
+<span class="go">   B   True    False</span>
+<span class="go">   C   True    False</span>
+</pre></div>
+</div>
+</dd></dl>
+</section>
+</div>
+
+</main>
+</div>
+</div>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+</body>
+</html>

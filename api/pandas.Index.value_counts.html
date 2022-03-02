@@ -1,0 +1,150 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="Docutils 0.17.1: http://docutils.sourceforge.net/" name="generator"/>
+<title>pandas.Index.value_counts — pandas 1.4.1 documentation</title>
+<link href="../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet"/>
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet"/>
+<link href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css" rel="stylesheet"/>
+<link as="font" crossorigin="" href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2" rel="preload" type="font/woff2"/>
+<link as="font" crossorigin="" href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2" rel="preload" type="font/woff2"/>
+<link href="../../_static/pygments.css" rel="stylesheet" type="text/css">
+<link href="../../_static/styles/pydata-sphinx-theme.css" rel="stylesheet" type="text/css">
+<link href="../../_static/plot_directive.css" rel="stylesheet" type="text/css">
+<link href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" rel="stylesheet" type="text/css">
+<link href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" rel="stylesheet" type="text/css">
+<link href="../../_static/css/getting_started.css" rel="stylesheet" type="text/css"/>
+<link href="../../_static/css/pandas.css" rel="stylesheet" type="text/css"/>
+<link as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf" rel="preload"/>
+<script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+<script src="../../_static/jquery.js"></script>
+<script src="../../_static/underscore.js"></script>
+<script src="../../_static/doctools.js"></script>
+<script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
+<link href="../../_static/favicon.ico" rel="shortcut icon">
+<link href="../../genindex.html" rel="index" title="Index"/>
+<link href="../../search.html" rel="search" title="Search"/>
+<link href="pandas.Index.where.html" rel="next" title="pandas.Index.where"/>
+<link href="pandas.Index.unique.html" rel="prev" title="pandas.Index.unique"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<meta content="en" name="docsearch:language"/>
+<script async="" src="https://www.google-analytics.com/analytics.js"></script>
+<script>
+                        window.ga = window.ga || function () {
+                            (ga.q = ga.q || []).push(arguments) };
+                        ga.l = +new Date;
+                        ga('create', 'UA-27880019-2', 'auto');
+                        ga('set', 'anonymizeIp', true);
+                        ga('send', 'pageview');
+                    </script>
+</link></link></link></link></link></link></head>
+<body data-offset="80" data-spy="scroll" data-target="#bd-toc-nav">
+<div class="container-fluid" id="banner"></div>
+
+<div class="container-xl">
+<div class="row">
+
+
+<main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
+<div>
+<section id="pandas-index-value-counts">
+<h1>pandas.Index.value_counts<a class="headerlink" href="#pandas-index-value-counts" title="Permalink to this headline">¶</a></h1>
+<dl class="py method">
+<dt class="sig sig-object py" id="pandas.Index.value_counts">
+<span class="sig-prename descclassname"><span class="pre">Index.</span></span><span class="sig-name descname"><span class="pre">value_counts</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">normalize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sort</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ascending</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bins</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dropna</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/pandas-dev/pandas/blob/v1.4.1/pandas/core/base.py#L884-L977"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pandas.Index.value_counts" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a Series containing counts of unique values.</p>
+<p>The resulting object will be in descending order so that the
+first element is the most frequently-occurring element.
+Excludes NA values by default.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>normalize</strong><span class="classifier">bool, default False</span></dt><dd><p>If True then the object returned will contain the relative
+frequencies of the unique values.</p>
+</dd>
+<dt><strong>sort</strong><span class="classifier">bool, default True</span></dt><dd><p>Sort by frequencies.</p>
+</dd>
+<dt><strong>ascending</strong><span class="classifier">bool, default False</span></dt><dd><p>Sort in ascending order.</p>
+</dd>
+<dt><strong>bins</strong><span class="classifier">int, optional</span></dt><dd><p>Rather than count values, group them into half-open bins,
+a convenience for <code class="docutils literal notranslate"><span class="pre">pd.cut</span></code>, only works with numeric data.</p>
+</dd>
+<dt><strong>dropna</strong><span class="classifier">bool, default True</span></dt><dd><p>Don’t include counts of NaN.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt>Series</dt><dd></dd>
+</dl>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<dl class="simple">
+<dt><a class="reference internal" href="pandas.Series.count.html#pandas.Series.count" title="pandas.Series.count"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Series.count</span></code></a></dt><dd><p>Number of non-NA elements in a Series.</p>
+</dd>
+<dt><a class="reference internal" href="pandas.DataFrame.count.html#pandas.DataFrame.count" title="pandas.DataFrame.count"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DataFrame.count</span></code></a></dt><dd><p>Number of non-NA elements in a DataFrame.</p>
+</dd>
+<dt><a class="reference internal" href="pandas.DataFrame.value_counts.html#pandas.DataFrame.value_counts" title="pandas.DataFrame.value_counts"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DataFrame.value_counts</span></code></a></dt><dd><p>Equivalent method on DataFrames.</p>
+</dd>
+</dl>
+</div>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">index</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Index</span><span class="p">([</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">index</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
+<span class="go">3.0    2</span>
+<span class="go">1.0    1</span>
+<span class="go">2.0    1</span>
+<span class="go">4.0    1</span>
+<span class="go">dtype: int64</span>
+</pre></div>
+</div>
+<p>With <cite>normalize</cite> set to <cite>True</cite>, returns the relative frequency by
+dividing all values by the sum of values.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">s</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">s</span><span class="o">.</span><span class="n">value_counts</span><span class="p">(</span><span class="n">normalize</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="go">3.0    0.4</span>
+<span class="go">1.0    0.2</span>
+<span class="go">2.0    0.2</span>
+<span class="go">4.0    0.2</span>
+<span class="go">dtype: float64</span>
+</pre></div>
+</div>
+<p><strong>bins</strong></p>
+<p>Bins can be useful for going from a continuous variable to a
+categorical variable; instead of counting unique
+apparitions of values, divide the index in the specified
+number of half-open bins.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">s</span><span class="o">.</span><span class="n">value_counts</span><span class="p">(</span><span class="n">bins</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="go">(0.996, 2.0]    2</span>
+<span class="go">(2.0, 3.0]      2</span>
+<span class="go">(3.0, 4.0]      1</span>
+<span class="go">dtype: int64</span>
+</pre></div>
+</div>
+<p><strong>dropna</strong></p>
+<p>With <cite>dropna</cite> set to <cite>False</cite> we can also see NaN index values.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">s</span><span class="o">.</span><span class="n">value_counts</span><span class="p">(</span><span class="n">dropna</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="go">3.0    2</span>
+<span class="go">1.0    1</span>
+<span class="go">2.0    1</span>
+<span class="go">4.0    1</span>
+<span class="go">NaN    1</span>
+<span class="go">dtype: int64</span>
+</pre></div>
+</div>
+</dd></dl>
+</section>
+</div>
+
+</main>
+</div>
+</div>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+</body>
+</html>

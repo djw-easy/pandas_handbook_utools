@@ -1,0 +1,176 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="Docutils 0.17.1: http://docutils.sourceforge.net/" name="generator"/>
+<title>pandas.DataFrame.plot.line — pandas 1.4.1 documentation</title>
+<link href="../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet"/>
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet"/>
+<link href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css" rel="stylesheet"/>
+<link as="font" crossorigin="" href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2" rel="preload" type="font/woff2"/>
+<link as="font" crossorigin="" href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2" rel="preload" type="font/woff2"/>
+<link href="../../_static/pygments.css" rel="stylesheet" type="text/css">
+<link href="../../_static/styles/pydata-sphinx-theme.css" rel="stylesheet" type="text/css">
+<link href="../../_static/plot_directive.css" rel="stylesheet" type="text/css">
+<link href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" rel="stylesheet" type="text/css">
+<link href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" rel="stylesheet" type="text/css">
+<link href="../../_static/css/getting_started.css" rel="stylesheet" type="text/css"/>
+<link href="../../_static/css/pandas.css" rel="stylesheet" type="text/css"/>
+<link as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf" rel="preload"/>
+<script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+<script src="../../_static/jquery.js"></script>
+<script src="../../_static/underscore.js"></script>
+<script src="../../_static/doctools.js"></script>
+<script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
+<link href="../../_static/favicon.ico" rel="shortcut icon">
+<link href="../../genindex.html" rel="index" title="Index"/>
+<link href="../../search.html" rel="search" title="Search"/>
+<link href="pandas.DataFrame.plot.pie.html" rel="next" title="pandas.DataFrame.plot.pie"/>
+<link href="pandas.DataFrame.plot.kde.html" rel="prev" title="pandas.DataFrame.plot.kde"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<meta content="en" name="docsearch:language"/>
+<script async="" src="https://www.google-analytics.com/analytics.js"></script>
+<script>
+                        window.ga = window.ga || function () {
+                            (ga.q = ga.q || []).push(arguments) };
+                        ga.l = +new Date;
+                        ga('create', 'UA-27880019-2', 'auto');
+                        ga('set', 'anonymizeIp', true);
+                        ga('send', 'pageview');
+                    </script>
+</link></link></link></link></link></link></head>
+<body data-offset="80" data-spy="scroll" data-target="#bd-toc-nav">
+<div class="container-fluid" id="banner"></div>
+
+<div class="container-xl">
+<div class="row">
+
+
+<main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
+<div>
+<section id="pandas-dataframe-plot-line">
+<h1>pandas.DataFrame.plot.line<a class="headerlink" href="#pandas-dataframe-plot-line" title="Permalink to this headline">¶</a></h1>
+<dl class="py method">
+<dt class="sig sig-object py" id="pandas.DataFrame.plot.line">
+<span class="sig-prename descclassname"><span class="pre">DataFrame.plot.</span></span><span class="sig-name descname"><span class="pre">line</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/pandas-dev/pandas/blob/v1.4.1/pandas/plotting/_core.py#L976-L1041"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pandas.DataFrame.plot.line" title="Permalink to this definition">¶</a></dt>
+<dd><p>Plot Series or DataFrame as lines.</p>
+<p>This function is useful to plot lines using DataFrame’s values
+as coordinates.</p>
+<dl class="field-list">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl>
+<dt><strong>x</strong><span class="classifier">label or position, optional</span></dt><dd><p>Allows plotting of one column versus another. If not specified,
+the index of the DataFrame is used.</p>
+</dd>
+<dt><strong>y</strong><span class="classifier">label or position, optional</span></dt><dd><p>Allows plotting of one column versus another. If not specified,
+all numerical columns are used.</p>
+</dd>
+<dt><strong>color</strong><span class="classifier">str, array-like, or dict, optional</span></dt><dd><p>The color for each of the DataFrame’s columns. Possible values are:</p>
+<ul class="simple">
+<li><dl class="simple">
+<dt>A single color string referred to by name, RGB or RGBA code,</dt><dd><p>for instance ‘red’ or ‘#a98d19’.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>A sequence of color strings referred to by name, RGB or RGBA</dt><dd><p>code, which will be used for each column recursively. For
+instance [‘green’,’yellow’] each column’s line will be filled in
+green or yellow, alternatively. If there is only a single column to
+be plotted, then only the first color from the color list will be
+used.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>A dict of the form {column name<span class="classifier">color}, so that each column will be</span></dt><dd><p>colored accordingly. For example, if your columns are called <cite>a</cite> and
+<cite>b</cite>, then passing {‘a’: ‘green’, ‘b’: ‘red’} will color lines for
+column <cite>a</cite> in green and lines for column <cite>b</cite> in red.</p>
+</dd>
+</dl>
+</li>
+</ul>
+<div class="versionadded">
+<p><span class="versionmodified added">New in version 1.1.0.</span></p>
+</div>
+</dd>
+<dt><strong>**kwargs</strong></dt><dd><p>Additional keyword arguments are documented in
+<a class="reference internal" href="pandas.DataFrame.plot.html#pandas.DataFrame.plot" title="pandas.DataFrame.plot"><code class="xref py py-meth docutils literal notranslate"><span class="pre">DataFrame.plot()</span></code></a>.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt>matplotlib.axes.Axes or np.ndarray of them</dt><dd><p>An ndarray is returned with one <a class="reference external" href="https://matplotlib.org/stable/api/axes_api.html#matplotlib.axes.Axes" title="(in Matplotlib v3.5.1)"><code class="xref py py-class docutils literal notranslate"><span class="pre">matplotlib.axes.Axes</span></code></a>
+per column when <code class="docutils literal notranslate"><span class="pre">subplots=True</span></code>.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<dl class="simple">
+<dt><a class="reference external" href="https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.plot.html#matplotlib.pyplot.plot" title="(in Matplotlib v3.5.1)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">matplotlib.pyplot.plot</span></code></a></dt><dd><p>Plot y versus x as lines and/or markers.</p>
+</dd>
+</dl>
+</div>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">s</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">s</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">line</span><span class="p">()</span>
+<span class="go">&lt;AxesSubplot:ylabel='Density'&gt;</span>
+</pre></div>
+</div>
+<figure class="align-default">
+<img alt="../../_images/pandas-DataFrame-plot-line-1.png" class="plot-directive" src="../../_images/pandas-DataFrame-plot-line-1.png">
+</img></figure>
+<p>The following example shows the populations for some animals
+over the years.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+<span class="gp">... </span>   <span class="s1">'pig'</span><span class="p">:</span> <span class="p">[</span><span class="mi">20</span><span class="p">,</span> <span class="mi">18</span><span class="p">,</span> <span class="mi">489</span><span class="p">,</span> <span class="mi">675</span><span class="p">,</span> <span class="mi">1776</span><span class="p">],</span>
+<span class="gp">... </span>   <span class="s1">'horse'</span><span class="p">:</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="mi">281</span><span class="p">,</span> <span class="mi">600</span><span class="p">,</span> <span class="mi">1900</span><span class="p">]</span>
+<span class="gp">... </span>   <span class="p">},</span> <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="mi">1990</span><span class="p">,</span> <span class="mi">1997</span><span class="p">,</span> <span class="mi">2003</span><span class="p">,</span> <span class="mi">2009</span><span class="p">,</span> <span class="mi">2014</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">lines</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">line</span><span class="p">()</span>
+</pre></div>
+</div>
+<figure class="align-default">
+<img alt="../../_images/pandas-DataFrame-plot-line-2.png" class="plot-directive" src="../../_images/pandas-DataFrame-plot-line-2.png"/>
+</figure>
+<p>An example with subplots, so an array of axes is returned.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">axes</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="n">subplots</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">type</span><span class="p">(</span><span class="n">axes</span><span class="p">)</span>
+<span class="go">&lt;class 'numpy.ndarray'&gt;</span>
+</pre></div>
+</div>
+<figure class="align-default">
+<img alt="../../_images/pandas-DataFrame-plot-line-3.png" class="plot-directive" src="../../_images/pandas-DataFrame-plot-line-3.png"/>
+</figure>
+<p>Let’s repeat the same example, but specifying colors for
+each column (in this case, for each animal).</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">axes</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">line</span><span class="p">(</span>
+<span class="gp">... </span>    <span class="n">subplots</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="p">{</span><span class="s2">"pig"</span><span class="p">:</span> <span class="s2">"pink"</span><span class="p">,</span> <span class="s2">"horse"</span><span class="p">:</span> <span class="s2">"#742802"</span><span class="p">}</span>
+<span class="gp">... </span><span class="p">)</span>
+</pre></div>
+</div>
+<figure class="align-default">
+<img alt="../../_images/pandas-DataFrame-plot-line-4.png" class="plot-directive" src="../../_images/pandas-DataFrame-plot-line-4.png"/>
+</figure>
+<p>The following example shows the relationship between both
+populations.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">lines</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s1">'pig'</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">'horse'</span><span class="p">)</span>
+</pre></div>
+</div>
+<figure class="align-default">
+<img alt="../../_images/pandas-DataFrame-plot-line-5.png" class="plot-directive" src="../../_images/pandas-DataFrame-plot-line-5.png"/>
+</figure>
+</dd></dl>
+</section>
+</div>
+
+</main>
+</div>
+</div>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+</body>
+</html>

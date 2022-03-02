@@ -1,0 +1,142 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="Docutils 0.17.1: http://docutils.sourceforge.net/" name="generator"/>
+<title>pandas.Series.to_pickle — pandas 1.4.1 documentation</title>
+<link href="../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet"/>
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet"/>
+<link href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css" rel="stylesheet"/>
+<link as="font" crossorigin="" href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2" rel="preload" type="font/woff2"/>
+<link as="font" crossorigin="" href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2" rel="preload" type="font/woff2"/>
+<link href="../../_static/pygments.css" rel="stylesheet" type="text/css">
+<link href="../../_static/styles/pydata-sphinx-theme.css" rel="stylesheet" type="text/css">
+<link href="../../_static/plot_directive.css" rel="stylesheet" type="text/css">
+<link href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" rel="stylesheet" type="text/css">
+<link href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" rel="stylesheet" type="text/css">
+<link href="../../_static/css/getting_started.css" rel="stylesheet" type="text/css"/>
+<link href="../../_static/css/pandas.css" rel="stylesheet" type="text/css"/>
+<link as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf" rel="preload"/>
+<script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+<script src="../../_static/jquery.js"></script>
+<script src="../../_static/underscore.js"></script>
+<script src="../../_static/doctools.js"></script>
+<script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
+<link href="../../_static/favicon.ico" rel="shortcut icon">
+<link href="../../genindex.html" rel="index" title="Index"/>
+<link href="../../search.html" rel="search" title="Search"/>
+<link href="pandas.Series.to_sql.html" rel="next" title="pandas.Series.to_sql"/>
+<link href="pandas.Series.to_period.html" rel="prev" title="pandas.Series.to_period"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<meta content="en" name="docsearch:language"/>
+<script async="" src="https://www.google-analytics.com/analytics.js"></script>
+<script>
+                        window.ga = window.ga || function () {
+                            (ga.q = ga.q || []).push(arguments) };
+                        ga.l = +new Date;
+                        ga('create', 'UA-27880019-2', 'auto');
+                        ga('set', 'anonymizeIp', true);
+                        ga('send', 'pageview');
+                    </script>
+</link></link></link></link></link></link></head>
+<body data-offset="80" data-spy="scroll" data-target="#bd-toc-nav">
+<div class="container-fluid" id="banner"></div>
+
+<div class="container-xl">
+<div class="row">
+
+
+<main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
+<div>
+<section id="pandas-series-to-pickle">
+<h1>pandas.Series.to_pickle<a class="headerlink" href="#pandas-series-to-pickle" title="Permalink to this headline">¶</a></h1>
+<dl class="py method">
+<dt class="sig sig-object py" id="pandas.Series.to_pickle">
+<span class="sig-prename descclassname"><span class="pre">Series.</span></span><span class="sig-name descname"><span class="pre">to_pickle</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">compression</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'infer'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">protocol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">storage_options</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/pandas-dev/pandas/blob/v1.4.1/pandas/core/generic.py#L2976-L3044"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pandas.Series.to_pickle" title="Permalink to this definition">¶</a></dt>
+<dd><p>Pickle (serialize) object to file.</p>
+<dl class="field-list">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl>
+<dt><strong>path</strong><span class="classifier">str</span></dt><dd><p>File path where the pickled object will be stored.</p>
+</dd>
+<dt><strong>compression</strong><span class="classifier">str or dict, default ‘infer’</span></dt><dd><p>For on-the-fly compression of the output data. If ‘infer’ and ‘path’
+path-like, then detect compression from the following extensions: ‘.gz’,
+‘.bz2’, ‘.zip’, ‘.xz’, or ‘.zst’ (otherwise no compression). Set to
+<code class="docutils literal notranslate"><span class="pre">None</span></code> for no compression. Can also be a dict with key <code class="docutils literal notranslate"><span class="pre">'method'</span></code> set
+to one of {<code class="docutils literal notranslate"><span class="pre">'zip'</span></code>, <code class="docutils literal notranslate"><span class="pre">'gzip'</span></code>, <code class="docutils literal notranslate"><span class="pre">'bz2'</span></code>, <code class="docutils literal notranslate"><span class="pre">'zstd'</span></code>} and other
+key-value pairs are forwarded to <code class="docutils literal notranslate"><span class="pre">zipfile.ZipFile</span></code>, <code class="docutils literal notranslate"><span class="pre">gzip.GzipFile</span></code>,
+<code class="docutils literal notranslate"><span class="pre">bz2.BZ2File</span></code>, or <code class="docutils literal notranslate"><span class="pre">zstandard.ZstdDecompressor</span></code>, respectively. As an
+example, the following could be passed for faster compression and to create
+a reproducible gzip archive:
+<code class="docutils literal notranslate"><span class="pre">compression={'method':</span> <span class="pre">'gzip',</span> <span class="pre">'compresslevel':</span> <span class="pre">1,</span> <span class="pre">'mtime':</span> <span class="pre">1}</span></code>.</p>
+</dd>
+<dt><strong>protocol</strong><span class="classifier">int</span></dt><dd><p>Int which indicates which protocol should be used by the pickler,
+default HIGHEST_PROTOCOL (see <a class="reference internal" href="#r9a0a8647c05c-1" id="id1">[1]</a> paragraph 12.1.2). The possible
+values are 0, 1, 2, 3, 4, 5. A negative value for the protocol
+parameter is equivalent to setting its value to HIGHEST_PROTOCOL.</p>
+<dl class="citation">
+<dt class="label" id="r9a0a8647c05c-1"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
+<dd><p><a class="reference external" href="https://docs.python.org/3/library/pickle.html">https://docs.python.org/3/library/pickle.html</a>.</p>
+</dd>
+</dl>
+</dd>
+<dt><strong>storage_options</strong><span class="classifier">dict, optional</span></dt><dd><p>Extra options that make sense for a particular storage connection, e.g.
+host, port, username, password, etc. For HTTP(S) URLs the key-value pairs
+are forwarded to <code class="docutils literal notranslate"><span class="pre">urllib</span></code> as header options. For other URLs (e.g.
+starting with “s3://”, and “gcs://”) the key-value pairs are forwarded to
+<code class="docutils literal notranslate"><span class="pre">fsspec</span></code>. Please see <code class="docutils literal notranslate"><span class="pre">fsspec</span></code> and <code class="docutils literal notranslate"><span class="pre">urllib</span></code> for more details.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">New in version 1.2.0.</span></p>
+</div>
+</dd>
+</dl>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<dl class="simple">
+<dt><a class="reference internal" href="pandas.read_pickle.html#pandas.read_pickle" title="pandas.read_pickle"><code class="xref py py-obj docutils literal notranslate"><span class="pre">read_pickle</span></code></a></dt><dd><p>Load pickled pandas object (or any object) from file.</p>
+</dd>
+<dt><a class="reference internal" href="pandas.DataFrame.to_hdf.html#pandas.DataFrame.to_hdf" title="pandas.DataFrame.to_hdf"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DataFrame.to_hdf</span></code></a></dt><dd><p>Write DataFrame to an HDF5 file.</p>
+</dd>
+<dt><a class="reference internal" href="pandas.DataFrame.to_sql.html#pandas.DataFrame.to_sql" title="pandas.DataFrame.to_sql"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DataFrame.to_sql</span></code></a></dt><dd><p>Write DataFrame to a SQL database.</p>
+</dd>
+<dt><a class="reference internal" href="pandas.DataFrame.to_parquet.html#pandas.DataFrame.to_parquet" title="pandas.DataFrame.to_parquet"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DataFrame.to_parquet</span></code></a></dt><dd><p>Write a DataFrame to the binary parquet format.</p>
+</dd>
+</dl>
+</div>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">original_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s2">"foo"</span><span class="p">:</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">),</span> <span class="s2">"bar"</span><span class="p">:</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">)})</span>  
+<span class="gp">&gt;&gt;&gt; </span><span class="n">original_df</span>  
+<span class="go">   foo  bar</span>
+<span class="go">0    0    5</span>
+<span class="go">1    1    6</span>
+<span class="go">2    2    7</span>
+<span class="go">3    3    8</span>
+<span class="go">4    4    9</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">original_df</span><span class="o">.</span><span class="n">to_pickle</span><span class="p">(</span><span class="s2">"./dummy.pkl"</span><span class="p">)</span>  
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">unpickled_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_pickle</span><span class="p">(</span><span class="s2">"./dummy.pkl"</span><span class="p">)</span>  
+<span class="gp">&gt;&gt;&gt; </span><span class="n">unpickled_df</span>  
+<span class="go">   foo  bar</span>
+<span class="go">0    0    5</span>
+<span class="go">1    1    6</span>
+<span class="go">2    2    7</span>
+<span class="go">3    3    8</span>
+<span class="go">4    4    9</span>
+</pre></div>
+</div>
+</dd></dl>
+</section>
+</div>
+
+</main>
+</div>
+</div>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+</body>
+</html>

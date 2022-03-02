@@ -1,0 +1,104 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="Docutils 0.17.1: http://docutils.sourceforge.net/" name="generator"/>
+<title>pandas.errors.ParserWarning — pandas 1.4.1 documentation</title>
+<link href="../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet"/>
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet"/>
+<link href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css" rel="stylesheet"/>
+<link as="font" crossorigin="" href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2" rel="preload" type="font/woff2"/>
+<link as="font" crossorigin="" href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2" rel="preload" type="font/woff2"/>
+<link href="../../_static/pygments.css" rel="stylesheet" type="text/css">
+<link href="../../_static/styles/pydata-sphinx-theme.css" rel="stylesheet" type="text/css">
+<link href="../../_static/plot_directive.css" rel="stylesheet" type="text/css">
+<link href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" rel="stylesheet" type="text/css">
+<link href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" rel="stylesheet" type="text/css">
+<link href="../../_static/css/getting_started.css" rel="stylesheet" type="text/css"/>
+<link href="../../_static/css/pandas.css" rel="stylesheet" type="text/css"/>
+<link as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf" rel="preload"/>
+<script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+<script src="../../_static/jquery.js"></script>
+<script src="../../_static/underscore.js"></script>
+<script src="../../_static/doctools.js"></script>
+<script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
+<link href="../../_static/favicon.ico" rel="shortcut icon">
+<link href="../../genindex.html" rel="index" title="Index"/>
+<link href="../../search.html" rel="search" title="Search"/>
+<link href="pandas.errors.PerformanceWarning.html" rel="next" title="pandas.errors.PerformanceWarning"/>
+<link href="pandas.errors.ParserError.html" rel="prev" title="pandas.errors.ParserError"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<meta content="en" name="docsearch:language"/>
+<script async="" src="https://www.google-analytics.com/analytics.js"></script>
+<script>
+                        window.ga = window.ga || function () {
+                            (ga.q = ga.q || []).push(arguments) };
+                        ga.l = +new Date;
+                        ga('create', 'UA-27880019-2', 'auto');
+                        ga('set', 'anonymizeIp', true);
+                        ga('send', 'pageview');
+                    </script>
+</link></link></link></link></link></link></head>
+<body data-offset="80" data-spy="scroll" data-target="#bd-toc-nav">
+<div class="container-fluid" id="banner"></div>
+
+<div class="container-xl">
+<div class="row">
+
+
+<main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
+<div>
+<section id="pandas-errors-parserwarning">
+<h1>pandas.errors.ParserWarning<a class="headerlink" href="#pandas-errors-parserwarning" title="Permalink to this headline">¶</a></h1>
+<dl class="py exception">
+<dt class="sig sig-object py" id="pandas.errors.ParserWarning">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pandas.errors.</span></span><span class="sig-name descname"><span class="pre">ParserWarning</span></span><a class="reference external" href="https://github.com/pandas-dev/pandas/blob/v1.4.1/pandas/errors/__init__.py#L129-L167"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pandas.errors.ParserWarning" title="Permalink to this definition">¶</a></dt>
+<dd><p>Warning raised when reading a file that doesn’t use the default ‘c’ parser.</p>
+<p>Raised by <cite>pd.read_csv</cite> and <cite>pd.read_table</cite> when it is necessary to change
+parsers, generally from the default ‘c’ parser to ‘python’.</p>
+<p>It happens due to a lack of support or functionality for parsing a
+particular attribute of a CSV file with the requested engine.</p>
+<p>Currently, ‘c’ unsupported options include the following parameters:</p>
+<ol class="arabic simple">
+<li><p><cite>sep</cite> other than a single character (e.g. regex separators)</p></li>
+<li><p><cite>skipfooter</cite> higher than 0</p></li>
+<li><p><cite>sep=None</cite> with <cite>delim_whitespace=False</cite></p></li>
+</ol>
+<p>The warning can be avoided by adding <cite>engine=’python’</cite> as a parameter in
+<cite>pd.read_csv</cite> and <cite>pd.read_table</cite> methods.</p>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<dl class="simple">
+<dt><code class="xref py py-obj docutils literal notranslate"><span class="pre">pd.read_csv</span></code></dt><dd><p>Read CSV (comma-separated) file into DataFrame.</p>
+</dd>
+<dt><code class="xref py py-obj docutils literal notranslate"><span class="pre">pd.read_table</span></code></dt><dd><p>Read general delimited file into DataFrame.</p>
+</dd>
+</dl>
+</div>
+<p class="rubric">Examples</p>
+<p>Using a <cite>sep</cite> in <cite>pd.read_csv</cite> other than a single character:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">io</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">csv</span> <span class="o">=</span> <span class="s1">'''a;b;c</span>
+<span class="gp">... </span><span class="s1">          1;1,8</span>
+<span class="gp">... </span><span class="s1">          1;2,1'''</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">io</span><span class="o">.</span><span class="n">StringIO</span><span class="p">(</span><span class="n">csv</span><span class="p">),</span> <span class="n">sep</span><span class="o">=</span><span class="s1">'[;,]'</span><span class="p">)</span>  
+<span class="gp">... </span><span class="c1"># ParserWarning: Falling back to the 'python' engine...</span>
+</pre></div>
+</div>
+<p>Adding <cite>engine=’python’</cite> to <cite>pd.read_csv</cite> removes the Warning:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">io</span><span class="o">.</span><span class="n">StringIO</span><span class="p">(</span><span class="n">csv</span><span class="p">),</span> <span class="n">sep</span><span class="o">=</span><span class="s1">'[;,]'</span><span class="p">,</span> <span class="n">engine</span><span class="o">=</span><span class="s1">'python'</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+</section>
+</div>
+
+</main>
+</div>
+</div>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+</body>
+</html>

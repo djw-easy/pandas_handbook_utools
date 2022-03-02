@@ -1,0 +1,158 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="Docutils 0.17.1: http://docutils.sourceforge.net/" name="generator"/>
+<title>pandas.Series.str.findall — pandas 1.4.1 documentation</title>
+<link href="../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet"/>
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet"/>
+<link href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css" rel="stylesheet"/>
+<link as="font" crossorigin="" href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2" rel="preload" type="font/woff2"/>
+<link as="font" crossorigin="" href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2" rel="preload" type="font/woff2"/>
+<link href="../../_static/pygments.css" rel="stylesheet" type="text/css">
+<link href="../../_static/styles/pydata-sphinx-theme.css" rel="stylesheet" type="text/css">
+<link href="../../_static/plot_directive.css" rel="stylesheet" type="text/css">
+<link href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" rel="stylesheet" type="text/css">
+<link href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" rel="stylesheet" type="text/css">
+<link href="../../_static/css/getting_started.css" rel="stylesheet" type="text/css"/>
+<link href="../../_static/css/pandas.css" rel="stylesheet" type="text/css"/>
+<link as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf" rel="preload"/>
+<script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+<script src="../../_static/jquery.js"></script>
+<script src="../../_static/underscore.js"></script>
+<script src="../../_static/doctools.js"></script>
+<script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
+<link href="../../_static/favicon.ico" rel="shortcut icon">
+<link href="../../genindex.html" rel="index" title="Index"/>
+<link href="../../search.html" rel="search" title="Search"/>
+<link href="pandas.Series.str.fullmatch.html" rel="next" title="pandas.Series.str.fullmatch"/>
+<link href="pandas.Series.str.find.html" rel="prev" title="pandas.Series.str.find"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<meta content="en" name="docsearch:language"/>
+<script async="" src="https://www.google-analytics.com/analytics.js"></script>
+<script>
+                        window.ga = window.ga || function () {
+                            (ga.q = ga.q || []).push(arguments) };
+                        ga.l = +new Date;
+                        ga('create', 'UA-27880019-2', 'auto');
+                        ga('set', 'anonymizeIp', true);
+                        ga('send', 'pageview');
+                    </script>
+</link></link></link></link></link></link></head>
+<body data-offset="80" data-spy="scroll" data-target="#bd-toc-nav">
+<div class="container-fluid" id="banner"></div>
+
+<div class="container-xl">
+<div class="row">
+
+
+<main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
+<div>
+<section id="pandas-series-str-findall">
+<h1>pandas.Series.str.findall<a class="headerlink" href="#pandas-series-str-findall" title="Permalink to this headline">¶</a></h1>
+<dl class="py method">
+<dt class="sig sig-object py" id="pandas.Series.str.findall">
+<span class="sig-prename descclassname"><span class="pre">Series.str.</span></span><span class="sig-name descname"><span class="pre">findall</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pat</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">flags</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/pandas-dev/pandas/blob/v1.4.1/pandas/core/strings/accessor.py#L2345-L2436"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pandas.Series.str.findall" title="Permalink to this definition">¶</a></dt>
+<dd><p>Find all occurrences of pattern or regular expression in the Series/Index.</p>
+<p>Equivalent to applying <a class="reference external" href="https://docs.python.org/3/library/re.html#re.findall" title="(in Python v3.10)"><code class="xref py py-func docutils literal notranslate"><span class="pre">re.findall()</span></code></a> to all the elements in the
+Series/Index.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>pat</strong><span class="classifier">str</span></dt><dd><p>Pattern or regular expression.</p>
+</dd>
+<dt><strong>flags</strong><span class="classifier">int, default 0</span></dt><dd><p>Flags from <code class="docutils literal notranslate"><span class="pre">re</span></code> module, e.g. <cite>re.IGNORECASE</cite> (default is 0, which
+means no flags).</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt>Series/Index of lists of strings</dt><dd><p>All non-overlapping matches of pattern or regular expression in each
+string of this Series/Index.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<dl class="simple">
+<dt><a class="reference internal" href="pandas.Series.str.count.html#pandas.Series.str.count" title="pandas.Series.str.count"><code class="xref py py-obj docutils literal notranslate"><span class="pre">count</span></code></a></dt><dd><p>Count occurrences of pattern or regular expression in each string of the Series/Index.</p>
+</dd>
+<dt><a class="reference internal" href="pandas.Series.str.extractall.html#pandas.Series.str.extractall" title="pandas.Series.str.extractall"><code class="xref py py-obj docutils literal notranslate"><span class="pre">extractall</span></code></a></dt><dd><p>For each string in the Series, extract groups from all matches of regular expression and return a DataFrame with one row for each match and one column for each group.</p>
+</dd>
+<dt><a class="reference external" href="https://docs.python.org/3/library/re.html#re.findall" title="(in Python v3.10)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">re.findall</span></code></a></dt><dd><p>The equivalent <code class="docutils literal notranslate"><span class="pre">re</span></code> function to all non-overlapping matches of pattern or regular expression in string, as a list of strings.</p>
+</dd>
+</dl>
+</div>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">s</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="s1">'Lion'</span><span class="p">,</span> <span class="s1">'Monkey'</span><span class="p">,</span> <span class="s1">'Rabbit'</span><span class="p">])</span>
+</pre></div>
+</div>
+<p>The search for the pattern ‘Monkey’ returns one match:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">s</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s1">'Monkey'</span><span class="p">)</span>
+<span class="go">0          []</span>
+<span class="go">1    [Monkey]</span>
+<span class="go">2          []</span>
+<span class="go">dtype: object</span>
+</pre></div>
+</div>
+<p>On the other hand, the search for the pattern ‘MONKEY’ doesn’t return any
+match:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">s</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s1">'MONKEY'</span><span class="p">)</span>
+<span class="go">0    []</span>
+<span class="go">1    []</span>
+<span class="go">2    []</span>
+<span class="go">dtype: object</span>
+</pre></div>
+</div>
+<p>Flags can be added to the pattern or regular expression. For instance,
+to find the pattern ‘MONKEY’ ignoring the case:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">re</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">s</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s1">'MONKEY'</span><span class="p">,</span> <span class="n">flags</span><span class="o">=</span><span class="n">re</span><span class="o">.</span><span class="n">IGNORECASE</span><span class="p">)</span>
+<span class="go">0          []</span>
+<span class="go">1    [Monkey]</span>
+<span class="go">2          []</span>
+<span class="go">dtype: object</span>
+</pre></div>
+</div>
+<p>When the pattern matches more than one string in the Series, all matches
+are returned:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">s</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s1">'on'</span><span class="p">)</span>
+<span class="go">0    [on]</span>
+<span class="go">1    [on]</span>
+<span class="go">2      []</span>
+<span class="go">dtype: object</span>
+</pre></div>
+</div>
+<p>Regular expressions are supported too. For instance, the search for all the
+strings ending with the word ‘on’ is shown next:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">s</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s1">'on$'</span><span class="p">)</span>
+<span class="go">0    [on]</span>
+<span class="go">1      []</span>
+<span class="go">2      []</span>
+<span class="go">dtype: object</span>
+</pre></div>
+</div>
+<p>If the pattern is found more than once in the same string, then a list of
+multiple strings is returned:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">s</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s1">'b'</span><span class="p">)</span>
+<span class="go">0        []</span>
+<span class="go">1        []</span>
+<span class="go">2    [b, b]</span>
+<span class="go">dtype: object</span>
+</pre></div>
+</div>
+</dd></dl>
+</section>
+</div>
+
+</main>
+</div>
+</div>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+</body>
+</html>

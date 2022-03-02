@@ -1,0 +1,326 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="Docutils 0.17.1: http://docutils.sourceforge.net/" name="generator"/>
+<title>pandas.DataFrame.loc — pandas 1.4.1 documentation</title>
+<link href="../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet"/>
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet"/>
+<link href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css" rel="stylesheet"/>
+<link as="font" crossorigin="" href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2" rel="preload" type="font/woff2"/>
+<link as="font" crossorigin="" href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2" rel="preload" type="font/woff2"/>
+<link href="../../_static/pygments.css" rel="stylesheet" type="text/css">
+<link href="../../_static/styles/pydata-sphinx-theme.css" rel="stylesheet" type="text/css">
+<link href="../../_static/plot_directive.css" rel="stylesheet" type="text/css">
+<link href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" rel="stylesheet" type="text/css">
+<link href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" rel="stylesheet" type="text/css">
+<link href="../../_static/css/getting_started.css" rel="stylesheet" type="text/css"/>
+<link href="../../_static/css/pandas.css" rel="stylesheet" type="text/css"/>
+<link as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf" rel="preload"/>
+<script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+<script src="../../_static/jquery.js"></script>
+<script src="../../_static/underscore.js"></script>
+<script src="../../_static/doctools.js"></script>
+<script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
+<link href="../../_static/favicon.ico" rel="shortcut icon">
+<link href="../../genindex.html" rel="index" title="Index"/>
+<link href="../../search.html" rel="search" title="Search"/>
+<link href="pandas.DataFrame.ndim.html" rel="next" title="pandas.DataFrame.ndim"/>
+<link href="pandas.DataFrame.index.html" rel="prev" title="pandas.DataFrame.index"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<meta content="en" name="docsearch:language"/>
+<script async="" src="https://www.google-analytics.com/analytics.js"></script>
+<script>
+                        window.ga = window.ga || function () {
+                            (ga.q = ga.q || []).push(arguments) };
+                        ga.l = +new Date;
+                        ga('create', 'UA-27880019-2', 'auto');
+                        ga('set', 'anonymizeIp', true);
+                        ga('send', 'pageview');
+                    </script>
+</link></link></link></link></link></link></head>
+<body data-offset="80" data-spy="scroll" data-target="#bd-toc-nav">
+<div class="container-fluid" id="banner"></div>
+
+<div class="container-xl">
+<div class="row">
+
+
+<main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
+<div>
+<section id="pandas-dataframe-loc">
+<h1>pandas.DataFrame.loc<a class="headerlink" href="#pandas-dataframe-loc" title="Permalink to this headline">¶</a></h1>
+<dl class="py property">
+<dt class="sig sig-object py" id="pandas.DataFrame.loc">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">DataFrame.</span></span><span class="sig-name descname"><span class="pre">loc</span></span><a class="headerlink" href="#pandas.DataFrame.loc" title="Permalink to this definition">¶</a></dt>
+<dd><p>Access a group of rows and columns by label(s) or a boolean array.</p>
+<p><code class="docutils literal notranslate"><span class="pre">.loc[]</span></code> is primarily label based, but may also be used with a
+boolean array.</p>
+<p>Allowed inputs are:</p>
+<ul>
+<li><p>A single label, e.g. <code class="docutils literal notranslate"><span class="pre">5</span></code> or <code class="docutils literal notranslate"><span class="pre">'a'</span></code>, (note that <code class="docutils literal notranslate"><span class="pre">5</span></code> is
+interpreted as a <em>label</em> of the index, and <strong>never</strong> as an
+integer position along the index).</p></li>
+<li><p>A list or array of labels, e.g. <code class="docutils literal notranslate"><span class="pre">['a',</span> <span class="pre">'b',</span> <span class="pre">'c']</span></code>.</p></li>
+<li><p>A slice object with labels, e.g. <code class="docutils literal notranslate"><span class="pre">'a':'f'</span></code>.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Note that contrary to usual python slices, <strong>both</strong> the
+start and the stop are included</p>
+</div>
+</li>
+<li><p>A boolean array of the same length as the axis being sliced,
+e.g. <code class="docutils literal notranslate"><span class="pre">[True,</span> <span class="pre">False,</span> <span class="pre">True]</span></code>.</p></li>
+<li><p>An alignable boolean Series. The index of the key will be aligned before
+masking.</p></li>
+<li><p>An alignable Index. The Index of the returned selection will be the input.</p></li>
+<li><p>A <code class="docutils literal notranslate"><span class="pre">callable</span></code> function with one argument (the calling Series or
+DataFrame) and that returns valid output for indexing (one of the above)</p></li>
+</ul>
+<p>See more at <a class="reference internal" href="../../user_guide/indexing.html#indexing-label"><span class="std std-ref">Selection by Label</span></a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Raises</dt>
+<dd class="field-odd"><dl class="simple">
+<dt>KeyError</dt><dd><p>If any items are not found.</p>
+</dd>
+<dt>IndexingError</dt><dd><p>If an indexed key is passed and its index is unalignable to the frame index.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<dl class="simple">
+<dt><a class="reference internal" href="pandas.DataFrame.at.html#pandas.DataFrame.at" title="pandas.DataFrame.at"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DataFrame.at</span></code></a></dt><dd><p>Access a single value for a row/column label pair.</p>
+</dd>
+<dt><a class="reference internal" href="pandas.DataFrame.iloc.html#pandas.DataFrame.iloc" title="pandas.DataFrame.iloc"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DataFrame.iloc</span></code></a></dt><dd><p>Access group of rows and columns by integer position(s).</p>
+</dd>
+<dt><a class="reference internal" href="pandas.DataFrame.xs.html#pandas.DataFrame.xs" title="pandas.DataFrame.xs"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DataFrame.xs</span></code></a></dt><dd><p>Returns a cross-section (row(s) or column(s)) from the Series/DataFrame.</p>
+</dd>
+<dt><a class="reference internal" href="pandas.Series.loc.html#pandas.Series.loc" title="pandas.Series.loc"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Series.loc</span></code></a></dt><dd><p>Access group of values using labels.</p>
+</dd>
+</dl>
+</div>
+<p class="rubric">Examples</p>
+<p><strong>Getting values</strong></p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">],</span> <span class="p">[</span><span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">]],</span>
+<span class="gp">... </span>     <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="s1">'cobra'</span><span class="p">,</span> <span class="s1">'viper'</span><span class="p">,</span> <span class="s1">'sidewinder'</span><span class="p">],</span>
+<span class="gp">... </span>     <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">'max_speed'</span><span class="p">,</span> <span class="s1">'shield'</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">df</span>
+<span class="go">            max_speed  shield</span>
+<span class="go">cobra               1       2</span>
+<span class="go">viper               4       5</span>
+<span class="go">sidewinder          7       8</span>
+</pre></div>
+</div>
+<p>Single label. Note this returns the row as a Series.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s1">'viper'</span><span class="p">]</span>
+<span class="go">max_speed    4</span>
+<span class="go">shield       5</span>
+<span class="go">Name: viper, dtype: int64</span>
+</pre></div>
+</div>
+<p>List of labels. Note using <code class="docutils literal notranslate"><span class="pre">[[]]</span></code> returns a DataFrame.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[[</span><span class="s1">'viper'</span><span class="p">,</span> <span class="s1">'sidewinder'</span><span class="p">]]</span>
+<span class="go">            max_speed  shield</span>
+<span class="go">viper               4       5</span>
+<span class="go">sidewinder          7       8</span>
+</pre></div>
+</div>
+<p>Single label for row and column</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s1">'cobra'</span><span class="p">,</span> <span class="s1">'shield'</span><span class="p">]</span>
+<span class="go">2</span>
+</pre></div>
+</div>
+<p>Slice with labels for row and single label for column. As mentioned
+above, note that both the start and stop of the slice are included.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s1">'cobra'</span><span class="p">:</span><span class="s1">'viper'</span><span class="p">,</span> <span class="s1">'max_speed'</span><span class="p">]</span>
+<span class="go">cobra    1</span>
+<span class="go">viper    4</span>
+<span class="go">Name: max_speed, dtype: int64</span>
+</pre></div>
+</div>
+<p>Boolean list with the same length as the row axis</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[[</span><span class="kc">False</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">True</span><span class="p">]]</span>
+<span class="go">            max_speed  shield</span>
+<span class="go">sidewinder          7       8</span>
+</pre></div>
+</div>
+<p>Alignable boolean Series:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="kc">False</span><span class="p">,</span> <span class="kc">True</span><span class="p">,</span> <span class="kc">False</span><span class="p">],</span>
+<span class="gp">... </span>       <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="s1">'viper'</span><span class="p">,</span> <span class="s1">'sidewinder'</span><span class="p">,</span> <span class="s1">'cobra'</span><span class="p">])]</span>
+<span class="go">            max_speed  shield</span>
+<span class="go">sidewinder          7       8</span>
+</pre></div>
+</div>
+<p>Index (same behavior as <code class="docutils literal notranslate"><span class="pre">df.reindex</span></code>)</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">pd</span><span class="o">.</span><span class="n">Index</span><span class="p">([</span><span class="s2">"cobra"</span><span class="p">,</span> <span class="s2">"viper"</span><span class="p">],</span> <span class="n">name</span><span class="o">=</span><span class="s2">"foo"</span><span class="p">)]</span>
+<span class="go">       max_speed  shield</span>
+<span class="go">foo</span>
+<span class="go">cobra          1       2</span>
+<span class="go">viper          4       5</span>
+</pre></div>
+</div>
+<p>Conditional that returns a boolean Series</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">'shield'</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">6</span><span class="p">]</span>
+<span class="go">            max_speed  shield</span>
+<span class="go">sidewinder          7       8</span>
+</pre></div>
+</div>
+<p>Conditional that returns a boolean Series with column labels specified</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">'shield'</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">6</span><span class="p">,</span> <span class="p">[</span><span class="s1">'max_speed'</span><span class="p">]]</span>
+<span class="go">            max_speed</span>
+<span class="go">sidewinder          7</span>
+</pre></div>
+</div>
+<p>Callable that returns a boolean Series</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="k">lambda</span> <span class="n">df</span><span class="p">:</span> <span class="n">df</span><span class="p">[</span><span class="s1">'shield'</span><span class="p">]</span> <span class="o">==</span> <span class="mi">8</span><span class="p">]</span>
+<span class="go">            max_speed  shield</span>
+<span class="go">sidewinder          7       8</span>
+</pre></div>
+</div>
+<p><strong>Setting values</strong></p>
+<p>Set value for all items matching the list of labels</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[[</span><span class="s1">'viper'</span><span class="p">,</span> <span class="s1">'sidewinder'</span><span class="p">],</span> <span class="p">[</span><span class="s1">'shield'</span><span class="p">]]</span> <span class="o">=</span> <span class="mi">50</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">df</span>
+<span class="go">            max_speed  shield</span>
+<span class="go">cobra               1       2</span>
+<span class="go">viper               4      50</span>
+<span class="go">sidewinder          7      50</span>
+</pre></div>
+</div>
+<p>Set value for an entire row</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s1">'cobra'</span><span class="p">]</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">df</span>
+<span class="go">            max_speed  shield</span>
+<span class="go">cobra              10      10</span>
+<span class="go">viper               4      50</span>
+<span class="go">sidewinder          7      50</span>
+</pre></div>
+</div>
+<p>Set value for an entire column</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="s1">'max_speed'</span><span class="p">]</span> <span class="o">=</span> <span class="mi">30</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">df</span>
+<span class="go">            max_speed  shield</span>
+<span class="go">cobra              30      10</span>
+<span class="go">viper              30      50</span>
+<span class="go">sidewinder         30      50</span>
+</pre></div>
+</div>
+<p>Set value for rows matching callable condition</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">'shield'</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">35</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">df</span>
+<span class="go">            max_speed  shield</span>
+<span class="go">cobra              30      10</span>
+<span class="go">viper               0       0</span>
+<span class="go">sidewinder          0       0</span>
+</pre></div>
+</div>
+<p><strong>Getting values on a DataFrame with an index that has integer labels</strong></p>
+<p>Another example using integers for the index</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">],</span> <span class="p">[</span><span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">]],</span>
+<span class="gp">... </span>     <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">],</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">'max_speed'</span><span class="p">,</span> <span class="s1">'shield'</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">df</span>
+<span class="go">   max_speed  shield</span>
+<span class="go">7          1       2</span>
+<span class="go">8          4       5</span>
+<span class="go">9          7       8</span>
+</pre></div>
+</div>
+<p>Slice with integer labels for rows. As mentioned above, note that both
+the start and stop of the slice are included.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="mi">7</span><span class="p">:</span><span class="mi">9</span><span class="p">]</span>
+<span class="go">   max_speed  shield</span>
+<span class="go">7          1       2</span>
+<span class="go">8          4       5</span>
+<span class="go">9          7       8</span>
+</pre></div>
+</div>
+<p><strong>Getting values with a MultiIndex</strong></p>
+<p>A number of examples using a DataFrame with a MultiIndex</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">tuples</span> <span class="o">=</span> <span class="p">[</span>
+<span class="gp">... </span>   <span class="p">(</span><span class="s1">'cobra'</span><span class="p">,</span> <span class="s1">'mark i'</span><span class="p">),</span> <span class="p">(</span><span class="s1">'cobra'</span><span class="p">,</span> <span class="s1">'mark ii'</span><span class="p">),</span>
+<span class="gp">... </span>   <span class="p">(</span><span class="s1">'sidewinder'</span><span class="p">,</span> <span class="s1">'mark i'</span><span class="p">),</span> <span class="p">(</span><span class="s1">'sidewinder'</span><span class="p">,</span> <span class="s1">'mark ii'</span><span class="p">),</span>
+<span class="gp">... </span>   <span class="p">(</span><span class="s1">'viper'</span><span class="p">,</span> <span class="s1">'mark ii'</span><span class="p">),</span> <span class="p">(</span><span class="s1">'viper'</span><span class="p">,</span> <span class="s1">'mark iii'</span><span class="p">)</span>
+<span class="gp">... </span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">index</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">MultiIndex</span><span class="o">.</span><span class="n">from_tuples</span><span class="p">(</span><span class="n">tuples</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">values</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">12</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span> <span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">],</span>
+<span class="gp">... </span>        <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span> <span class="p">[</span><span class="mi">7</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">16</span><span class="p">,</span> <span class="mi">36</span><span class="p">]]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">values</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">'max_speed'</span><span class="p">,</span> <span class="s1">'shield'</span><span class="p">],</span> <span class="n">index</span><span class="o">=</span><span class="n">index</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">df</span>
+<span class="go">                     max_speed  shield</span>
+<span class="go">cobra      mark i           12       2</span>
+<span class="go">           mark ii           0       4</span>
+<span class="go">sidewinder mark i           10      20</span>
+<span class="go">           mark ii           1       4</span>
+<span class="go">viper      mark ii           7       1</span>
+<span class="go">           mark iii         16      36</span>
+</pre></div>
+</div>
+<p>Single label. Note this returns a DataFrame with a single index.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s1">'cobra'</span><span class="p">]</span>
+<span class="go">         max_speed  shield</span>
+<span class="go">mark i          12       2</span>
+<span class="go">mark ii          0       4</span>
+</pre></div>
+</div>
+<p>Single index tuple. Note this returns a Series.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[(</span><span class="s1">'cobra'</span><span class="p">,</span> <span class="s1">'mark ii'</span><span class="p">)]</span>
+<span class="go">max_speed    0</span>
+<span class="go">shield       4</span>
+<span class="go">Name: (cobra, mark ii), dtype: int64</span>
+</pre></div>
+</div>
+<p>Single label for row and column. Similar to passing in a tuple, this
+returns a Series.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s1">'cobra'</span><span class="p">,</span> <span class="s1">'mark i'</span><span class="p">]</span>
+<span class="go">max_speed    12</span>
+<span class="go">shield        2</span>
+<span class="go">Name: (cobra, mark i), dtype: int64</span>
+</pre></div>
+</div>
+<p>Single tuple. Note using <code class="docutils literal notranslate"><span class="pre">[[]]</span></code> returns a DataFrame.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[[(</span><span class="s1">'cobra'</span><span class="p">,</span> <span class="s1">'mark ii'</span><span class="p">)]]</span>
+<span class="go">               max_speed  shield</span>
+<span class="go">cobra mark ii          0       4</span>
+</pre></div>
+</div>
+<p>Single tuple for the index with a single label for the column</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[(</span><span class="s1">'cobra'</span><span class="p">,</span> <span class="s1">'mark i'</span><span class="p">),</span> <span class="s1">'shield'</span><span class="p">]</span>
+<span class="go">2</span>
+</pre></div>
+</div>
+<p>Slice from index tuple to single label</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[(</span><span class="s1">'cobra'</span><span class="p">,</span> <span class="s1">'mark i'</span><span class="p">):</span><span class="s1">'viper'</span><span class="p">]</span>
+<span class="go">                     max_speed  shield</span>
+<span class="go">cobra      mark i           12       2</span>
+<span class="go">           mark ii           0       4</span>
+<span class="go">sidewinder mark i           10      20</span>
+<span class="go">           mark ii           1       4</span>
+<span class="go">viper      mark ii           7       1</span>
+<span class="go">           mark iii         16      36</span>
+</pre></div>
+</div>
+<p>Slice from index tuple to index tuple</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[(</span><span class="s1">'cobra'</span><span class="p">,</span> <span class="s1">'mark i'</span><span class="p">):(</span><span class="s1">'viper'</span><span class="p">,</span> <span class="s1">'mark ii'</span><span class="p">)]</span>
+<span class="go">                    max_speed  shield</span>
+<span class="go">cobra      mark i          12       2</span>
+<span class="go">           mark ii          0       4</span>
+<span class="go">sidewinder mark i          10      20</span>
+<span class="go">           mark ii          1       4</span>
+<span class="go">viper      mark ii          7       1</span>
+</pre></div>
+</div>
+</dd></dl>
+</section>
+</div>
+
+</main>
+</div>
+</div>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+</body>
+</html>

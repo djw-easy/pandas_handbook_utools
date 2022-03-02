@@ -1,0 +1,183 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="Docutils 0.17.1: http://docutils.sourceforge.net/" name="generator"/>
+<title>pandas.factorize — pandas 1.4.1 documentation</title>
+<link href="../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet"/>
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet"/>
+<link href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css" rel="stylesheet"/>
+<link as="font" crossorigin="" href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2" rel="preload" type="font/woff2"/>
+<link as="font" crossorigin="" href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2" rel="preload" type="font/woff2"/>
+<link href="../../_static/pygments.css" rel="stylesheet" type="text/css">
+<link href="../../_static/styles/pydata-sphinx-theme.css" rel="stylesheet" type="text/css">
+<link href="../../_static/plot_directive.css" rel="stylesheet" type="text/css">
+<link href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" rel="stylesheet" type="text/css">
+<link href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" rel="stylesheet" type="text/css">
+<link href="../../_static/css/getting_started.css" rel="stylesheet" type="text/css"/>
+<link href="../../_static/css/pandas.css" rel="stylesheet" type="text/css"/>
+<link as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf" rel="preload"/>
+<script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+<script src="../../_static/jquery.js"></script>
+<script src="../../_static/underscore.js"></script>
+<script src="../../_static/doctools.js"></script>
+<script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
+<link href="../../_static/favicon.ico" rel="shortcut icon">
+<link href="../../genindex.html" rel="index" title="Index"/>
+<link href="../../search.html" rel="search" title="Search"/>
+<link href="pandas.unique.html" rel="next" title="pandas.unique"/>
+<link href="pandas.get_dummies.html" rel="prev" title="pandas.get_dummies"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<meta content="en" name="docsearch:language"/>
+<script async="" src="https://www.google-analytics.com/analytics.js"></script>
+<script>
+                        window.ga = window.ga || function () {
+                            (ga.q = ga.q || []).push(arguments) };
+                        ga.l = +new Date;
+                        ga('create', 'UA-27880019-2', 'auto');
+                        ga('set', 'anonymizeIp', true);
+                        ga('send', 'pageview');
+                    </script>
+</link></link></link></link></link></link></head>
+<body data-offset="80" data-spy="scroll" data-target="#bd-toc-nav">
+<div class="container-fluid" id="banner"></div>
+
+<div class="container-xl">
+<div class="row">
+
+
+<main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
+<div>
+<section id="pandas-factorize">
+<h1>pandas.factorize<a class="headerlink" href="#pandas-factorize" title="Permalink to this headline">¶</a></h1>
+<dl class="py function">
+<dt class="sig sig-object py" id="pandas.factorize">
+<span class="sig-prename descclassname"><span class="pre">pandas.</span></span><span class="sig-name descname"><span class="pre">factorize</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">values</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sort</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">na_sentinel</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">-</span> <span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">size_hint</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/pandas-dev/pandas/blob/v1.4.1/pandas/core/algorithms.py#L568-L800"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pandas.factorize" title="Permalink to this definition">¶</a></dt>
+<dd><p>Encode the object as an enumerated type or categorical variable.</p>
+<p>This method is useful for obtaining a numeric representation of an
+array when all that matters is identifying distinct values. <cite>factorize</cite>
+is available as both a top-level function <a class="reference internal" href="#pandas.factorize" title="pandas.factorize"><code class="xref py py-func docutils literal notranslate"><span class="pre">pandas.factorize()</span></code></a>,
+and as a method <a class="reference internal" href="pandas.Series.factorize.html#pandas.Series.factorize" title="pandas.Series.factorize"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Series.factorize()</span></code></a> and <a class="reference internal" href="pandas.Index.factorize.html#pandas.Index.factorize" title="pandas.Index.factorize"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Index.factorize()</span></code></a>.</p>
+<dl class="field-list">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl>
+<dt><strong>values</strong><span class="classifier">sequence</span></dt><dd><p>A 1-D sequence. Sequences that aren’t pandas objects are
+coerced to ndarrays before factorization.</p>
+</dd>
+<dt><strong>sort</strong><span class="classifier">bool, default False</span></dt><dd><p>Sort <cite>uniques</cite> and shuffle <cite>codes</cite> to maintain the
+relationship.</p>
+</dd>
+<dt><strong>na_sentinel</strong><span class="classifier">int or None, default -1</span></dt><dd><p>Value to mark “not found”. If None, will not drop the NaN
+from the uniques of the values.</p>
+<div class="versionchanged">
+<p><span class="versionmodified changed">Changed in version 1.1.2.</span></p>
+</div>
+</dd>
+<dt><strong>size_hint</strong><span class="classifier">int, optional</span></dt><dd><p>Hint to the hashtable sizer.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl>
+<dt><strong>codes</strong><span class="classifier">ndarray</span></dt><dd><p>An integer ndarray that’s an indexer into <cite>uniques</cite>.
+<code class="docutils literal notranslate"><span class="pre">uniques.take(codes)</span></code> will have the same values as <cite>values</cite>.</p>
+</dd>
+<dt><strong>uniques</strong><span class="classifier">ndarray, Index, or Categorical</span></dt><dd><p>The unique valid values. When <cite>values</cite> is Categorical, <cite>uniques</cite>
+is a Categorical. When <cite>values</cite> is some other pandas object, an
+<cite>Index</cite> is returned. Otherwise, a 1-D ndarray is returned.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Even if there’s a missing value in <cite>values</cite>, <cite>uniques</cite> will
+<em>not</em> contain an entry for it.</p>
+</div>
+</dd>
+</dl>
+</dd>
+</dl>
+
+<p class="rubric">Notes</p>
+<p>Reference <a class="reference internal" href="../../user_guide/reshaping.html#reshaping-factorize"><span class="std std-ref">the user guide</span></a> for more examples.</p>
+<p class="rubric">Examples</p>
+<p>These examples all show factorize as a top-level method like
+<code class="docutils literal notranslate"><span class="pre">pd.factorize(values)</span></code>. The results are identical for methods like
+<a class="reference internal" href="pandas.Series.factorize.html#pandas.Series.factorize" title="pandas.Series.factorize"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Series.factorize()</span></code></a>.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">codes</span><span class="p">,</span> <span class="n">uniques</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">factorize</span><span class="p">([</span><span class="s1">'b'</span><span class="p">,</span> <span class="s1">'b'</span><span class="p">,</span> <span class="s1">'a'</span><span class="p">,</span> <span class="s1">'c'</span><span class="p">,</span> <span class="s1">'b'</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">codes</span>
+<span class="go">array([0, 0, 1, 2, 0]...)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">uniques</span>
+<span class="go">array(['b', 'a', 'c'], dtype=object)</span>
+</pre></div>
+</div>
+<p>With <code class="docutils literal notranslate"><span class="pre">sort=True</span></code>, the <cite>uniques</cite> will be sorted, and <cite>codes</cite> will be
+shuffled so that the relationship is the maintained.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">codes</span><span class="p">,</span> <span class="n">uniques</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">factorize</span><span class="p">([</span><span class="s1">'b'</span><span class="p">,</span> <span class="s1">'b'</span><span class="p">,</span> <span class="s1">'a'</span><span class="p">,</span> <span class="s1">'c'</span><span class="p">,</span> <span class="s1">'b'</span><span class="p">],</span> <span class="n">sort</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">codes</span>
+<span class="go">array([1, 1, 0, 2, 1]...)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">uniques</span>
+<span class="go">array(['a', 'b', 'c'], dtype=object)</span>
+</pre></div>
+</div>
+<p>Missing values are indicated in <cite>codes</cite> with <cite>na_sentinel</cite>
+(<code class="docutils literal notranslate"><span class="pre">-1</span></code> by default). Note that missing values are never
+included in <cite>uniques</cite>.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">codes</span><span class="p">,</span> <span class="n">uniques</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">factorize</span><span class="p">([</span><span class="s1">'b'</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="s1">'a'</span><span class="p">,</span> <span class="s1">'c'</span><span class="p">,</span> <span class="s1">'b'</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">codes</span>
+<span class="go">array([ 0, -1,  1,  2,  0]...)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">uniques</span>
+<span class="go">array(['b', 'a', 'c'], dtype=object)</span>
+</pre></div>
+</div>
+<p>Thus far, we’ve only factorized lists (which are internally coerced to
+NumPy arrays). When factorizing pandas objects, the type of <cite>uniques</cite>
+will differ. For Categoricals, a <cite>Categorical</cite> is returned.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">cat</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Categorical</span><span class="p">([</span><span class="s1">'a'</span><span class="p">,</span> <span class="s1">'a'</span><span class="p">,</span> <span class="s1">'c'</span><span class="p">],</span> <span class="n">categories</span><span class="o">=</span><span class="p">[</span><span class="s1">'a'</span><span class="p">,</span> <span class="s1">'b'</span><span class="p">,</span> <span class="s1">'c'</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">codes</span><span class="p">,</span> <span class="n">uniques</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">factorize</span><span class="p">(</span><span class="n">cat</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">codes</span>
+<span class="go">array([0, 0, 1]...)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">uniques</span>
+<span class="go">['a', 'c']</span>
+<span class="go">Categories (3, object): ['a', 'b', 'c']</span>
+</pre></div>
+</div>
+<p>Notice that <code class="docutils literal notranslate"><span class="pre">'b'</span></code> is in <code class="docutils literal notranslate"><span class="pre">uniques.categories</span></code>, despite not being
+present in <code class="docutils literal notranslate"><span class="pre">cat.values</span></code>.</p>
+<p>For all other pandas objects, an Index of the appropriate type is
+returned.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">cat</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="s1">'a'</span><span class="p">,</span> <span class="s1">'a'</span><span class="p">,</span> <span class="s1">'c'</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">codes</span><span class="p">,</span> <span class="n">uniques</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">factorize</span><span class="p">(</span><span class="n">cat</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">codes</span>
+<span class="go">array([0, 0, 1]...)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">uniques</span>
+<span class="go">Index(['a', 'c'], dtype='object')</span>
+</pre></div>
+</div>
+<p>If NaN is in the values, and we want to include NaN in the uniques of the
+values, it can be achieved by setting <code class="docutils literal notranslate"><span class="pre">na_sentinel=None</span></code>.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">values</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">codes</span><span class="p">,</span> <span class="n">uniques</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">factorize</span><span class="p">(</span><span class="n">values</span><span class="p">)</span>  <span class="c1"># default: na_sentinel=-1</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">codes</span>
+<span class="go">array([ 0,  1,  0, -1])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">uniques</span>
+<span class="go">array([1., 2.])</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">codes</span><span class="p">,</span> <span class="n">uniques</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">factorize</span><span class="p">(</span><span class="n">values</span><span class="p">,</span> <span class="n">na_sentinel</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">codes</span>
+<span class="go">array([0, 1, 0, 2])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">uniques</span>
+<span class="go">array([ 1.,  2., nan])</span>
+</pre></div>
+</div>
+</dd></dl>
+</section>
+</div>
+
+</main>
+</div>
+</div>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+</body>
+</html>

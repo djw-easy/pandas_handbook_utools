@@ -1,0 +1,186 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="Docutils 0.17.1: http://docutils.sourceforge.net/" name="generator"/>
+<title>pandas.tseries.offsets.BusinessMonthBegin — pandas 1.4.1 documentation</title>
+<link href="../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet"/>
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet"/>
+<link href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css" rel="stylesheet"/>
+<link as="font" crossorigin="" href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2" rel="preload" type="font/woff2"/>
+<link as="font" crossorigin="" href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2" rel="preload" type="font/woff2"/>
+<link href="../../_static/pygments.css" rel="stylesheet" type="text/css">
+<link href="../../_static/styles/pydata-sphinx-theme.css" rel="stylesheet" type="text/css">
+<link href="../../_static/plot_directive.css" rel="stylesheet" type="text/css">
+<link href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" rel="stylesheet" type="text/css">
+<link href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" rel="stylesheet" type="text/css">
+<link href="../../_static/css/getting_started.css" rel="stylesheet" type="text/css"/>
+<link href="../../_static/css/pandas.css" rel="stylesheet" type="text/css"/>
+<link as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf" rel="preload"/>
+<script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+<script src="../../_static/jquery.js"></script>
+<script src="../../_static/underscore.js"></script>
+<script src="../../_static/doctools.js"></script>
+<script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
+<link href="../../_static/favicon.ico" rel="shortcut icon">
+<link href="../../genindex.html" rel="index" title="Index"/>
+<link href="../../search.html" rel="search" title="Search"/>
+<link href="pandas.tseries.offsets.BusinessMonthBegin.base.html" rel="next" title="pandas.tseries.offsets.BusinessMonthBegin.base"/>
+<link href="pandas.tseries.offsets.BusinessMonthEnd.is_year_end.html" rel="prev" title="pandas.tseries.offsets.BusinessMonthEnd.is_year_end"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<meta content="en" name="docsearch:language"/>
+<script async="" src="https://www.google-analytics.com/analytics.js"></script>
+<script>
+                        window.ga = window.ga || function () {
+                            (ga.q = ga.q || []).push(arguments) };
+                        ga.l = +new Date;
+                        ga('create', 'UA-27880019-2', 'auto');
+                        ga('set', 'anonymizeIp', true);
+                        ga('send', 'pageview');
+                    </script>
+</link></link></link></link></link></link></head>
+<body data-offset="80" data-spy="scroll" data-target="#bd-toc-nav">
+<div class="container-fluid" id="banner"></div>
+
+<div class="container-xl">
+<div class="row">
+
+
+<main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
+<div>
+<section id="pandas-tseries-offsets-businessmonthbegin">
+<h1>pandas.tseries.offsets.BusinessMonthBegin<a class="headerlink" href="#pandas-tseries-offsets-businessmonthbegin" title="Permalink to this headline">¶</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="pandas.tseries.offsets.BusinessMonthBegin">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pandas.tseries.offsets.</span></span><span class="sig-name descname"><span class="pre">BusinessMonthBegin</span></span><a class="headerlink" href="#pandas.tseries.offsets.BusinessMonthBegin" title="Permalink to this definition">¶</a></dt>
+<dd><p>DateOffset of one month at the first business day.</p>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pandas.tseries.offsets</span> <span class="kn">import</span> <span class="n">BMonthBegin</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ts</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">Timestamp</span><span class="p">(</span><span class="s1">'2020-05-24 05:01:15'</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ts</span> <span class="o">+</span> <span class="n">BMonthBegin</span><span class="p">()</span>
+<span class="go">Timestamp('2020-06-01 05:01:15')</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ts</span> <span class="o">+</span> <span class="n">BMonthBegin</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="go">Timestamp('2020-07-01 05:01:15')</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ts</span> <span class="o">+</span> <span class="n">BMonthBegin</span><span class="p">(</span><span class="o">-</span><span class="mi">3</span><span class="p">)</span>
+<span class="go">Timestamp('2020-03-02 05:01:15')</span>
+</pre></div>
+</div>
+<p class="rubric">Attributes</p>
+<table class="longtable table autosummary">
+<colgroup>
+<col style="width: 10%"/>
+<col style="width: 90%"/>
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="pandas.tseries.offsets.BusinessMonthBegin.base.html#pandas.tseries.offsets.BusinessMonthBegin.base" title="pandas.tseries.offsets.BusinessMonthBegin.base"><code class="xref py py-obj docutils literal notranslate"><span class="pre">base</span></code></a></p></td>
+<td><p>Returns a copy of the calling offset object with n=1 and all other attributes equal.</p></td>
+</tr>
+</tbody>
+</table>
+<table class="table">
+<colgroup>
+<col style="width: 57%"/>
+<col style="width: 43%"/>
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><strong>freqstr</strong></p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p><strong>kwds</strong></p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p><strong>n</strong></p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p><strong>name</strong></p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p><strong>nanos</strong></p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p><strong>normalize</strong></p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p><strong>rule_code</strong></p></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Methods</p>
+<table class="longtable table autosummary">
+<colgroup>
+<col style="width: 10%"/>
+<col style="width: 90%"/>
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="pandas.tseries.offsets.BusinessMonthBegin.__call__.html#pandas.tseries.offsets.BusinessMonthBegin.__call__" title="pandas.tseries.offsets.BusinessMonthBegin.__call__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__call__</span></code></a>(*args, **kwargs)</p></td>
+<td><p>Call self as a function.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="pandas.tseries.offsets.BusinessMonthBegin.rollback.html#pandas.tseries.offsets.BusinessMonthBegin.rollback" title="pandas.tseries.offsets.BusinessMonthBegin.rollback"><code class="xref py py-obj docutils literal notranslate"><span class="pre">rollback</span></code></a></p></td>
+<td><p>Roll provided date backward to next offset only if not on offset.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="pandas.tseries.offsets.BusinessMonthBegin.rollforward.html#pandas.tseries.offsets.BusinessMonthBegin.rollforward" title="pandas.tseries.offsets.BusinessMonthBegin.rollforward"><code class="xref py py-obj docutils literal notranslate"><span class="pre">rollforward</span></code></a></p></td>
+<td><p>Roll provided date forward to next offset only if not on offset.</p></td>
+</tr>
+</tbody>
+</table>
+<table class="table">
+<colgroup>
+<col style="width: 67%"/>
+<col style="width: 33%"/>
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><strong>apply</strong></p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p><strong>apply_index</strong></p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p><strong>copy</strong></p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p><strong>isAnchored</strong></p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p><strong>is_anchored</strong></p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p><strong>is_month_end</strong></p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p><strong>is_month_start</strong></p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p><strong>is_on_offset</strong></p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p><strong>is_quarter_end</strong></p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p><strong>is_quarter_start</strong></p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p><strong>is_year_end</strong></p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p><strong>is_year_start</strong></p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p><strong>onOffset</strong></p></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+</section>
+</div>
+
+</main>
+</div>
+</div>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+</body>
+</html>

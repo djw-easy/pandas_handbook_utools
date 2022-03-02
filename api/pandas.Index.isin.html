@@ -1,0 +1,153 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="Docutils 0.17.1: http://docutils.sourceforge.net/" name="generator"/>
+<title>pandas.Index.isin — pandas 1.4.1 documentation</title>
+<link href="../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet"/>
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet"/>
+<link href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css" rel="stylesheet"/>
+<link as="font" crossorigin="" href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2" rel="preload" type="font/woff2"/>
+<link as="font" crossorigin="" href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2" rel="preload" type="font/woff2"/>
+<link href="../../_static/pygments.css" rel="stylesheet" type="text/css">
+<link href="../../_static/styles/pydata-sphinx-theme.css" rel="stylesheet" type="text/css">
+<link href="../../_static/plot_directive.css" rel="stylesheet" type="text/css">
+<link href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" rel="stylesheet" type="text/css">
+<link href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" rel="stylesheet" type="text/css">
+<link href="../../_static/css/getting_started.css" rel="stylesheet" type="text/css"/>
+<link href="../../_static/css/pandas.css" rel="stylesheet" type="text/css"/>
+<link as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf" rel="preload"/>
+<script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+<script src="../../_static/jquery.js"></script>
+<script src="../../_static/underscore.js"></script>
+<script src="../../_static/doctools.js"></script>
+<script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
+<link href="../../_static/favicon.ico" rel="shortcut icon">
+<link href="../../genindex.html" rel="index" title="Index"/>
+<link href="../../search.html" rel="search" title="Search"/>
+<link href="pandas.Index.isna.html" rel="next" title="pandas.Index.isna"/>
+<link href="pandas.Index.is_type_compatible.html" rel="prev" title="pandas.Index.is_type_compatible"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<meta content="en" name="docsearch:language"/>
+<script async="" src="https://www.google-analytics.com/analytics.js"></script>
+<script>
+                        window.ga = window.ga || function () {
+                            (ga.q = ga.q || []).push(arguments) };
+                        ga.l = +new Date;
+                        ga('create', 'UA-27880019-2', 'auto');
+                        ga('set', 'anonymizeIp', true);
+                        ga('send', 'pageview');
+                    </script>
+</link></link></link></link></link></link></head>
+<body data-offset="80" data-spy="scroll" data-target="#bd-toc-nav">
+<div class="container-fluid" id="banner"></div>
+
+<div class="container-xl">
+<div class="row">
+
+
+<main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
+<div>
+<section id="pandas-index-isin">
+<h1>pandas.Index.isin<a class="headerlink" href="#pandas-index-isin" title="Permalink to this headline">¶</a></h1>
+<dl class="py method">
+<dt class="sig sig-object py" id="pandas.Index.isin">
+<span class="sig-prename descclassname"><span class="pre">Index.</span></span><span class="sig-name descname"><span class="pre">isin</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">values</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">level</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/pandas-dev/pandas/blob/v1.4.1/pandas/core/indexes/base.py#L6134-L6217"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pandas.Index.isin" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a boolean array where the index values are in <cite>values</cite>.</p>
+<p>Compute boolean array of whether each index value is found in the
+passed set of values. The length of the returned boolean array matches
+the length of the index.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>values</strong><span class="classifier">set or list-like</span></dt><dd><p>Sought values.</p>
+</dd>
+<dt><strong>level</strong><span class="classifier">str or int, optional</span></dt><dd><p>Name or position of the index level to use (if the index is a
+<cite>MultiIndex</cite>).</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt>np.ndarray[bool]</dt><dd><p>NumPy array of boolean values.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<dl class="simple">
+<dt><a class="reference internal" href="pandas.Series.isin.html#pandas.Series.isin" title="pandas.Series.isin"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Series.isin</span></code></a></dt><dd><p>Same for Series.</p>
+</dd>
+<dt><a class="reference internal" href="pandas.DataFrame.isin.html#pandas.DataFrame.isin" title="pandas.DataFrame.isin"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DataFrame.isin</span></code></a></dt><dd><p>Same method for DataFrames.</p>
+</dd>
+</dl>
+</div>
+<p class="rubric">Notes</p>
+<p>In the case of <cite>MultiIndex</cite> you must either specify <cite>values</cite> as a
+list-like object containing tuples that are the same length as the
+number of levels, or specify <cite>level</cite>. Otherwise it will raise a
+<code class="docutils literal notranslate"><span class="pre">ValueError</span></code>.</p>
+<p>If <cite>level</cite> is specified:</p>
+<ul class="simple">
+<li><p>if it is the name of one <em>and only one</em> index level, use that level;</p></li>
+<li><p>otherwise it should be a number indicating level position.</p></li>
+</ul>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">idx</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Index</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">idx</span>
+<span class="go">Int64Index([1, 2, 3], dtype='int64')</span>
+</pre></div>
+</div>
+<p>Check whether each index value in a list of values.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">idx</span><span class="o">.</span><span class="n">isin</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">])</span>
+<span class="go">array([ True, False, False])</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">midx</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">MultiIndex</span><span class="o">.</span><span class="n">from_arrays</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">],</span>
+<span class="gp">... </span>                                 <span class="p">[</span><span class="s1">'red'</span><span class="p">,</span> <span class="s1">'blue'</span><span class="p">,</span> <span class="s1">'green'</span><span class="p">]],</span>
+<span class="gp">... </span>                                 <span class="n">names</span><span class="o">=</span><span class="p">(</span><span class="s1">'number'</span><span class="p">,</span> <span class="s1">'color'</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">midx</span>
+<span class="go">MultiIndex([(1,   'red'),</span>
+<span class="go">            (2,  'blue'),</span>
+<span class="go">            (3, 'green')],</span>
+<span class="go">           names=['number', 'color'])</span>
+</pre></div>
+</div>
+<p>Check whether the strings in the ‘color’ level of the MultiIndex
+are in a list of colors.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">midx</span><span class="o">.</span><span class="n">isin</span><span class="p">([</span><span class="s1">'red'</span><span class="p">,</span> <span class="s1">'orange'</span><span class="p">,</span> <span class="s1">'yellow'</span><span class="p">],</span> <span class="n">level</span><span class="o">=</span><span class="s1">'color'</span><span class="p">)</span>
+<span class="go">array([ True, False, False])</span>
+</pre></div>
+</div>
+<p>To check across the levels of a MultiIndex, pass a list of tuples:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">midx</span><span class="o">.</span><span class="n">isin</span><span class="p">([(</span><span class="mi">1</span><span class="p">,</span> <span class="s1">'red'</span><span class="p">),</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="s1">'red'</span><span class="p">)])</span>
+<span class="go">array([ True, False, False])</span>
+</pre></div>
+</div>
+<p>For a DatetimeIndex, string values in <cite>values</cite> are converted to
+Timestamps.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">dates</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'2000-03-11'</span><span class="p">,</span> <span class="s1">'2000-03-12'</span><span class="p">,</span> <span class="s1">'2000-03-13'</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">dti</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">dates</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">dti</span>
+<span class="go">DatetimeIndex(['2000-03-11', '2000-03-12', '2000-03-13'],</span>
+<span class="go">dtype='datetime64[ns]', freq=None)</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">dti</span><span class="o">.</span><span class="n">isin</span><span class="p">([</span><span class="s1">'2000-03-11'</span><span class="p">])</span>
+<span class="go">array([ True, False, False])</span>
+</pre></div>
+</div>
+</dd></dl>
+</section>
+</div>
+
+</main>
+</div>
+</div>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+</body>
+</html>

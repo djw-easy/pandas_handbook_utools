@@ -1,0 +1,191 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="Docutils 0.17.1: http://docutils.sourceforge.net/" name="generator"/>
+<title>pandas.DataFrame.melt — pandas 1.4.1 documentation</title>
+<link href="../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet"/>
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet"/>
+<link href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css" rel="stylesheet"/>
+<link as="font" crossorigin="" href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2" rel="preload" type="font/woff2"/>
+<link as="font" crossorigin="" href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2" rel="preload" type="font/woff2"/>
+<link href="../../_static/pygments.css" rel="stylesheet" type="text/css">
+<link href="../../_static/styles/pydata-sphinx-theme.css" rel="stylesheet" type="text/css">
+<link href="../../_static/plot_directive.css" rel="stylesheet" type="text/css">
+<link href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" rel="stylesheet" type="text/css">
+<link href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" rel="stylesheet" type="text/css">
+<link href="../../_static/css/getting_started.css" rel="stylesheet" type="text/css"/>
+<link href="../../_static/css/pandas.css" rel="stylesheet" type="text/css"/>
+<link as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf" rel="preload"/>
+<script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+<script src="../../_static/jquery.js"></script>
+<script src="../../_static/underscore.js"></script>
+<script src="../../_static/doctools.js"></script>
+<script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
+<link href="../../_static/favicon.ico" rel="shortcut icon">
+<link href="../../genindex.html" rel="index" title="Index"/>
+<link href="../../search.html" rel="search" title="Search"/>
+<link href="pandas.DataFrame.memory_usage.html" rel="next" title="pandas.DataFrame.memory_usage"/>
+<link href="pandas.DataFrame.median.html" rel="prev" title="pandas.DataFrame.median"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<meta content="en" name="docsearch:language"/>
+<script async="" src="https://www.google-analytics.com/analytics.js"></script>
+<script>
+                        window.ga = window.ga || function () {
+                            (ga.q = ga.q || []).push(arguments) };
+                        ga.l = +new Date;
+                        ga('create', 'UA-27880019-2', 'auto');
+                        ga('set', 'anonymizeIp', true);
+                        ga('send', 'pageview');
+                    </script>
+</link></link></link></link></link></link></head>
+<body data-offset="80" data-spy="scroll" data-target="#bd-toc-nav">
+<div class="container-fluid" id="banner"></div>
+
+<div class="container-xl">
+<div class="row">
+
+
+<main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
+<div>
+<section id="pandas-dataframe-melt">
+<h1>pandas.DataFrame.melt<a class="headerlink" href="#pandas-dataframe-melt" title="Permalink to this headline">¶</a></h1>
+<dl class="py method">
+<dt class="sig sig-object py" id="pandas.DataFrame.melt">
+<span class="sig-prename descclassname"><span class="pre">DataFrame.</span></span><span class="sig-name descname"><span class="pre">melt</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">id_vars</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value_vars</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">var_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'value'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">col_level</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ignore_index</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/pandas-dev/pandas/blob/v1.4.1/pandas/core/frame.py#L8417-L8436"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pandas.DataFrame.melt" title="Permalink to this definition">¶</a></dt>
+<dd><p>Unpivot a DataFrame from wide to long format, optionally leaving identifiers set.</p>
+<p>This function is useful to massage a DataFrame into a format where one
+or more columns are identifier variables (<cite>id_vars</cite>), while all other
+columns, considered measured variables (<cite>value_vars</cite>), are “unpivoted” to
+the row axis, leaving just two non-identifier columns, ‘variable’ and
+‘value’.</p>
+<dl class="field-list">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl>
+<dt><strong>id_vars</strong><span class="classifier">tuple, list, or ndarray, optional</span></dt><dd><p>Column(s) to use as identifier variables.</p>
+</dd>
+<dt><strong>value_vars</strong><span class="classifier">tuple, list, or ndarray, optional</span></dt><dd><p>Column(s) to unpivot. If not specified, uses all columns that
+are not set as <cite>id_vars</cite>.</p>
+</dd>
+<dt><strong>var_name</strong><span class="classifier">scalar</span></dt><dd><p>Name to use for the ‘variable’ column. If None it uses
+<code class="docutils literal notranslate"><span class="pre">frame.columns.name</span></code> or ‘variable’.</p>
+</dd>
+<dt><strong>value_name</strong><span class="classifier">scalar, default ‘value’</span></dt><dd><p>Name to use for the ‘value’ column.</p>
+</dd>
+<dt><strong>col_level</strong><span class="classifier">int or str, optional</span></dt><dd><p>If columns are a MultiIndex then use this level to melt.</p>
+</dd>
+<dt><strong>ignore_index</strong><span class="classifier">bool, default True</span></dt><dd><p>If True, original index is ignored. If False, the original index is retained.
+Index labels will be repeated as necessary.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">New in version 1.1.0.</span></p>
+</div>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt>DataFrame</dt><dd><p>Unpivoted DataFrame.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<dl class="simple">
+<dt><a class="reference internal" href="pandas.melt.html#pandas.melt" title="pandas.melt"><code class="xref py py-obj docutils literal notranslate"><span class="pre">melt</span></code></a></dt><dd><p>Identical method.</p>
+</dd>
+<dt><a class="reference internal" href="pandas.pivot_table.html#pandas.pivot_table" title="pandas.pivot_table"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pivot_table</span></code></a></dt><dd><p>Create a spreadsheet-style pivot table as a DataFrame.</p>
+</dd>
+<dt><a class="reference internal" href="pandas.DataFrame.pivot.html#pandas.DataFrame.pivot" title="pandas.DataFrame.pivot"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DataFrame.pivot</span></code></a></dt><dd><p>Return reshaped DataFrame organized by given index / column values.</p>
+</dd>
+<dt><a class="reference internal" href="pandas.DataFrame.explode.html#pandas.DataFrame.explode" title="pandas.DataFrame.explode"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DataFrame.explode</span></code></a></dt><dd><p>Explode a DataFrame from list-like columns to long format.</p>
+</dd>
+</dl>
+</div>
+<p class="rubric">Notes</p>
+<p>Reference <a class="reference internal" href="../../user_guide/reshaping.html#reshaping-melt"><span class="std std-ref">the user guide</span></a> for more examples.</p>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">'A'</span><span class="p">:</span> <span class="p">{</span><span class="mi">0</span><span class="p">:</span> <span class="s1">'a'</span><span class="p">,</span> <span class="mi">1</span><span class="p">:</span> <span class="s1">'b'</span><span class="p">,</span> <span class="mi">2</span><span class="p">:</span> <span class="s1">'c'</span><span class="p">},</span>
+<span class="gp">... </span>                   <span class="s1">'B'</span><span class="p">:</span> <span class="p">{</span><span class="mi">0</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">:</span> <span class="mi">5</span><span class="p">},</span>
+<span class="gp">... </span>                   <span class="s1">'C'</span><span class="p">:</span> <span class="p">{</span><span class="mi">0</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">2</span><span class="p">:</span> <span class="mi">6</span><span class="p">}})</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">df</span>
+<span class="go">   A  B  C</span>
+<span class="go">0  a  1  2</span>
+<span class="go">1  b  3  4</span>
+<span class="go">2  c  5  6</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df</span><span class="o">.</span><span class="n">melt</span><span class="p">(</span><span class="n">id_vars</span><span class="o">=</span><span class="p">[</span><span class="s1">'A'</span><span class="p">],</span> <span class="n">value_vars</span><span class="o">=</span><span class="p">[</span><span class="s1">'B'</span><span class="p">])</span>
+<span class="go">   A variable  value</span>
+<span class="go">0  a        B      1</span>
+<span class="go">1  b        B      3</span>
+<span class="go">2  c        B      5</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df</span><span class="o">.</span><span class="n">melt</span><span class="p">(</span><span class="n">id_vars</span><span class="o">=</span><span class="p">[</span><span class="s1">'A'</span><span class="p">],</span> <span class="n">value_vars</span><span class="o">=</span><span class="p">[</span><span class="s1">'B'</span><span class="p">,</span> <span class="s1">'C'</span><span class="p">])</span>
+<span class="go">   A variable  value</span>
+<span class="go">0  a        B      1</span>
+<span class="go">1  b        B      3</span>
+<span class="go">2  c        B      5</span>
+<span class="go">3  a        C      2</span>
+<span class="go">4  b        C      4</span>
+<span class="go">5  c        C      6</span>
+</pre></div>
+</div>
+<p>The names of ‘variable’ and ‘value’ columns can be customized:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df</span><span class="o">.</span><span class="n">melt</span><span class="p">(</span><span class="n">id_vars</span><span class="o">=</span><span class="p">[</span><span class="s1">'A'</span><span class="p">],</span> <span class="n">value_vars</span><span class="o">=</span><span class="p">[</span><span class="s1">'B'</span><span class="p">],</span>
+<span class="gp">... </span>        <span class="n">var_name</span><span class="o">=</span><span class="s1">'myVarname'</span><span class="p">,</span> <span class="n">value_name</span><span class="o">=</span><span class="s1">'myValname'</span><span class="p">)</span>
+<span class="go">   A myVarname  myValname</span>
+<span class="go">0  a         B          1</span>
+<span class="go">1  b         B          3</span>
+<span class="go">2  c         B          5</span>
+</pre></div>
+</div>
+<p>Original index values can be kept around:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df</span><span class="o">.</span><span class="n">melt</span><span class="p">(</span><span class="n">id_vars</span><span class="o">=</span><span class="p">[</span><span class="s1">'A'</span><span class="p">],</span> <span class="n">value_vars</span><span class="o">=</span><span class="p">[</span><span class="s1">'B'</span><span class="p">,</span> <span class="s1">'C'</span><span class="p">],</span> <span class="n">ignore_index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="go">   A variable  value</span>
+<span class="go">0  a        B      1</span>
+<span class="go">1  b        B      3</span>
+<span class="go">2  c        B      5</span>
+<span class="go">0  a        C      2</span>
+<span class="go">1  b        C      4</span>
+<span class="go">2  c        C      6</span>
+</pre></div>
+</div>
+<p>If you have multi-index columns:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="nb">list</span><span class="p">(</span><span class="s1">'ABC'</span><span class="p">),</span> <span class="nb">list</span><span class="p">(</span><span class="s1">'DEF'</span><span class="p">)]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">df</span>
+<span class="go">   A  B  C</span>
+<span class="go">   D  E  F</span>
+<span class="go">0  a  1  2</span>
+<span class="go">1  b  3  4</span>
+<span class="go">2  c  5  6</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df</span><span class="o">.</span><span class="n">melt</span><span class="p">(</span><span class="n">col_level</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">id_vars</span><span class="o">=</span><span class="p">[</span><span class="s1">'A'</span><span class="p">],</span> <span class="n">value_vars</span><span class="o">=</span><span class="p">[</span><span class="s1">'B'</span><span class="p">])</span>
+<span class="go">   A variable  value</span>
+<span class="go">0  a        B      1</span>
+<span class="go">1  b        B      3</span>
+<span class="go">2  c        B      5</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df</span><span class="o">.</span><span class="n">melt</span><span class="p">(</span><span class="n">id_vars</span><span class="o">=</span><span class="p">[(</span><span class="s1">'A'</span><span class="p">,</span> <span class="s1">'D'</span><span class="p">)],</span> <span class="n">value_vars</span><span class="o">=</span><span class="p">[(</span><span class="s1">'B'</span><span class="p">,</span> <span class="s1">'E'</span><span class="p">)])</span>
+<span class="go">  (A, D) variable_0 variable_1  value</span>
+<span class="go">0      a          B          E      1</span>
+<span class="go">1      b          B          E      3</span>
+<span class="go">2      c          B          E      5</span>
+</pre></div>
+</div>
+</dd></dl>
+</section>
+</div>
+
+</main>
+</div>
+</div>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+</body>
+</html>

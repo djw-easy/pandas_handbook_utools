@@ -1,0 +1,197 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="Docutils 0.17.1: http://docutils.sourceforge.net/" name="generator"/>
+<title>pandas.Series.plot.barh — pandas 1.4.1 documentation</title>
+<link href="../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet"/>
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet"/>
+<link href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css" rel="stylesheet"/>
+<link as="font" crossorigin="" href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2" rel="preload" type="font/woff2"/>
+<link as="font" crossorigin="" href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2" rel="preload" type="font/woff2"/>
+<link href="../../_static/pygments.css" rel="stylesheet" type="text/css">
+<link href="../../_static/styles/pydata-sphinx-theme.css" rel="stylesheet" type="text/css">
+<link href="../../_static/plot_directive.css" rel="stylesheet" type="text/css">
+<link href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" rel="stylesheet" type="text/css">
+<link href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" rel="stylesheet" type="text/css">
+<link href="../../_static/css/getting_started.css" rel="stylesheet" type="text/css"/>
+<link href="../../_static/css/pandas.css" rel="stylesheet" type="text/css"/>
+<link as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf" rel="preload"/>
+<script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+<script src="../../_static/jquery.js"></script>
+<script src="../../_static/underscore.js"></script>
+<script src="../../_static/doctools.js"></script>
+<script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
+<link href="../../_static/favicon.ico" rel="shortcut icon">
+<link href="../../genindex.html" rel="index" title="Index"/>
+<link href="../../search.html" rel="search" title="Search"/>
+<link href="pandas.Series.plot.box.html" rel="next" title="pandas.Series.plot.box"/>
+<link href="pandas.Series.plot.bar.html" rel="prev" title="pandas.Series.plot.bar"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<meta content="en" name="docsearch:language"/>
+<script async="" src="https://www.google-analytics.com/analytics.js"></script>
+<script>
+                        window.ga = window.ga || function () {
+                            (ga.q = ga.q || []).push(arguments) };
+                        ga.l = +new Date;
+                        ga('create', 'UA-27880019-2', 'auto');
+                        ga('set', 'anonymizeIp', true);
+                        ga('send', 'pageview');
+                    </script>
+</link></link></link></link></link></link></head>
+<body data-offset="80" data-spy="scroll" data-target="#bd-toc-nav">
+<div class="container-fluid" id="banner"></div>
+
+<div class="container-xl">
+<div class="row">
+
+
+<main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
+<div>
+<section id="pandas-series-plot-barh">
+<h1>pandas.Series.plot.barh<a class="headerlink" href="#pandas-series-plot-barh" title="Permalink to this headline">¶</a></h1>
+<dl class="py method">
+<dt class="sig sig-object py" id="pandas.Series.plot.barh">
+<span class="sig-prename descclassname"><span class="pre">Series.plot.</span></span><span class="sig-name descname"><span class="pre">barh</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/pandas-dev/pandas/blob/v1.4.1/pandas/plotting/_core.py#L1133-L1217"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pandas.Series.plot.barh" title="Permalink to this definition">¶</a></dt>
+<dd><p>Make a horizontal bar plot.</p>
+<p>A horizontal bar plot is a plot that presents quantitative data with
+rectangular bars with lengths proportional to the values that they
+represent. A bar plot shows comparisons among discrete categories. One
+axis of the plot shows the specific categories being compared, and the
+other axis represents a measured value.</p>
+<dl class="field-list">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl>
+<dt><strong>x</strong><span class="classifier">label or position, optional</span></dt><dd><p>Allows plotting of one column versus another. If not specified,
+the index of the DataFrame is used.</p>
+</dd>
+<dt><strong>y</strong><span class="classifier">label or position, optional</span></dt><dd><p>Allows plotting of one column versus another. If not specified,
+all numerical columns are used.</p>
+</dd>
+<dt><strong>color</strong><span class="classifier">str, array-like, or dict, optional</span></dt><dd><p>The color for each of the DataFrame’s columns. Possible values are:</p>
+<ul class="simple">
+<li><dl class="simple">
+<dt>A single color string referred to by name, RGB or RGBA code,</dt><dd><p>for instance ‘red’ or ‘#a98d19’.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>A sequence of color strings referred to by name, RGB or RGBA</dt><dd><p>code, which will be used for each column recursively. For
+instance [‘green’,’yellow’] each column’s bar will be filled in
+green or yellow, alternatively. If there is only a single column to
+be plotted, then only the first color from the color list will be
+used.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>A dict of the form {column name<span class="classifier">color}, so that each column will be</span></dt><dd><p>colored accordingly. For example, if your columns are called <cite>a</cite> and
+<cite>b</cite>, then passing {‘a’: ‘green’, ‘b’: ‘red’} will color bars for
+column <cite>a</cite> in green and bars for column <cite>b</cite> in red.</p>
+</dd>
+</dl>
+</li>
+</ul>
+<div class="versionadded">
+<p><span class="versionmodified added">New in version 1.1.0.</span></p>
+</div>
+</dd>
+<dt><strong>**kwargs</strong></dt><dd><p>Additional keyword arguments are documented in
+<a class="reference internal" href="pandas.DataFrame.plot.html#pandas.DataFrame.plot" title="pandas.DataFrame.plot"><code class="xref py py-meth docutils literal notranslate"><span class="pre">DataFrame.plot()</span></code></a>.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt>matplotlib.axes.Axes or np.ndarray of them</dt><dd><p>An ndarray is returned with one <a class="reference external" href="https://matplotlib.org/stable/api/axes_api.html#matplotlib.axes.Axes" title="(in Matplotlib v3.5.1)"><code class="xref py py-class docutils literal notranslate"><span class="pre">matplotlib.axes.Axes</span></code></a>
+per column when <code class="docutils literal notranslate"><span class="pre">subplots=True</span></code>.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<dl class="simple">
+<dt><a class="reference internal" href="pandas.DataFrame.plot.bar.html#pandas.DataFrame.plot.bar" title="pandas.DataFrame.plot.bar"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DataFrame.plot.bar</span></code></a></dt><dd><p>Vertical bar plot.</p>
+</dd>
+<dt><a class="reference internal" href="pandas.DataFrame.plot.html#pandas.DataFrame.plot" title="pandas.DataFrame.plot"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DataFrame.plot</span></code></a></dt><dd><p>Make plots of DataFrame using matplotlib.</p>
+</dd>
+<dt><a class="reference external" href="https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.bar.html#matplotlib.axes.Axes.bar" title="(in Matplotlib v3.5.1)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">matplotlib.axes.Axes.bar</span></code></a></dt><dd><p>Plot a vertical bar plot using matplotlib.</p>
+</dd>
+</dl>
+</div>
+<p class="rubric">Examples</p>
+<p>Basic example</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">'lab'</span><span class="p">:</span> <span class="p">[</span><span class="s1">'A'</span><span class="p">,</span> <span class="s1">'B'</span><span class="p">,</span> <span class="s1">'C'</span><span class="p">],</span> <span class="s1">'val'</span><span class="p">:</span> <span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">20</span><span class="p">]})</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ax</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">barh</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s1">'lab'</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">'val'</span><span class="p">)</span>
+</pre></div>
+</div>
+<figure class="align-default">
+<img alt="../../_images/pandas-Series-plot-barh-1.png" class="plot-directive" src="../../_images/pandas-Series-plot-barh-1.png">
+</img></figure>
+<p>Plot a whole DataFrame to a horizontal bar plot</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">speed</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">17.5</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span> <span class="mi">48</span><span class="p">,</span> <span class="mi">52</span><span class="p">,</span> <span class="mi">69</span><span class="p">,</span> <span class="mi">88</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">lifespan</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">70</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">28</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">index</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'snail'</span><span class="p">,</span> <span class="s1">'pig'</span><span class="p">,</span> <span class="s1">'elephant'</span><span class="p">,</span>
+<span class="gp">... </span>         <span class="s1">'rabbit'</span><span class="p">,</span> <span class="s1">'giraffe'</span><span class="p">,</span> <span class="s1">'coyote'</span><span class="p">,</span> <span class="s1">'horse'</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">'speed'</span><span class="p">:</span> <span class="n">speed</span><span class="p">,</span>
+<span class="gp">... </span>                   <span class="s1">'lifespan'</span><span class="p">:</span> <span class="n">lifespan</span><span class="p">},</span> <span class="n">index</span><span class="o">=</span><span class="n">index</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ax</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">barh</span><span class="p">()</span>
+</pre></div>
+</div>
+<figure class="align-default">
+<img alt="../../_images/pandas-Series-plot-barh-2.png" class="plot-directive" src="../../_images/pandas-Series-plot-barh-2.png"/>
+</figure>
+<p>Plot stacked barh charts for the DataFrame</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">ax</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">barh</span><span class="p">(</span><span class="n">stacked</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+<figure class="align-default">
+<img alt="../../_images/pandas-Series-plot-barh-3.png" class="plot-directive" src="../../_images/pandas-Series-plot-barh-3.png"/>
+</figure>
+<p>We can specify colors for each column</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">ax</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">barh</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="p">{</span><span class="s2">"speed"</span><span class="p">:</span> <span class="s2">"red"</span><span class="p">,</span> <span class="s2">"lifespan"</span><span class="p">:</span> <span class="s2">"green"</span><span class="p">})</span>
+</pre></div>
+</div>
+<figure class="align-default">
+<img alt="../../_images/pandas-Series-plot-barh-4.png" class="plot-directive" src="../../_images/pandas-Series-plot-barh-4.png"/>
+</figure>
+<p>Plot a column of the DataFrame to a horizontal bar plot</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">speed</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">17.5</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span> <span class="mi">48</span><span class="p">,</span> <span class="mi">52</span><span class="p">,</span> <span class="mi">69</span><span class="p">,</span> <span class="mi">88</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">lifespan</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">70</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">28</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">index</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'snail'</span><span class="p">,</span> <span class="s1">'pig'</span><span class="p">,</span> <span class="s1">'elephant'</span><span class="p">,</span>
+<span class="gp">... </span>         <span class="s1">'rabbit'</span><span class="p">,</span> <span class="s1">'giraffe'</span><span class="p">,</span> <span class="s1">'coyote'</span><span class="p">,</span> <span class="s1">'horse'</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">'speed'</span><span class="p">:</span> <span class="n">speed</span><span class="p">,</span>
+<span class="gp">... </span>                   <span class="s1">'lifespan'</span><span class="p">:</span> <span class="n">lifespan</span><span class="p">},</span> <span class="n">index</span><span class="o">=</span><span class="n">index</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ax</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">barh</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="s1">'speed'</span><span class="p">)</span>
+</pre></div>
+</div>
+<figure class="align-default">
+<img alt="../../_images/pandas-Series-plot-barh-5.png" class="plot-directive" src="../../_images/pandas-Series-plot-barh-5.png"/>
+</figure>
+<p>Plot DataFrame versus the desired column</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">speed</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">17.5</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span> <span class="mi">48</span><span class="p">,</span> <span class="mi">52</span><span class="p">,</span> <span class="mi">69</span><span class="p">,</span> <span class="mi">88</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">lifespan</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">70</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">28</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">index</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'snail'</span><span class="p">,</span> <span class="s1">'pig'</span><span class="p">,</span> <span class="s1">'elephant'</span><span class="p">,</span>
+<span class="gp">... </span>         <span class="s1">'rabbit'</span><span class="p">,</span> <span class="s1">'giraffe'</span><span class="p">,</span> <span class="s1">'coyote'</span><span class="p">,</span> <span class="s1">'horse'</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">'speed'</span><span class="p">:</span> <span class="n">speed</span><span class="p">,</span>
+<span class="gp">... </span>                   <span class="s1">'lifespan'</span><span class="p">:</span> <span class="n">lifespan</span><span class="p">},</span> <span class="n">index</span><span class="o">=</span><span class="n">index</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ax</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">barh</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s1">'lifespan'</span><span class="p">)</span>
+</pre></div>
+</div>
+<figure class="align-default">
+<img alt="../../_images/pandas-Series-plot-barh-6.png" class="plot-directive" src="../../_images/pandas-Series-plot-barh-6.png"/>
+</figure>
+</dd></dl>
+</section>
+</div>
+
+</main>
+</div>
+</div>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+</body>
+</html>

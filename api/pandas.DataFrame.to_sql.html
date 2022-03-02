@@ -1,0 +1,230 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="Docutils 0.17.1: http://docutils.sourceforge.net/" name="generator"/>
+<title>pandas.DataFrame.to_sql — pandas 1.4.1 documentation</title>
+<link href="../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet"/>
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet"/>
+<link href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css" rel="stylesheet"/>
+<link as="font" crossorigin="" href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2" rel="preload" type="font/woff2"/>
+<link as="font" crossorigin="" href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2" rel="preload" type="font/woff2"/>
+<link href="../../_static/pygments.css" rel="stylesheet" type="text/css">
+<link href="../../_static/styles/pydata-sphinx-theme.css" rel="stylesheet" type="text/css">
+<link href="../../_static/plot_directive.css" rel="stylesheet" type="text/css">
+<link href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" rel="stylesheet" type="text/css">
+<link href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" rel="stylesheet" type="text/css">
+<link href="../../_static/css/getting_started.css" rel="stylesheet" type="text/css"/>
+<link href="../../_static/css/pandas.css" rel="stylesheet" type="text/css"/>
+<link as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf" rel="preload"/>
+<script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+<script src="../../_static/jquery.js"></script>
+<script src="../../_static/underscore.js"></script>
+<script src="../../_static/doctools.js"></script>
+<script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
+<link href="../../_static/favicon.ico" rel="shortcut icon">
+<link href="../../genindex.html" rel="index" title="Index"/>
+<link href="../../search.html" rel="search" title="Search"/>
+<link href="pandas.read_gbq.html" rel="next" title="pandas.read_gbq"/>
+<link href="pandas.read_sql.html" rel="prev" title="pandas.read_sql"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<meta content="en" name="docsearch:language"/>
+<script async="" src="https://www.google-analytics.com/analytics.js"></script>
+<script>
+                        window.ga = window.ga || function () {
+                            (ga.q = ga.q || []).push(arguments) };
+                        ga.l = +new Date;
+                        ga('create', 'UA-27880019-2', 'auto');
+                        ga('set', 'anonymizeIp', true);
+                        ga('send', 'pageview');
+                    </script>
+</link></link></link></link></link></link></head>
+<body data-offset="80" data-spy="scroll" data-target="#bd-toc-nav">
+<div class="container-fluid" id="banner"></div>
+
+<div class="container-xl">
+<div class="row">
+
+
+<main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
+<div>
+<section id="pandas-dataframe-to-sql">
+<h1>pandas.DataFrame.to_sql<a class="headerlink" href="#pandas-dataframe-to-sql" title="Permalink to this headline">¶</a></h1>
+<dl class="py method">
+<dt class="sig sig-object py" id="pandas.DataFrame.to_sql">
+<span class="sig-prename descclassname"><span class="pre">DataFrame.</span></span><span class="sig-name descname"><span class="pre">to_sql</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">con</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">schema</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">if_exists</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'fail'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">index</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">index_label</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">chunksize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dtype</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">method</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/pandas-dev/pandas/blob/v1.4.1/pandas/core/generic.py#L2793-L2974"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pandas.DataFrame.to_sql" title="Permalink to this definition">¶</a></dt>
+<dd><p>Write records stored in a DataFrame to a SQL database.</p>
+<p>Databases supported by SQLAlchemy <a class="reference internal" href="#r689dfd12abe5-1" id="id1">[1]</a> are supported. Tables can be
+newly created, appended to, or overwritten.</p>
+<dl class="field-list">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl>
+<dt><strong>name</strong><span class="classifier">str</span></dt><dd><p>Name of SQL table.</p>
+</dd>
+<dt><strong>con</strong><span class="classifier">sqlalchemy.engine.(Engine or Connection) or sqlite3.Connection</span></dt><dd><p>Using SQLAlchemy makes it possible to use any DB supported by that
+library. Legacy support is provided for sqlite3.Connection objects. The user
+is responsible for engine disposal and connection closure for the SQLAlchemy
+connectable See <a class="reference external" href="https://docs.sqlalchemy.org/en/13/core/connections.html">here</a>.</p>
+</dd>
+<dt><strong>schema</strong><span class="classifier">str, optional</span></dt><dd><p>Specify the schema (if database flavor supports this). If None, use
+default schema.</p>
+</dd>
+<dt><strong>if_exists</strong><span class="classifier">{‘fail’, ‘replace’, ‘append’}, default ‘fail’</span></dt><dd><p>How to behave if the table already exists.</p>
+<ul class="simple">
+<li><p>fail: Raise a ValueError.</p></li>
+<li><p>replace: Drop the table before inserting new values.</p></li>
+<li><p>append: Insert new values to the existing table.</p></li>
+</ul>
+</dd>
+<dt><strong>index</strong><span class="classifier">bool, default True</span></dt><dd><p>Write DataFrame index as a column. Uses <cite>index_label</cite> as the column
+name in the table.</p>
+</dd>
+<dt><strong>index_label</strong><span class="classifier">str or sequence, default None</span></dt><dd><p>Column label for index column(s). If None is given (default) and
+<cite>index</cite> is True, then the index names are used.
+A sequence should be given if the DataFrame uses MultiIndex.</p>
+</dd>
+<dt><strong>chunksize</strong><span class="classifier">int, optional</span></dt><dd><p>Specify the number of rows in each batch to be written at a time.
+By default, all rows will be written at once.</p>
+</dd>
+<dt><strong>dtype</strong><span class="classifier">dict or scalar, optional</span></dt><dd><p>Specifying the datatype for columns. If a dictionary is used, the
+keys should be the column names and the values should be the
+SQLAlchemy types or strings for the sqlite3 legacy mode. If a
+scalar is provided, it will be applied to all columns.</p>
+</dd>
+<dt><strong>method</strong><span class="classifier">{None, ‘multi’, callable}, optional</span></dt><dd><p>Controls the SQL insertion clause used:</p>
+<ul class="simple">
+<li><p>None : Uses standard SQL <code class="docutils literal notranslate"><span class="pre">INSERT</span></code> clause (one per row).</p></li>
+<li><p>‘multi’: Pass multiple values in a single <code class="docutils literal notranslate"><span class="pre">INSERT</span></code> clause.</p></li>
+<li><p>callable with signature <code class="docutils literal notranslate"><span class="pre">(pd_table,</span> <span class="pre">conn,</span> <span class="pre">keys,</span> <span class="pre">data_iter)</span></code>.</p></li>
+</ul>
+<p>Details and a sample callable implementation can be found in the
+section <a class="reference internal" href="../../user_guide/io.html#io-sql-method"><span class="std std-ref">insert method</span></a>.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl>
+<dt>None or int</dt><dd><p>Number of rows affected by to_sql. None is returned if the callable
+passed into <code class="docutils literal notranslate"><span class="pre">method</span></code> does not return the number of rows.</p>
+<p>The number of returned rows affected is the sum of the <code class="docutils literal notranslate"><span class="pre">rowcount</span></code>
+attribute of <code class="docutils literal notranslate"><span class="pre">sqlite3.Cursor</span></code> or SQLAlchemy connectable which may not
+reflect the exact number of written rows as stipulated in the
+<a class="reference external" href="https://docs.python.org/3/library/sqlite3.html#sqlite3.Cursor.rowcount">sqlite3</a> or
+<a class="reference external" href="https://docs.sqlalchemy.org/en/14/core/connections.html#sqlalchemy.engine.BaseCursorResult.rowcount">SQLAlchemy</a>.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">New in version 1.4.0.</span></p>
+</div>
+</dd>
+</dl>
+</dd>
+<dt class="field-odd">Raises</dt>
+<dd class="field-odd"><dl class="simple">
+<dt>ValueError</dt><dd><p>When the table already exists and <cite>if_exists</cite> is ‘fail’ (the
+default).</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<dl class="simple">
+<dt><a class="reference internal" href="pandas.read_sql.html#pandas.read_sql" title="pandas.read_sql"><code class="xref py py-obj docutils literal notranslate"><span class="pre">read_sql</span></code></a></dt><dd><p>Read a DataFrame from a table.</p>
+</dd>
+</dl>
+</div>
+<p class="rubric">Notes</p>
+<p>Timezone aware datetime columns will be written as
+<code class="docutils literal notranslate"><span class="pre">Timestamp</span> <span class="pre">with</span> <span class="pre">timezone</span></code> type with SQLAlchemy if supported by the
+database. Otherwise, the datetimes will be stored as timezone unaware
+timestamps local to the original timezone.</p>
+<p class="rubric">References</p>
+<dl class="citation">
+<dt class="label" id="r689dfd12abe5-1"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
+<dd><p><a class="reference external" href="https://docs.sqlalchemy.org">https://docs.sqlalchemy.org</a></p>
+</dd>
+<dt class="label" id="r689dfd12abe5-2"><span class="brackets">2</span></dt>
+<dd><p><a class="reference external" href="https://www.python.org/dev/peps/pep-0249/">https://www.python.org/dev/peps/pep-0249/</a></p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<p>Create an in-memory SQLite database.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sqlalchemy</span> <span class="kn">import</span> <span class="n">create_engine</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">engine</span> <span class="o">=</span> <span class="n">create_engine</span><span class="p">(</span><span class="s1">'sqlite://'</span><span class="p">,</span> <span class="n">echo</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Create a table from scratch with 3 rows.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">'name'</span> <span class="p">:</span> <span class="p">[</span><span class="s1">'User 1'</span><span class="p">,</span> <span class="s1">'User 2'</span><span class="p">,</span> <span class="s1">'User 3'</span><span class="p">]})</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">df</span>
+<span class="go">     name</span>
+<span class="go">0  User 1</span>
+<span class="go">1  User 2</span>
+<span class="go">2  User 3</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df</span><span class="o">.</span><span class="n">to_sql</span><span class="p">(</span><span class="s1">'users'</span><span class="p">,</span> <span class="n">con</span><span class="o">=</span><span class="n">engine</span><span class="p">)</span>
+<span class="go">3</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">engine</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">"SELECT * FROM users"</span><span class="p">)</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()</span>
+<span class="go">[(0, 'User 1'), (1, 'User 2'), (2, 'User 3')]</span>
+</pre></div>
+</div>
+<p>An <cite>sqlalchemy.engine.Connection</cite> can also be passed to <cite>con</cite>:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">with</span> <span class="n">engine</span><span class="o">.</span><span class="n">begin</span><span class="p">()</span> <span class="k">as</span> <span class="n">connection</span><span class="p">:</span>
+<span class="gp">... </span>    <span class="n">df1</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">'name'</span> <span class="p">:</span> <span class="p">[</span><span class="s1">'User 4'</span><span class="p">,</span> <span class="s1">'User 5'</span><span class="p">]})</span>
+<span class="gp">... </span>    <span class="n">df1</span><span class="o">.</span><span class="n">to_sql</span><span class="p">(</span><span class="s1">'users'</span><span class="p">,</span> <span class="n">con</span><span class="o">=</span><span class="n">connection</span><span class="p">,</span> <span class="n">if_exists</span><span class="o">=</span><span class="s1">'append'</span><span class="p">)</span>
+<span class="go">2</span>
+</pre></div>
+</div>
+<p>This is allowed to support operations that require that the same
+DBAPI connection is used for the entire operation.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df2</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">'name'</span> <span class="p">:</span> <span class="p">[</span><span class="s1">'User 6'</span><span class="p">,</span> <span class="s1">'User 7'</span><span class="p">]})</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">df2</span><span class="o">.</span><span class="n">to_sql</span><span class="p">(</span><span class="s1">'users'</span><span class="p">,</span> <span class="n">con</span><span class="o">=</span><span class="n">engine</span><span class="p">,</span> <span class="n">if_exists</span><span class="o">=</span><span class="s1">'append'</span><span class="p">)</span>
+<span class="go">2</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">engine</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">"SELECT * FROM users"</span><span class="p">)</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()</span>
+<span class="go">[(0, 'User 1'), (1, 'User 2'), (2, 'User 3'),</span>
+<span class="go"> (0, 'User 4'), (1, 'User 5'), (0, 'User 6'),</span>
+<span class="go"> (1, 'User 7')]</span>
+</pre></div>
+</div>
+<p>Overwrite the table with just <code class="docutils literal notranslate"><span class="pre">df2</span></code>.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df2</span><span class="o">.</span><span class="n">to_sql</span><span class="p">(</span><span class="s1">'users'</span><span class="p">,</span> <span class="n">con</span><span class="o">=</span><span class="n">engine</span><span class="p">,</span> <span class="n">if_exists</span><span class="o">=</span><span class="s1">'replace'</span><span class="p">,</span>
+<span class="gp">... </span>           <span class="n">index_label</span><span class="o">=</span><span class="s1">'id'</span><span class="p">)</span>
+<span class="go">2</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">engine</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">"SELECT * FROM users"</span><span class="p">)</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()</span>
+<span class="go">[(0, 'User 6'), (1, 'User 7')]</span>
+</pre></div>
+</div>
+<p>Specify the dtype (especially useful for integers with missing values).
+Notice that while pandas is forced to store the data as floating point,
+the database supports nullable integers. When fetching the data with
+Python, we get back integer scalars.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s2">"A"</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="mi">2</span><span class="p">]})</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">df</span>
+<span class="go">     A</span>
+<span class="go">0  1.0</span>
+<span class="go">1  NaN</span>
+<span class="go">2  2.0</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sqlalchemy.types</span> <span class="kn">import</span> <span class="n">Integer</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">df</span><span class="o">.</span><span class="n">to_sql</span><span class="p">(</span><span class="s1">'integers'</span><span class="p">,</span> <span class="n">con</span><span class="o">=</span><span class="n">engine</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+<span class="gp">... </span>          <span class="n">dtype</span><span class="o">=</span><span class="p">{</span><span class="s2">"A"</span><span class="p">:</span> <span class="n">Integer</span><span class="p">()})</span>
+<span class="go">3</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">engine</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">"SELECT * FROM integers"</span><span class="p">)</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()</span>
+<span class="go">[(1,), (None,), (2,)]</span>
+</pre></div>
+</div>
+</dd></dl>
+</section>
+</div>
+
+</main>
+</div>
+</div>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+</body>
+</html>

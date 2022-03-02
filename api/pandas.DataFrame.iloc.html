@@ -1,0 +1,198 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="Docutils 0.17.1: http://docutils.sourceforge.net/" name="generator"/>
+<title>pandas.DataFrame.iloc — pandas 1.4.1 documentation</title>
+<link href="../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet"/>
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet"/>
+<link href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css" rel="stylesheet"/>
+<link as="font" crossorigin="" href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2" rel="preload" type="font/woff2"/>
+<link as="font" crossorigin="" href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2" rel="preload" type="font/woff2"/>
+<link href="../../_static/pygments.css" rel="stylesheet" type="text/css">
+<link href="../../_static/styles/pydata-sphinx-theme.css" rel="stylesheet" type="text/css">
+<link href="../../_static/plot_directive.css" rel="stylesheet" type="text/css">
+<link href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" rel="stylesheet" type="text/css">
+<link href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" rel="stylesheet" type="text/css">
+<link href="../../_static/css/getting_started.css" rel="stylesheet" type="text/css"/>
+<link href="../../_static/css/pandas.css" rel="stylesheet" type="text/css"/>
+<link as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf" rel="preload"/>
+<script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+<script src="../../_static/jquery.js"></script>
+<script src="../../_static/underscore.js"></script>
+<script src="../../_static/doctools.js"></script>
+<script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
+<link href="../../_static/favicon.ico" rel="shortcut icon">
+<link href="../../genindex.html" rel="index" title="Index"/>
+<link href="../../search.html" rel="search" title="Search"/>
+<link href="pandas.DataFrame.index.html" rel="next" title="pandas.DataFrame.index"/>
+<link href="pandas.DataFrame.iat.html" rel="prev" title="pandas.DataFrame.iat"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<meta content="en" name="docsearch:language"/>
+<script async="" src="https://www.google-analytics.com/analytics.js"></script>
+<script>
+                        window.ga = window.ga || function () {
+                            (ga.q = ga.q || []).push(arguments) };
+                        ga.l = +new Date;
+                        ga('create', 'UA-27880019-2', 'auto');
+                        ga('set', 'anonymizeIp', true);
+                        ga('send', 'pageview');
+                    </script>
+</link></link></link></link></link></link></head>
+<body data-offset="80" data-spy="scroll" data-target="#bd-toc-nav">
+<div class="container-fluid" id="banner"></div>
+
+<div class="container-xl">
+<div class="row">
+
+
+<main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
+<div>
+<section id="pandas-dataframe-iloc">
+<h1>pandas.DataFrame.iloc<a class="headerlink" href="#pandas-dataframe-iloc" title="Permalink to this headline">¶</a></h1>
+<dl class="py property">
+<dt class="sig sig-object py" id="pandas.DataFrame.iloc">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">DataFrame.</span></span><span class="sig-name descname"><span class="pre">iloc</span></span><a class="headerlink" href="#pandas.DataFrame.iloc" title="Permalink to this definition">¶</a></dt>
+<dd><p>Purely integer-location based indexing for selection by position.</p>
+<p><code class="docutils literal notranslate"><span class="pre">.iloc[]</span></code> is primarily integer position based (from <code class="docutils literal notranslate"><span class="pre">0</span></code> to
+<code class="docutils literal notranslate"><span class="pre">length-1</span></code> of the axis), but may also be used with a boolean
+array.</p>
+<p>Allowed inputs are:</p>
+<ul class="simple">
+<li><p>An integer, e.g. <code class="docutils literal notranslate"><span class="pre">5</span></code>.</p></li>
+<li><p>A list or array of integers, e.g. <code class="docutils literal notranslate"><span class="pre">[4,</span> <span class="pre">3,</span> <span class="pre">0]</span></code>.</p></li>
+<li><p>A slice object with ints, e.g. <code class="docutils literal notranslate"><span class="pre">1:7</span></code>.</p></li>
+<li><p>A boolean array.</p></li>
+<li><p>A <code class="docutils literal notranslate"><span class="pre">callable</span></code> function with one argument (the calling Series or
+DataFrame) and that returns valid output for indexing (one of the above).
+This is useful in method chains, when you don’t have a reference to the
+calling object, but would like to base your selection on some value.</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">.iloc</span></code> will raise <code class="docutils literal notranslate"><span class="pre">IndexError</span></code> if a requested indexer is
+out-of-bounds, except <em>slice</em> indexers which allow out-of-bounds
+indexing (this conforms with python/numpy <em>slice</em> semantics).</p>
+<p>See more at <a class="reference internal" href="../../user_guide/indexing.html#indexing-integer"><span class="std std-ref">Selection by Position</span></a>.</p>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<dl class="simple">
+<dt><a class="reference internal" href="pandas.DataFrame.iat.html#pandas.DataFrame.iat" title="pandas.DataFrame.iat"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DataFrame.iat</span></code></a></dt><dd><p>Fast integer location scalar accessor.</p>
+</dd>
+<dt><a class="reference internal" href="pandas.DataFrame.loc.html#pandas.DataFrame.loc" title="pandas.DataFrame.loc"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DataFrame.loc</span></code></a></dt><dd><p>Purely label-location based indexer for selection by label.</p>
+</dd>
+<dt><a class="reference internal" href="pandas.Series.iloc.html#pandas.Series.iloc" title="pandas.Series.iloc"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Series.iloc</span></code></a></dt><dd><p>Purely integer-location based indexing for selection by position.</p>
+</dd>
+</dl>
+</div>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">mydict</span> <span class="o">=</span> <span class="p">[{</span><span class="s1">'a'</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">'b'</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="s1">'c'</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span> <span class="s1">'d'</span><span class="p">:</span> <span class="mi">4</span><span class="p">},</span>
+<span class="gp">... </span>          <span class="p">{</span><span class="s1">'a'</span><span class="p">:</span> <span class="mi">100</span><span class="p">,</span> <span class="s1">'b'</span><span class="p">:</span> <span class="mi">200</span><span class="p">,</span> <span class="s1">'c'</span><span class="p">:</span> <span class="mi">300</span><span class="p">,</span> <span class="s1">'d'</span><span class="p">:</span> <span class="mi">400</span><span class="p">},</span>
+<span class="gp">... </span>          <span class="p">{</span><span class="s1">'a'</span><span class="p">:</span> <span class="mi">1000</span><span class="p">,</span> <span class="s1">'b'</span><span class="p">:</span> <span class="mi">2000</span><span class="p">,</span> <span class="s1">'c'</span><span class="p">:</span> <span class="mi">3000</span><span class="p">,</span> <span class="s1">'d'</span><span class="p">:</span> <span class="mi">4000</span> <span class="p">}]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">mydict</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">df</span>
+<span class="go">      a     b     c     d</span>
+<span class="go">0     1     2     3     4</span>
+<span class="go">1   100   200   300   400</span>
+<span class="go">2  1000  2000  3000  4000</span>
+</pre></div>
+</div>
+<p><strong>Indexing just the rows</strong></p>
+<p>With a scalar integer.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">type</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="go">&lt;class 'pandas.core.series.Series'&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="go">a    1</span>
+<span class="go">b    2</span>
+<span class="go">c    3</span>
+<span class="go">d    4</span>
+<span class="go">Name: 0, dtype: int64</span>
+</pre></div>
+</div>
+<p>With a list of integers.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[[</span><span class="mi">0</span><span class="p">]]</span>
+<span class="go">   a  b  c  d</span>
+<span class="go">0  1  2  3  4</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">type</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[[</span><span class="mi">0</span><span class="p">]])</span>
+<span class="go">&lt;class 'pandas.core.frame.DataFrame'&gt;</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]]</span>
+<span class="go">     a    b    c    d</span>
+<span class="go">0    1    2    3    4</span>
+<span class="go">1  100  200  300  400</span>
+</pre></div>
+</div>
+<p>With a <cite>slice</cite> object.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:</span><span class="mi">3</span><span class="p">]</span>
+<span class="go">      a     b     c     d</span>
+<span class="go">0     1     2     3     4</span>
+<span class="go">1   100   200   300   400</span>
+<span class="go">2  1000  2000  3000  4000</span>
+</pre></div>
+</div>
+<p>With a boolean mask the same length as the index.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[[</span><span class="kc">True</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">True</span><span class="p">]]</span>
+<span class="go">      a     b     c     d</span>
+<span class="go">0     1     2     3     4</span>
+<span class="go">2  1000  2000  3000  4000</span>
+</pre></div>
+</div>
+<p>With a callable, useful in method chains. The <cite>x</cite> passed
+to the <code class="docutils literal notranslate"><span class="pre">lambda</span></code> is the DataFrame being sliced. This selects
+the rows whose index label even.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">index</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span><span class="p">]</span>
+<span class="go">      a     b     c     d</span>
+<span class="go">0     1     2     3     4</span>
+<span class="go">2  1000  2000  3000  4000</span>
+</pre></div>
+</div>
+<p><strong>Indexing both axes</strong></p>
+<p>You can mix the indexer types for the index and columns. Use <code class="docutils literal notranslate"><span class="pre">:</span></code> to
+select the entire axis.</p>
+<p>With scalar integers.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
+<span class="go">2</span>
+</pre></div>
+</div>
+<p>With lists of integers.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">]]</span>
+<span class="go">      b     d</span>
+<span class="go">0     2     4</span>
+<span class="go">2  2000  4000</span>
+</pre></div>
+</div>
+<p>With <cite>slice</cite> objects.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">3</span><span class="p">,</span> <span class="mi">0</span><span class="p">:</span><span class="mi">3</span><span class="p">]</span>
+<span class="go">      a     b     c</span>
+<span class="go">1   100   200   300</span>
+<span class="go">2  1000  2000  3000</span>
+</pre></div>
+</div>
+<p>With a boolean array whose length matches the columns.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span> <span class="p">[</span><span class="kc">True</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">True</span><span class="p">,</span> <span class="kc">False</span><span class="p">]]</span>
+<span class="go">      a     c</span>
+<span class="go">0     1     3</span>
+<span class="go">1   100   300</span>
+<span class="go">2  1000  3000</span>
+</pre></div>
+</div>
+<p>With a callable function that expects the Series or DataFrame.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span> <span class="k">lambda</span> <span class="n">df</span><span class="p">:</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">]]</span>
+<span class="go">      a     c</span>
+<span class="go">0     1     3</span>
+<span class="go">1   100   300</span>
+<span class="go">2  1000  3000</span>
+</pre></div>
+</div>
+</dd></dl>
+</section>
+</div>
+
+</main>
+</div>
+</div>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+</body>
+</html>

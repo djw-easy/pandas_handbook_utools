@@ -1,0 +1,190 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="Docutils 0.17.1: http://docutils.sourceforge.net/" name="generator"/>
+<title>pandas.DataFrame.truncate — pandas 1.4.1 documentation</title>
+<link href="../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet"/>
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet"/>
+<link href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css" rel="stylesheet"/>
+<link as="font" crossorigin="" href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2" rel="preload" type="font/woff2"/>
+<link as="font" crossorigin="" href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2" rel="preload" type="font/woff2"/>
+<link href="../../_static/pygments.css" rel="stylesheet" type="text/css">
+<link href="../../_static/styles/pydata-sphinx-theme.css" rel="stylesheet" type="text/css">
+<link href="../../_static/plot_directive.css" rel="stylesheet" type="text/css">
+<link href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" rel="stylesheet" type="text/css">
+<link href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" rel="stylesheet" type="text/css">
+<link href="../../_static/css/getting_started.css" rel="stylesheet" type="text/css"/>
+<link href="../../_static/css/pandas.css" rel="stylesheet" type="text/css"/>
+<link as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf" rel="preload"/>
+<script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+<script src="../../_static/jquery.js"></script>
+<script src="../../_static/underscore.js"></script>
+<script src="../../_static/doctools.js"></script>
+<script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
+<link href="../../_static/favicon.ico" rel="shortcut icon">
+<link href="../../genindex.html" rel="index" title="Index"/>
+<link href="../../search.html" rel="search" title="Search"/>
+<link href="pandas.DataFrame.tshift.html" rel="next" title="pandas.DataFrame.tshift"/>
+<link href="pandas.DataFrame.truediv.html" rel="prev" title="pandas.DataFrame.truediv"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<meta content="en" name="docsearch:language"/>
+<script async="" src="https://www.google-analytics.com/analytics.js"></script>
+<script>
+                        window.ga = window.ga || function () {
+                            (ga.q = ga.q || []).push(arguments) };
+                        ga.l = +new Date;
+                        ga('create', 'UA-27880019-2', 'auto');
+                        ga('set', 'anonymizeIp', true);
+                        ga('send', 'pageview');
+                    </script>
+</link></link></link></link></link></link></head>
+<body data-offset="80" data-spy="scroll" data-target="#bd-toc-nav">
+<div class="container-fluid" id="banner"></div>
+
+<div class="container-xl">
+<div class="row">
+
+
+<main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
+<div>
+<section id="pandas-dataframe-truncate">
+<h1>pandas.DataFrame.truncate<a class="headerlink" href="#pandas-dataframe-truncate" title="Permalink to this headline">¶</a></h1>
+<dl class="py method">
+<dt class="sig sig-object py" id="pandas.DataFrame.truncate">
+<span class="sig-prename descclassname"><span class="pre">DataFrame.</span></span><span class="sig-name descname"><span class="pre">truncate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">before</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">after</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axis</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">copy</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/pandas-dev/pandas/blob/v1.4.1/pandas/core/generic.py#L9600-L9754"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pandas.DataFrame.truncate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Truncate a Series or DataFrame before and after some index value.</p>
+<p>This is a useful shorthand for boolean indexing based on index
+values above or below certain thresholds.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>before</strong><span class="classifier">date, str, int</span></dt><dd><p>Truncate all rows before this index value.</p>
+</dd>
+<dt><strong>after</strong><span class="classifier">date, str, int</span></dt><dd><p>Truncate all rows after this index value.</p>
+</dd>
+<dt><strong>axis</strong><span class="classifier">{0 or ‘index’, 1 or ‘columns’}, optional</span></dt><dd><p>Axis to truncate. Truncates the index (rows) by default.</p>
+</dd>
+<dt><strong>copy</strong><span class="classifier">bool, default is True,</span></dt><dd><p>Return a copy of the truncated section.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt>type of caller</dt><dd><p>The truncated Series or DataFrame.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<dl class="simple">
+<dt><a class="reference internal" href="pandas.DataFrame.loc.html#pandas.DataFrame.loc" title="pandas.DataFrame.loc"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DataFrame.loc</span></code></a></dt><dd><p>Select a subset of a DataFrame by label.</p>
+</dd>
+<dt><a class="reference internal" href="pandas.DataFrame.iloc.html#pandas.DataFrame.iloc" title="pandas.DataFrame.iloc"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DataFrame.iloc</span></code></a></dt><dd><p>Select a subset of a DataFrame by position.</p>
+</dd>
+</dl>
+</div>
+<p class="rubric">Notes</p>
+<p>If the index being truncated contains only datetime values,
+<cite>before</cite> and <cite>after</cite> may be specified as strings instead of
+Timestamps.</p>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">'A'</span><span class="p">:</span> <span class="p">[</span><span class="s1">'a'</span><span class="p">,</span> <span class="s1">'b'</span><span class="p">,</span> <span class="s1">'c'</span><span class="p">,</span> <span class="s1">'d'</span><span class="p">,</span> <span class="s1">'e'</span><span class="p">],</span>
+<span class="gp">... </span>                   <span class="s1">'B'</span><span class="p">:</span> <span class="p">[</span><span class="s1">'f'</span><span class="p">,</span> <span class="s1">'g'</span><span class="p">,</span> <span class="s1">'h'</span><span class="p">,</span> <span class="s1">'i'</span><span class="p">,</span> <span class="s1">'j'</span><span class="p">],</span>
+<span class="gp">... </span>                   <span class="s1">'C'</span><span class="p">:</span> <span class="p">[</span><span class="s1">'k'</span><span class="p">,</span> <span class="s1">'l'</span><span class="p">,</span> <span class="s1">'m'</span><span class="p">,</span> <span class="s1">'n'</span><span class="p">,</span> <span class="s1">'o'</span><span class="p">]},</span>
+<span class="gp">... </span>                  <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">df</span>
+<span class="go">   A  B  C</span>
+<span class="go">1  a  f  k</span>
+<span class="go">2  b  g  l</span>
+<span class="go">3  c  h  m</span>
+<span class="go">4  d  i  n</span>
+<span class="go">5  e  j  o</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df</span><span class="o">.</span><span class="n">truncate</span><span class="p">(</span><span class="n">before</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">after</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+<span class="go">   A  B  C</span>
+<span class="go">2  b  g  l</span>
+<span class="go">3  c  h  m</span>
+<span class="go">4  d  i  n</span>
+</pre></div>
+</div>
+<p>The columns of a DataFrame can be truncated.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df</span><span class="o">.</span><span class="n">truncate</span><span class="p">(</span><span class="n">before</span><span class="o">=</span><span class="s2">"A"</span><span class="p">,</span> <span class="n">after</span><span class="o">=</span><span class="s2">"B"</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="s2">"columns"</span><span class="p">)</span>
+<span class="go">   A  B</span>
+<span class="go">1  a  f</span>
+<span class="go">2  b  g</span>
+<span class="go">3  c  h</span>
+<span class="go">4  d  i</span>
+<span class="go">5  e  j</span>
+</pre></div>
+</div>
+<p>For Series, only rows can be truncated.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df</span><span class="p">[</span><span class="s1">'A'</span><span class="p">]</span><span class="o">.</span><span class="n">truncate</span><span class="p">(</span><span class="n">before</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">after</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+<span class="go">2    b</span>
+<span class="go">3    c</span>
+<span class="go">4    d</span>
+<span class="go">Name: A, dtype: object</span>
+</pre></div>
+</div>
+<p>The index values in <code class="docutils literal notranslate"><span class="pre">truncate</span></code> can be datetimes or string
+dates.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">dates</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">date_range</span><span class="p">(</span><span class="s1">'2016-01-01'</span><span class="p">,</span> <span class="s1">'2016-02-01'</span><span class="p">,</span> <span class="n">freq</span><span class="o">=</span><span class="s1">'s'</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="n">dates</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="p">{</span><span class="s1">'A'</span><span class="p">:</span> <span class="mi">1</span><span class="p">})</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">df</span><span class="o">.</span><span class="n">tail</span><span class="p">()</span>
+<span class="go">                     A</span>
+<span class="go">2016-01-31 23:59:56  1</span>
+<span class="go">2016-01-31 23:59:57  1</span>
+<span class="go">2016-01-31 23:59:58  1</span>
+<span class="go">2016-01-31 23:59:59  1</span>
+<span class="go">2016-02-01 00:00:00  1</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df</span><span class="o">.</span><span class="n">truncate</span><span class="p">(</span><span class="n">before</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">Timestamp</span><span class="p">(</span><span class="s1">'2016-01-05'</span><span class="p">),</span>
+<span class="gp">... </span>            <span class="n">after</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">Timestamp</span><span class="p">(</span><span class="s1">'2016-01-10'</span><span class="p">))</span><span class="o">.</span><span class="n">tail</span><span class="p">()</span>
+<span class="go">                     A</span>
+<span class="go">2016-01-09 23:59:56  1</span>
+<span class="go">2016-01-09 23:59:57  1</span>
+<span class="go">2016-01-09 23:59:58  1</span>
+<span class="go">2016-01-09 23:59:59  1</span>
+<span class="go">2016-01-10 00:00:00  1</span>
+</pre></div>
+</div>
+<p>Because the index is a DatetimeIndex containing only dates, we can
+specify <cite>before</cite> and <cite>after</cite> as strings. They will be coerced to
+Timestamps before truncation.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df</span><span class="o">.</span><span class="n">truncate</span><span class="p">(</span><span class="s1">'2016-01-05'</span><span class="p">,</span> <span class="s1">'2016-01-10'</span><span class="p">)</span><span class="o">.</span><span class="n">tail</span><span class="p">()</span>
+<span class="go">                     A</span>
+<span class="go">2016-01-09 23:59:56  1</span>
+<span class="go">2016-01-09 23:59:57  1</span>
+<span class="go">2016-01-09 23:59:58  1</span>
+<span class="go">2016-01-09 23:59:59  1</span>
+<span class="go">2016-01-10 00:00:00  1</span>
+</pre></div>
+</div>
+<p>Note that <code class="docutils literal notranslate"><span class="pre">truncate</span></code> assumes a 0 value for any unspecified time
+component (midnight). This differs from partial string slicing, which
+returns any partially matching dates.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s1">'2016-01-05'</span><span class="p">:</span><span class="s1">'2016-01-10'</span><span class="p">,</span> <span class="p">:]</span><span class="o">.</span><span class="n">tail</span><span class="p">()</span>
+<span class="go">                     A</span>
+<span class="go">2016-01-10 23:59:55  1</span>
+<span class="go">2016-01-10 23:59:56  1</span>
+<span class="go">2016-01-10 23:59:57  1</span>
+<span class="go">2016-01-10 23:59:58  1</span>
+<span class="go">2016-01-10 23:59:59  1</span>
+</pre></div>
+</div>
+</dd></dl>
+</section>
+</div>
+
+</main>
+</div>
+</div>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+</body>
+</html>

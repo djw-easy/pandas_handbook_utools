@@ -1,0 +1,190 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="Docutils 0.17.1: http://docutils.sourceforge.net/" name="generator"/>
+<title>pandas.Categorical — pandas 1.4.1 documentation</title>
+<link href="../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet"/>
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet"/>
+<link href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css" rel="stylesheet"/>
+<link as="font" crossorigin="" href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2" rel="preload" type="font/woff2"/>
+<link as="font" crossorigin="" href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2" rel="preload" type="font/woff2"/>
+<link href="../../_static/pygments.css" rel="stylesheet" type="text/css">
+<link href="../../_static/styles/pydata-sphinx-theme.css" rel="stylesheet" type="text/css">
+<link href="../../_static/plot_directive.css" rel="stylesheet" type="text/css">
+<link href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" rel="stylesheet" type="text/css">
+<link href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" rel="stylesheet" type="text/css">
+<link href="../../_static/css/getting_started.css" rel="stylesheet" type="text/css"/>
+<link href="../../_static/css/pandas.css" rel="stylesheet" type="text/css"/>
+<link as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf" rel="preload"/>
+<script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+<script src="../../_static/jquery.js"></script>
+<script src="../../_static/underscore.js"></script>
+<script src="../../_static/doctools.js"></script>
+<script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
+<link href="../../_static/favicon.ico" rel="shortcut icon">
+<link href="../../genindex.html" rel="index" title="Index"/>
+<link href="../../search.html" rel="search" title="Search"/>
+<link href="pandas.Categorical.categories.html" rel="next" title="pandas.Categorical.categories"/>
+<link href="pandas.CategoricalDtype.ordered.html" rel="prev" title="pandas.CategoricalDtype.ordered"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<meta content="en" name="docsearch:language"/>
+<script async="" src="https://www.google-analytics.com/analytics.js"></script>
+<script>
+                        window.ga = window.ga || function () {
+                            (ga.q = ga.q || []).push(arguments) };
+                        ga.l = +new Date;
+                        ga('create', 'UA-27880019-2', 'auto');
+                        ga('set', 'anonymizeIp', true);
+                        ga('send', 'pageview');
+                    </script>
+</link></link></link></link></link></link></head>
+<body data-offset="80" data-spy="scroll" data-target="#bd-toc-nav">
+<div class="container-fluid" id="banner"></div>
+
+<div class="container-xl">
+<div class="row">
+
+
+<main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
+<div>
+<section id="pandas-categorical">
+<h1>pandas.Categorical<a class="headerlink" href="#pandas-categorical" title="Permalink to this headline">¶</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="pandas.Categorical">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pandas.</span></span><span class="sig-name descname"><span class="pre">Categorical</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">values</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">categories</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ordered</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dtype</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fastpath</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">copy</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/pandas-dev/pandas/blob/v1.4.1/pandas/core/arrays/categorical.py#L252-L2583"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pandas.Categorical" title="Permalink to this definition">¶</a></dt>
+<dd><p>Represent a categorical variable in classic R / S-plus fashion.</p>
+<p><cite>Categoricals</cite> can only take on only a limited, and usually fixed, number
+of possible values (<cite>categories</cite>). In contrast to statistical categorical
+variables, a <cite>Categorical</cite> might have an order, but numerical operations
+(additions, divisions, …) are not possible.</p>
+<p>All values of the <cite>Categorical</cite> are either in <cite>categories</cite> or <cite>np.nan</cite>.
+Assigning values outside of <cite>categories</cite> will raise a <cite>ValueError</cite>. Order
+is defined by the order of the <cite>categories</cite>, not lexical order of the
+values.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>values</strong><span class="classifier">list-like</span></dt><dd><p>The values of the categorical. If categories are given, values not in
+categories will be replaced with NaN.</p>
+</dd>
+<dt><strong>categories</strong><span class="classifier">Index-like (unique), optional</span></dt><dd><p>The unique categories for this categorical. If not given, the
+categories are assumed to be the unique values of <cite>values</cite> (sorted, if
+possible, otherwise in the order in which they appear).</p>
+</dd>
+<dt><strong>ordered</strong><span class="classifier">bool, default False</span></dt><dd><p>Whether or not this categorical is treated as a ordered categorical.
+If True, the resulting categorical will be ordered.
+An ordered categorical respects, when sorted, the order of its
+<cite>categories</cite> attribute (which in turn is the <cite>categories</cite> argument, if
+provided).</p>
+</dd>
+<dt><strong>dtype</strong><span class="classifier">CategoricalDtype</span></dt><dd><p>An instance of <code class="docutils literal notranslate"><span class="pre">CategoricalDtype</span></code> to use for this categorical.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><dl class="simple">
+<dt>ValueError</dt><dd><p>If the categories do not validate.</p>
+</dd>
+<dt>TypeError</dt><dd><p>If an explicit <code class="docutils literal notranslate"><span class="pre">ordered=True</span></code> is given but no <cite>categories</cite> and the
+<cite>values</cite> are not sortable.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<dl class="simple">
+<dt><a class="reference internal" href="pandas.CategoricalDtype.html#pandas.CategoricalDtype" title="pandas.CategoricalDtype"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CategoricalDtype</span></code></a></dt><dd><p>Type for categorical data.</p>
+</dd>
+<dt><a class="reference internal" href="pandas.CategoricalIndex.html#pandas.CategoricalIndex" title="pandas.CategoricalIndex"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CategoricalIndex</span></code></a></dt><dd><p>An Index with an underlying <code class="docutils literal notranslate"><span class="pre">Categorical</span></code>.</p>
+</dd>
+</dl>
+</div>
+<p class="rubric">Notes</p>
+<p>See the <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/user_guide/categorical.html">user guide</a>
+for more.</p>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">pd</span><span class="o">.</span><span class="n">Categorical</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
+<span class="go">[1, 2, 3, 1, 2, 3]</span>
+<span class="go">Categories (3, int64): [1, 2, 3]</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">pd</span><span class="o">.</span><span class="n">Categorical</span><span class="p">([</span><span class="s1">'a'</span><span class="p">,</span> <span class="s1">'b'</span><span class="p">,</span> <span class="s1">'c'</span><span class="p">,</span> <span class="s1">'a'</span><span class="p">,</span> <span class="s1">'b'</span><span class="p">,</span> <span class="s1">'c'</span><span class="p">])</span>
+<span class="go">['a', 'b', 'c', 'a', 'b', 'c']</span>
+<span class="go">Categories (3, object): ['a', 'b', 'c']</span>
+</pre></div>
+</div>
+<p>Missing values are not included as a category.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">c</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Categorical</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">c</span>
+<span class="go">[1, 2, 3, 1, 2, 3, NaN]</span>
+<span class="go">Categories (3, int64): [1, 2, 3]</span>
+</pre></div>
+</div>
+<p>However, their presence is indicated in the <cite>codes</cite> attribute
+by code <cite>-1</cite>.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">c</span><span class="o">.</span><span class="n">codes</span>
+<span class="go">array([ 0,  1,  2,  0,  1,  2, -1], dtype=int8)</span>
+</pre></div>
+</div>
+<p>Ordered <cite>Categoricals</cite> can be sorted according to the custom order
+of the categories and can have a min and max value.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">c</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Categorical</span><span class="p">([</span><span class="s1">'a'</span><span class="p">,</span> <span class="s1">'b'</span><span class="p">,</span> <span class="s1">'c'</span><span class="p">,</span> <span class="s1">'a'</span><span class="p">,</span> <span class="s1">'b'</span><span class="p">,</span> <span class="s1">'c'</span><span class="p">],</span> <span class="n">ordered</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+<span class="gp">... </span>                   <span class="n">categories</span><span class="o">=</span><span class="p">[</span><span class="s1">'c'</span><span class="p">,</span> <span class="s1">'b'</span><span class="p">,</span> <span class="s1">'a'</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">c</span>
+<span class="go">['a', 'b', 'c', 'a', 'b', 'c']</span>
+<span class="go">Categories (3, object): ['c' &lt; 'b' &lt; 'a']</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">c</span><span class="o">.</span><span class="n">min</span><span class="p">()</span>
+<span class="go">'c'</span>
+</pre></div>
+</div>
+<p class="rubric">Attributes</p>
+<table class="longtable table autosummary">
+<colgroup>
+<col style="width: 10%"/>
+<col style="width: 90%"/>
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="pandas.Categorical.categories.html#pandas.Categorical.categories" title="pandas.Categorical.categories"><code class="xref py py-obj docutils literal notranslate"><span class="pre">categories</span></code></a></p></td>
+<td><p>The categories of this categorical.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="pandas.Categorical.codes.html#pandas.Categorical.codes" title="pandas.Categorical.codes"><code class="xref py py-obj docutils literal notranslate"><span class="pre">codes</span></code></a></p></td>
+<td><p>The category codes of this categorical.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="pandas.Categorical.ordered.html#pandas.Categorical.ordered" title="pandas.Categorical.ordered"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ordered</span></code></a></p></td>
+<td><p>Whether the categories have an ordered relationship.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="pandas.Categorical.dtype.html#pandas.Categorical.dtype" title="pandas.Categorical.dtype"><code class="xref py py-obj docutils literal notranslate"><span class="pre">dtype</span></code></a></p></td>
+<td><p>The <code class="xref py py-class docutils literal notranslate"><span class="pre">CategoricalDtype</span></code> for this instance.</p></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Methods</p>
+<table class="longtable table autosummary">
+<colgroup>
+<col style="width: 10%"/>
+<col style="width: 90%"/>
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="pandas.Categorical.from_codes.html#pandas.Categorical.from_codes" title="pandas.Categorical.from_codes"><code class="xref py py-obj docutils literal notranslate"><span class="pre">from_codes</span></code></a>(codes[, categories, ordered, dtype])</p></td>
+<td><p>Make a Categorical type from codes and categories or dtype.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="pandas.Categorical.__array__.html#pandas.Categorical.__array__" title="pandas.Categorical.__array__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__array__</span></code></a>([dtype])</p></td>
+<td><p>The numpy array interface.</p></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+</section>
+</div>
+
+</main>
+</div>
+</div>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+</body>
+</html>

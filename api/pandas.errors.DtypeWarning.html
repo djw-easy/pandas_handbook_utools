@@ -1,0 +1,116 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="Docutils 0.17.1: http://docutils.sourceforge.net/" name="generator"/>
+<title>pandas.errors.DtypeWarning — pandas 1.4.1 documentation</title>
+<link href="../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet"/>
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet"/>
+<link href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css" rel="stylesheet"/>
+<link as="font" crossorigin="" href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2" rel="preload" type="font/woff2"/>
+<link as="font" crossorigin="" href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2" rel="preload" type="font/woff2"/>
+<link href="../../_static/pygments.css" rel="stylesheet" type="text/css">
+<link href="../../_static/styles/pydata-sphinx-theme.css" rel="stylesheet" type="text/css">
+<link href="../../_static/plot_directive.css" rel="stylesheet" type="text/css">
+<link href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" rel="stylesheet" type="text/css">
+<link href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" rel="stylesheet" type="text/css">
+<link href="../../_static/css/getting_started.css" rel="stylesheet" type="text/css"/>
+<link href="../../_static/css/pandas.css" rel="stylesheet" type="text/css"/>
+<link as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf" rel="preload"/>
+<script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+<script src="../../_static/jquery.js"></script>
+<script src="../../_static/underscore.js"></script>
+<script src="../../_static/doctools.js"></script>
+<script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
+<link href="../../_static/favicon.ico" rel="shortcut icon">
+<link href="../../genindex.html" rel="index" title="Index"/>
+<link href="../../search.html" rel="search" title="Search"/>
+<link href="pandas.errors.DuplicateLabelError.html" rel="next" title="pandas.errors.DuplicateLabelError"/>
+<link href="pandas.errors.AccessorRegistrationWarning.html" rel="prev" title="pandas.errors.AccessorRegistrationWarning"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<meta content="en" name="docsearch:language"/>
+<script async="" src="https://www.google-analytics.com/analytics.js"></script>
+<script>
+                        window.ga = window.ga || function () {
+                            (ga.q = ga.q || []).push(arguments) };
+                        ga.l = +new Date;
+                        ga('create', 'UA-27880019-2', 'auto');
+                        ga('set', 'anonymizeIp', true);
+                        ga('send', 'pageview');
+                    </script>
+</link></link></link></link></link></link></head>
+<body data-offset="80" data-spy="scroll" data-target="#bd-toc-nav">
+<div class="container-fluid" id="banner"></div>
+
+<div class="container-xl">
+<div class="row">
+
+
+<main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
+<div>
+<section id="pandas-errors-dtypewarning">
+<h1>pandas.errors.DtypeWarning<a class="headerlink" href="#pandas-errors-dtypewarning" title="Permalink to this headline">¶</a></h1>
+<dl class="py exception">
+<dt class="sig sig-object py" id="pandas.errors.DtypeWarning">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pandas.errors.</span></span><span class="sig-name descname"><span class="pre">DtypeWarning</span></span><a class="reference external" href="https://github.com/pandas-dev/pandas/blob/v1.4.1/pandas/errors/__init__.py#L67-L119"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pandas.errors.DtypeWarning" title="Permalink to this definition">¶</a></dt>
+<dd><p>Warning raised when reading different dtypes in a column from a file.</p>
+<p>Raised for a dtype incompatibility. This can happen whenever <cite>read_csv</cite>
+or <cite>read_table</cite> encounter non-uniform dtypes in a column(s) of a given
+CSV file.</p>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<dl class="simple">
+<dt><code class="xref py py-obj docutils literal notranslate"><span class="pre">read_csv</span></code></dt><dd><p>Read CSV (comma-separated) file into a DataFrame.</p>
+</dd>
+<dt><code class="xref py py-obj docutils literal notranslate"><span class="pre">read_table</span></code></dt><dd><p>Read general delimited file into a DataFrame.</p>
+</dd>
+</dl>
+</div>
+<p class="rubric">Notes</p>
+<p>This warning is issued when dealing with larger files because the dtype
+checking happens per chunk read.</p>
+<p>Despite the warning, the CSV file is read with mixed types in a single
+column which will be an object type. See the examples below to better
+understand this issue.</p>
+<p class="rubric">Examples</p>
+<p>This example creates and reads a large CSV file with a column that contains
+<cite>int</cite> and <cite>str</cite>.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">'a'</span><span class="p">:</span> <span class="p">([</span><span class="s1">'1'</span><span class="p">]</span> <span class="o">*</span> <span class="mi">100000</span> <span class="o">+</span> <span class="p">[</span><span class="s1">'X'</span><span class="p">]</span> <span class="o">*</span> <span class="mi">100000</span> <span class="o">+</span>
+<span class="gp">... </span>                         <span class="p">[</span><span class="s1">'1'</span><span class="p">]</span> <span class="o">*</span> <span class="mi">100000</span><span class="p">),</span>
+<span class="gp">... </span>                   <span class="s1">'b'</span><span class="p">:</span> <span class="p">[</span><span class="s1">'b'</span><span class="p">]</span> <span class="o">*</span> <span class="mi">300000</span><span class="p">})</span>  
+<span class="gp">&gt;&gt;&gt; </span><span class="n">df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">'test.csv'</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>  
+<span class="gp">&gt;&gt;&gt; </span><span class="n">df2</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">'test.csv'</span><span class="p">)</span>  
+<span class="gp">... </span><span class="c1"># DtypeWarning: Columns (0) have mixed types</span>
+</pre></div>
+</div>
+<p>Important to notice that <code class="docutils literal notranslate"><span class="pre">df2</span></code> will contain both <cite>str</cite> and <cite>int</cite> for the
+same input, ‘1’.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df2</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">262140</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>  
+<span class="go">'1'</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">type</span><span class="p">(</span><span class="n">df2</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">262140</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>  
+<span class="go">&lt;class 'str'&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">df2</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">262150</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>  
+<span class="go">1</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">type</span><span class="p">(</span><span class="n">df2</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">262150</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>  
+<span class="go">&lt;class 'int'&gt;</span>
+</pre></div>
+</div>
+<p>One way to solve this issue is using the <cite>dtype</cite> parameter in the
+<cite>read_csv</cite> and <cite>read_table</cite> functions to explicit the conversion:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df2</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">'test.csv'</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">','</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="p">{</span><span class="s1">'a'</span><span class="p">:</span> <span class="nb">str</span><span class="p">})</span>  
+</pre></div>
+</div>
+<p>No warning was issued.</p>
+</dd></dl>
+</section>
+</div>
+
+</main>
+</div>
+</div>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+</body>
+</html>

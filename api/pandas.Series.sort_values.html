@@ -1,0 +1,235 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="Docutils 0.17.1: http://docutils.sourceforge.net/" name="generator"/>
+<title>pandas.Series.sort_values — pandas 1.4.1 documentation</title>
+<link href="../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet"/>
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet"/>
+<link href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css" rel="stylesheet"/>
+<link as="font" crossorigin="" href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2" rel="preload" type="font/woff2"/>
+<link as="font" crossorigin="" href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2" rel="preload" type="font/woff2"/>
+<link href="../../_static/pygments.css" rel="stylesheet" type="text/css">
+<link href="../../_static/styles/pydata-sphinx-theme.css" rel="stylesheet" type="text/css">
+<link href="../../_static/plot_directive.css" rel="stylesheet" type="text/css">
+<link href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" rel="stylesheet" type="text/css">
+<link href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" rel="stylesheet" type="text/css">
+<link href="../../_static/css/getting_started.css" rel="stylesheet" type="text/css"/>
+<link href="../../_static/css/pandas.css" rel="stylesheet" type="text/css"/>
+<link as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf" rel="preload"/>
+<script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+<script src="../../_static/jquery.js"></script>
+<script src="../../_static/underscore.js"></script>
+<script src="../../_static/doctools.js"></script>
+<script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
+<link href="../../_static/favicon.ico" rel="shortcut icon">
+<link href="../../genindex.html" rel="index" title="Index"/>
+<link href="../../search.html" rel="search" title="Search"/>
+<link href="pandas.Series.sparse.html" rel="next" title="pandas.Series.sparse"/>
+<link href="pandas.Series.sort_index.html" rel="prev" title="pandas.Series.sort_index"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<meta content="en" name="docsearch:language"/>
+<script async="" src="https://www.google-analytics.com/analytics.js"></script>
+<script>
+                        window.ga = window.ga || function () {
+                            (ga.q = ga.q || []).push(arguments) };
+                        ga.l = +new Date;
+                        ga('create', 'UA-27880019-2', 'auto');
+                        ga('set', 'anonymizeIp', true);
+                        ga('send', 'pageview');
+                    </script>
+</link></link></link></link></link></link></head>
+<body data-offset="80" data-spy="scroll" data-target="#bd-toc-nav">
+<div class="container-fluid" id="banner"></div>
+
+<div class="container-xl">
+<div class="row">
+
+
+<main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
+<div>
+<section id="pandas-series-sort-values">
+<h1>pandas.Series.sort_values<a class="headerlink" href="#pandas-series-sort-values" title="Permalink to this headline">¶</a></h1>
+<dl class="py method">
+<dt class="sig sig-object py" id="pandas.Series.sort_values">
+<span class="sig-prename descclassname"><span class="pre">Series.</span></span><span class="sig-name descname"><span class="pre">sort_values</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">axis</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ascending</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">inplace</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kind</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'quicksort'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">na_position</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'last'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ignore_index</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">key</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/pandas-dev/pandas/blob/v1.4.1/pandas/core/series.py#L3330-L3538"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pandas.Series.sort_values" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sort by the values.</p>
+<p>Sort a Series in ascending or descending order by some
+criterion.</p>
+<dl class="field-list">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl>
+<dt><strong>axis</strong><span class="classifier">{0 or ‘index’}, default 0</span></dt><dd><p>Axis to direct sorting. The value ‘index’ is accepted for
+compatibility with DataFrame.sort_values.</p>
+</dd>
+<dt><strong>ascending</strong><span class="classifier">bool or list of bools, default True</span></dt><dd><p>If True, sort values in ascending order, otherwise descending.</p>
+</dd>
+<dt><strong>inplace</strong><span class="classifier">bool, default False</span></dt><dd><p>If True, perform operation in-place.</p>
+</dd>
+<dt><strong>kind</strong><span class="classifier">{‘quicksort’, ‘mergesort’, ‘heapsort’, ‘stable’}, default ‘quicksort’</span></dt><dd><p>Choice of sorting algorithm. See also <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.sort.html#numpy.sort" title="(in NumPy v1.22)"><code class="xref py py-func docutils literal notranslate"><span class="pre">numpy.sort()</span></code></a> for more
+information. ‘mergesort’ and ‘stable’ are the only stable algorithms.</p>
+</dd>
+<dt><strong>na_position</strong><span class="classifier">{‘first’ or ‘last’}, default ‘last’</span></dt><dd><p>Argument ‘first’ puts NaNs at the beginning, ‘last’ puts NaNs at
+the end.</p>
+</dd>
+<dt><strong>ignore_index</strong><span class="classifier">bool, default False</span></dt><dd><p>If True, the resulting axis will be labeled 0, 1, …, n - 1.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">New in version 1.0.0.</span></p>
+</div>
+</dd>
+<dt><strong>key</strong><span class="classifier">callable, optional</span></dt><dd><p>If not None, apply the key function to the series values
+before sorting. This is similar to the <cite>key</cite> argument in the
+builtin <code class="xref py py-meth docutils literal notranslate"><span class="pre">sorted()</span></code> function, with the notable difference that
+this <cite>key</cite> function should be <em>vectorized</em>. It should expect a
+<code class="docutils literal notranslate"><span class="pre">Series</span></code> and return an array-like.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">New in version 1.1.0.</span></p>
+</div>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt>Series or None</dt><dd><p>Series ordered by values or None if <code class="docutils literal notranslate"><span class="pre">inplace=True</span></code>.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<dl class="simple">
+<dt><a class="reference internal" href="pandas.Series.sort_index.html#pandas.Series.sort_index" title="pandas.Series.sort_index"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Series.sort_index</span></code></a></dt><dd><p>Sort by the Series indices.</p>
+</dd>
+<dt><a class="reference internal" href="pandas.DataFrame.sort_values.html#pandas.DataFrame.sort_values" title="pandas.DataFrame.sort_values"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DataFrame.sort_values</span></code></a></dt><dd><p>Sort DataFrame by the values along either axis.</p>
+</dd>
+<dt><a class="reference internal" href="pandas.DataFrame.sort_index.html#pandas.DataFrame.sort_index" title="pandas.DataFrame.sort_index"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DataFrame.sort_index</span></code></a></dt><dd><p>Sort DataFrame by indices.</p>
+</dd>
+</dl>
+</div>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">s</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">5</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">s</span>
+<span class="go">0     NaN</span>
+<span class="go">1     1.0</span>
+<span class="go">2     3.0</span>
+<span class="go">3     10.0</span>
+<span class="go">4     5.0</span>
+<span class="go">dtype: float64</span>
+</pre></div>
+</div>
+<p>Sort values ascending order (default behaviour)</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">s</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">ascending</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="go">1     1.0</span>
+<span class="go">2     3.0</span>
+<span class="go">4     5.0</span>
+<span class="go">3    10.0</span>
+<span class="go">0     NaN</span>
+<span class="go">dtype: float64</span>
+</pre></div>
+</div>
+<p>Sort values descending order</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">s</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="go">3    10.0</span>
+<span class="go">4     5.0</span>
+<span class="go">2     3.0</span>
+<span class="go">1     1.0</span>
+<span class="go">0     NaN</span>
+<span class="go">dtype: float64</span>
+</pre></div>
+</div>
+<p>Sort values inplace</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">s</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">s</span>
+<span class="go">3    10.0</span>
+<span class="go">4     5.0</span>
+<span class="go">2     3.0</span>
+<span class="go">1     1.0</span>
+<span class="go">0     NaN</span>
+<span class="go">dtype: float64</span>
+</pre></div>
+</div>
+<p>Sort values putting NAs first</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">s</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">na_position</span><span class="o">=</span><span class="s1">'first'</span><span class="p">)</span>
+<span class="go">0     NaN</span>
+<span class="go">1     1.0</span>
+<span class="go">2     3.0</span>
+<span class="go">4     5.0</span>
+<span class="go">3    10.0</span>
+<span class="go">dtype: float64</span>
+</pre></div>
+</div>
+<p>Sort a series of strings</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">s</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="s1">'z'</span><span class="p">,</span> <span class="s1">'b'</span><span class="p">,</span> <span class="s1">'d'</span><span class="p">,</span> <span class="s1">'a'</span><span class="p">,</span> <span class="s1">'c'</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">s</span>
+<span class="go">0    z</span>
+<span class="go">1    b</span>
+<span class="go">2    d</span>
+<span class="go">3    a</span>
+<span class="go">4    c</span>
+<span class="go">dtype: object</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">s</span><span class="o">.</span><span class="n">sort_values</span><span class="p">()</span>
+<span class="go">3    a</span>
+<span class="go">1    b</span>
+<span class="go">4    c</span>
+<span class="go">2    d</span>
+<span class="go">0    z</span>
+<span class="go">dtype: object</span>
+</pre></div>
+</div>
+<p>Sort using a key function. Your <cite>key</cite> function will be
+given the <code class="docutils literal notranslate"><span class="pre">Series</span></code> of values and should return an array-like.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">s</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="s1">'a'</span><span class="p">,</span> <span class="s1">'B'</span><span class="p">,</span> <span class="s1">'c'</span><span class="p">,</span> <span class="s1">'D'</span><span class="p">,</span> <span class="s1">'e'</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">s</span><span class="o">.</span><span class="n">sort_values</span><span class="p">()</span>
+<span class="go">1    B</span>
+<span class="go">3    D</span>
+<span class="go">0    a</span>
+<span class="go">2    c</span>
+<span class="go">4    e</span>
+<span class="go">dtype: object</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">s</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">lower</span><span class="p">())</span>
+<span class="go">0    a</span>
+<span class="go">1    B</span>
+<span class="go">2    c</span>
+<span class="go">3    D</span>
+<span class="go">4    e</span>
+<span class="go">dtype: object</span>
+</pre></div>
+</div>
+<p>NumPy ufuncs work well here. For example, we can
+sort by the <code class="docutils literal notranslate"><span class="pre">sin</span></code> of the value</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">s</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="o">-</span><span class="mi">4</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">s</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">key</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">)</span>
+<span class="go">1   -2</span>
+<span class="go">4    4</span>
+<span class="go">2    0</span>
+<span class="go">0   -4</span>
+<span class="go">3    2</span>
+<span class="go">dtype: int64</span>
+</pre></div>
+</div>
+<p>More complicated user-defined functions can be used,
+as long as they expect a Series and return an array-like</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">s</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">tan</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">cumsum</span><span class="p">())))</span>
+<span class="go">0   -4</span>
+<span class="go">3    2</span>
+<span class="go">4    4</span>
+<span class="go">1   -2</span>
+<span class="go">2    0</span>
+<span class="go">dtype: int64</span>
+</pre></div>
+</div>
+</dd></dl>
+</section>
+</div>
+
+</main>
+</div>
+</div>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+</body>
+</html>

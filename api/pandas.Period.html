@@ -1,0 +1,202 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="Docutils 0.17.1: http://docutils.sourceforge.net/" name="generator"/>
+<title>pandas.Period — pandas 1.4.1 documentation</title>
+<link href="../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet"/>
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet"/>
+<link href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css" rel="stylesheet"/>
+<link as="font" crossorigin="" href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2" rel="preload" type="font/woff2"/>
+<link as="font" crossorigin="" href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2" rel="preload" type="font/woff2"/>
+<link href="../../_static/pygments.css" rel="stylesheet" type="text/css">
+<link href="../../_static/styles/pydata-sphinx-theme.css" rel="stylesheet" type="text/css">
+<link href="../../_static/plot_directive.css" rel="stylesheet" type="text/css">
+<link href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" rel="stylesheet" type="text/css">
+<link href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" rel="stylesheet" type="text/css">
+<link href="../../_static/css/getting_started.css" rel="stylesheet" type="text/css"/>
+<link href="../../_static/css/pandas.css" rel="stylesheet" type="text/css"/>
+<link as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf" rel="preload"/>
+<script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+<script src="../../_static/jquery.js"></script>
+<script src="../../_static/underscore.js"></script>
+<script src="../../_static/doctools.js"></script>
+<script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
+<link href="../../_static/favicon.ico" rel="shortcut icon">
+<link href="../../genindex.html" rel="index" title="Index"/>
+<link href="../../search.html" rel="search" title="Search"/>
+<link href="pandas.Period.day.html" rel="next" title="pandas.Period.day"/>
+<link href="pandas.arrays.TimedeltaArray.html" rel="prev" title="pandas.arrays.TimedeltaArray"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<meta content="en" name="docsearch:language"/>
+<script async="" src="https://www.google-analytics.com/analytics.js"></script>
+<script>
+                        window.ga = window.ga || function () {
+                            (ga.q = ga.q || []).push(arguments) };
+                        ga.l = +new Date;
+                        ga('create', 'UA-27880019-2', 'auto');
+                        ga('set', 'anonymizeIp', true);
+                        ga('send', 'pageview');
+                    </script>
+</link></link></link></link></link></link></head>
+<body data-offset="80" data-spy="scroll" data-target="#bd-toc-nav">
+<div class="container-fluid" id="banner"></div>
+
+<div class="container-xl">
+<div class="row">
+
+
+<main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
+<div>
+<section id="pandas-period">
+<h1>pandas.Period<a class="headerlink" href="#pandas-period" title="Permalink to this headline">¶</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="pandas.Period">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pandas.</span></span><span class="sig-name descname"><span class="pre">Period</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">freq</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ordinal</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">year</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">month</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">quarter</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">day</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hour</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">minute</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">second</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pandas.Period" title="Permalink to this definition">¶</a></dt>
+<dd><p>Represents a period of time.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>value</strong><span class="classifier">Period or str, default None</span></dt><dd><p>The time period represented (e.g., ‘4Q2005’).</p>
+</dd>
+<dt><strong>freq</strong><span class="classifier">str, default None</span></dt><dd><p>One of pandas period strings or corresponding objects.</p>
+</dd>
+<dt><strong>ordinal</strong><span class="classifier">int, default None</span></dt><dd><p>The period offset from the proleptic Gregorian epoch.</p>
+</dd>
+<dt><strong>year</strong><span class="classifier">int, default None</span></dt><dd><p>Year value of the period.</p>
+</dd>
+<dt><strong>month</strong><span class="classifier">int, default 1</span></dt><dd><p>Month value of the period.</p>
+</dd>
+<dt><strong>quarter</strong><span class="classifier">int, default None</span></dt><dd><p>Quarter value of the period.</p>
+</dd>
+<dt><strong>day</strong><span class="classifier">int, default 1</span></dt><dd><p>Day value of the period.</p>
+</dd>
+<dt><strong>hour</strong><span class="classifier">int, default 0</span></dt><dd><p>Hour value of the period.</p>
+</dd>
+<dt><strong>minute</strong><span class="classifier">int, default 0</span></dt><dd><p>Minute value of the period.</p>
+</dd>
+<dt><strong>second</strong><span class="classifier">int, default 0</span></dt><dd><p>Second value of the period.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">Attributes</p>
+<table class="longtable table autosummary">
+<colgroup>
+<col style="width: 10%"/>
+<col style="width: 90%"/>
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="pandas.Period.day.html#pandas.Period.day" title="pandas.Period.day"><code class="xref py py-obj docutils literal notranslate"><span class="pre">day</span></code></a></p></td>
+<td><p>Get day of the month that a Period falls on.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="pandas.Period.day_of_week.html#pandas.Period.day_of_week" title="pandas.Period.day_of_week"><code class="xref py py-obj docutils literal notranslate"><span class="pre">day_of_week</span></code></a></p></td>
+<td><p>Day of the week the period lies in, with Monday=0 and Sunday=6.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="pandas.Period.day_of_year.html#pandas.Period.day_of_year" title="pandas.Period.day_of_year"><code class="xref py py-obj docutils literal notranslate"><span class="pre">day_of_year</span></code></a></p></td>
+<td><p>Return the day of the year.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="pandas.Period.dayofweek.html#pandas.Period.dayofweek" title="pandas.Period.dayofweek"><code class="xref py py-obj docutils literal notranslate"><span class="pre">dayofweek</span></code></a></p></td>
+<td><p>Day of the week the period lies in, with Monday=0 and Sunday=6.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="pandas.Period.dayofyear.html#pandas.Period.dayofyear" title="pandas.Period.dayofyear"><code class="xref py py-obj docutils literal notranslate"><span class="pre">dayofyear</span></code></a></p></td>
+<td><p>Return the day of the year.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="pandas.Period.days_in_month.html#pandas.Period.days_in_month" title="pandas.Period.days_in_month"><code class="xref py py-obj docutils literal notranslate"><span class="pre">days_in_month</span></code></a></p></td>
+<td><p>Get the total number of days in the month that this period falls on.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="pandas.Period.daysinmonth.html#pandas.Period.daysinmonth" title="pandas.Period.daysinmonth"><code class="xref py py-obj docutils literal notranslate"><span class="pre">daysinmonth</span></code></a></p></td>
+<td><p>Get the total number of days of the month that the Period falls in.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="pandas.Period.end_time.html#pandas.Period.end_time" title="pandas.Period.end_time"><code class="xref py py-obj docutils literal notranslate"><span class="pre">end_time</span></code></a></p></td>
+<td><p>Get the Timestamp for the end of the period.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="pandas.Period.freqstr.html#pandas.Period.freqstr" title="pandas.Period.freqstr"><code class="xref py py-obj docutils literal notranslate"><span class="pre">freqstr</span></code></a></p></td>
+<td><p>Return a string representation of the frequency.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="pandas.Period.hour.html#pandas.Period.hour" title="pandas.Period.hour"><code class="xref py py-obj docutils literal notranslate"><span class="pre">hour</span></code></a></p></td>
+<td><p>Get the hour of the day component of the Period.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="pandas.Period.is_leap_year.html#pandas.Period.is_leap_year" title="pandas.Period.is_leap_year"><code class="xref py py-obj docutils literal notranslate"><span class="pre">is_leap_year</span></code></a></p></td>
+<td><p>Return True if the period's year is in a leap year.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="pandas.Period.minute.html#pandas.Period.minute" title="pandas.Period.minute"><code class="xref py py-obj docutils literal notranslate"><span class="pre">minute</span></code></a></p></td>
+<td><p>Get minute of the hour component of the Period.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="pandas.Period.month.html#pandas.Period.month" title="pandas.Period.month"><code class="xref py py-obj docutils literal notranslate"><span class="pre">month</span></code></a></p></td>
+<td><p>Return the month this Period falls on.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="pandas.Period.quarter.html#pandas.Period.quarter" title="pandas.Period.quarter"><code class="xref py py-obj docutils literal notranslate"><span class="pre">quarter</span></code></a></p></td>
+<td><p>Return the quarter this Period falls on.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="pandas.Period.qyear.html#pandas.Period.qyear" title="pandas.Period.qyear"><code class="xref py py-obj docutils literal notranslate"><span class="pre">qyear</span></code></a></p></td>
+<td><p>Fiscal year the Period lies in according to its starting-quarter.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="pandas.Period.second.html#pandas.Period.second" title="pandas.Period.second"><code class="xref py py-obj docutils literal notranslate"><span class="pre">second</span></code></a></p></td>
+<td><p>Get the second component of the Period.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="pandas.Period.start_time.html#pandas.Period.start_time" title="pandas.Period.start_time"><code class="xref py py-obj docutils literal notranslate"><span class="pre">start_time</span></code></a></p></td>
+<td><p>Get the Timestamp for the start of the period.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="pandas.Period.week.html#pandas.Period.week" title="pandas.Period.week"><code class="xref py py-obj docutils literal notranslate"><span class="pre">week</span></code></a></p></td>
+<td><p>Get the week of the year on the given Period.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="pandas.Period.weekday.html#pandas.Period.weekday" title="pandas.Period.weekday"><code class="xref py py-obj docutils literal notranslate"><span class="pre">weekday</span></code></a></p></td>
+<td><p>Day of the week the period lies in, with Monday=0 and Sunday=6.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="pandas.Period.weekofyear.html#pandas.Period.weekofyear" title="pandas.Period.weekofyear"><code class="xref py py-obj docutils literal notranslate"><span class="pre">weekofyear</span></code></a></p></td>
+<td><p>Get the week of the year on the given Period.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="pandas.Period.year.html#pandas.Period.year" title="pandas.Period.year"><code class="xref py py-obj docutils literal notranslate"><span class="pre">year</span></code></a></p></td>
+<td><p>Return the year this Period falls on.</p></td>
+</tr>
+</tbody>
+</table>
+<table class="table">
+<colgroup>
+<col style="width: 52%"/>
+<col style="width: 48%"/>
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><strong>freq</strong></p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p><strong>ordinal</strong></p></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Methods</p>
+<table class="longtable table autosummary">
+<colgroup>
+<col style="width: 10%"/>
+<col style="width: 90%"/>
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="pandas.Period.asfreq.html#pandas.Period.asfreq" title="pandas.Period.asfreq"><code class="xref py py-obj docutils literal notranslate"><span class="pre">asfreq</span></code></a></p></td>
+<td><p>Convert Period to desired frequency, at the start or end of the interval.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="pandas.Period.now.html#pandas.Period.now" title="pandas.Period.now"><code class="xref py py-obj docutils literal notranslate"><span class="pre">now</span></code></a></p></td>
+<td><p>Return the period of now's date.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="pandas.Period.strftime.html#pandas.Period.strftime" title="pandas.Period.strftime"><code class="xref py py-obj docutils literal notranslate"><span class="pre">strftime</span></code></a></p></td>
+<td><p>Returns the string representation of the <a class="reference internal" href="#pandas.Period" title="pandas.Period"><code class="xref py py-class docutils literal notranslate"><span class="pre">Period</span></code></a>, depending on the selected <code class="docutils literal notranslate"><span class="pre">fmt</span></code>.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="pandas.Period.to_timestamp.html#pandas.Period.to_timestamp" title="pandas.Period.to_timestamp"><code class="xref py py-obj docutils literal notranslate"><span class="pre">to_timestamp</span></code></a></p></td>
+<td><p>Return the Timestamp representation of the Period.</p></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+</section>
+</div>
+
+</main>
+</div>
+</div>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+</body>
+</html>
