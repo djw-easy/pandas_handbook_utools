@@ -18,7 +18,7 @@
 ## 使用方法：
 
 1. 下载并安装[uTools效率工具](http://www.u.tools/)；
-2. 下载[pandas 外置手册](https://github.com/Nothing1024/Pytorch-handbook-Utools/releases)并解压；
+2. 下载[pandas 外置手册](https://github.com/djw-easy/pandas_handbook_utools/releases)并解压；
 3. 在[uTools效率工具](http://www.u.tools/)的插件市场中安装`程序员手册插件；
 4. 在手册插件的`手册设置`中添加手册，根据需要配置名称，关键字，说明，路径（解压后手册的绝对路径）；
 5. 点击`保存`，打开手册开关。
